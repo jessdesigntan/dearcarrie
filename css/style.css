@@ -4,6 +4,8 @@
   3. link styles
   4. navbar overwrite
   5. card
+  6. popover overwrite
+  7. nav-search
 */
 
 /*=============================
@@ -153,4 +155,41 @@ a:hover {
 .card .footer .dots-icon img {
   height: 20px;
   margin-left: 10px;
+}
+
+/*=============================
+    6. popover overwrite
+===============================*/
+.popover-content {
+  padding: 0;
+}
+
+.popover-content > a {
+  display: block;
+  padding: 10px 60px 10px 10px;
+  border-bottom: 1px solid var(--light-border);
+}
+
+.popover-content > a:last-child {
+  border-bottom: none;
+}
+
+/*=============================
+    7. nav-search
+===============================*/
+.nav-search {
+  background-color: var(--light-border);
+  border: none;
+  box-shadow: none;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.06) url('../images/icon-search.svg') no-repeat 7px center;
+  width: 300px;
+}
+
+input.nav-search {
+  padding-left: 30px;
+}
+
+.navbar-form .form-control {
+    width: 250%;
 }

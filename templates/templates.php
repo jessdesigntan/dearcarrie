@@ -28,6 +28,9 @@ function head($title){
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
 
+    <!-- enable popovers -->
+
+
   </head>
 <?php
 }
@@ -50,7 +53,7 @@ function navbar() {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">BLUECLINIC</a>
+        <a class="navbar-brand" href="#"><strong>LOGO</strong></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,7 +74,7 @@ function navbar() {
         </ul>
         <form class="navbar-form navbar-left">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control nav-search">
           </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
@@ -113,7 +116,15 @@ function card() {
       </div>
       <div class="float-right">
         <a href="#">400 comments</a>
-        <a href="#" class="dots-icon"><img src="images/dots.svg"></a>
+        <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
+        data-content="
+          <a href='#' title='test add link'>Report</a>
+          <a href='#' title='test add link'>Share</a>
+          "
+        ><img src="images/dots.svg"></a>
+        <script>
+          $("[data-toggle=popover]").popover({html:true})
+        </script>
       </div>
     </div>
   </div>
