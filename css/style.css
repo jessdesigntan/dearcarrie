@@ -6,6 +6,9 @@
   5. card
   6. popover overwrite
   7. nav-search
+  8. side-content
+  9. content-title
+  10. mini-card
 */
 
 /*=============================
@@ -17,7 +20,7 @@
   --primary-color: #ff5a5f;
   --light-text: #aaaaaa;
   --text-color: #444444;
-
+  --medium-text: #888888;
 }
 
 body {
@@ -38,6 +41,14 @@ body > .page-container {
 /*=============================
     2. utils
 ===============================*/
+.primary-color {
+  color: var(--primary-color);
+}
+
+.light-text {
+  color: var(--light-text);
+}
+
 .float-left {
   float: left;
 }
@@ -56,7 +67,6 @@ a, a:hover, a:link, a:visited, a:link {
 }
 
 a:hover {
-  opacity: 0.85;
   text-decoration: underline;
 }
 
@@ -81,6 +91,7 @@ a:hover {
   float: left;
   display: block;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .card > .header > .image img {
@@ -119,13 +130,13 @@ a:hover {
   color: var(--text-color);
 }
 
+.card .content a:first-child:hover {
+  text-decoration: none;
+}
+
 .card .content a.read-more {
   font-size: 13px;
   color: var(--light-text);
-}
-
-.card .content a:hover {
-  text-decoration: none;
 }
 
 .card .content {
@@ -192,4 +203,150 @@ input.nav-search {
 
 .navbar-form .form-control {
     width: 250%;
+}
+
+/*=============================
+    8. side-content
+===============================*/
+.filter-sidebar .badge {
+  margin-left: 5px;
+  font-size: 12px;
+  background-color: var(--light-border);
+  color: var(--medium-text);
+  font-weight: 400;
+  float: right;
+  border-radius: 3px;
+}
+
+.filter-sidebar.affix-top {
+  position: static;
+  width:130px;
+}
+
+.filter-sidebar.affix {
+  position: fixed;
+  top:70px;
+  width:130px;
+}
+
+.filter-sidebar > a {
+  display: block;
+  font-size: 16px;
+  font-weight: 200;
+  color: var(--light-text);
+  margin-bottom: 5px;
+}
+
+.filter-sidebar > a.active {
+  color: var(--primary-color);
+}
+
+.main-sidebar.affix-top {
+  position: static;
+  width:250px;
+}
+
+.main-sidebar.affix {
+  position: fixed;
+  top:70px;
+  width:250px;
+}
+
+@media only screen and (max-width: 767px) {
+  .main-sidebar, .filter-sidebar {
+    display: none;
+  }
+}
+
+.side-content {
+  margin-bottom: 40px;
+}
+
+.side-content ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.side-content ul > li {
+  padding: 5px 0;
+}
+
+.side-content ul > li > a {
+  display: block;
+}
+
+/*=============================
+    9. content-title
+===============================*/
+.content-title {
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--light-border);
+  display: table;
+  width: 100%;
+}
+
+.content-title > * {
+  display: table-cell;
+}
+
+.content-title > h4 {
+  margin: 0;
+}
+
+.content-title > h4 {
+  font-size: 15px;
+  color: var(--text-color);
+  padding-bottom: 10px;
+}
+
+.content-title > a {
+  font-size: 14px;
+  color: var(--light-text);
+  margin: 0;
+  text-align: right;
+}
+
+/*=============================
+    10. mini-card
+===============================*/
+.mini-card {
+  display: table;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.mini-card > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.mini-card::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  left: -15px;
+  top: 9px;
+}
+
+/*=============================
+    11. footer
+===============================*/
+footer {
+  background-color: white;
+  display: block;
+  padding: 20px 0;
+  margin-top: 80px;
+  border-top: 1px solid var(--light-border);
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  color: var(--light-text);
 }

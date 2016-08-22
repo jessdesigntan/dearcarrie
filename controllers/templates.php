@@ -53,7 +53,7 @@ function navbar() {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><strong>LOGO</strong></a>
+        <a class="navbar-brand" href="index"><strong>LOGO</strong></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -73,7 +73,7 @@ function navbar() {
           </li>
         </ul>
         <form class="navbar-form navbar-left">
-          <div class="form-group">
+          <div class="form-group" action="search.php">
             <input type="text" class="form-control nav-search">
           </div>
         </form>
@@ -98,7 +98,6 @@ function card() {
         <a>Jess Tan</a> in <a>Bipolar</a>
         <div class="date">12 Aug 16</div>
       </div>
-
     </div>
 
     <div class="content">
@@ -128,6 +127,54 @@ function card() {
       </div>
     </div>
   </div>
+<?php
+}
+
+function mainSideContent() {
+?>
+  <div class="side-content">
+    <div class="content-title">
+      <h4>Editor's Picks</h4>
+      <a href="#">Read all &#8594;</a>
+    </div>
+    <a href="#" class="mini-card">
+      <p>26 Things That Won’t Cure My Depression</p>
+    </a>
+    <a href="#" class="mini-card">
+      <p>Doctors put me on 40 different meds for bipolar and depression. It almost killed me.</p>
+    </a>
+    <a href="#" class="mini-card">
+      <p>Desperately Seeking Einstein’s Assistant</p>
+    </a>
+    <a href="#" class="mini-card">
+      <p>How I’m Handling My Depression (Using an App)</p>
+    </a>
+  </div>
+
+  <div class="side-content">
+    <div class="content-title">
+      <h4>Topics</h4>
+      <a href="#">See all &#8594;</a>
+    </div>
+    <ul>
+      <li><a href="#">Bipolar</a></li>
+      <li><a href="#">Relationship</a></li>
+      <li><a href="#">Financial</a></li>
+      <li><a href="#">Suicide</a></li>
+    </ul>
+  </div>
+  <script>$('.mains-sidebar').affix({offset: {top: 10}});</script>
+<?php
+}
+
+function sideFilter() {
+?>
+  <div class="content-title">
+    <h4>Filter</h4>
+  </div>
+  <a href="#" class="active">Posts<span class="badge">1.2k</span></a>
+  <a href="#">Topics<span class="badge">6</span></a>
+  <script>$('.filter-sidebar').affix({offset: {top: 10}});</script>
 <?php
 }
 ?>
