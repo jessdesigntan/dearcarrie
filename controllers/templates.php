@@ -15,8 +15,10 @@ function head($title){
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
+
+    <!-- Own style -->
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -27,10 +29,6 @@ function head($title){
     <!-- wow.js for css animations & initialization -->
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
-
-    <!-- enable popovers -->
-
-
   </head>
 <?php
 }
@@ -78,13 +76,16 @@ function navbar() {
           </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Sign up</a></li>
+          <li><a href="#" class="light-text">Share Something</a></li>
+          <li><a href="#" class="primary-color" data-toggle="modal" data-target="#loginModal">Login</a></li>
+          <li><a href="#" class="primary-color" data-toggle="modal" data-target="#registerModal">Register</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 <?php
+  loginModal();
+  registerModal();
 }
 
 function card() {
@@ -95,13 +96,14 @@ function card() {
         <a href="#"><img src="images/avatar.png"></a>
       </div>
       <div class="author-details">
-        <a>Jess Tan</a> in <a>Bipolar</a>
+        <div><a>Jess Tan</a> in <a>Bipolar</a></div>
         <div class="date">12 Aug 16</div>
+        <div class="views">1.2k</div>
       </div>
     </div>
 
-    <div class="content">
-      <a href="#">
+    <div class="content short">
+      <a href="post">
         <h4>Ryan Lochte Is the Ugly American</h4>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
       </a>
@@ -115,6 +117,89 @@ function card() {
       </div>
       <div class="float-right">
         <a href="#">400 comments</a>
+        <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
+        data-content="
+          <a href='#' title='test add link'>Report</a>
+          <a href='#' title='test add link'>Share</a>
+          "
+        ><img src="images/dots.svg"></a>
+        <script>
+          $("[data-toggle=popover]").popover({html:true})
+        </script>
+      </div>
+    </div>
+  </div>
+<?php
+}
+
+function cardExpand() {
+?>
+  <div class="card mBottom-40">
+    <div class="header">
+      <div class="image">
+        <a href="#"><img src="images/avatar.png"></a>
+      </div>
+      <div class="author-details">
+        <div><a>Jess Tan</a> in <a>Bipolar</a></div>
+        <div class="date">12 Aug 16</div>
+        <div class="views">1.2k</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <a href="#">
+        <h4>Ryan Lochte Is the Ugly American</h4>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+        <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+        <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+      </a>
+    </div>
+
+    <div class="footer">
+      <div class="float-left">
+        <a href="#" class="star-icon"></a>
+        200
+      </div>
+      <div class="float-right">
+        <a href="#">400 comments</a>
+        <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
+        data-content="
+          <a href='#' title='test add link'>Report</a>
+          <a href='#' title='test add link'>Share</a>
+          "
+        ><img src="images/dots.svg"></a>
+        <script>
+          $("[data-toggle=popover]").popover({html:true})
+        </script>
+      </div>
+    </div>
+  </div>
+<?php
+}
+
+function commentCard() {
+?>
+  <div class="card comment-card">
+    <div class="header">
+      <div class="image">
+        <a href="#"><img src="images/avatar.png"></a>
+      </div>
+      <div class="author-details">
+        <div><a>Jess Tan</a></div>
+        <div class="date no-after">12 Aug 16</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+    </div>
+
+    <div class="footer">
+      <div class="float-left">
+        <a href="#" class="star-icon"></a>
+        200
+      </div>
+      <div class="float-right">
         <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
         data-content="
           <a href='#' title='test add link'>Report</a>
@@ -175,6 +260,82 @@ function sideFilter() {
   <a href="#" class="active">Posts<span class="badge">1.2k</span></a>
   <a href="#">Topics<span class="badge">6</span></a>
   <script>$('.filter-sidebar').affix({offset: {top: 10}});</script>
+<?php
+}
+
+function loginModal() {
+?>
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Welcome back</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control">
+              </div>
+              <button type="submit" class="primary-line-btn">Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="primary-color small" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">No account yet? Register here.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php
+}
+
+function registerModal() {
+?>
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Register</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control">
+              </div>
+              <button type="submit" class="primary-line-btn">Sign up</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="primary-color small" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Already have an account? Login here.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php
+}
+
+function scrollToTop() {
+?>
+  <div class="top-btn">
+    <a href="#">
+      <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+    </a>
+  </div>
 <?php
 }
 ?>
