@@ -5,7 +5,7 @@
   <?php head("Post Title"); ?>
 
   <body>
-    <?= scrollToTop(); ?>
+    <?= scrollTopBtn(); ?>
 
     <?= navbar(); ?>
     <div class="page-container wow fadeInUp">
@@ -35,5 +35,7 @@
         <p>All rights Reserved, NAME &#169;</p>
       </div>
     </footer>
+
+
   </body>
 </html>

@@ -329,13 +329,24 @@ function registerModal() {
 <?php
 }
 
-function scrollToTop() {
+function scrollTopBtn() {
 ?>
   <div class="top-btn">
-    <a href="#">
+    <a onclick="scrollToTop();">
       <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
     </a>
   </div>
+
+  <script>
+  var timeOut;
+    function scrollToTop() {
+      if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
+          window.scrollBy(0,-50);
+          timeOut=setTimeout('scrollToTop()', 1);
+        }
+        else clearTimeout(timeOut);
+    }
+  </script>
 <?php
 }
 ?>
