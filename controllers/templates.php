@@ -16,6 +16,7 @@ function head($title){
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
 
     <!-- Own style -->
     <link href="css/style.css" rel="stylesheet">
@@ -128,6 +129,41 @@ function card() {
         </script>
       </div>
     </div>
+  </div>
+<?php
+}
+
+function suggestedCard() {
+?>
+  <div class="card">
+    <div class="header">
+      <div class="image">
+        <a href="#"><img src="images/avatar.png"></a>
+      </div>
+      <div class="author-details">
+        <div><a>Jess Tan</a> in <a>Bipolar</a></div>
+        <div class="date">12 Aug 16</div>
+        <div class="views">1.2k</div>
+      </div>
+    </div>
+
+    <div class="content short">
+      <a href="post">
+        <h4>Ryan Lochte Is the Ugly American</h4>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+      </a>
+    </div>
+
+    <div class="footer">
+      <div class="float-left">
+        <a href="#" class="star-icon"></a>
+        200
+      </div>
+      <div class="float-right">
+        <a href="#">400 comments</a>
+      </div>
+    </div>
+    <a href="post" class="read-more-footer">Read more</a>
   </div>
 <?php
 }
@@ -347,6 +383,27 @@ function scrollTopBtn() {
         else clearTimeout(timeOut);
     }
   </script>
+<?php
+}
+
+function suggestedReading() {
+?>
+  <div class="suggested-container">
+    <div class="page-container">
+      <h4 class="hero-center">Suggested For You</h4>
+      <div class="row">
+        <div class="col-sm-4">
+          <?php suggestedCard(); ?>
+        </div>
+        <div class="col-sm-4">
+          <?php suggestedCard(); ?>
+        </div>
+        <div class="col-sm-4">
+          <?php suggestedCard(); ?>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php
 }
 ?>

@@ -23,12 +23,14 @@
                   commentCard();
                 }
               ?>
-        </div><!-- END right column col-sm-3 -->
-        <div class="col-sm-2">
-        </div><!-- END left column col-sm-9 -->
+        </div><!-- END right column col-sm-8 -->
+        <div class="col-sm-4">
+        </div><!-- END left column col-sm-4 -->
 
       </div>
     </div><!-- END page-container -->
+
+    <?php suggestedReading(); ?>
 
     <footer class="footer">
       <div class="page-container">
