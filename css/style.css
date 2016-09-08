@@ -288,18 +288,21 @@ a:hover {
   border: none;
   box-shadow: none;
   border-radius: 16px;
-  background: rgba(0,0,0,0.06) url('../images/icon-search.svg') no-repeat 7px center;
-  width: 300px;
-}
-
-input.nav-search {
+  background: rgba(0,0,0,0.05) url('../images/icon-search.svg') no-repeat 7px center;
+  height: 34px;
   padding-left: 30px;
+  width: 250px;
+  font-weight: 300;
+  -webkit-transition: width 0.5s ease;
+  -moz-transition: width 0.5s ease;
+  -o-transition: width 0.5s ease;
+  -ms-transition: width 0.5s ease;
+  transition: width 0.5s ease;
 }
 
-.navbar-form .form-control {
-    width: 250%;
+.nav-search:focus {
+  width: 500px;
 }
-
 /*=============================
     8. side-content
 ===============================*/

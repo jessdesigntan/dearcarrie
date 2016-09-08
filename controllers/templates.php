@@ -72,10 +72,8 @@ function navbar() {
             </ul>
           </li>
         </ul>
-        <form class="navbar-form navbar-left">
-          <div class="form-group" action="search.php">
-            <input type="text" class="form-control nav-search">
-          </div>
+        <form class="navbar-form navbar-left" action="search">
+            <input type="text" class="nav-search" placeholder="Search anything . . .">
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" class="light-text">Share Something</a></li>
