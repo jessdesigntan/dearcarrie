@@ -6,7 +6,6 @@
 
   <body>
     <?= scrollTopBtn(); ?>
-
     <?= navbar(); ?>
     <div class="page-container wow fadeInUp">
       <div class="row">
@@ -14,7 +13,7 @@
             <?= cardExpand(); ?>
               <h4>Responses</h4>
               <form class="comment-box">
-                  <input type="text" placeholder="Write a comment...">
+                  <textarea placeholder="Write a comment..." onkeyup="auto_grow(this)"></textarea>
                   <button class="primary-line-btn" type="submit">Submit</button>
               </form>
               <hr/>

@@ -18,8 +18,9 @@ function head($title){
     <link href="css/animate.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
 
-    <!-- Own style -->
+    <!-- Own style & js -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="js/frontend.js"></script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -288,6 +289,33 @@ function mainSideContent() {
 <?php
 }
 
+
+function topicSideContent() {
+?>
+  <div class="side-content">
+    <div class="content-title">
+      <h4>About</h4>
+      <a href="#" class="follow-btn">Follow Topic</a>
+    </div>
+    <div class="mBottom-40">
+      <p>Computer Science is the scientific approach to computation.</p>
+      <p>Questions about programming should be added to Computer Programming. Questions about education or learning about computer science should be placed in Computer Science Education or Learning About Computer Science . Questions about jobs or careers in computer science should be placed in Careers in Computer Science .</p>
+    </div>
+    <div class="dual-hero">
+      <div>
+        <p class="topic-detail-title">Followers</p>
+        <p class="lead">18.8k</p>
+      </div>
+      <div>
+        <p class="topic-detail-title">Posts</p>
+        <p class="lead">4300</p>
+      </div>
+    </div>
+  </div>
+  <script>$('.mains-sidebar').affix({offset: {top: 10}});</script>
+<?php
+}
+
 function sideFilter() {
 ?>
   <div class="content-title">
@@ -295,7 +323,7 @@ function sideFilter() {
   </div>
   <a href="#" class="active">Posts<span class="badge">1.2k</span></a>
   <a href="#">Topics<span class="badge">6</span></a>
-  <script>$('.filter-sidebar').affix({offset: {top: 10}});</script>
+  <script>staticBar('.filter-sidebar','10');</script>
 <?php
 }
 
@@ -372,17 +400,6 @@ function scrollTopBtn() {
       <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
     </a>
   </div>
-
-  <script>
-  var timeOut;
-    function scrollToTop() {
-      if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
-          window.scrollBy(0,-50);
-          timeOut=setTimeout('scrollToTop()', 1);
-        }
-        else clearTimeout(timeOut);
-    }
-  </script>
 <?php
 }
 

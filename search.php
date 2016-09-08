@@ -5,6 +5,7 @@
   <?php head("Anti-depression"); ?>
 
   <body>
+    <?= scrollTopBtn(); ?>
     <?= navbar(); ?>
     <div class="page-container wow fadeInUp">
       <div class="row">
