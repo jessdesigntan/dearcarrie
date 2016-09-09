@@ -167,6 +167,30 @@ function suggestedCard() {
 <?php
 }
 
+
+function topicCard() {
+?>
+  <div class="card topic-card">
+    <div class="image">
+      <a href="#"><img src="images/topic-img.png" class="img-responsive"></a>
+    </div>
+
+    <div class="content short">
+      <a href="topicDetail">
+        <h4>Personal Growth</h4>
+        <p>Keep Learning. Keep Growing.</p>
+        <div class="followers">5090 Followers</div>
+        <div class="posts">1.2k Posts</div>
+      </a>
+    </div>
+
+    <div class="action">
+      <a class="primary-line-btn">Follow Topic</a>
+    </div>
+  </div>
+<?php
+}
+
 function cardExpand() {
 ?>
   <div class="card mBottom-40">

@@ -133,6 +133,73 @@ a:hover {
   margin-bottom: 20px;
 }
 
+.card.topic-card {
+  display: table;
+  width: 100%;
+}
+
+.card.topic-card > * {
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 20px;
+}
+
+.card.topic-card > *:last-child {
+  padding-right: 0;
+}
+
+.card.topic-card .content.short p {
+  margin-bottom: 10px;
+}
+
+.card.topic-card .content {
+  margin-bottom: 0;
+}
+
+.card.topic-card .image{
+  width: 10%;
+}
+
+.card.topic-card .content{
+  width: 60%;
+}
+
+.card.topic-card .action{
+  width: 30%;
+  text-align: right;
+}
+
+@media only screen and (max-width: 767px) {
+  .card.topic-card {
+    display: block;
+    text-align: center;
+  }
+
+  .card.topic-card > * {
+    display: block;
+    padding-right: 0;
+  }
+
+  .card.topic-card .image {
+    width: 100%;
+  }
+
+  .card.topic-card .image img{
+    margin: 0 auto;
+  }
+
+  .card.topic-card .content {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .card.topic-card .action {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+}
+
 .card.comment-card {
   box-shadow: none;
   border-radius: 0;
@@ -210,7 +277,7 @@ a:hover {
   margin-bottom: 20px;
 }
 
-.card .date {
+.card .date, .card .followers {
   display: inline-block;
   color: var(--light-text) !important;
   font-size: 12px;
@@ -220,12 +287,12 @@ a:hover {
   content: '';
 }
 
-.card .date::after {
+.card .date::after, .card .followers::after {
   content: '\00B7';
   margin-left: 5px;
 }
 
-.card .views {
+.card .views, .card .posts {
   display: inline-block;
   color: var(--light-text) !important;
   font-size: 12px;
@@ -377,7 +444,7 @@ a:hover {
   display: block;
 }
 
-.side-content .topic-detail-title {
+.topic-detail-title {
   color: var(--light-text);
   font-size: 12px;
   text-transform: uppercase;
