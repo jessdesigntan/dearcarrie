@@ -58,28 +58,37 @@ function navbar() {
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav hide-mobile">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><a href="topic">All topics</a></li>
             </ul>
           </li>
         </ul>
-        <form class="navbar-form navbar-left" action="search">
+        <form class="navbar-form navbar-left hide-mobile" action="search">
             <input type="text" class="nav-search" placeholder="Search anything . . .">
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" class="light-text">Share Something</a></li>
-          <li><a href="#" class="primary-color" data-toggle="modal" data-target="#loginModal">Login</a></li>
+          <li><a href="addPost" class="light-text">Share Something</a></li>
+          <li><a href="#" class="light-text" data-toggle="modal" data-target="#loginModal">Login</a></li>
           <li><a href="#" class="primary-color" data-toggle="modal" data-target="#registerModal">Register</a></li>
+          <li class="show-mobile"><a href="profile" class="light-text">Profile</a></li>
+          <li class="show-mobile"><a href="editProfile" class="light-text">Edit Profile</a></li>
+          <li class="show-mobile"><a href="index" class="light-text">Logout</a></li>
+
+          <li class="dropdown hide-mobile">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="profile">Profile</a></li>
+              <li><a href="addPost">Add Post</a></li>
+              <li><a href="editProfile">Edit Profile</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="index">Logout</a></li>
+            </ul>
+          </li>
         </ul>
+
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
@@ -96,7 +105,7 @@ function card() {
         <a href="#"><img src="images/avatar.png"></a>
       </div>
       <div class="author-details">
-        <div><a>Jess Tan</a> in <a>Bipolar</a></div>
+        <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Bipolar</a></div>
         <div class="date">12 Aug 16</div>
         <div class="views">1.2k</div>
       </div>
@@ -140,7 +149,7 @@ function suggestedCard() {
         <a href="#"><img src="images/avatar.png"></a>
       </div>
       <div class="author-details">
-        <div><a>Jess Tan</a> in <a>Bipolar</a></div>
+        <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Bipolar</a></div>
         <div class="date">12 Aug 16</div>
         <div class="views">1.2k</div>
       </div>
@@ -172,11 +181,11 @@ function topicCard() {
 ?>
   <div class="card topic-card">
     <div class="image">
-      <a href="#"><img src="images/topic-img.png" class="img-responsive"></a>
+      <a href="topicDetails"><img src="images/topic-img.png" class="img-responsive"></a>
     </div>
 
     <div class="content short">
-      <a href="topicDetail">
+      <a href="topicDetails">
         <h4>Personal Growth</h4>
         <p>Keep Learning. Keep Growing.</p>
         <div class="followers">5090 Followers</div>
@@ -199,19 +208,17 @@ function cardExpand() {
         <a href="#"><img src="images/avatar.png"></a>
       </div>
       <div class="author-details">
-        <div><a>Jess Tan</a> in <a>Bipolar</a></div>
+        <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Bipolar</a></div>
         <div class="date">12 Aug 16</div>
         <div class="views">1.2k</div>
       </div>
     </div>
 
     <div class="content">
-      <a href="#">
-        <h4>Ryan Lochte Is the Ugly American</h4>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-        <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-        <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
-      </a>
+      <h4>Ryan Lochte Is the Ugly American</h4>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+      <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+      <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
     </div>
 
     <div class="footer">
@@ -244,7 +251,7 @@ function commentCard() {
         <a href="#"><img src="images/avatar.png"></a>
       </div>
       <div class="author-details">
-        <div><a>Jess Tan</a></div>
+        <div><a href="profile">Jess Tan</a></div>
         <div class="date no-after">12 Aug 16</div>
       </div>
     </div>
@@ -279,18 +286,18 @@ function mainSideContent() {
   <div class="side-content">
     <div class="content-title">
       <h4>Editor's Picks</h4>
-      <a href="#">Read all &#8594;</a>
+      <a href="post">Read all &#8594;</a>
     </div>
-    <a href="#" class="mini-card">
+    <a href="post" class="mini-card">
       <p>26 Things That Won’t Cure My Depression</p>
     </a>
-    <a href="#" class="mini-card">
+    <a href="post" class="mini-card">
       <p>Doctors put me on 40 different meds for bipolar and depression. It almost killed me.</p>
     </a>
-    <a href="#" class="mini-card">
+    <a href="post" class="mini-card">
       <p>Desperately Seeking Einstein’s Assistant</p>
     </a>
-    <a href="#" class="mini-card">
+    <a href="post" class="mini-card">
       <p>How I’m Handling My Depression (Using an App)</p>
     </a>
   </div>
@@ -298,13 +305,13 @@ function mainSideContent() {
   <div class="side-content">
     <div class="content-title">
       <h4>Topics</h4>
-      <a href="#">See all &#8594;</a>
+      <a href="topic">See all &#8594;</a>
     </div>
     <ul>
-      <li><a href="#">Bipolar</a></li>
-      <li><a href="#">Relationship</a></li>
-      <li><a href="#">Financial</a></li>
-      <li><a href="#">Suicide</a></li>
+      <li><a href="topicDetails">Bipolar</a></li>
+      <li><a href="topicDetails">Relationship</a></li>
+      <li><a href="topicDetails">Financial</a></li>
+      <li><a href="topicDetails">Suicide</a></li>
     </ul>
   </div>
   <script>$('.mains-sidebar').affix({offset: {top: 10}});</script>
@@ -319,9 +326,13 @@ function topicSideContent() {
       <h4>About</h4>
       <a href="#" class="follow-btn">Follow Topic</a>
     </div>
-    <div class="mBottom-40">
+    <div class="mBottom-20">
       <p>Computer Science is the scientific approach to computation.</p>
       <p>Questions about programming should be added to Computer Programming. Questions about education or learning about computer science should be placed in Computer Science Education or Learning About Computer Science . Questions about jobs or careers in computer science should be placed in Careers in Computer Science .</p>
+    </div>
+    <div class="mBottom-40">
+      <p>Tel: 9555 3233</p>
+      <a href="#">www.askforhelp.com</a>
     </div>
     <div class="dual-hero">
       <div>
@@ -359,7 +370,7 @@ function loginModal() {
           <h4 class="modal-title" id="myModalLabel">Welcome back</h4>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="profile">
               <div class="form-group">
                 <label>Email</label>
                 <input type="text" class="form-control">
@@ -390,7 +401,7 @@ function registerModal() {
           <h4 class="modal-title" id="myModalLabel">Register</h4>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="profile">
               <div class="form-group">
                 <label>Email</label>
                 <input type="text" class="form-control">
@@ -417,11 +428,7 @@ function registerModal() {
 
 function scrollTopBtn() {
 ?>
-  <div class="top-btn">
-    <a onclick="scrollToTop();">
-      <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-    </a>
-  </div>
+  <a class="top-btn" onclick="scrollToTop();" href="javascript:;"></a>
 <?php
 }
 
@@ -443,6 +450,16 @@ function suggestedReading() {
       </div>
     </div>
   </div>
+<?php
+}
+
+function footer() {
+?>
+  <footer class="footer">
+    <div class="page-container">
+      <p class="text-muted">This is the footer</p>
+    </div>
+  </footer>
 <?php
 }
 ?>

@@ -42,10 +42,6 @@
       </div>
     </div><!-- END page-container -->
 
-    <footer class="footer">
-      <div class="page-container">
-        <p class="text-muted">This is the footer</p>
-      </div>
-    </footer>
+    <?= footer(); ?>
   </body>
 </html>

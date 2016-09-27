@@ -9,7 +9,7 @@
     <?= navbar(); ?>
     <div class="page-container wow fadeInUp">
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-sm-offset-2">
             <?= cardExpand(); ?>
               <h4>Responses</h4>
               <form class="comment-box">
@@ -23,20 +23,12 @@
                 }
               ?>
         </div><!-- END right column col-sm-8 -->
-        <div class="col-sm-4">
-        </div><!-- END left column col-sm-4 -->
 
       </div>
     </div><!-- END page-container -->
 
     <?php suggestedReading(); ?>
 
-    <footer class="footer">
-      <div class="page-container">
-        <p>All rights Reserved, NAME &#169;</p>
-      </div>
-    </footer>
-
-
+    <?= footer(); ?>
   </body>
 </html>

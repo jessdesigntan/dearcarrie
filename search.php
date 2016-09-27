@@ -28,10 +28,7 @@
       </div>
     </div><!-- END page-container -->
 
-    <footer class="footer">
-      <div class="page-container">
-        <p>All rights Reserved, NAME &#169;</p>
-      </div>
-    </footer>
+
+    <?= footer(); ?>
   </body>
 </html>

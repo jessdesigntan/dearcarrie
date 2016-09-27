@@ -4,6 +4,11 @@ function auto_grow(element) {
     element.style.height = (element.scrollHeight)+"px";
 }
 
+function auto_grow200(element) {
+    element.style.height = "202px";
+    element.style.height = (element.scrollHeight)+"px";
+}
+
 /* for smooth scrolling to top */
 function scrollToTop() {
   var timeOut;
