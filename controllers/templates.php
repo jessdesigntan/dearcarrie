@@ -202,7 +202,7 @@ function topicCard() {
 
 function cardExpand() {
 ?>
-  <div class="card mBottom-40">
+  <div class="card mBottom-40 edit">
     <div class="header">
       <div class="image">
         <a href="#"><img src="images/avatar.png"></a>
@@ -212,6 +212,7 @@ function cardExpand() {
         <div class="date">12 Aug 16</div>
         <div class="views">1.2k</div>
       </div>
+      <a class="edit" href="editPost"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
     </div>
 
     <div class="content">

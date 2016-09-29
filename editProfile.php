@@ -14,6 +14,11 @@
             <div class="panel-body">
               <form>
                 <div class="form-group">
+                  <label for="name">Image</label>
+                  <input type="file">
+
+                </div>
+                <div class="form-group">
                   <label for="name">Name</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                 </div>
@@ -34,7 +39,12 @@
                 </div>
                 <button class="primary-line-btn" type="submit">Update</button>
               </form>
-              <hr/>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4>Password</h4></div>
+            <div class="panel-body">
               <form>
                 <div class="form-group">
                   <label>Old Password</label>
@@ -51,7 +61,6 @@
                 <button class="primary-line-btn" type="submit">Change Password</button>
               </form>
             </div>
-            <div class="panel-footer"></div>
           </div>
         </div>
       </div><!-- ./row -->

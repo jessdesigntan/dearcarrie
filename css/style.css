@@ -149,6 +149,7 @@ a:hover {
   display: block;
   width: 100%;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .card.topic-card {
@@ -235,8 +236,32 @@ a:hover {
   display: table-cell;
 }
 
+.card.edit > .header > .edit {
+  display: block;
+}
+
+.card > .header > a.edit {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: var(--medium-text);
+  background-color: var(--light-border);
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 16px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  transition: all 0.3s ease 0s;
+}
+
+.card > .header > a.edit:hover {
+  opacity: 1;
+}
+
 .card .header {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .card .author-details {
@@ -606,6 +631,22 @@ footer p {
 
 .primary-line-btn:hover {
   background-color: var(--primary-color);
+  color: white;
+}
+
+.secondary-line-btn {
+  border-radius: 30px;
+  background-color: transparent;
+  border: 1px solid var(--medium-text);
+  color: var(--medium-text);
+  padding: 10px 20px;
+  transition: all 0.3s ease 0s;
+  font-weight: 300;
+  min-width: 100px;
+}
+
+.secondary-line-btn:hover {
+  background-color: var(--medium-text);
   color: white;
 }
 
