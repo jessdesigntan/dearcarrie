@@ -2,7 +2,7 @@
 <?php include('controllers/templates.php'); ?>
 
 <html lang="en">
-  <?php head("Anti-depression"); ?>
+  <?php head("Dear Carrie"); ?>
 
   <body>
     <?= navbar(); ?>

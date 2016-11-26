@@ -16,7 +16,6 @@
                 <div class="form-group">
                   <label for="name">Image</label>
                   <input type="file">
-
                 </div>
                 <div class="form-group">
                   <label for="name">Name</label>

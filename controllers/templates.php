@@ -25,12 +25,16 @@ function head($title){
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+    <!-- angularjs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- wow.js for css animations & initialization -->
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
+
   </head>
 <?php
 }
@@ -53,7 +57,7 @@ function navbar() {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index"><strong>LOGO</strong></a>
+        <a class="navbar-brand" href="index"><img alt="brand" src="images/logo.svg" width="160px;"></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -99,6 +103,46 @@ function navbar() {
 
 function card() {
 ?>
+<div class="card">
+  <div class="header">
+    <div class="image">
+      <a href="#"><img src="images/avatar.png"></a>
+    </div>
+    <div class="author-details">
+      <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Mental Health</a></div>
+      <div class="date">12 Aug 16</div>
+      <div class="views">1.2k</div>
+    </div>
+  </div>
+
+  <div class="content short">
+    <a href="post">
+      <h4>Things I wish people knew about depression</h4>
+      <p>The worst part about depression can be the sheer loneliness, and the inability to express it. Feeling depressed makes people want to be alone (but not lonely) when they really shouldn't be. If you care, please check on your depressed loved-ones, often. Offering to simply hangout means so much.
+Insulting, acting negatively or being in denial towards depressed people makes them feel even more isolated and unloved from you and in turn they won't trust you, or anyone else. If you are someone they look up to or consider close to you then you are a huge factor into them feeling better or worse.</p>
+    </a>
+    <a href="#" class="read-more">Read more &#8594;</a>
+  </div>
+
+  <div class="footer">
+    <div class="float-left">
+      <a href="#" class="star-icon"></a>
+      200
+    </div>
+    <div class="float-right">
+      <a href="#">400 comments</a>
+      <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
+      data-content="
+        <a href='#' title='test add link'>Report</a>
+        <a href='#' title='test add link'>Share</a>
+        "
+      ><img src="images/dots.svg"></a>
+      <script>
+        $("[data-toggle=popover]").popover({html:true})
+      </script>
+    </div>
+  </div>
+</div>
   <div class="card">
     <div class="header">
       <div class="image">
@@ -113,8 +157,8 @@ function card() {
 
     <div class="content short">
       <a href="post">
-        <h4>Ryan Lochte Is the Ugly American</h4>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+        <h4>Who else feels like society as a whole does not take depression seriously?</h4>
+        <p>Depression can last for long periods of time, even when a person wishes more than anything to wake up and be over it one morning. It’s a process, and one that looks different for everyone. Some people go running, others meet new people or take up a new hobby in effort to help themselves. The one method guaranteed to fail is telling a depressed person to “snap out of it.”</p>
       </a>
       <a href="#" class="read-more">Read more &#8594;</a>
     </div>
