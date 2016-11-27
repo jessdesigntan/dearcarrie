@@ -22,6 +22,7 @@
   21. user-header
   22. mobile-search-bar
   23. featured-topic
+  24. main-banner-grid
 */
 
 /*=============================
@@ -45,6 +46,43 @@ body {
 body > .page-container {
   padding: 120px 15px 0;
   min-height: 700px;
+  animation: fadein .5s;
+  -moz-animation: fadein .5s; /* Firefox */
+  -webkit-animation: fadein .5s; /* Safari and Chrome */
+  -o-animation: fadein .5s; /* Opera */
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -212,7 +250,7 @@ a:hover {
 }
 
 .card.topic-card .image{
-  width: 10%;
+  width: 21%;
 }
 
 .card.topic-card .content{
@@ -487,13 +525,13 @@ a:hover {
 
 .main-sidebar.affix-top {
   position: static;
-  width: 250px;
+  width: 220px;
 }
 
 .main-sidebar.affix {
   position: fixed;
   top: 90px;
-  width: 250px;
+  width: 220px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1008,4 +1046,15 @@ h4.hero-center::after {
 
 .featured-topics:hover{
   opacity: 0.8;
+}
+
+/*=============================
+    24. main-banner-grid
+===============================*/
+.main-banner-grid > div:first-child {
+  padding-right: 5px !important;
+}
+
+.main-banner-grid > div:nth-child(2) {
+  margin-bottom: 20px;
 }

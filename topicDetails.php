@@ -8,7 +8,7 @@
     <?= scrollTopBtn(); ?>
     <?= navbar(); ?>
 
-    <div class="page-container wow fadeInUp">
+    <div class="page-container">
       <div class="topic-header">
         <div>
           <img src="images/love.jpg" class="img-responsive">
@@ -34,7 +34,6 @@
             <div class="main-sidebar">
               <?= topicSideContent(); ?>
             </div>
-            <script>staticBar('.main-sidebar','454')</script>
           </div><!-- END right column col-sm-4 -->
 
       </div>

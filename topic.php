@@ -6,7 +6,7 @@
 
   <body>
     <?= navbar(); ?>
-    <div class="page-container wow fadeInUp">
+    <div class="page-container">
       <h3 class="hero-center">Featured Topics</h3>
       <div class="row">
           <div class="col-sm-6">

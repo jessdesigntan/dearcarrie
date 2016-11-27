@@ -7,7 +7,7 @@
   <body>
     <?= scrollTopBtn(); ?>
     <?= navbar(); ?>
-    <div class="page-container wow fadeInUp">
+    <div class="page-container">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <?= cardExpand(); ?>

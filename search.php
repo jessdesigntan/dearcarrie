@@ -7,7 +7,7 @@
   <body>
     <?= scrollTopBtn(); ?>
     <?= navbar(); ?>
-    <div class="page-container wow fadeInUp">
+    <div class="page-container">
       <div class="row">
         <div class="col-sm-2">
           <div class="filter-sidebar">

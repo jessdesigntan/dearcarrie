@@ -7,7 +7,19 @@
   <body>
     <?= navbar(); ?>
 
-    <div class="page-container wow fadeInUp">
+    <div class="page-container">
+      <div class="main-banner-grid row">
+          <div class="col-sm-8 col-xs-12">
+              <a href="#"><img src="images/love.jpg" class="img-responsive"></a>
+          </div>
+          <div class="col-sm-4 col-xs-6">
+              <a href="#"><img src="images/love.jpg" class="img-responsive"></a>
+          </div>
+          <div class="col-sm-4 col-xs-6">
+              <a href="#"><img src="images/love.jpg" class="img-responsive"></a>
+          </div>
+      </div>
+      <br/><br/>
       <div class="row">
           <div class="col-sm-9">
             <div class="content-title">
@@ -33,10 +45,7 @@
             ?>
           </div><!-- END left column col-sm-8 -->
           <div class="col-sm-3">
-            <div class="main-sidebar">
-              <?= mainSideContent(); ?>
-            </div>
-            <script>staticBar('.main-sidebar','10')</script>
+            <?= mainSideContent(); ?>
           </div><!-- END right column col-sm-4 -->
 
       </div>
