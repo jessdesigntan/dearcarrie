@@ -76,18 +76,25 @@ function navbar() {
             <input type="text" class="nav-search" placeholder="Search anything . . .">
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="addPost" class="light-text">Share Something</a></li>
+          <!-- not signed in -->
           <li><a href="#" class="light-text" data-toggle="modal" data-target="#loginModal">Login</a></li>
-          <li><a href="#" class="primary-color" data-toggle="modal" data-target="#registerModal">Register</a></li>
+          <li><a href="#" class="cta-btn" data-toggle="modal" data-target="#registerModal">Register</a></li>
+          <!-- /not signed in -->
+
+          <!-- signed in -->
+          <li><a href="addPost" class="cta-btn" >Post</a></li>
           <li class="show-mobile"><a href="profile" class="light-text">Profile</a></li>
+          <li class="show-mobile"><a href="profile" class="light-text">Admin Dashboard</a></li>
           <li class="show-mobile"><a href="editProfile" class="light-text">Edit Profile</a></li>
           <li class="show-mobile"><a href="index" class="light-text">Logout</a></li>
+          <!-- /signed in -->
 
           <li class="dropdown hide-mobile">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="profile">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
+              <li><a href="profile">Admin Dashboard</a></li>
               <li><a href="editProfile">Edit Profile</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="index">Logout</a></li>

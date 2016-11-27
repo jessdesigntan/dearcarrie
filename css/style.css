@@ -23,6 +23,7 @@
   22. mobile-search-bar
   23. featured-topic
   24. main-banner-grid
+  25. form-overwrites
 */
 
 /*=============================
@@ -35,6 +36,7 @@
   --light-text: #aaaaaa;
   --text-color: #444444;
   --medium-text: #888888;
+  --primary-hover-color: #e25963;
   --serif-font: "Times New Roman", Georgia, Serif;
 }
 
@@ -204,10 +206,40 @@ a:hover {
    margin-left: 15px;
 }
 
+@media only screen and (min-width: 1200px) {
+  .cta-btn {
+    padding: 5px 20px !important;
+    background: var(--primary-color);
+    display: block;
+    color: white !important;
+    border-radius: 15px;
+    margin: 10px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .cta-btn:hover, .cta-btn:focus {
+    background: var(--primary-hover-color) !important;
+    background-color:
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .navbar-nav {
     margin: 7.5px;
   }
+
+  .cta-btn {
+    color: var(--light-text) !important;
+  }
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.dropdown-menu > li > a {
+  padding: 8px 20px;
 }
 
 /*=============================
@@ -838,10 +870,6 @@ a.facebook-btn:hover{
   letter-spacing: 1px;
 }
 
-.modal form input[type="text"] {
-  text-transform: uppercase;
-}
-
 .modal .form-control:focus {
   border-color: var(--primary-color);
 }
@@ -1179,4 +1207,24 @@ h4.hero-center::after {
     padding-right: 15px !important;
     padding-left: 5px;
   }
+}
+
+/*=============================
+    25. form-overwrites
+===============================*/
+form label {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--medium-text);
+  letter-spacing: 2px;
+}
+
+.form-control {
+  height: 45px !important;
+  border-radius: 0;
+  letter-spacing: 1px;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
 }

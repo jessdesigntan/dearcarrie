@@ -10,13 +10,13 @@
     <div class="page-container">
       <div class="main-banner-grid row">
           <div class="col-sm-8 col-xs-12">
-              <a href="#"><img src="images/love.jpg" class="img-responsive"></a>
+              <a href="topicDetails"><img src="images/split.jpg" class="img-responsive"></a>
           </div>
           <div class="col-sm-4 col-xs-6">
-              <a href="#"><img src="images/love.jpg" class="img-responsive"></a>
+              <a href="topicDetails"><img src="images/stress.jpg" class="img-responsive"></a>
           </div>
           <div class="col-sm-4 col-xs-6">
-              <a href="#"><img src="images/love.jpg" class="img-responsive"></a>
+              <a href="topicDetails"><img src="images/eating.jpg" class="img-responsive"></a>
           </div>
       </div>
       <br/><br/>
