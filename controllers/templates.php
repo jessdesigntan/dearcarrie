@@ -422,20 +422,28 @@ function loginModal() {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Welcome back</h4>
+          <img src="images/logo-long.svg" class="logo">
         </div>
         <div class="modal-body">
-          <form action="profile">
-              <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control">
-              </div>
-              <button type="submit" class="primary-line-btn">Login</button>
-          </form>
+          <h4 class="modal-title" id="myModalLabel">Register</h4>
+          <div>
+            <form action="profile">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" class="form-control">
+                </div>
+                <button type="submit" class="primary-line-btn">Login</button>
+            </form>
+            <hr/>
+            <a class="facebook-btn">
+                <img src="images/facebookIcon.png" width="10"/>
+                <div class="text">Login with Facebook</div>
+            </a>
+          </div>
         </div>
         <div class="modal-footer">
           <a href="#" class="primary-color small" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">No account yet? Register here.</a>
@@ -453,24 +461,32 @@ function registerModal() {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Register</h4>
+          <img src="images/logo-long.svg" class="logo">
         </div>
         <div class="modal-body">
-          <form action="profile">
-              <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control">
-              </div>
-              <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" class="form-control">
-              </div>
-              <button type="submit" class="primary-line-btn">Sign up</button>
-          </form>
+          <h4 class="modal-title" id="myModalLabel">Register</h4>
+          <div>
+            <form action="profile">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Confirm Password</label>
+                  <input type="password" class="form-control">
+                </div>
+                <button type="submit" class="primary-line-btn">Sign up</button>
+            </form>
+            <hr/>
+            <a class="facebook-btn">
+                <img src="images/facebookIcon.png" width="10"/>
+                <div class="text">Register with Facebook</div>
+            </a>
+          </div>
         </div>
         <div class="modal-footer">
           <a href="#" class="primary-color small" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Already have an account? Login here.</a>

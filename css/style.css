@@ -429,6 +429,7 @@ a:hover {
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 18px;
+  padding-top: 4px;
   padding-left: 20px;
   padding-right: 5px;
   transition: all 0.3s ease 0s;
@@ -742,12 +743,73 @@ footer p {
   text-decoration: none;
 }
 
+a.facebook-btn{
+	background-color: #3b5998;
+	color: white;
+  display: table;
+	width: 100%;
+  margin: 10px 0;
+	padding: 15px 30px;
+}
+
+a.facebook-btn:hover{
+  opacity: 0.9;
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+
+.facebook-btn > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.facebook-btn .text{
+  text-align: center;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 /*=============================
     14. modal overwrites
 ===============================*/
 
 .modal {
   overflow-y: auto;
+}
+
+.modal .logo {
+  width: 200px;
+  display: block;
+  margin: 20px auto;
+}
+
+.modal-header::after {
+  display: block;
+  width: 30px;
+  border-bottom: 2px solid black;
+  content: '';
+  margin: 20px auto 0 auto;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-content {
+  border-top: 3px solid var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
+  border-radius: 0;
+}
+
+.modal-body > div { /* form wrapper */
+  padding: 0 50px;
+}
+
+@media only screen and (max-width: 767px) {
+  .modal-body > div {
+    padding: 0px;
+  }
 }
 
 .modal-open {
@@ -761,6 +823,35 @@ footer p {
 
 .modal-footer {
   text-align: center;
+}
+
+.modal form label {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--medium-text);
+}
+
+.modal form input {
+  height: 45px;
+  border-radius: 0;
+  letter-spacing: 1px;
+}
+
+.modal form input[type="text"] {
+  text-transform: uppercase;
+}
+
+.modal .form-control:focus {
+  border-color: var(--primary-color);
+}
+
+h4.modal-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 
 /*=============================
@@ -1057,4 +1148,35 @@ h4.hero-center::after {
 
 .main-banner-grid > div:nth-child(2) {
   margin-bottom: 20px;
+}
+
+.main-banner-grid img {
+  border-radius: 5px;
+}
+
+.main-banner-grid > div  {
+  transition: all 0.3s ease 0s;
+}
+
+.main-banner-grid > div:hover {
+  opacity: 0.9;
+}
+
+@media only screen and (max-width: 767px) {
+  .main-banner-grid > div:first-child {
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+    margin-bottom: 10px;
+  }
+
+  .main-banner-grid > div:nth-child(2) {
+    padding-right: 5px !important;
+    padding-left: 15px !important;
+    margin-bottom: 0;
+  }
+
+  .main-banner-grid > div:nth-child(3) {
+    padding-right: 15px !important;
+    padding-left: 5px;
+  }
 }
