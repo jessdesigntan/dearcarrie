@@ -13,13 +13,13 @@
             <div class="content-title">
                 <h4>Share Something</h4>
             </div>
-              <form class="addPost">
+              <form class="addPost" action="addPostProcess" method="post">
                   <div class="form-group">
                       <input type="text" class="form-control" placeholder="Title">
                       <hr/>
                   </div>
                   <div class="form-group">
-                      <textarea placeholder="Share your story ..." onkeyup="auto_grow200(this)"></textarea>
+                      <textarea placeholder="Share your story ..." onkeyup="auto_grow200(this)" name="desc"></textarea>
                       <button class="primary-line-btn" type="submit">Submit</button>
                   </div>
               </form>

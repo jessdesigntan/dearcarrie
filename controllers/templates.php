@@ -1,6 +1,6 @@
 <?php
 /**
- * Display <head> section, include all dependencies
+ * Display <head> section, include all dependencies for NORMAL users pages
  *
  * @param $title show page title
  * @return <head> html codes
@@ -18,7 +18,6 @@ function head($title){
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
 
     <!-- Own style & js -->
     <link href="css/style.css" rel="stylesheet">
@@ -84,7 +83,7 @@ function navbar() {
           <!-- signed in -->
           <li><a href="addPost" class="cta-btn" >Post</a></li>
           <li class="show-mobile"><a href="profile" class="light-text">Profile</a></li>
-          <li class="show-mobile"><a href="profile" class="light-text">Admin Dashboard</a></li>
+          <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
           <li class="show-mobile"><a href="editProfile" class="light-text">Edit Profile</a></li>
           <li class="show-mobile"><a href="index" class="light-text">Logout</a></li>
           <!-- /signed in -->
@@ -94,7 +93,7 @@ function navbar() {
             <ul class="dropdown-menu">
               <li><a href="profile">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
-              <li><a href="profile">Admin Dashboard</a></li>
+              <li><a href="dashboard">Admin Dashboard</a></li>
               <li><a href="editProfile">Edit Profile</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="index">Logout</a></li>
@@ -311,7 +310,12 @@ function commentCard() {
         <a href="#"><img src="images/avatar.png"></a>
       </div>
       <div class="author-details">
-        <div><a href="profile">Jess Tan</a></div>
+        <div>
+          <a href="profile">Jess Tan</a>
+          <!-- only for psychiatrist -->
+          <span class="label label-primary">CERTIFIED</span>
+          <!-- /only for psychiatrist -->
+        </div>
         <div class="date no-after">12 Aug 16</div>
       </div>
     </div>
@@ -346,7 +350,7 @@ function mainSideContent() {
   <div class="main-sidebar">
     <div class="side-content">
       <div class="content-title">
-        <h4>Editor's Picks</h4>
+        <h4>Trending</h4>
         <a href="post">Read all &#8594;</a>
       </div>
       <a href="post" class="mini-card">
@@ -475,6 +479,10 @@ function registerModal() {
           <div>
             <form action="profile">
                 <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
                   <label>Email</label>
                   <input type="text" class="form-control">
                 </div>
@@ -538,6 +546,21 @@ function footer() {
       <p class="text-muted">This is the footer</p>
     </div>
   </footer>
+<?php
+}
+
+function adminNav() {
+?>
+  <div class="admin-nav">
+      <div class="page-container">
+          <ul>
+              <li><a id="usersNav" href="userList">Users</a></li>
+              <li><a id="postsNav" href="postList">Posts</a></li>
+              <li><a id="topicsNav" href="#">Topics</a></li>
+              <li><a id="reportNav" href="#">Report</a></li>
+          </ul>
+      </div>
+  </div>
 <?php
 }
 ?>

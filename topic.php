@@ -23,7 +23,7 @@
           <div class="col-sm-6">
               <div class="featured-topics">
                   <a href="topicDetails">
-                      <img src="images/love.jpg" class="img-responsive">
+                      <img src="images/eating.jpg" class="img-responsive">
                       <div class="text">
                           <h3>Love & Relationships</h3>
                           <p>10.4K Posts</p>
@@ -34,7 +34,18 @@
           <div class="col-sm-6">
               <div class="featured-topics">
                   <a href="topicDetails">
-                      <img src="images/love.jpg" class="img-responsive">
+                      <img src="images/stress.jpg" class="img-responsive">
+                      <div class="text">
+                          <h3>Love & Relationships</h3>
+                          <p>10.4K Posts</p>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="featured-topics">
+                  <a href="topicDetails">
+                      <img src="images/split.jpg" class="img-responsive">
                       <div class="text">
                           <h3>Love & Relationships</h3>
                           <p>10.4K Posts</p>
