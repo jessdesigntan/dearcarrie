@@ -11,9 +11,12 @@
     <div class="page-container wow fadeInUp">
       <div class="topic-header">
         <div>
-          <img src="images/topic-img.png">
-          <h1>Personal Growth</h1>
-          <p class="lead medium-text">Keep Learning. Keep Growing.</p>
+          <img src="images/love.jpg" class="img-responsive">
+          <div class="text">
+              <h1>Love & Relationship</h1>
+              <p class="lead">Keep Learning. Keep Growing.</p>
+              <a class="white-line-btn">Follow Topic</a>
+          </div>
         </div>
       </div>
 

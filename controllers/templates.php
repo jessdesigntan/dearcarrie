@@ -12,6 +12,8 @@ function head($title){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?=$title;?></title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -95,6 +97,12 @@ function navbar() {
 
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
+
+    <div class="mobile-search-bar show-mobile">
+        <form action="search">
+            <input type="text" class="nav-search" placeholder="Search anything . . .">
+        </form>
+    </div><!--/.mobile-search-bar -->
   </nav>
 <?php
   loginModal();
@@ -390,7 +398,7 @@ function topicSideContent() {
       </div>
     </div>
   </div>
-  <script>$('.mains-sidebar').affix({offset: {top: 10}});</script>
+  <script>$('.mains-sidebar').affix({offset: {top: 50}});</script>
 <?php
 }
 
@@ -401,7 +409,7 @@ function sideFilter() {
   </div>
   <a href="#" class="active">Posts<span class="badge">1.2k</span></a>
   <a href="#">Topics<span class="badge">6</span></a>
-  <script>staticBar('.filter-sidebar','10');</script>
+  <script>staticBar('.filter-sidebar','30');</script>
 <?php
 }
 

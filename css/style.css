@@ -18,6 +18,10 @@
   17. font styles
   18. topic header
   19. dual-hero
+  20. borderless
+  21. user-header
+  22. mobile-search-bar
+  23. featured-topic
 */
 
 /*=============================
@@ -34,15 +38,19 @@
 }
 
 body {
-  background-color: var(--light-bg);
-  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  background-color: white;
   font-family: Avenir, Arial, sans-serif;
-  )
 }
 
 body > .page-container {
-    padding: 120px 15px 0;
-    min-height: 700px;
+  padding: 120px 15px 0;
+  min-height: 700px;
+}
+
+@media only screen and (max-width: 767px) {
+  body > .page-container {
+    padding-top: 150px;
+  }
 }
 
 .page-container {
@@ -132,6 +140,7 @@ a:hover {
 .navbar-default {
   background: white;
   border-radius: 0;
+  border-top: 3px solid var(--primary-color);
 
   display: table;
   width: 100%;
@@ -455,13 +464,13 @@ a:hover {
 
 .filter-sidebar.affix-top {
   position: static;
-  width:130px;
+  width: 130px;
 }
 
 .filter-sidebar.affix {
   position: fixed;
-  top:70px;
-  width:130px;
+  top: 90px;
+  width: 130px;
 }
 
 .filter-sidebar > a {
@@ -478,13 +487,13 @@ a:hover {
 
 .main-sidebar.affix-top {
   position: static;
-  width:250px;
+  width: 250px;
 }
 
 .main-sidebar.affix {
   position: fixed;
-  top:70px;
-  width:250px;
+  top: 90px;
+  width: 250px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -677,6 +686,24 @@ footer p {
   color: white;
 }
 
+.white-line-btn {
+  border-radius: 30px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  transition: all 0.3s ease 0s;
+  font-weight: 300;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.white-line-btn:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
 /*=============================
     14. modal overwrites
 ===============================*/
@@ -738,7 +765,7 @@ footer p {
 ===============================*/
 @font-face {
   font-family: Avenir;
-  src: url(../fonts/Avenir.ttc);
+  src: url(../fonts/avenir.otf);
 }
 
 h1, h2 ,h3 , h4 {
@@ -746,11 +773,21 @@ h1, h2 ,h3 , h4 {
   font-weight: bold;
 }
 
-h4.hero-center {
+
+h3.hero-center, h4.hero-center {
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
+
+h3.hero-center::after {
+  display: block;
+  width: 50px;
+  border-bottom: 2px solid black;
+  content: '';
+  margin: 20px auto 30px auto;
+}
+
 
 h4.hero-center::after {
   display: block;
@@ -784,15 +821,49 @@ h4.hero-center::after {
     18. topic header
 ===============================*/
 .topic-header {
-  display: table;
-  padding: 100px 0;
-  width: 100%;
-  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  transition: all 0.3s ease 0s;
 }
 
-.topic-header > div {
-  display: table-cell;
-  vertical-align: middle;
+.topic-header > div > .text {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+
+@media only screen and (max-width: 650px) {
+  .topic-header > div > .text {
+    top: 20%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .topic-header > div > .text {
+    top: 10%;
+  }
+
+  .topic-header > div > .text > h1 {
+    font-size: 20px;
+  }
+
+  .topic-header .lead {
+    font-size: 12px;
+  }
+
+  .topic-header .white-line-btn {
+    font-size: 12px;
+  }
 }
 
 /*=============================
@@ -880,4 +951,61 @@ h4.hero-center::after {
 .user-header > .details > p:first-child::after {
   content: '\00B7';
   margin-left: 5px;
+}
+
+/*=============================
+    22. mobile-search-bar
+===============================*/
+.mobile-search-bar {
+  border-top: var(--light-border) 1px solid;
+}
+
+.mobile-search-bar > * {
+  padding: 10px 15px;
+}
+
+.mobile-search-bar .nav-search {
+  width: 100%;
+}
+
+/*=============================
+    23. featured-topics
+===============================*/
+.featured-topics {
+  text-align: center;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  transition: all 0.3s ease 0s;
+}
+
+.featured-topics > a > .text {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+.featured-topics > a > img {
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 767px) {
+  .featured-topics > a > .text {
+    top: 30%;
+  }
+
+  .featured-topics h3 {
+    font-size: 20px;
+  }
+}
+
+.featured-topics:hover{
+  opacity: 0.8;
 }
