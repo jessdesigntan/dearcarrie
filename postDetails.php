@@ -11,7 +11,7 @@
     <div class="page-container-admin">
         <ol class="breadcrumb">
             <li><a href="dashboard">Dashboard</a></li>
-            <li><a href="userList">Post</a></li>
+            <li><a href="postList">Post</a></li>
             <li class="active"><a href="#">Post Title . . .</a></li>
         </ol>
 
@@ -24,6 +24,18 @@
                       <hr/>
                       <a class="btn btn-primary btn-block">Edit Post</a>
                       <a class="btn btn-danger btn-block">Delete Post</a>
+                      <hr/>
+                      <form method="post">
+                          <div class="form-group">
+                            <label>Add to Topic</label>
+                            <select class="form-control">
+                                <option>Love</option>
+                                <option>Money</option>
+                                <option>Split Personality</option>
+                            </select>
+                          </div>
+                          <button type="submit" class="btn btn-default btn-block">Add to Topic</button>
+                      </form>
                       <hr/>
                       <p>No. of reports</p>
                       <h4 class="primary-color">6</h4>
@@ -63,6 +75,15 @@
                         </tr>
                         <tr>
                             <td>Why I am so depressed</td>
+                        </tr>
+                        <tr>
+                            <th>Topics</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#topicDetails"><span class="label label-default">Love & Relationships</span></a>
+                                <a href="#topicDetails"><span class="label label-primary">Love & Relationships</span></a>
+                            </td>
                         </tr>
                         <tr>
                             <th>Content</th>

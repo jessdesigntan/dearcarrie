@@ -2,7 +2,7 @@
 <?php include('controllers/templates.php'); ?>
 
 <html lang="en">
-  <?php head("Dear Carrie - Admin Post List"); ?>
+  <?php head("Dear Carrie - Admin Topic List"); ?>
 
   <body>
     <?= navbar(); ?>
@@ -11,20 +11,20 @@
     <div class="page-container-admin">
         <ol class="breadcrumb">
             <li><a href="dashboard">Dashboard</a></li>
-            <li class="active"><a href="#">Posts</a></li>
+            <li class="active"><a href="#">Topics</a></li>
         </ol>
         <div class="panel panel-default summary-panel">
             <div class="panel-heading">
-                <h4 class="admin-sec-color">Total Posts: 3455</h4>
+                <h4 class="admin-sec-color">Total Topics: 13</h4>
             </div>
             <table class="table table-hover table-bordered table-striped">
                 <tr>
                     <th>Date</th>
-                    <th>Post ID</th>
+                    <th>Topic ID</th>
                     <th>Title</th>
-                    <th>User ID</th>
-                    <th>Likes</th>
-                    <th>Comment</th>
+                    <th>Type</th>
+                    <th>Followers</th>
+                    <th>Post</th>
                     <th></th>
                 </tr>
                 <?php for ($i=1; $i<=10; $i++) { ?>
@@ -32,11 +32,11 @@
                     <td>12 Jan 2016</td>
                     <td>123123</td>
                     <!-- remember to do a substring function to keep the text to one line -->
-                    <td>Things I wish people knew about depression.</td>
-                    <td><a href="userDetails">344343</a></td>
+                    <td>Bipolar</td>
+                    <td><a href="userDetails">Featured/Main/Curated</a></td>
                     <td>43</td>
                     <td>10</td>
-                    <td><a href="postDetails" class="admin-sec-color">View</a></td>
+                    <td><a href="adminTopicDetails" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -67,7 +67,7 @@
 
     <?php footer(); ?>
     <script>
-        $("#postsNav").addClass("active");
+        $("#topicsNav").addClass("active");
     </script>
   </body>
 
