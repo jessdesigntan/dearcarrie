@@ -562,7 +562,7 @@ function adminNav() {
               <li><a id="usersNav" href="userList">Users</a></li>
               <li><a id="postsNav" href="postList">Posts</a></li>
               <li><a id="topicsNav" href="topicList">Topics</a></li>
-              <li><a id="reportNav" href="#">Report</a></li>
+              <li><a id="reportNav" href="reportList">Report</a></li>
           </ul>
       </div>
   </div>
