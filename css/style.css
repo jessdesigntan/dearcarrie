@@ -28,6 +28,8 @@
   27. admin-nav
   28. summary-panel
   29. breadcrumbs overwrite
+  30. tables styles
+  31. editable-fields
 */
 
 /*=============================
@@ -585,6 +587,20 @@ a:hover {
   position: fixed;
   top: 90px;
   width: 220px;
+}
+
+.actionBar {
+  width: 300px;
+}
+
+.actionBar.affix-top {
+  position: static;
+  width: 300px;
+}
+.actionBar.affix {
+  position: fixed;
+  top: 90px;
+  width: 300px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1344,4 +1360,40 @@ th {
   font-size: 12px;
   letter-spacing: 1px;
   color: var(--admin-secondary-color);
+}
+
+/*=============================
+    31. editable fields
+===============================*/
+form.editable-fields {
+  border: 0;
+  box-shadow: 0;
+}
+
+form.editable-fields input, form.editable-fields textarea {
+  border: 0;
+  padding: 6px 0;
+  width: 100%;
+  transition: all 0.1s ease 0s;
+}
+
+form.editable-fields input:hover,
+form.editable-fields input:focus,
+form.editable-fields textarea:hover,
+form.editable-fields textarea:focus {
+  outline: 3px auto -webkit-focus-ring-color;
+  padding-left: 4px;
+}
+
+form.editable-fields select {
+  -webkit-appearance: none;
+  background: white;
+  border: 0;
+  color: var(--admin-secondary-color);
+  text-decoration: underline;
+  width: 100%;
+}
+
+form.editable-fields select:hover {
+  outline: 3px auto -webkit-focus-ring-color;
 }

@@ -35,7 +35,6 @@ function head($title){
     <!-- wow.js for css animations & initialization -->
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
-
   </head>
 <?php
 }
@@ -93,8 +92,13 @@ function navbar() {
             <ul class="dropdown-menu">
               <li><a href="profile">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
-              <li><a href="dashboard">Admin Dashboard</a></li>
               <li><a href="editProfile">Edit Profile</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="dashboard">Admin Dashboard</a></li>
+              <li><a href="dashboard">Users</a></li>
+              <li><a href="dashboard">Post</a></li>
+              <li><a href="dashboard">Topics</a></li>
+              <li><a href="dashboard">Report</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="index">Logout</a></li>
             </ul>
@@ -554,6 +558,7 @@ function adminNav() {
   <div class="admin-nav">
       <div class="page-container">
           <ul>
+              <li><a id="dashboardNav" href="dashboard">Dashboard</a></li>
               <li><a id="usersNav" href="userList">Users</a></li>
               <li><a id="postsNav" href="postList">Posts</a></li>
               <li><a id="topicsNav" href="topicList">Topics</a></li>
@@ -563,4 +568,54 @@ function adminNav() {
   </div>
 <?php
 }
+
+function topicModal() {
+?>
+  <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Update Topic</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <form action="">
+              <div class="row">
+                  <div class="col-sm-4">
+                      <div class="checkbox">
+                          <label><input type="checkbox" value="">Love & Relationship</label>
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" value="">Bipolar</label>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                      <div class="checkbox">
+                          <label><input type="checkbox" value="">Love & Relationship</label>
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" value="">Bipolar</label>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                      <div class="checkbox">
+                          <label><input type="checkbox" value="">Love & Relationship</label>
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" value="">Bipolar</label>
+                      </div>
+                  </div>
+              </div>
+              <hr/>
+              <button type="submit" class="btn btn-success">Update Topics</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php
+}
+
 ?>

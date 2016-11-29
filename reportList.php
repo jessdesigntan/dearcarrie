@@ -2,7 +2,7 @@
 <?php include('controllers/templates.php'); ?>
 
 <html lang="en">
-  <?php head("Dear Carrie - Admin Topic List"); ?>
+  <?php head("Dear Carrie - Admin Report List"); ?>
 
   <body>
     <?= navbar(); ?>
@@ -11,39 +11,33 @@
     <div class="page-container-admin">
         <ol class="breadcrumb">
             <li><a href="dashboard">Dashboard</a></li>
-            <li class="active"><a href="#">Topics</a></li>
+            <li class="active"><a href="#">Report</a></li>
         </ol>
         <div class="panel panel-default summary-panel">
             <div class="panel-heading">
-                <h4 class="admin-sec-color">Total Topics: 13</h4>
-            </div>
-            <div class="panel-body">
-                  <a href="addTopic" class="btn btn-primary" style="color:white;" >Add Topic</a>
+                <h4 class="admin-sec-color">Total Users: 455</h4>
             </div>
             <table class="table table-hover table-bordered table-striped">
                 <tr>
-                    <th>Date</th>
-                    <th>Topic ID</th>
-                    <th>Title</th>
-                    <th>Type</th>
-                    <th>Followers</th>
-                    <th>Post</th>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 <?php for ($i=1; $i<=10; $i++) { ?>
                 <tr>
-                    <td>12 Jan 2016</td>
                     <td>123123</td>
-                    <!-- remember to do a substring function to keep the text to one line -->
-                    <td>Bipolar</td>
-                    <td><span class="label label-primary">Featured</span> Main | Curated</td>
-                    <td>43</td>
-                    <td>10</td>
-                    <td><a href="adminTopicDetails" class="admin-sec-color">View</a></td>
+                    <td>Jess Tan</td>
+                    <td>jess_tjl@hotmail.com</td>
+                    <td>Normal</td>
+                    <td><a href="#" class="admin-sec-color">Edit</a></td>
+                    <td><a href="userDetails" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
             </table>
-        </div><!-- END post table-->
+        </div><!-- END top 10 post today-->
 
         <nav aria-label="Page navigation">
             <center>
@@ -70,7 +64,7 @@
 
     <?php footer(); ?>
     <script>
-        $("#topicsNav").addClass("active");
+        $("#usersNav").addClass("active");
     </script>
   </body>
 

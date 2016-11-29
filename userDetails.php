@@ -17,65 +17,59 @@
 
         <div class="row">
             <div class="col-sm-4">
-              <div class="panel panel-default">
+              <div class="panel panel-default actionBar hide-mobile">
                   <div class="panel-heading">Actions</div>
                   <div class="panel-body">
-                      <a class="btn btn-primary btn-block">Edit User</a>
-                      <a class="btn btn-danger btn-block">Delete User</a>
-                      <hr/>
-                      <form method="post">
-                          <div class="form-group">
-                            <label>Change Role</label>
-                            <select class="form-control">
-                                <option>Admin</option>
-                                <option>Normal</option>
-                                <option>Expert</option>
-                            </select>
-                          </div>
-                          <button type="submit" class="btn btn-default btn-block">Update Role</button>
-                      </form>
+                      <button type="submit" class="btn btn-primary btn-block">Update User</a>
+                      <button type="button" class="btn btn-danger btn-block">Delete User</a>
                   </div>
               </div>
             </div><!-- ./col-sm-4 -->
 
             <div class="col-sm-8">
-                <table class="table table-hover table-bordered">
-                    <tr>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Date Joined</th>
-                        <th>Role</th>
-                    </tr>
-                    <tr>
-                        <td>12312312</td>
-                        <td>jess_tjl@hotmail.com</td>
-                        <td>12 Jan 2016</td>
-                        <td><span class="label label-success">Normal</span>
-                        <span class="label label-primary">Expert</span>
-                        <span class="label label-warning">Admin</span></td>
-                    </tr>
-                </table>
-
-                <div class="panel panel-default summary-panel mBottom-40">
-                    <table class="table table-hover table-bordered">
+                <form class="editable-fields" action="post">
+                    <table class="table table-bordered">
                         <tr>
-                            <th>Image</th>
-                            <td><img src="images/avatar.png"></td>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Date Joined</th>
+                            <th>Role</th>
                         </tr>
                         <tr>
-                            <th>Name</th>
-                            <td>Jess Tan</td>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <td>Writing my life stories.</td>
-                        </tr>
-                        <tr>
-                            <th>Affliate</th>
-                            <td>Facebook</td>
+                            <td>12312312</td>
+                            <td><input type="text" value="jess_tjl@hotmail.com"></td>
+                            <td>12 Jan 2016</td>
+                            <td>
+                                <select>
+                                  <option>Normal</option>
+                                  <option>Expert</option>
+                                  <option>Admin</option>
+                                </select>
+                            </td>
                         </tr>
                     </table>
-                </div><!-- END user details-->
+
+                    <div class="panel panel-default summary-panel mBottom-40">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Image</th>
+                                <td><img src="images/avatar.png"></td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td><input type="text" value="Jess Tan"></td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td><input type="text" value="Writing my life stories."></td>
+                            </tr>
+                            <tr>
+                                <th>Affliate</th>
+                                <td>Facebook</td>
+                            </tr>
+                        </table>
+                    </div><!-- END user details-->
+                </form>
 
                 <div class="panel panel-default summary-panel">
                     <div class="panel-heading">All Post (342)</div>
@@ -131,6 +125,7 @@
     <?php footer(); ?>
     <script>
         $("#usersNav").addClass("active");
+        staticBar('.actionBar','120');
     </script>
   </body>
 

@@ -106,4 +106,8 @@
     <?php footer(); ?>
   </body>
 
+  <script>
+    $("#dashboardNav").addClass("active");
+  </script>
+
 </html>
