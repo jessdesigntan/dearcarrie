@@ -846,12 +846,6 @@ a.facebook-btn:hover{
   overflow-y: auto;
 }
 
-.modal .logo {
-  width: 200px;
-  display: block;
-  margin: 20px auto;
-}
-
 .modal-header::after {
   display: block;
   width: 30px;
@@ -904,10 +898,6 @@ a.facebook-btn:hover{
   height: 45px;
   border-radius: 0;
   letter-spacing: 1px;
-}
-
-.modal .form-control:focus {
-  border-color: var(--primary-color);
 }
 
 h4.modal-title {
@@ -1396,4 +1386,26 @@ form.editable-fields select {
 
 form.editable-fields select:hover {
   outline: 3px auto -webkit-focus-ring-color;
+}
+
+/*=============================
+    32. small-wrapper
+===============================*/
+.small-wrapper {
+  max-width: 500px;
+  margin: 0 auto 50px auto;
+}
+
+.small-wrapper .logo {
+  width: 200px;
+  display: block;
+  margin: 20px auto;
+}
+
+.small-wrapper .title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--medium-text);
+  text-align: center;
+  margin-bottom: 20px;
 }

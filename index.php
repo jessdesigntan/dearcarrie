@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php include('controllers/templates.php'); ?>
-
 <html lang="en">
   <?php head("Dear Carrie"); ?>
 
@@ -8,6 +7,8 @@
     <?= navbar(); ?>
 
     <div class="page-container">
+      <p>Email: <?php echo $_SESSION["email"]; ?></p>
+      <p>Role: <?php echo $_SESSION["role"]; ?></p>
       <div class="main-banner-grid row">
           <div class="col-sm-8 col-xs-12">
               <a href="topicDetails"><img src="images/split.jpg" class="img-responsive"></a>
@@ -20,6 +21,7 @@
           </div>
       </div>
       <br/><br/>
+
       <div class="row">
           <div class="col-sm-9">
             <div class="content-title">

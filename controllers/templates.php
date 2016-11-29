@@ -1,4 +1,10 @@
 <?php
+  ob_start();
+  session_start();
+  include('commonFunctions.php');
+?>
+<?php
+
 /**
  * Display <head> section, include all dependencies for NORMAL users pages
  *
@@ -22,6 +28,7 @@ function head($title){
     <!-- Own style & js -->
     <link href="css/style.css" rel="stylesheet">
     <script src="js/frontend.js"></script>
+    <script src="js/form_validation.js"></script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -75,33 +82,43 @@ function navbar() {
         </form>
         <ul class="nav navbar-nav navbar-right">
           <!-- not signed in -->
-          <li><a href="#" class="light-text" data-toggle="modal" data-target="#loginModal">Login</a></li>
-          <li><a href="#" class="cta-btn" data-toggle="modal" data-target="#registerModal">Register</a></li>
+          <?php if (checkLogin()) { ?>
+          <li><a href="login" class="light-text">Login</a></li>
+          <li><a href="signup" class="cta-btn">Sign up</a></li>
+          <?php } ?>
           <!-- /not signed in -->
 
           <!-- signed in -->
-          <li><a href="addPost" class="cta-btn" >Post</a></li>
-          <li class="show-mobile"><a href="profile" class="light-text">Profile</a></li>
-          <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
-          <li class="show-mobile"><a href="editProfile" class="light-text">Edit Profile</a></li>
-          <li class="show-mobile"><a href="index" class="light-text">Logout</a></li>
+          <?php if (!checkLogin()) { ?>
+            <li><a href="addPost" class="cta-btn" >Post</a></li>
+            <li class="show-mobile"><a href="profile" class="light-text">Profile</a></li>
+            <?php if (checkRole($_SESSION["role"], "admin")) { ?>
+              <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
+            <?php } ?>
+            <li class="show-mobile"><a href="editProfile" class="light-text">Edit Profile</a></li>
+            <li class="show-mobile"><a href="index" class="light-text">Logout</a></li>
+          <?php } ?>
           <!-- /signed in -->
 
           <li class="dropdown hide-mobile">
+            <?php if (!checkLogin()) { ?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="profile">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
               <li><a href="editProfile">Edit Profile</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="dashboard">Admin Dashboard</a></li>
-              <li><a href="dashboard">Users</a></li>
-              <li><a href="dashboard">Post</a></li>
-              <li><a href="dashboard">Topics</a></li>
-              <li><a href="dashboard">Report</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="index">Logout</a></li>
+              <?php if (checkRole($_SESSION["role"], "admin")) { ?>
+                <li role="separator" class="divider"></li>
+                <li><a href="dashboard">Admin Dashboard</a></li>
+                <li><a href="dashboard">Users</a></li>
+                <li><a href="dashboard">Post</a></li>
+                <li><a href="dashboard">Topics</a></li>
+                <li><a href="dashboard">Report</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="index">Logout</a></li>
+              <?php } ?>
             </ul>
+            <?php } ?>
           </li>
         </ul>
 
@@ -115,8 +132,6 @@ function navbar() {
     </div><!--/.mobile-search-bar -->
   </nav>
 <?php
-  loginModal();
-  registerModal();
 }
 
 function card() {
@@ -442,7 +457,7 @@ function loginModal() {
         <div class="modal-body">
           <h4 class="modal-title" id="myModalLabel">Register</h4>
           <div>
-            <form action="profile">
+            <form>
                 <div class="form-group">
                   <label>Email</label>
                   <input type="text" class="form-control">
@@ -462,53 +477,6 @@ function loginModal() {
         </div>
         <div class="modal-footer">
           <a href="#" class="primary-color small" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">No account yet? Register here.</a>
-        </div>
-      </div>
-    </div>
-  </div>
-<?php
-}
-
-function registerModal() {
-?>
-  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <img src="images/logo-long.svg" class="logo">
-        </div>
-        <div class="modal-body">
-          <h4 class="modal-title" id="myModalLabel">Register</h4>
-          <div>
-            <form action="profile">
-                <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label>Confirm Password</label>
-                  <input type="password" class="form-control">
-                </div>
-                <button type="submit" class="primary-line-btn">Sign up</button>
-            </form>
-            <hr/>
-            <a class="facebook-btn">
-                <img src="images/facebookIcon.png" width="10"/>
-                <div class="text">Register with Facebook</div>
-            </a>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a href="#" class="primary-color small" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Already have an account? Login here.</a>
         </div>
       </div>
     </div>
@@ -615,6 +583,15 @@ function topicModal() {
       </div>
     </div>
   </div>
+<?php
+}
+
+function errorAlert($msg) {
+?>
+<div class="alert alert-danger alert-dismissable fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?= $msg; ?>
+</div>
 <?php
 }
 
