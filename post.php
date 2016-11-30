@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
-
+<?php
+  include('controllers/templates.php');
+  $postID = $_GET["postID"];
+  $post = getPostByID($postID);
+?>
 <html lang="en">
   <?php head("Post Title"); ?>
 
@@ -10,7 +13,7 @@
     <div class="page-container">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <?= cardExpand(); ?>
+            <?= cardExpand($post["id"]); ?>
               <h4>Responses</h4>
               <form class="comment-box">
                   <textarea placeholder="Write a comment..." onkeyup="auto_grow(this)"></textarea>

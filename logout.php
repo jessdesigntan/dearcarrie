@@ -1,5 +1,8 @@
 <?php
 session_start();
+$_SESSION["userid"] = "";
+unset($_SESSION["userid"]);
+
 $_SESSION["email"] = "";
 unset($_SESSION["email"]);
 

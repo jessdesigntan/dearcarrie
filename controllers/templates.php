@@ -77,8 +77,8 @@ function navbar() {
             </ul>
           </li>
         </ul>
-        <form class="navbar-form navbar-left hide-mobile" action="search">
-            <input type="text" class="nav-search" placeholder="Search anything . . .">
+        <form class="navbar-form navbar-left hide-mobile" action="search" method="get">
+            <input type="text" class="nav-search" placeholder="Search anything . . ." name="keyword">
         </form>
         <ul class="nav navbar-nav navbar-right">
           <!-- not signed in -->
@@ -104,7 +104,7 @@ function navbar() {
             <?php if (!checkLogin()) { ?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION["name"];?> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="profile">Profile</a></li>
+              <li><a href="profile?userID=<?=$_SESSION["userid"];?>">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
               <li><a href="editProfile">Edit Profile</a></li>
               <?php if (checkRole($_SESSION["role"], "admin")) { ?>
@@ -134,36 +134,37 @@ function navbar() {
 <?php
 }
 
-function card() {
+function card($id) {
+  $post = getPostByID($id);
+  $user = getUserByID($post["userid"]);
 ?>
 <div class="card">
   <div class="header">
     <div class="image">
-      <a href="#"><img src="images/avatar.png"></a>
+      <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
     </div>
     <div class="author-details">
-      <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Mental Health</a></div>
-      <div class="date">12 Aug 16</div>
-      <div class="views">1.2k</div>
+      <div><a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a> in <a href="topicDetails">Mental Health</a></div>
+      <div class="date"><?=$post["timestamp"];?></div>
+      <div class="views"><?=$post["views"];?></div>
     </div>
   </div>
 
   <div class="content short">
-    <a href="post">
-      <h4>Things I wish people knew about depression</h4>
-      <p>The worst part about depression can be the sheer loneliness, and the inability to express it. Feeling depressed makes people want to be alone (but not lonely) when they really shouldn't be. If you care, please check on your depressed loved-ones, often. Offering to simply hangout means so much.
-Insulting, acting negatively or being in denial towards depressed people makes them feel even more isolated and unloved from you and in turn they won't trust you, or anyone else. If you are someone they look up to or consider close to you then you are a huge factor into them feeling better or worse.</p>
+    <a href="post?postID=<?=$post["id"];?>">
+      <h4><?=$post["title"];?></h4>
+      <p><?=$post["description"];?></p>
     </a>
-    <a href="#" class="read-more">Read more &#8594;</a>
+    <a href="post?postID=<?=$post["id"];?>" class="read-more">Read more &#8594;</a>
   </div>
 
   <div class="footer">
     <div class="float-left">
       <a href="#" class="star-icon"></a>
-      200
+      <?=$post["likes"];?>
     </div>
     <div class="float-right">
-      <a href="#">400 comments</a>
+      <a href="#"><?=$post["comments"];?> comments</a>
       <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
       data-content="
         <a href='#' title='test add link'>Report</a>
@@ -176,45 +177,6 @@ Insulting, acting negatively or being in denial towards depressed people makes t
     </div>
   </div>
 </div>
-  <div class="card">
-    <div class="header">
-      <div class="image">
-        <a href="#"><img src="images/avatar.png"></a>
-      </div>
-      <div class="author-details">
-        <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Bipolar</a></div>
-        <div class="date">12 Aug 16</div>
-        <div class="views">1.2k</div>
-      </div>
-    </div>
-
-    <div class="content short">
-      <a href="post">
-        <h4>Who else feels like society as a whole does not take depression seriously?</h4>
-        <p>Depression can last for long periods of time, even when a person wishes more than anything to wake up and be over it one morning. It’s a process, and one that looks different for everyone. Some people go running, others meet new people or take up a new hobby in effort to help themselves. The one method guaranteed to fail is telling a depressed person to “snap out of it.”</p>
-      </a>
-      <a href="#" class="read-more">Read more &#8594;</a>
-    </div>
-
-    <div class="footer">
-      <div class="float-left">
-        <a href="#" class="star-icon"></a>
-        200
-      </div>
-      <div class="float-right">
-        <a href="#">400 comments</a>
-        <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
-        data-content="
-          <a href='#' title='test add link'>Report</a>
-          <a href='#' title='test add link'>Share</a>
-          "
-        ><img src="images/dots.svg"></a>
-        <script>
-          $("[data-toggle=popover]").popover({html:true})
-        </script>
-      </div>
-    </div>
-  </div>
 <?php
 }
 
@@ -223,7 +185,7 @@ function suggestedCard() {
   <div class="card">
     <div class="header">
       <div class="image">
-        <a href="#"><img src="images/avatar.png"></a>
+        <a href="#"><img src="images/default.svg"></a>
       </div>
       <div class="author-details">
         <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Bipolar</a></div>
@@ -277,35 +239,37 @@ function topicCard() {
 <?php
 }
 
-function cardExpand() {
+function cardExpand($postID) {
+  $post = getPostByID($postID);
+  $user = getUserByID($post["userid"]);
 ?>
   <div class="card mBottom-40 edit">
     <div class="header">
       <div class="image">
-        <a href="#"><img src="images/avatar.png"></a>
+        <a href="#"><img src="<?=$user["image"];?>"></a>
       </div>
       <div class="author-details">
-        <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Bipolar</a></div>
-        <div class="date">12 Aug 16</div>
-        <div class="views">1.2k</div>
+        <div><a href="profile"><?=$user["name"];?></a> in <a href="topicDetails">Bipolar</a></div>
+        <div class="date"><?=$post["timestamp"];?></div>
+        <div class="views"><?=$post["views"];?></div>
       </div>
-      <a class="edit" href="editPost"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+      <?php if($post["userid"] == $_SESSION["userid"]) { ?>
+        <a class="edit" href="editPost?postID=<?=$post["id"];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+      <?php } ?>
     </div>
 
     <div class="content">
-      <h4>Ryan Lochte Is the Ugly American</h4>
-      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-      <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-      <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+      <h4><?=$post["title"];?></h4>
+      <p><?=$post["description"];?></p>
     </div>
 
     <div class="footer">
       <div class="float-left">
         <a href="#" class="star-icon"></a>
-        200
+        <?=$post["likes"];?>
       </div>
       <div class="float-right">
-        <a href="#">400 comments</a>
+        <a href="#"><?=$post["comments"];?> comments</a>
         <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
         data-content="
           <a href='#' title='test add link'>Report</a>
@@ -326,7 +290,7 @@ function commentCard() {
   <div class="card comment-card">
     <div class="header">
       <div class="image">
-        <a href="#"><img src="images/avatar.png"></a>
+        <a href="#"><img src="images/default.svg"></a>
       </div>
       <div class="author-details">
         <div>

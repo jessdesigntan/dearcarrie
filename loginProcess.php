@@ -16,6 +16,7 @@ if (count($value["id"]) == 0) {
 }
 
 else {
+  $_SESSION["userid"] = $value["id"];
   $_SESSION["email"] = $value["email"];
   $_SESSION["role"] = $value["role"];
   $_SESSION["name"] = strtok($value["name"], " "); //get first word of the name

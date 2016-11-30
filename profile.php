@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+  $userID = $_GET["userID"];
+  $user = getUserByID($userID);
+?>
 
 <html lang="en">
-  <?php head("User Profile"); ?>
+  <?php head("Your Profile"); ?>
 
   <body>
     <?= navbar(); ?>
@@ -12,25 +16,44 @@
           <div class="user-header">
             <div class="header">
               <div>
-                <h2>Jess Tan</h2>
-                <p>Writing my way through it.</p>
+                <h2><?=$user["name"];?></h2>
+                <p><?=$user["description"];?></p>
               </div>
               <div>
-                <img src="images/avatar.png">
+                <img src="<?=$user["image"];?>">
               </div>
             </div>
             <div class="details">
-              <p><span class="weight-500">24</span> Posts</p>
+              <p><span class="weight-500"><?=countPostByUserID($userID);?></span> Posts</p>
               <a href="#" data-toggle="modal" data-target="#topicsModal">Following <span class="weight-500">5</span> Topics</a>
             </div>
           </div>
 
           <div class="content-title">
-            <h4>Your Posts</h4>
+            <?php if ($_SESSION["userid"] == $userID) {?>
+              <h4>Your Posts</h4>
+            <?php } else { ?>
+              <h4><?=$user["name"];?>'s Posts</h4>
+            <?php } ?>
           </div>
-          <?php for ($i=1; $i<=12; $i++) {
-            card();
-          }
+          <?php
+            $posts = displayAllPostByUserID($userID);
+
+            if (count($posts) == 0) {
+          ?>
+              <div class="post-empty-state">
+                  <div>
+                      <h4>No posts yet</h4>
+                      <a class="primary-line-btn" href="addPost">Write something</a>
+                  </div>
+              </div>
+          <?php
+            }
+            else {
+              foreach ($posts as $post) {
+                card($post["id"]);
+              }
+            }
           ?>
         </div>
       </div><!-- ./row -->

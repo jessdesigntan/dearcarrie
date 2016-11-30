@@ -21,6 +21,7 @@ else {
   validateQuery($conn, $sql);
 
   //Logged user in immediately
+  $_SESSION["userid"] = $conn->insert_id;;
   $_SESSION["email"] = $email;
   $_SESSION["role"] = "normal";
   $_SESSION["name"] = strtok($name, " "); //get first word of the name

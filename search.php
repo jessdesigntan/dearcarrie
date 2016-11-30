@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+  $keyword = $_GET["keyword"];
+?>
 
 <html lang="en">
   <?php head("Anti-depression"); ?>
@@ -16,12 +19,14 @@
         </div><!-- END right column col-sm-3 -->
         <div class="col-sm-8">
           <div class="content-title">
-            <h4>Search Results: <span class="primary-color">Bipolar</span></h4>
+            <h4>Search Results: <span class="primary-color"><?=$keyword;?></span></h4>
             <a href="#">Sort by Relevance &#9662;</a>
           </div>
-          <?php for ($i=1; $i<=10; $i++) {
-            card();
-          }
+          <?php
+            $posts = searchPost($keyword);
+            foreach ($posts as $post) {
+              card($post["id"]);
+            }
           ?>
         </div><!-- END left column col-sm-9 -->
 

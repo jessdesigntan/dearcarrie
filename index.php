@@ -25,23 +25,11 @@
             <div class="content-title">
               <h4>Top Stories For You</h4>
             </div>
-            <?php for ($i=1; $i<=12; $i++) {
-              if ($i % 4 == 0) { //for every 3 full row, split into 2
-              ?>
-                <div class="row">
-                    <div class="col-sm-6">
-                      <?= suggestedCard(); ?>
-                    </div>
-                    <div class="col-sm-6">
-                      <?= suggestedCard(); ?>
-                    </div>
-                </div>
-              <?php
+            <?php
+              $posts = displayAllPost();
+              foreach ($posts as $post) {
+                card($post["id"]);
               }
-              else {
-                card();
-              }
-            }
             ?>
           </div><!-- END left column col-sm-8 -->
           <div class="col-sm-3">
