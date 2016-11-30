@@ -12,7 +12,7 @@ $value = $result->fetch_assoc();
 validateQuery($conn, $sql);
 
 if (count($value["id"]) == 0) {
-  header("Location: login");
+  header("Location: login?msg=Username does not exists or password is wrong");
 }
 
 else {

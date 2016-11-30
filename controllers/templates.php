@@ -96,7 +96,7 @@ function navbar() {
               <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
             <?php } ?>
             <li class="show-mobile"><a href="editProfile" class="light-text">Edit Profile</a></li>
-            <li class="show-mobile"><a href="index" class="light-text">Logout</a></li>
+            <li class="show-mobile"><a href="logout" class="light-text">Logout</a></li>
           <?php } ?>
           <!-- /signed in -->
 
@@ -114,9 +114,9 @@ function navbar() {
                 <li><a href="dashboard">Post</a></li>
                 <li><a href="dashboard">Topics</a></li>
                 <li><a href="dashboard">Report</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="index">Logout</a></li>
               <?php } ?>
+              <li role="separator" class="divider"></li>
+              <li><a href="logout">Logout</a></li>
             </ul>
             <?php } ?>
           </li>

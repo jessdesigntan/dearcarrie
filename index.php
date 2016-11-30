@@ -7,8 +7,6 @@
     <?= navbar(); ?>
 
     <div class="page-container">
-      <p>Email: <?php echo $_SESSION["email"]; ?></p>
-      <p>Role: <?php echo $_SESSION["role"]; ?></p>
       <div class="main-banner-grid row">
           <div class="col-sm-8 col-xs-12">
               <a href="topicDetails"><img src="images/split.jpg" class="img-responsive"></a>

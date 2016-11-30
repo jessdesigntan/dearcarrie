@@ -50,4 +50,15 @@ function validateQuery($conn, $sql){
 		exit();
 	}
 }
+
+/***************** QUICK CHECKS *********************/
+//return true if empty
+function ifEmpty($var) {
+	if (empty($var)) {
+    return true;
+	}
+	else {
+		return false;
+	}
+}
 ?>

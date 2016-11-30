@@ -20,6 +20,10 @@ else {
 
   validateQuery($conn, $sql);
 
+  //Logged user in immediately
+  $_SESSION["email"] = $email;
+  $_SESSION["role"] = "normal";
+  
   //Re-direct
   header("location: /fyp");
 }

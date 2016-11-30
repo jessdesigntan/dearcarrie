@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?php include('controllers/templates.php'); ?>
+<?php
+  $errorMsg = $_GET["msg"];
+?>
 
 <html lang="en">
   <?php head("Dear Carrie - Login"); ?>
@@ -11,7 +14,11 @@
         <div class="small-wrapper">
           <img src="images/logo-long.svg" class="logo">
           <div class="title">Welcome back</div>
-          
+          <?php
+              if(!ifEmpty($errorMsg)) {
+                  errorAlert($errorMsg);
+              }
+          ?>
           <form action="loginProcess" method="post">
               <div class="form-group">
                 <label>Email</label>
