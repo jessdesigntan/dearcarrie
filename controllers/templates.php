@@ -91,7 +91,7 @@ function navbar() {
           <!-- signed in -->
           <?php if (!checkLogin()) { ?>
             <li><a href="addPost" class="cta-btn" >Post</a></li>
-            <li class="show-mobile"><a href="profile" class="light-text">Profile</a></li>
+            <li class="show-mobile"><a href="profile" class="light-text"><?=$_SESSION["name"];?></a></li>
             <?php if (checkRole($_SESSION["role"], "admin")) { ?>
               <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
             <?php } ?>
@@ -102,7 +102,7 @@ function navbar() {
 
           <li class="dropdown hide-mobile">
             <?php if (!checkLogin()) { ?>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION["name"];?> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="profile">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
@@ -515,7 +515,38 @@ function footer() {
 ?>
   <footer class="footer">
     <div class="page-container">
-      <p class="text-muted">This is the footer</p>
+      <div class="row">
+        <div class="col-sm-12 pull-left">
+          <img src="images/logo.svg" class="logo">
+        </div>
+        <div class="col-sm-4">
+          <ul>
+            <li>Trending Topics</li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-4">
+          <ul>
+            <li>Featured Topics</li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-4">
+          <ul>
+            <li>Top Topics</li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+            <li><a href="topicDetails">Bipolar</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </footer>
 <?php

@@ -55,7 +55,7 @@ body {
 }
 
 body > .page-container {
-  padding: 120px 15px 0;
+  padding: 120px 15px 100px 0;
   min-height: 700px;
   animation: fadein .5s;
   -moz-animation: fadein .5s; /* Firefox */
@@ -731,12 +731,35 @@ footer {
   display: block;
   padding: 20px 0;
   border-top: 1px solid var(--light-border);
-  text-align: center;
 }
 
 footer p {
   margin: 0;
   color: var(--light-text);
+}
+
+footer img.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  color: var(--medium-text);
+}
+
+footer ul > li:first-child {
+  text-transform: uppercase;
+  color: var(--light-text);
+  letter-spacing: 2px;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+footer ul > li > a {
+  padding: 5px 0;
+  display: block;
 }
 
 /*=============================

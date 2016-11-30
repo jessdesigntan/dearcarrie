@@ -23,7 +23,8 @@ else {
   //Logged user in immediately
   $_SESSION["email"] = $email;
   $_SESSION["role"] = "normal";
-  
+  $_SESSION["name"] = strtok($name, " "); //get first word of the name
+
   //Re-direct
   header("location: /fyp");
 }

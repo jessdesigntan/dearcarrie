@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php include('controllers/templates.php'); ?>
-
+<?php redirectToLogin($_SESSION["role"], "admin"); ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Topic List"); ?>
 
