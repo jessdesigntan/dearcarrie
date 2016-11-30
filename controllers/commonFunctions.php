@@ -102,7 +102,7 @@ function getUserByID($id) {
 
 function displayAllPost() {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts";
+	$sql = "SELECT * FROM posts WHERE published = 1";
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -120,7 +120,7 @@ function displayAllPost() {
 
 function displayAllPostByUserID($id) {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts WHERE userid ='$id' ORDER BY id DESC";
+	$sql = "SELECT * FROM posts WHERE userid ='$id' AND published = 1 ORDER BY id DESC ";
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -142,7 +142,7 @@ function showErrorMessage($msg) {
 
 function countPostByUserID($id) {
 	$conn = connectToDataBase();
-	$sql = "SELECT COUNT(*) AS total FROM posts WHERE userid='$id'";
+	$sql = "SELECT COUNT(*) AS total FROM posts WHERE userid='$id' AND published = 1";
 	$result = $conn->query($sql);
 	$value = $result->fetch_assoc();
 
@@ -152,7 +152,7 @@ function countPostByUserID($id) {
 
 function searchPost($keyword) {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts WHERE title lIKE '%$keyword%' OR description LIKE '%$keyword%'";
+	$sql = "SELECT * FROM posts WHERE title lIKE '%$keyword%' OR description LIKE '%$keyword%' AND published = 1";
 	$result = $conn->query($sql);
 	$resArr = array();
 

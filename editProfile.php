@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+  $userID = $_GET["userID"];
+  $user = getUserByID($userID);
+?>
 
 <html lang="en">
   <?php head("Edit Profile"); ?>
@@ -12,29 +16,23 @@
           <div class="panel panel-default">
             <div class="panel-heading"><h4>Edit Profile</h4></div>
             <div class="panel-body">
-              <form>
+              <form action="editProfileProcess" method="post">
                 <div class="form-group">
                   <label for="name">Image</label>
                   <input type="file">
+                  <img src="<?=$user["image"];?>" width="80">
                 </div>
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name" value="<?=$user["name"];?>">
                 </div>
                 <div class="form-group">
                   <label for="desc">Description</label>
-                  <textarea id="desc" class="form-control" rows="3"></textarea>
+                  <textarea id="desc" class="form-control" rows="5"><?=$user["description"];?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <label>Gender</label>
-                  <select class="form-control">
-                    <option>Female</option>
-                    <option>Male</option>
-                  </select>
+                  <input type="email" class="form-control" id="email" placeholder="Email" value="<?=$user["email"];?>">
                 </div>
                 <button class="primary-line-btn" type="submit">Update</button>
               </form>

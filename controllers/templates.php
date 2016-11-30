@@ -95,7 +95,7 @@ function navbar() {
             <?php if (checkRole($_SESSION["role"], "admin")) { ?>
               <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
             <?php } ?>
-            <li class="show-mobile"><a href="editProfile" class="light-text">Edit Profile</a></li>
+            <li class="show-mobile"><a href="editProfile?userID=<?=$_SESSION["userid"];?>" class="light-text">Edit Profile</a></li>
             <li class="show-mobile"><a href="logout" class="light-text">Logout</a></li>
           <?php } ?>
           <!-- /signed in -->
@@ -106,7 +106,7 @@ function navbar() {
             <ul class="dropdown-menu">
               <li><a href="profile?userID=<?=$_SESSION["userid"];?>">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
-              <li><a href="editProfile">Edit Profile</a></li>
+              <li><a href="editProfile?userID=<?=$_SESSION["userid"];?>">Edit Profile</a></li>
               <?php if (checkRole($_SESSION["role"], "admin")) { ?>
                 <li role="separator" class="divider"></li>
                 <li><a href="dashboard">Admin Dashboard</a></li>

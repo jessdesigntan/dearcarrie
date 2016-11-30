@@ -32,8 +32,8 @@
                   </div>
                   <div class="form-group">
                       <textarea onkeyup="auto_grow200(this)" name="desc" placeholder="Write your story here . . "><?=$post["description"];?></textarea>
-                      <button class="primary-line-btn float-right" type="submit">Update</button>
-                      <button class="secondary-line-btn" type="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                      <button name="action" value="update" class="primary-line-btn float-right" type="submit">Update</button>
+                      <button name="action" value="delete" class="secondary-line-btn" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
               </form>
           </div><!-- END left column col-sm-8 -->
