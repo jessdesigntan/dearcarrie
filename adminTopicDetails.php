@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php include('controllers/templates.php'); ?>
-<?php redirectToLogin($_SESSION["role"], "admin"); ?>
+<?php
+  redirectToLogin($_SESSION["role"], "admin");
+  $topicID = $_GET["topicID"];
+  $topic = getTopicByID($topicID);
+?>
+
 <html lang="en">
   <?php head("Dear Carrie - Admin Topic Details"); ?>
 
@@ -12,7 +17,7 @@
         <ol class="breadcrumb">
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="topicList">Topics</a></li>
-            <li class="active">Love & Relationships</li>
+            <li class="active"><?=$topic["name"];?></li>
         </ol>
 
         <div class="row">
@@ -38,10 +43,10 @@
                             <th>Score</th>
                         </tr>
                         <tr>
-                            <td>12312312</td>
-                            <td>76</td>
-                            <td>300</td>
-                            <td>403</td>
+                            <td><?=$topic["id"];?></td>
+                            <td><?=$topic["followers"];?></td>
+                            <td><?=$topic["posts"];?></td>
+                            <td><?=$topic["score"];?></td>
                         </tr>
                     </table>
 
@@ -50,15 +55,15 @@
                             <th>Type</th>
                             <td>
                                 <select>
-                                    <option>Featured</option>
-                                    <option>Curated</option>
-                                    <option>Main</option>
+                                    <option <?php if($topic["type"]=="featured") echo "selected" ?> value="featured">Featured</option>
+                                    <option <?php if($topic["type"]=="curated") echo "selected" ?> value="curated">Curated</option>
+                                    <option <?php if($topic["type"]=="main") echo "selected" ?> value="main">Main</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <th>Order</th>
-                            <td><input type="text" value="20"></td>
+                            <td><input type="text" value="<?=$topic["order_num"];?>"></td>
                         </tr>
                     </table>
                     <table class="table table-bordered">
@@ -66,14 +71,15 @@
                             <th>Title</th>
                         </tr>
                         <tr>
-                            <td><input type="text" value="Love & Relationships"></td>
+                            <td><input type="text" value="<?=$topic["title"];?>"></td>
                         </tr>
                         <tr>
                             <th>Main Image</th>
                         </tr>
                         <tr>
                             <td>
-                                <img src="images/love.jpg" class="img-responsive">
+                                <input type="file">
+                                <img src="<?=$topic["main_image"];?>" class="img-responsive">
                             </td>
                         </tr>
                         <tr>
@@ -81,7 +87,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <img src="images/love.jpg" class="img-responsive">
+                                <input type="file">
+                                <img src="<?=$topic["background"];?>" class="img-responsive">
                             </td>
                         </tr>
                         <tr>
@@ -89,7 +96,7 @@
                         </tr>
                         <tr>
                             <td>
-                              <input type="text" value="Short Stories">
+                              <input type="text" value="<?=$topic["short_desc"];?>">
                             </td>
                         </tr>
                         <tr>
@@ -97,20 +104,20 @@
                         </tr>
                         <tr>
                             <td>
-                              <textarea rows="5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</textarea>
+                              <textarea rows="5"><?=$topic["description"];?></textarea>
                             </td>
                         </tr>
                         <tr>
                             <th>URL</th>
                         </tr>
                         <tr>
-                            <td><input type="text" value="www.testing.com"></td>
+                            <td><input type="text" value="<?=$topic["url"];?>"></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
                         </tr>
                         <tr>
-                            <td><input type="text" value="6777 5555"></td>
+                            <td><input type="text" value="<?=$topic["tel"];?>"></td>
                         </tr>
                     </table>
                 </form>

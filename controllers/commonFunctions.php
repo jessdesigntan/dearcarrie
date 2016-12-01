@@ -100,6 +100,17 @@ function getUserByID($id) {
 	return $value;
 }
 
+function getTopicByID($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT * FROM topics WHERE id = '$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value;
+}
+
 function displayAllPost() {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM posts WHERE published = 1";
@@ -166,5 +177,42 @@ function searchPost($keyword) {
 	}
 	$conn->close();
 	return $resArr;
+}
+
+//for uploading of imageSizefunction uploadImage($imageName, $imageType, $imageSize, $imageTmpName, $imageError){
+//returns string finalImageName
+function uploadImage($imageName, $imageType, $imageSize, $imageTmpName, $imageError, $path) {
+	//mime = multipurpose internet mail extensions
+	$imgMimes = Array( 'image/jpeg', 'image/gif', 'image/pjpeg', 'image/png', 'image/bmp', 'image/jpg', 'image/svg+xml');
+
+	//if( in_array($imageType, $imgMimes)){
+	if($check !== false) {
+
+				if($imageError == 0 && $imageSize <= (1024*1024)) {
+					$randomNumber = rand(100, 10000000);
+					$finalImageName = "images/".$path."/".$randomNumber."_".$imageName;
+
+					if(move_uploaded_file($imageTmpName, $finalImageName)) {
+
+						return $finalImageName;
+					}//end of if (move uploaded file)
+
+					else {
+						echo "here";
+						//header("location: error.php?msg=Unable to insert the Image due to image error");
+						exit();
+					}//end of else
+				}// end of if (image error & size)
+
+				else {
+					header("location: error.php?msg=Image size is too large/ There is an error in the image");
+					exit();
+				}
+		}//end of if for image validation
+
+		/*else {
+			header("location: error.php?msg=Please insert an image type.");
+			exit();
+		}*/
 }
 ?>

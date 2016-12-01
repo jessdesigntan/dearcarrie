@@ -3,6 +3,7 @@
   include('controllers/templates.php');
   $userID = $_GET["userID"];
   $user = getUserByID($userID);
+  goBackIfNotEqual($_SESSION["userid"], $userID);
 ?>
 
 <html lang="en">
@@ -18,21 +19,23 @@
             <div class="panel-body">
               <form action="editProfileProcess" method="post">
                 <div class="form-group">
+                  <input name="userid" type="hidden" value="<?=$user["id"];?>">
                   <label for="name">Image</label>
                   <input type="file">
                   <img src="<?=$user["image"];?>" width="80">
+                  <input name="image" type="hidden" value="<?=$user["image"];?>">
                 </div>
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name" value="<?=$user["name"];?>">
+                  <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="name" value="<?=$user["name"];?>">
                 </div>
                 <div class="form-group">
                   <label for="desc">Description</label>
-                  <textarea id="desc" class="form-control" rows="5"><?=$user["description"];?></textarea>
+                  <textarea name="desc" id="desc" class="form-control" rows="5"><?=$user["description"];?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="Email" value="<?=$user["email"];?>">
+                  <input name="email" type="email" class="form-control" id="email" placeholder="Email" value="<?=$user["email"];?>">
                 </div>
                 <button class="primary-line-btn" type="submit">Update</button>
               </form>

@@ -16,12 +16,12 @@
         </ol>
 
         <div class="row">
-            <form method="post" class="editable-fields">
+            <form action="addTopicProcess" method="post" class="editable-fields" enctype="multipart/form-data">
                 <div class="col-sm-4 hide-mobile pull-right">
                   <div class="panel panel-default actionBar">
                       <div class="panel-heading">Actions</div>
                       <div class="panel-body">
-                          <button class="btn btn-primary btn-block" type="button">Add Topic</a>
+                          <button class="btn btn-primary btn-block" type="submit">Add Topic</a>
                       </div>
                   </div>
                 </div><!-- ./col-sm-4 -->
@@ -31,17 +31,17 @@
                         <tr>
                             <th>Type</th>
                             <td>
-                                <select>
-                                    <option>Choose one</option>
-                                    <option>Featured</option>
-                                    <option>Curated</option>
-                                    <option>Main</option>
+                                <select name="type">
+                                    <option value="curated">Choose one</option>
+                                    <option value="featured">Featured</option>
+                                    <option value="curated">Curated</option>
+                                    <option value="main">Main</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <th>Order</th>
-                            <td><input type="text" placeholder="order number"></td>
+                            <td><input name="order" type="text" placeholder="order number"></td>
                         </tr>
                     </table>
                     <table class="table table-bordered">
@@ -49,14 +49,14 @@
                             <th>Title</th>
                         </tr>
                         <tr>
-                            <td><input type="text" placeholder="Title"></td>
+                            <td><input name="title" type="text" placeholder="Title"></td>
                         </tr>
                         <tr>
                             <th>Main Image</th>
                         </tr>
                         <tr>
                             <td>
-                                <input type="file">
+                                <input type="file" name="main">
                             </td>
                         </tr>
                         <tr>
@@ -64,7 +64,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="file">
+                                <input type="file" name="background">
                             </td>
                         </tr>
                         <tr>
@@ -72,7 +72,7 @@
                         </tr>
                         <tr>
                             <td>
-                              <input type="text" placeholder="Describe the topic in one line">
+                              <input name="short_desc" type="text" placeholder="Describe the topic in one line">
                             </td>
                         </tr>
                         <tr>
@@ -80,20 +80,20 @@
                         </tr>
                         <tr>
                             <td>
-                              <textarea rows="5" placeholder="Describe the topic"></textarea>
+                              <textarea name="desc" rows="5" placeholder="Describe the topic"></textarea>
                             </td>
                         </tr>
                         <tr>
                             <th>URL</th>
                         </tr>
                         <tr>
-                            <td><input type="text" placeholder="http://www.testing.com"></td>
+                            <td><input name="url" type="text" placeholder="http://www.testing.com"></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
                         </tr>
                         <tr>
-                            <td><input type="text" placeholder="+65 6777 5555"></td>
+                            <td><input name="tel" type="text" placeholder="+65 6777 5555"></td>
                         </tr>
                     </table>
                 </form>

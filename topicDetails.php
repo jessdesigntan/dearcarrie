@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+?>
+
 
 <html lang="en">
   <?php head("Topic Details"); ?>
