@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
-<?php redirectToLogin($_SESSION["role"], "admin"); ?>
+<?php
+  include('controllers/templates.php');
+  redirectToLogin($_SESSION["role"], "admin");
+  $userid = $_GET["userID"];
+  $user = getUserByID($userid);
+  $posts = displayAllPostByUserID($userid);
+?>
 <html lang="en">
   <?php head("Dear Carrie - Admin User Details"); ?>
 
@@ -12,7 +17,7 @@
         <ol class="breadcrumb">
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="userList">Users</a></li>
-            <li class="active"><a href="#">Jess Tan</a></li>
+            <li class="active"><?=$user["name"];?></li>
         </ol>
 
         <div class="row">
@@ -36,14 +41,14 @@
                             <th>Role</th>
                         </tr>
                         <tr>
-                            <td>12312312</td>
+                            <td><?=$user["id"];?></td>
                             <td><input type="text" value="jess_tjl@hotmail.com"></td>
-                            <td>12 Jan 2016</td>
+                            <td><?=$user["role"];?></td>
                             <td>
                                 <select>
-                                  <option>Normal</option>
-                                  <option>Expert</option>
-                                  <option>Admin</option>
+                                    <option <?php if($user["role"]=="admin") echo "selected" ?> value="admin">Admin</option>
+                                    <option <?php if($user["role"]=="normal") echo "selected" ?> value="normal">Normal</option>
+                                    <option <?php if($user["role"]=="expert") echo "selected" ?> value="expert">Expert</option>
                                 </select>
                             </td>
                         </tr>
@@ -53,19 +58,19 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>Image</th>
-                                <td><img src="images/avatar.png"></td>
+                                <td><img src="<?=$user["image"];?>" width="80"></td>
                             </tr>
                             <tr>
                                 <th>Name</th>
-                                <td><input type="text" value="Jess Tan"></td>
+                                <td><input type="text" value="<?=$user["name"];?>"></td>
                             </tr>
                             <tr>
                                 <th>Description</th>
-                                <td><input type="text" value="Writing my life stories."></td>
+                                <td><input type="text" value="<?=$user["description"];?>"></td>
                             </tr>
                             <tr>
                                 <th>Affliate</th>
-                                <td>Facebook</td>
+                                <td><?=$user["affliate"];?></td>
                             </tr>
                         </table>
                     </div><!-- END user details-->
@@ -75,23 +80,19 @@
                     <div class="panel-heading">All Post (342)</div>
                     <table class="table table-hover table-bordered table-striped">
                         <tr>
-                            <th>No.</th>
                             <th>Post ID</th>
                             <th>Title</th>
-                            <th>User ID</th>
                             <th>Likes</th>
                             <th>Comment</th>
                             <th></th>
                         </tr>
-                        <?php for ($i=1; $i<=10; $i++) { ?>
+                        <?php foreach ($posts as $post) { ?>
                         <tr>
-                            <td><?=$i;?></td>
-                            <td>123123</td>
-                            <td>Things I wish people knew about depression</td>
-                            <td>344343</td>
-                            <td>43</td>
-                            <td>10</td>
-                            <td><a href="#" class="admin-sec-color">View</a></td>
+                            <td><?=$post["id"];?></td>
+                            <td><?=$post["title"];?></td>
+                            <td><?=$post["likes"];?></td>
+                            <td><?=$post["comments"];?></td>
+                            <td><a href="postDetails?postID=<?=$post["id"];?>" class="admin-sec-color">View</a></td>
                         </tr>
                         <?php } ?>
                     </table>

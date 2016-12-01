@@ -22,11 +22,11 @@
           <form action="loginProcess" method="post">
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email">
+                <input type="email" class="form-control" name="email" required>
               </div>
               <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password">
+                <input type="password" class="form-control" name="password" required>
               </div>
               <button type="submit" class="primary-line-btn">Login</button>
           </form>

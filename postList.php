@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
-<?php redirectToLogin($_SESSION["role"], "admin"); ?>
+<?php
+  include('controllers/templates.php');
+  redirectToLogin($_SESSION["role"], "admin");
+  $posts = displayAllPost();
+?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Post List"); ?>
 
@@ -19,24 +22,24 @@
             </div>
             <table class="table table-hover table-bordered table-striped">
                 <tr>
-                    <th>Date</th>
                     <th>Post ID</th>
+                    <th>Date</th>
                     <th>Title</th>
                     <th>User ID</th>
                     <th>Likes</th>
                     <th>Comment</th>
                     <th></th>
                 </tr>
-                <?php for ($i=1; $i<=10; $i++) { ?>
+                <?php foreach ($posts as $post) { ?>
                 <tr>
-                    <td>12 Jan 2016</td>
-                    <td>123123</td>
+                    <td><?=$post["id"];?></td>
+                    <td><?=$post["timestamp"];?></td>
                     <!-- remember to do a substring function to keep the text to one line -->
-                    <td>Things I wish people knew about depression.</td>
-                    <td><a href="userDetails">344343</a></td>
+                    <td><?=$post["title"];?></td>
+                    <td><a href="userDetails?userID=<?=$post["userid"];?>"><?=$post["userid"];?></a></td>
                     <td>43</td>
                     <td>10</td>
-                    <td><a href="postDetails" class="admin-sec-color">View</a></td>
+                    <td><a href="postDetails?postID=<?=$post["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
             </table>

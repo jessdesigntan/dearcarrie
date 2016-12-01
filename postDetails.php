@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php include('controllers/templates.php'); ?>
-<?php redirectToLogin($_SESSION["role"], "admin"); ?>
+<?php
+  redirectToLogin($_SESSION["role"], "admin");
+  $postID = $_GET["postID"];
+  $post = getPostByID($postID);
+?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Post Details"); ?>
 
@@ -12,7 +16,7 @@
         <ol class="breadcrumb">
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="postList">Post</a></li>
-            <li class="active"><a href="#">Post Title . . .</a></li>
+            <li class="active"><?=$post["title"];?></li>
         </ol>
 
         <div class="row">
@@ -44,11 +48,11 @@
                             <th>Comments</th>
                         </tr>
                         <tr>
-                            <td>12312312</td>
-                            <td><a href="userDetails">56456</a></td>
-                            <td>12 Jan 2016</td>
-                            <td>76</td>
-                            <td>300</td>
+                            <td><?=$post["id"];?></td>
+                            <td><a href="userDetails?userID=<?=$post["userid"];?>"><?=$post["userid"];?></a></td>
+                            <td><?=$post["timestamp"];?></td>
+                            <td><?=$post["likes"];?></td>
+                            <td><?=$post["comments"];?></td>
                         </tr>
                     </table>
 
@@ -58,7 +62,7 @@
                                 <th>Title</th>
                             </tr>
                             <tr>
-                                <td><input type="text" value="Why I am so depressed"></td>
+                                <td><input type="text" value="<?=$post["title"];?>"></td>
                             </tr>
                             <tr>
                                 <th>Topics</th>
@@ -75,8 +79,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                  <textarea rows="10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                  </textarea>
+                                  <textarea rows="10"><?=$post["description"];?></textarea>
                                 </td>
                             </tr>
                         </table>

@@ -20,19 +20,19 @@
           <form action="registerProcess" method="post" name="registerUser" id="registerForm">
               <div class="form-group">
                 <label class="control-label">Name</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" required>
               </div>
               <div class="form-group">
                 <label class="control-label">Email</label>
-                <input type="email" class="form-control" name="email">
+                <input type="email" class="form-control" name="email" required>
               </div>
               <div class="form-group">
                 <label class="control-label">Password</label>
-                <input type="password" class="form-control" name="password1">
+                <input type="password" class="form-control" name="password1" required>
               </div>
               <div class="form-group">
                 <label class="control-label">Confirm Password</label>
-                <input type="password" class="form-control" name="password2">
+                <input type="password" class="form-control" name="password2" required>
               </div>
               <button type="submit" class="primary-line-btn" id="submitBtn">Sign up</button>
           </form>

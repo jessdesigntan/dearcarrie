@@ -89,6 +89,7 @@ function getPostByID($id) {
 	return $value;
 }
 
+
 function getUserByID($id) {
 	$conn = connectToDataBase();
 
@@ -113,7 +114,7 @@ function getTopicByID($id) {
 
 function displayAllPost() {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts WHERE published = 1";
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC";
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -132,6 +133,42 @@ function displayAllPost() {
 function displayAllPostByUserID($id) {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM posts WHERE userid ='$id' AND published = 1 ORDER BY id DESC ";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function displayAllTopics() {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM topics WHERE published = 1";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function displayAllUsers() {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM users";
 	$result = $conn->query($sql);
 	$resArr = array();
 

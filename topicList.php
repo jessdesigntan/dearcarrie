@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
-<?php redirectToLogin($_SESSION["role"], "admin"); ?>
+<?php
+  include('controllers/templates.php');
+  redirectToLogin($_SESSION["role"], "admin");
+  $topics = displayAllTopics();
+?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Topic List"); ?>
 
@@ -30,16 +33,24 @@
                     <th>Post</th>
                     <th></th>
                 </tr>
-                <?php for ($i=1; $i<=10; $i++) { ?>
+                <?php foreach ($topics as $topic) { ?>
                 <tr>
-                    <td>12 Jan 2016</td>
-                    <td>123123</td>
+                    <td><?=$topic["date"];?></td>
+                    <td><?=$topic["id"];?></td>
                     <!-- remember to do a substring function to keep the text to one line -->
-                    <td>Bipolar</td>
-                    <td><span class="label label-primary">Featured</span> Main | Curated</td>
-                    <td>43</td>
-                    <td>10</td>
-                    <td><a href="adminTopicDetails" class="admin-sec-color">View</a></td>
+                    <td><?=$topic["title"];?></td>
+                    <td>
+                        <?php if ($topic["type"] == "featured") {?>
+                          <span class="label label-warning"><?=$topic["type"];?></span>
+                        <?php } else if($topic["type"] == "curated") { ?>
+                          <span class="label label-success"><?=$topic["type"];?></span>
+                        <?php } else { ?>
+                          <span class="label label-primary"><?=$topic["type"];?></span>
+                        <?php } ?>
+                    </td>
+                    <td><?=$topic["followers"];?></td>
+                    <td><?=$topic["posts"];?></td>
+                    <td><a href="adminTopicDetails?topicID=<?=$topic["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
             </table>

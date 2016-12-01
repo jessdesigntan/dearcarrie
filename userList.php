@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
-<?php redirectToLogin($_SESSION["role"], "admin"); ?>
+<?php
+  include('controllers/templates.php');
+  redirectToLogin($_SESSION["role"], "admin");
+  $users = displayAllUsers();
+?>
 <html lang="en">
   <?php head("Dear Carrie - Admin User List"); ?>
 
@@ -24,16 +27,14 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th></th>
-                    <th></th>
                 </tr>
-                <?php for ($i=1; $i<=10; $i++) { ?>
+                <?php foreach ($users as $user) { ?>
                 <tr>
-                    <td>123123</td>
-                    <td>Jess Tan</td>
-                    <td>jess_tjl@hotmail.com</td>
-                    <td>Normal</td>
-                    <td><a href="#" class="admin-sec-color">Edit</a></td>
-                    <td><a href="userDetails" class="admin-sec-color">View</a></td>
+                    <td><?=$user["id"];?></td>
+                    <td><?=$user["name"];?></td>
+                    <td><?=$user["email"];?></td>
+                    <td><?=$user["role"];?></td>
+                    <td><a href="userDetails?userID=<?=$user["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
             </table>
