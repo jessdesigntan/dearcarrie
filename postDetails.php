@@ -4,6 +4,8 @@
   redirectToLogin($_SESSION["role"], "admin");
   $postID = $_GET["postID"];
   $post = getPostByID($postID);
+  $topics = displayAllTopicsOrderByTitleAsc();
+  $postTopics = getAllTopicsByPostID($postID);
 ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Post Details"); ?>
@@ -20,17 +22,24 @@
         </ol>
 
         <div class="row">
-            <form method="post" class="editable-fields">
+            <form action="updatePostProcess" method="post" class="editable-fields">
                 <div class="col-sm-4">
                   <div class="panel panel-default actionBar hide-mobile">
                       <div class="panel-heading">Actions</div>
                       <div class="panel-body">
-                          <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#topicModal">Edit Topic</a>
+                          <div id="postBtns">
+                              <button name="action" value="update"  type="submit" class="btn btn-primary btn-block">Update Post</button>
+                              <?php if ($post["published"]) { ?>
+                                <button name="action" value="unpublish"  type="submit" class="btn btn-danger btn-block">Unpublish</button>
+                              <?php } else { ?>
+                                <button name="action" value="publish"  type="submit" class="btn btn-success btn-block">Publish</button>
+                              <?php } ?>
+                          </div>
+                          <div id="topicBtns">
+                              <button name="action" value="topic"  type="submit" class="btn btn-primary btn-block">Update Topic</button>
+                          </div>
                           <hr/>
-                          <a class="btn btn-primary btn-block">Update Post</a>
-                          <a class="btn btn-danger btn-block">Delete Post</a>
-                          <hr/>
-                          <a href="post" class="btn btn-default btn-block">Go to post</a>
+                          <a href="post?postID=<?=$post["id"];?>" class="btn btn-default btn-block">Go to post</a>
                           <hr/>
                           <p>No. of reports</p>
                           <h4 class="primary-color">3</h4>
@@ -39,6 +48,37 @@
                 </div><!-- ./col-sm-4 -->
 
                 <div class="col-sm-8">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                      <div class="btn-group" role="group">
+                        <button id="postLink" onclick="showPostDiv();" type="button" class="btn btn-default">Post</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <button id="topicLink" onclick="showTopicDiv();" type="button" class="btn btn-default">Topic</button>
+                      </div>
+                    </div>
+
+                    <div id="topicDiv">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Topics</div>
+                            <div class="panel-body">
+                                <?php foreach($topics as $topic) { ?>
+                                <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="topic[]" value="<?=$topic["id"];?>"
+                                      <?php foreach($postTopics as $postTopic) {
+                                              if ($postTopic["topicid"] == $topic["id"]) {
+                                                echo "checked='checked'";
+                                              }
+                                            } ?>
+                                      ><?=$topic["title"];?></label>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+
+                <div id="postDiv">
                     <table class="table table-bordered">
                         <tr>
                             <th>Post ID</th>
@@ -46,13 +86,15 @@
                             <th>Date</th>
                             <th>Likes</th>
                             <th>Comments</th>
+                            <th>Published</th>
                         </tr>
                         <tr>
-                            <td><?=$post["id"];?></td>
+                            <td><?=$post["id"];?><input type="hidden" name="postid" value="<?=$post["id"];?>"></td>
                             <td><a href="userDetails?userID=<?=$post["userid"];?>"><?=$post["userid"];?></a></td>
                             <td><?=$post["timestamp"];?></td>
                             <td><?=$post["likes"];?></td>
                             <td><?=$post["comments"];?></td>
+                            <td><?php echo displayPubStatus($post["published"]);?></td>
                         </tr>
                     </table>
 
@@ -62,24 +104,14 @@
                                 <th>Title</th>
                             </tr>
                             <tr>
-                                <td><input type="text" value="<?=$post["title"];?>"></td>
-                            </tr>
-                            <tr>
-                                <th>Topics</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#topicDetails"><span class="label label-success">Bipolar</span></a>
-                                    <a href="#topicDetails"><span class="label label-primary">Love & Relationships</span></a>
-                                    <br/><br/><a class="light-text" data-toggle="modal" data-target="#topicModal">Add Topic </a>
-                                </td>
+                                <td><input name="title" type="text" value="<?=$post["title"];?>"></td>
                             </tr>
                             <tr>
                                 <th>Content</th>
                             </tr>
                             <tr>
                                 <td>
-                                  <textarea rows="10"><?=$post["description"];?></textarea>
+                                  <textarea name="desc" rows="10"><?=$post["description"];?></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -143,14 +175,35 @@
                         </center>
                     </nav>
                 </div><!-- ./col-sm-8 -->
+            </form>
         </div><!-- ./row -->
     </div><!-- ./page-container -->
 
     <?php footer(); ?>
-    <?php topicModal(); ?>
     <script>
         $("#usersNav").addClass("active");
+        $("#postLink").addClass("active");
+        $("#topicDiv").hide();
+        $("#topicBtns").hide();
         staticBar('.actionBar','120');
+
+        function showTopicDiv() {
+          $("#topicLink").addClass("active");
+          $("#postLink").removeClass("active");
+          $("#topicDiv").fadeIn();
+          $("#postDiv").hide();
+          $("#postBtns").hide();
+          $("#topicBtns").show();
+        }
+
+        function showPostDiv() {
+          $("#postLink").addClass("active");
+          $("#topicLink").removeClass("active");
+          $("#postDiv").fadeIn();
+          $("#topicDiv").hide();
+          $("#postBtns").show();
+          $("#topicBtns").hide();
+        }
     </script>
   </body>
 

@@ -32,6 +32,7 @@
   31. editable-fields
   32. small-wrapper
   33. post-empty-state
+  34. btn-group overwrites
 */
 
 /*=============================
@@ -1471,4 +1472,27 @@ form.editable-fields select:hover {
   font-size: 15px;
   letter-spacing: 2px;
   color: var(--medium-text);
+}
+
+/*=============================
+    34. btn-group overwrites
+===============================*/
+.btn-group {
+  margin-bottom: 20px;
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.btn-group .btn.active {
+  background-color: var(--admin-secondary-color);
+  border: 1px solid var(--admin-secondary-color);
+  color: white;
+  box-shadow: none;
 }

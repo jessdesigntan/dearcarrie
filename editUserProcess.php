@@ -39,7 +39,6 @@ if ($action == "update") {
   header("location: userDetails?userID=$userid");
 }
 else {
-  $userid = $_SESSION["userid"];
   header("location: userDetails?userID=$userid");
 }
 

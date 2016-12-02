@@ -60,12 +60,6 @@ $result = $conn->query($sql);
 validateQuery($conn, $sql);
 
 //Re-direct
-if ($action == "update") {
-  header("location: adminTopicDetails?topicID=$topicid");
-}
-else {
-  $userid = $_SESSION["userid"];
-  header("location: adminTopicDetails?topicID=$topicid");
-}
 
+header("location: adminTopicDetails?topicID=$topicid");
 ?>
