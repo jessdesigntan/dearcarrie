@@ -21,18 +21,19 @@
         </ol>
 
         <div class="row">
+            <form action="editUserProcess" class="editable-fields" method="post" enctype="multipart/form-data">
             <div class="col-sm-4">
               <div class="panel panel-default actionBar hide-mobile">
                   <div class="panel-heading">Actions</div>
                   <div class="panel-body">
-                      <button type="submit" class="btn btn-primary btn-block">Update User</a>
-                      <button type="button" class="btn btn-danger btn-block">Delete User</a>
+                      <button name="action" value="update" type="submit" class="btn btn-primary btn-block">Update User</a>
+                      <button name="action" value="delete" type="submit" class="btn btn-danger btn-block">Delete User</a>
                   </div>
               </div>
             </div><!-- ./col-sm-4 -->
 
             <div class="col-sm-8">
-                <form class="editable-fields" action="post">
+
                     <table class="table table-bordered">
                         <tr>
                             <th>ID</th>
@@ -41,11 +42,11 @@
                             <th>Role</th>
                         </tr>
                         <tr>
-                            <td><?=$user["id"];?></td>
-                            <td><input type="text" value="jess_tjl@hotmail.com"></td>
-                            <td><?=$user["role"];?></td>
+                            <td><?=$user["id"];?><input type="hidden" name="userid" value="<?=$user["id"];?>"></td>
+                            <td><?=$user["email"];?></td>
+                            <td><?=$user["datejoin"];?></td>
                             <td>
-                                <select>
+                                <select name="role">
                                     <option <?php if($user["role"]=="admin") echo "selected" ?> value="admin">Admin</option>
                                     <option <?php if($user["role"]=="normal") echo "selected" ?> value="normal">Normal</option>
                                     <option <?php if($user["role"]=="expert") echo "selected" ?> value="expert">Expert</option>
@@ -58,15 +59,19 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>Image</th>
-                                <td><img src="<?=$user["image"];?>" width="80"></td>
+                                <td>
+                                    <input type="file" name="imageNew">
+                                    <input type="hidden" value="<?=$user["image"];?>" name="imageOld">
+                                    <img src="<?=$user["image"];?>" width="80">
+                                </td>
                             </tr>
                             <tr>
                                 <th>Name</th>
-                                <td><input type="text" value="<?=$user["name"];?>"></td>
+                                <td><input type="text" value="<?=$user["name"];?>" name="name"></td>
                             </tr>
                             <tr>
                                 <th>Description</th>
-                                <td><input type="text" value="<?=$user["description"];?>"></td>
+                                <td><input type="text" value="<?=$user["description"];?>" name="desc"></td>
                             </tr>
                             <tr>
                                 <th>Affliate</th>
@@ -77,7 +82,7 @@
                 </form>
 
                 <div class="panel panel-default summary-panel">
-                    <div class="panel-heading">All Post (342)</div>
+                    <div class="panel-heading">All Post (<?php echo countPostByUserID($userid); ?>)</div>
                     <table class="table table-hover table-bordered table-striped">
                         <tr>
                             <th>Post ID</th>

@@ -235,7 +235,7 @@ function uploadImage($imageName, $imageType, $imageSize, $imageTmpName, $imageEr
 					}//end of if (move uploaded file)
 
 					else {
-						echo "here";
+						echo "Unable to insert the Image due to image error";
 						//header("location: error.php?msg=Unable to insert the Image due to image error");
 						exit();
 					}//end of else
@@ -252,4 +252,5 @@ function uploadImage($imageName, $imageType, $imageSize, $imageTmpName, $imageEr
 			exit();
 		}*/
 }
+
 ?>

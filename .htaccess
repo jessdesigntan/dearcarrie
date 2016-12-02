@@ -1,12 +1,9 @@
+Options +FollowSymLinks -MultiViews
+# Turn mod_rewrite on
 RewriteEngine On
+RewriteBase /fyp/
 
-# Unless directory, remove trailing slash
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/$ http://example.com/folder/$1 [R=301,L]
+RewriteRule ^post/([0-9]+)/?$ post?postID=$1 [L,QSA]
 
-# Redirect external .php requests to extensionless url
-RewriteCond %{THE_REQUEST} ^(.+)\.php([#?][^\ ]*)?\ HTTP/
-RewriteRule ^(.+)\.php$ http://%{HTTP_HOST}/folder/$1 [R=301,L]
-
-# Resolve .php file for extensionless php urls
-RewriteRule ^([^/.]+)$ $1.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
