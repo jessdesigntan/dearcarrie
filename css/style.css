@@ -107,18 +107,26 @@ body > .page-container-admin {
     }
 }
 
-@media only screen and (max-width: 767px) {
-  body > .page-container {
-    padding-top: 150px;
-  }
-}
 
 .page-container, .page-container-admin {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 15px;
   display: block;
+  padding: 0;
 }
+
+@media only screen and (max-width: 767px) {
+  body > .page-container {
+    padding-top: 150px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .page-container, .page-container-admin {
+    padding: 0 15px;
+  }
+}
+
 
 input {
   outline: none;
@@ -587,7 +595,7 @@ a:hover {
 
 .main-sidebar.affix {
   position: fixed;
-  top: 90px;
+  bottom: 310px;
   width: 220px;
 }
 

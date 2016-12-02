@@ -363,7 +363,7 @@ function mainSideContent() {
       </ul>
     </div>
   </div>
-  <script>staticBar('.main-sidebar','390')</script>
+  <script>staticBar('.main-sidebar','640')</script>
 <?php
 }
 
