@@ -110,10 +110,10 @@ function navbar() {
               <?php if (checkRole($_SESSION["role"], "admin")) { ?>
                 <li role="separator" class="divider"></li>
                 <li><a href="dashboard">Admin Dashboard</a></li>
-                <li><a href="dashboard">Users</a></li>
-                <li><a href="dashboard">Post</a></li>
-                <li><a href="dashboard">Topics</a></li>
-                <li><a href="dashboard">Report</a></li>
+                <li><a href="userList">Users</a></li>
+                <li><a href="postList">Post</a></li>
+                <li><a href="topicList">Topics</a></li>
+                <li><a href="reportList">Report</a></li>
               <?php } ?>
               <li role="separator" class="divider"></li>
               <li><a href="logout">Logout</a></li>

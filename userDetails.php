@@ -67,11 +67,11 @@
                             </tr>
                             <tr>
                                 <th>Name</th>
-                                <td><input type="text" value="<?=$user["name"];?>" name="name"></td>
+                                <td><input type="text" value="<?=$user["name"];?>" name="name" required></td>
                             </tr>
                             <tr>
                                 <th>Description</th>
-                                <td><input type="text" value="<?=$user["description"];?>" name="desc"></td>
+                                <td><input type="text" value="<?=$user["description"];?>" name="desc" required></td>
                             </tr>
                             <tr>
                                 <th>Affliate</th>

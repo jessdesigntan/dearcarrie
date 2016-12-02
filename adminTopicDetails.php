@@ -21,15 +21,19 @@
         </ol>
 
         <div class="row">
-            <form method="post" class="editable-fields">
+            <form action="editTopicProcess" method="post" class="editable-fields" enctype="multipart/form-data">
                 <div class="col-sm-4 hide-mobile">
                   <div class="panel panel-default actionBar">
                       <div class="panel-heading">Actions</div>
                       <div class="panel-body">
                           <a href="topicDetails" class="btn btn-default btn-block">Go to Topic</a>
                           <hr/>
-                          <button class="btn btn-primary btn-block" type="button">Update Topic</a>
-                          <button class="btn btn-danger btn-block" type="button">Delete Topic</a>
+                          <button name="action" value="update" class="btn btn-primary btn-block" type="submit">Update Topic</a>
+                          <?php if ($topic["published"]) { ?>
+                          <button name="action" value="unpublish" class="btn btn-danger btn-block" type="submit">Unpublish Topic</a>
+                          <?php } else { ?>
+                            <button name="action" value="publish" class="btn btn-success btn-block" type="submit">Publish Topic</a>
+                          <?php } ?>
                       </div>
                   </div>
                 </div><!-- ./col-sm-4 -->
@@ -43,7 +47,7 @@
                             <th>Score</th>
                         </tr>
                         <tr>
-                            <td><?=$topic["id"];?></td>
+                            <td><?=$topic["id"];?><input type="hidden" name="topicid" value="<?=$topic["id"];?>"></td>
                             <td><?=$topic["followers"];?></td>
                             <td><?=$topic["posts"];?></td>
                             <td><?=$topic["score"];?></td>
@@ -54,7 +58,7 @@
                         <tr>
                             <th>Type</th>
                             <td>
-                                <select>
+                                <select name="type">
                                     <option <?php if($topic["type"]=="featured") echo "selected" ?> value="featured">Featured</option>
                                     <option <?php if($topic["type"]=="curated") echo "selected" ?> value="curated">Curated</option>
                                     <option <?php if($topic["type"]=="main") echo "selected" ?> value="main">Main</option>
@@ -63,7 +67,7 @@
                         </tr>
                         <tr>
                             <th>Order</th>
-                            <td><input type="text" value="<?=$topic["order_num"];?>"></td>
+                            <td><input name="order" type="text" value="<?=$topic["order_num"];?>"></td>
                         </tr>
                     </table>
                     <table class="table table-bordered">
@@ -71,14 +75,15 @@
                             <th>Title</th>
                         </tr>
                         <tr>
-                            <td><input type="text" value="<?=$topic["title"];?>"></td>
+                            <td><input name="title" type="text" value="<?=$topic["title"];?>"></td>
                         </tr>
                         <tr>
                             <th>Main Image</th>
                         </tr>
                         <tr>
                             <td>
-                                <input type="file">
+                                <input type="file" name="main_image_new">
+                                <input type="hidden" name="main_image_old" value="<?=$topic["main_image"];?>">
                                 <img src="<?=$topic["main_image"];?>" class="img-responsive">
                             </td>
                         </tr>
@@ -87,7 +92,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="file">
+                                <input type="file" name="background_new">
+                                <input type="hidden" name="background_old" value="<?=$topic["background"];?>">
                                 <img src="<?=$topic["background"];?>" class="img-responsive">
                             </td>
                         </tr>
@@ -96,7 +102,7 @@
                         </tr>
                         <tr>
                             <td>
-                              <input type="text" value="<?=$topic["short_desc"];?>">
+                              <input name="short_desc" type="text" value="<?=$topic["short_desc"];?>">
                             </td>
                         </tr>
                         <tr>
@@ -104,20 +110,20 @@
                         </tr>
                         <tr>
                             <td>
-                              <textarea rows="5"><?=$topic["description"];?></textarea>
+                              <textarea name="desc" rows="5"><?=$topic["description"];?></textarea>
                             </td>
                         </tr>
                         <tr>
                             <th>URL</th>
                         </tr>
                         <tr>
-                            <td><input type="text" value="<?=$topic["url"];?>"></td>
+                            <td><input name="url" type="text" value="<?=$topic["url"];?>"></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
                         </tr>
                         <tr>
-                            <td><input type="text" value="<?=$topic["tel"];?>"></td>
+                            <td><input name="tel" type="text" value="<?=$topic["tel"];?>"></td>
                         </tr>
                     </table>
                 </form>
