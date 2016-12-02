@@ -11,12 +11,18 @@
  * @param $title show page title
  * @return <head> html codes
  */
-function head($title){
+function head($title, $ogTitle){
 ?>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="http://imgur.com/a/qtFfN">
+    <?php if($ogTitle == "" || $ogTitle == null) { ?>
+      <meta property="og:title" content="<?=$ogTitle;?>">
+    <?php } else { ?>
+      <meta property="og:title" content="Write to Carrie about your problems">
+    <?php } ?>
     <title><?=$title;?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -285,32 +291,35 @@ function cardExpand($postID) {
 <?php
 }
 
-function commentCard() {
+function commentCard($id) {
+  $comment = getCommentByID($id);
+  $user = getUserByID($comment["userid"]);
 ?>
   <div class="card comment-card">
     <div class="header">
       <div class="image">
-        <a href="#"><img src="images/default.svg"></a>
+        <a href="#"><img src="<?=$user["image"];?>"></a>
       </div>
       <div class="author-details">
         <div>
-          <a href="profile">Jess Tan</a>
+          <a href="profile"><?=$user["name"];?></a>
           <!-- only for psychiatrist -->
-          <span class="label label-primary">CERTIFIED</span>
+          <?php if ($user["role"] == "expert") { ?>
+            <span class="label label-primary" style="text-transform:uppercase;"><?=$user["role"];?></span>
+          <?php } ?>
           <!-- /only for psychiatrist -->
         </div>
-        <div class="date no-after">12 Aug 16</div>
+        <div class="date no-after"><?=$comment["datetime"];?></div>
       </div>
     </div>
 
     <div class="content">
-      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+      <p><?=$comment["comment"];?></p>
     </div>
 
     <div class="footer">
       <div class="float-left">
-        <a href="#" class="star-icon"></a>
-        200
+        <a href="#" class="star-icon"></a><?=$comment["likes"];?>
       </div>
       <div class="float-right">
         <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"

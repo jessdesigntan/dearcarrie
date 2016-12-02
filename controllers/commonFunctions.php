@@ -112,6 +112,22 @@ function getTopicByID($id) {
 	return $value;
 }
 
+function getCommentByID($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT *
+					FROM comments c
+					INNER JOIN users u ON c.userid = u.id
+					WHERE  c.id = '$id'
+					ORDER BY c.id DESC, u.role ASC ";
+
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value;
+}
+
 function displayAllPost() {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC";
@@ -199,6 +215,24 @@ function displayAllUsers() {
 		 }
 	} else {
 		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function getAllCommentsByPostID($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM comments WHERE postid = $id";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 //showErrorMessage("No comments found");
 	}
 	$conn->close();
 	return $resArr;
