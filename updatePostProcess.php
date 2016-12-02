@@ -36,6 +36,10 @@ else if ($action == "topic") {
   foreach ($topics as $topicid) {
     $sql = "INSERT INTO curation (topicid, postid) VALUES('$topicid', '$postid')";
     $result = $conn->query($sql);
+
+    //increase posts by 1 in topics table
+    $sql = "UPDATE curation (topicid, postid) VALUES('$topicid', '$postid')";
+    $result = $conn->query($sql);
   }
 
 

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+  $mainTopics = displayMainTopics();
+?>
 <html lang="en">
   <?php head("Dear Carrie"); ?>
 
@@ -8,15 +11,18 @@
 
     <div class="page-container">
       <div class="main-banner-grid row">
-          <div class="col-sm-8 col-xs-12">
-              <a href="topicDetails"><img src="images/split.jpg" class="img-responsive"></a>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-              <a href="topicDetails"><img src="images/stress.jpg" class="img-responsive"></a>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-              <a href="topicDetails"><img src="images/suicide.jpg" class="img-responsive"></a>
-          </div>
+          <?php
+            foreach ($mainTopics as $topic) {
+            if ($topic["order_num"] == 1) {
+          ?>
+            <div class="col-sm-8 col-xs-12">
+                <a href="topicDetails?topicID=<?=$topic["id"];?>"><img src="<?=$topic["main_image"];?>" class="img-responsive"></a>
+            </div>
+          <?php } else { ?>
+            <div class="col-sm-4 col-xs-12">
+                <a href="topicDetails?topicID=<?=$topic["id"];?>"><img src="<?=$topic["main_image"];?>" class="img-responsive"></a>
+            </div>
+          <?php } }?>
       </div>
       <br/><br/>
 

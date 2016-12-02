@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
   include('controllers/templates.php');
+  $topicID = $_GET["topicID"];
+  $topic = getTopicByID($topicID);
+  $posts = getPostsByTopicID($topicID);
 ?>
 
 
@@ -14,10 +17,10 @@
     <div class="page-container">
       <div class="topic-header">
         <div>
-          <img src="images/love.jpg" class="img-responsive">
+          <img src="<?=$topic["background"];?>" class="img-responsive">
           <div class="text">
-              <h1>Love & Relationship</h1>
-              <p class="lead">Keep Learning. Keep Growing.</p>
+              <h1><?=$topic["title"];?></h1>
+              <p class="lead"><?=$topic["short_desc"];?></p>
               <a class="white-line-btn">Follow Topic</a>
           </div>
         </div>
@@ -28,14 +31,14 @@
             <div class="content-title">
               <h4>Top Stories For You</h4>
             </div>
-            <?php for ($i=1; $i<=10; $i++) {
-              card();
+            <?php foreach ($posts as $post) {
+              card($post["id"]);
             }
             ?>
           </div><!-- END left column col-sm-8 -->
           <div class="col-sm-3">
             <div class="main-sidebar">
-              <?= topicSideContent(); ?>
+              <?= topicSideContent($topicID); ?>
             </div>
           </div><!-- END right column col-sm-4 -->
 

@@ -222,19 +222,20 @@ function suggestedCard() {
 }
 
 
-function topicCard() {
+function topicCard($id) {
+  $topic = getTopicByID($id);
 ?>
   <div class="card topic-card">
     <div class="image">
-      <a href="topicDetails"><img src="images/love.jpg" class="img-responsive"></a>
+      <a href="topicDetails?topicID=<?=$topic["id"];?>"><img src="<?=$topic["main_image"];?>" class="img-responsive"></a>
     </div>
 
     <div class="content short">
-      <a href="topicDetails">
-        <h4>Personal Growth</h4>
-        <p>Keep Learning. Keep Growing.</p>
-        <div class="followers">5090 Followers</div>
-        <div class="posts">1.2k Posts</div>
+      <a href="topicDetails?topicID=<?=$topic["id"];?>">
+        <h4><?=$topic["title"];?></h4>
+        <p><?=$topic["description"];?></p>
+        <div class="followers"><?=$topic["followers"];?> Followers</div>
+        <div class="posts"><?=$topic["posts"];?> Posts</div>
       </a>
     </div>
 
@@ -377,7 +378,9 @@ function mainSideContent() {
 }
 
 
-function topicSideContent() {
+function topicSideContent($id) {
+  $topic = getTopicByID($id);
+  $postCount = countPostByTopicID($id);
 ?>
   <div class="side-content">
     <div class="content-title">
@@ -385,21 +388,21 @@ function topicSideContent() {
       <a href="#" class="follow-btn">Follow Topic</a>
     </div>
     <div class="mBottom-20">
-      <p>Computer Science is the scientific approach to computation.</p>
-      <p>Questions about programming should be added to Computer Programming. Questions about education or learning about computer science should be placed in Computer Science Education or Learning About Computer Science . Questions about jobs or careers in computer science should be placed in Careers in Computer Science .</p>
+      <p><?=$topic["title"];?></p>
+      <p><?=$topic["description"];?></p>
     </div>
     <div class="mBottom-40">
-      <p>Tel: 9555 3233</p>
-      <a href="#">www.askforhelp.com</a>
+      <p>Tel: <?=$topic["tel"];?></p>
+      <a href="#"><?=$topic["url"];?></a>
     </div>
     <div class="dual-hero">
       <div>
         <p class="topic-detail-title">Followers</p>
-        <p class="lead">18.8k</p>
+        <p class="lead"><?=$topic["followers"];?></p>
       </div>
       <div>
         <p class="topic-detail-title">Posts</p>
-        <p class="lead">4300</p>
+        <p class="lead"><?=$postCount;?></p>
       </div>
     </div>
   </div>

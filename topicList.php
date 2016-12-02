@@ -33,7 +33,10 @@
                     <th>Post</th>
                     <th></th>
                 </tr>
-                <?php foreach ($topics as $topic) { ?>
+                <?php
+                  foreach ($topics as $topic) {
+                    $postCount = countPostByTopicID($topic["id"]);
+                ?>
                 <tr>
                     <td><?=$topic["date"];?></td>
                     <td><?=$topic["id"];?></td>
@@ -49,7 +52,7 @@
                         <?php } ?>
                     </td>
                     <td><?=$topic["followers"];?></td>
-                    <td><?=$topic["posts"];?></td>
+                    <td><?=$postCount;?></td>
                     <td><a href="adminTopicDetails?topicID=<?=$topic["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>

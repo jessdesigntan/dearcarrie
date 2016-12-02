@@ -4,6 +4,7 @@
   redirectToLogin($_SESSION["role"], "admin");
   $topicID = $_GET["topicID"];
   $topic = getTopicByID($topicID);
+  $postCount = countPostByTopicID($topicID);
 ?>
 
 <html lang="en">
@@ -26,7 +27,7 @@
                   <div class="panel panel-default actionBar">
                       <div class="panel-heading">Actions</div>
                       <div class="panel-body">
-                          <a href="topicDetails" class="btn btn-default btn-block">Go to Topic</a>
+                          <a href="topicDetails?topicID=<?=$topic["id"];?>" class="btn btn-default btn-block">Go to Topic</a>
                           <hr/>
                           <button name="action" value="update" class="btn btn-primary btn-block" type="submit">Update Topic</a>
                           <?php if ($topic["published"]) { ?>
@@ -49,7 +50,7 @@
                         <tr>
                             <td><?=$topic["id"];?><input type="hidden" name="topicid" value="<?=$topic["id"];?>"></td>
                             <td><?=$topic["followers"];?></td>
-                            <td><?=$topic["posts"];?></td>
+                            <td><?=$postCount;?></td>
                             <td><?=$topic["score"];?></td>
                         </tr>
                     </table>

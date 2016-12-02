@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+  $featuredTopics = displayFeaturedTopics();
+  $curatedTopics = displayCuratedTopics();
+?>
 
 <html lang="en">
   <?php head("All Topics"); ?>
@@ -9,57 +13,26 @@
     <div class="page-container">
       <h3 class="hero-center">Featured Topics</h3>
       <div class="row">
+          <?php foreach ($featuredTopics as $featuredTopic) { ?>
           <div class="col-sm-6">
               <div class="featured-topics">
-                  <a href="topicDetails">
-                      <img src="images/love.jpg" class="img-responsive">
+                  <a href="topicDetails?topicID=<?=$featuredTopic["id"];?>">
+                      <img src="<?=$featuredTopic["background"];?>" class="img-responsive">
                       <div class="text">
-                          <h3>Love & Relationships</h3>
-                          <p>10.4K Posts</p>
+                          <h3><?=$featuredTopic["title"];?></h3>
+                          <p><?=$featuredTopic["posts"];?> Posts</p>
                       </div>
                   </a>
               </div>
           </div>
-          <div class="col-sm-6">
-              <div class="featured-topics">
-                  <a href="topicDetails">
-                      <img src="images/eating.jpg" class="img-responsive">
-                      <div class="text">
-                          <h3>Love & Relationships</h3>
-                          <p>10.4K Posts</p>
-                      </div>
-                  </a>
-              </div>
-          </div>
-          <div class="col-sm-6">
-              <div class="featured-topics">
-                  <a href="topicDetails">
-                      <img src="images/stress.jpg" class="img-responsive">
-                      <div class="text">
-                          <h3>Love & Relationships</h3>
-                          <p>10.4K Posts</p>
-                      </div>
-                  </a>
-              </div>
-          </div>
-          <div class="col-sm-6">
-              <div class="featured-topics">
-                  <a href="topicDetails">
-                      <img src="images/split.jpg" class="img-responsive">
-                      <div class="text">
-                          <h3>Love & Relationships</h3>
-                          <p>10.4K Posts</p>
-                      </div>
-                  </a>
-              </div>
-          </div>
+          <?php } ?>
       </div>
 
       <h3 class="hero-center">Curated Topics</h3>
       <div class="row">
-          <?php for ($i=0; $i<10; $i++) { ?>
+          <?php foreach ($curatedTopics as $curatedTopic) { ?>
             <div class="col-sm-12">
-              <?= topicCard(); ?>
+              <?= topicCard($curatedTopic["id"]); ?>
             </div><!-- END col-sm-12 -->
           <?php } ?>
       </div>

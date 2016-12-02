@@ -186,7 +186,7 @@ function displayAllPostByUserID($id) {
 
 function displayAllTopics() {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM topics";
+	$sql = "SELECT * FROM topics ORDER BY id DESC";
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -332,5 +332,90 @@ function displayPubStatus($status) {
 	else {
 		return "Unpublished";
 	}
+}
+
+function displayFeaturedTopics() {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM topics WHERE type = 'featured' ORDER BY order_num";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+function displayCuratedTopics() {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM topics WHERE type = 'curated' ORDER BY order_num";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function displayMainTopics() {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM topics WHERE type = 'main' ORDER BY order_num";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function getPostsByTopicID($topicid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT *
+					FROM posts p
+					INNER JOIN curation c ON p.id = c.postid
+					WHERE published = 1 AND c.topicid = '$topicid'
+					ORDER BY p.id DESC";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+//make sure posts are published
+function countPostByTopicID($topicid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total
+					FROM curation c
+					INNER JOIN posts p ON c.postid = p.id
+					WHERE c.topicid='$topicid' AND p.published = 1";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
 }
 ?>
