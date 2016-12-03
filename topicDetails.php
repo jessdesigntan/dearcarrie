@@ -10,7 +10,7 @@
 
 
 <html lang="en">
-  <?php head("Topic Details"); ?>
+  <?php head($topic["title"]); ?>
 
   <body>
     <?= scrollTopBtn(); ?>
@@ -27,11 +27,19 @@
                 if (!checkLogin()) {
                   if ($followingTopic) {
               ?>
-                    <a class="white-line-btn">Unfollow Topic</a>
+                    <form>
+                      <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
+                      <input type="hidden" name="topic" value='<?=$topic["id"]?>'>
+                      <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn1" type="button" class="white-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
+                    </form>
               <?php
                 } else {
               ?>
-                    <a class="white-line-btn">Follow Topic</a>
+                  <form>
+                    <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
+                    <input type="hidden" name="topic" value='<?=$topic["id"]?>'>
+                    <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="followBtn1" type="button" class="white-line-btn" value="Follow Topic">
+                  </form>
               <?php
                   }
                 }
@@ -99,4 +107,31 @@
     <?= footer(); ?>
   </body>
 
+  <script>
+  function unfollowMouseOver() {
+    $('#unfollowBtn1').val("Unfollow Topic");
+  }
+
+  function unfollowMouseOut() {
+    $('#unfollowBtn1').val("Following");
+  }
+
+  function followTopic(userid, topicid) {
+
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              $('#followBtn1').val(this.responseText);
+          }
+      };
+      xmlhttp.open("GET","followTopics?userid="+userid+"&topicid="+topicid,true);
+      xmlhttp.send();
+  }
+  </script>
 </html>
