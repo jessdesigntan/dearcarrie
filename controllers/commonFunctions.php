@@ -418,4 +418,21 @@ function countPostByTopicID($topicid) {
 	$conn->close();
 	return $value["total"];
 }
+
+function followTopic ($userid, $topicid) {
+	$conn = connectToDataBase();
+	$sql = "INSERT INTO topic_follow (userid, topicid) VALUES ('$userid', '$topicid')";
+	validateQuery($conn, $sql);
+}
+
+function isFollowingTopic ($userid, $topicid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM topic_follow WHERE userid='$userid' AND topicid='$topicid' LIMIT 1";
+	$result = $conn->query($sql);
+	if (mysqli_num_rows($result) > 0) {
+			return true; //is following
+	} else {
+		return false;
+	}
+}
 ?>

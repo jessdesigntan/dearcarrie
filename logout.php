@@ -13,5 +13,8 @@ $_SESSION["name"] = "";
 unset($_SESSION["name"]);
 
 session_destroy();
-header("Location: /fyp");
+
+if (isset($_SERVER["HTTP_REFERER"])) {
+  header("Location: " . $_SERVER["HTTP_REFERER"]);
+}
 ?>

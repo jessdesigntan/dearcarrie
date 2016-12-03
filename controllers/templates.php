@@ -224,6 +224,7 @@ function suggestedCard() {
 
 function topicCard($id) {
   $topic = getTopicByID($id);
+  $postCount = countPostByTopicID($id);
 ?>
   <div class="card topic-card">
     <div class="image">
@@ -235,12 +236,14 @@ function topicCard($id) {
         <h4><?=$topic["title"];?></h4>
         <p><?=$topic["description"];?></p>
         <div class="followers"><?=$topic["followers"];?> Followers</div>
-        <div class="posts"><?=$topic["posts"];?> Posts</div>
+        <div class="posts"><?=$postCount;?> Posts</div>
       </a>
     </div>
 
     <div class="action">
-      <a class="primary-line-btn">Follow Topic</a>
+      <?php if (!checkLogin()) { ?>
+        <a class="primary-line-btn">Follow Topic</a>
+      <?php } ?>
     </div>
   </div>
 <?php
@@ -374,39 +377,6 @@ function mainSideContent() {
     </div>
   </div>
   <script>staticBar('.main-sidebar','640')</script>
-<?php
-}
-
-
-function topicSideContent($id) {
-  $topic = getTopicByID($id);
-  $postCount = countPostByTopicID($id);
-?>
-  <div class="side-content">
-    <div class="content-title">
-      <h4>About</h4>
-      <a href="#" class="follow-btn">Follow Topic</a>
-    </div>
-    <div class="mBottom-20">
-      <p><?=$topic["title"];?></p>
-      <p><?=$topic["description"];?></p>
-    </div>
-    <div class="mBottom-40">
-      <p>Tel: <?=$topic["tel"];?></p>
-      <a href="#"><?=$topic["url"];?></a>
-    </div>
-    <div class="dual-hero">
-      <div>
-        <p class="topic-detail-title">Followers</p>
-        <p class="lead"><?=$topic["followers"];?></p>
-      </div>
-      <div>
-        <p class="topic-detail-title">Posts</p>
-        <p class="lead"><?=$postCount;?></p>
-      </div>
-    </div>
-  </div>
-  <script>staticBar('.main-sidebar','550')</script>
 <?php
 }
 
