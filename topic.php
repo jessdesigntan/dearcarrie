@@ -57,16 +57,12 @@
                           if ($followingTopic) { //user following topic
                       ?>
                             <form>
-                              <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
-                              <input type="hidden" name="topic" value='<?=$topic["id"]?>'>
                               <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn1" type="button" class="primary-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
                             </form>
                       <?php
                         } else { //user not following topic
                       ?>
                           <form>
-                            <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
-                            <input type="hidden" name="topic" value='<?=$topic["id"]?>'>
                             <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="followBtn1" type="button" class="primary-line-btn" value="Follow Topic">
                           </form>
                       <?php

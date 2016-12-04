@@ -453,4 +453,27 @@ function isFollowingTopic ($userid, $topicid) {
 		return false;
 	}
 }
+
+function isFollowingPost ($userid, $postid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM post_follow WHERE userid='$userid' AND postid='$postid' LIMIT 1";
+	$result = $conn->query($sql);
+	if (mysqli_num_rows($result) > 0) {
+			return true; //is following
+	} else {
+		return false;
+	}
+}
+
+function followPost ($userid, $postid) {
+	$conn = connectToDataBase();
+	$sql = "INSERT INTO post_follow (userid, postid) VALUES ('$userid', '$postid')";
+	validateQuery($conn, $sql);
+}
+
+function unfollowPost ($userid, $postid) {
+	$conn = connectToDataBase();
+	$sql = "DELETE FROM post_follow WHERE userid = '$userid' AND postid = '$postid'";
+	validateQuery($conn, $sql);
+}
 ?>

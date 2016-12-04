@@ -254,6 +254,7 @@ function topicCard($id) {
 function cardExpand($postID) {
   $post = getPostByID($postID);
   $user = getUserByID($post["userid"]);
+  $followingPost = isFollowingPost($_SESSION["userid"], $post["id"]);
 ?>
   <div class="card mBottom-40 edit">
     <div class="header">
@@ -265,7 +266,29 @@ function cardExpand($postID) {
         <div class="date"><?=$post["timestamp"];?></div>
         <div class="views"><?=$post["views"];?></div>
       </div>
-      <a class="follow" href="#">Follow Post</a>
+      <?php
+        if (!checkLogin()) {
+          if ($followingPost) { //user following topic
+      ?>
+            <form>
+              <input onclick="unfollowPost(<?=$_SESSION['userid'];?>,<?=$post['id']?>);" id="unfollowBtn1" type="button" class="follow" value="Following">
+            </form>
+      <?php
+        } else { //user not following topic
+      ?>
+          <form>
+            <input onclick="followPost(<?=$_SESSION['userid'];?>,<?=$post['id']?>);" id="followBtn1" type="button" class="follow" value="Follow Post">
+          </form>
+      <?php
+          }
+        }
+      ?>
+
+
+
+
+
+
       <?php if($post["userid"] == $_SESSION["userid"]) { ?>
         <a class="edit" href="editPost?postID=<?=$post["id"];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
       <?php } ?>

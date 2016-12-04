@@ -396,19 +396,20 @@ a:hover {
   transition: all 0.3s ease 0s;
 }
 
-.card > .header > a.follow {
+.card > .header input.follow {
   position: absolute;
   right: 20px;
   top: 20px;
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
+  background-color: white;
   padding: 3px 8px;
   border-radius: 3px;
   font-size: 14px;
   transition: all 0.3s ease 0s;
 }
 
-.card > .header > a.follow:hover {
+.card > .header input.follow:hover {
   text-decoration: none;
   background-color: var(--primary-color);
   color: white;
