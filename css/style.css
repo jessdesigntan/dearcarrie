@@ -838,6 +838,8 @@ footer ul > li > a {
   font-weight: 300;
   min-width: 100px;
   display: inline-block;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .white-line-btn:hover {
