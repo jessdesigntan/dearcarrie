@@ -519,4 +519,26 @@ function countTopicsFollowedByUserID($id) {
 	$conn->close();
 	return $value["total"];
 }
+
+function getTopicsFollowedByUserID($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT *
+					FROM topic_follow f
+					INNER JOIN topics t ON f.topicid = t.id
+					WHERE f.userid = '$id'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No topics found");
+	}
+	$conn->close();
+	return $resArr;
+}
 ?>

@@ -4,6 +4,7 @@
   $userID = $_GET["userID"];
   $user = getUserByID($userID);
   $followingUser = isFollowingUser($_SESSION["userid"], $user["id"]);
+  $topics = getTopicsFollowedByUserID($userID);
 ?>
 
 <html lang="en">
@@ -84,13 +85,15 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Topics you follow</h4>
+              <h4 class="modal-title" id="myModalLabel">Topics</h4>
             </div>
             <div class="modal-body">
               <div class="row">
-                  <?php for ($i=0; $i<10; $i++) { ?>
+                  <?php
+                    foreach ($topics as $topic) {
+                  ?>
                     <div class="col-sm-12">
-                      <?= topicCard(); ?>
+                      <?= topicCard($topic["id"]); ?>
                     </div><!-- END col-sm-12 -->
                   <?php } ?>
               </div>

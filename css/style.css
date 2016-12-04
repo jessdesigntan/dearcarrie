@@ -142,7 +142,7 @@ input {
     2. utils
 ===============================*/
 .primary-color {
-  color: var(--primary-color) !important;;
+  color: var(--primary-color) !important;
 }
 
 .light-text {
@@ -1196,7 +1196,7 @@ h4.hero-center::after {
 }
 
 .user-header > .details > p:last-child::after {
-  display: none;;
+  display: none;
 }
 
 .user-header > .button {
