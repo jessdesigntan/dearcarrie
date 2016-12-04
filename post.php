@@ -20,7 +20,7 @@
                   <form action="addCommentProcess" method="post" class="comment-box">
                       <input type="hidden" name="postid" value="<?=$postID;?>">
                       <textarea name="comment" placeholder="Write a comment..." onkeyup="auto_grow(this)"></textarea>
-                      <button class="primary-line-btn" type="submit">Submit</button>
+                      <button class="primary-line-btn" type="submit" id="commentsDiv">Submit</button>
                   </form>
                   <hr/>
                   <?php

@@ -265,9 +265,11 @@ function cardExpand($postID) {
         <div class="date"><?=$post["timestamp"];?></div>
         <div class="views"><?=$post["views"];?></div>
       </div>
+      <a class="follow" href="#">Follow Post</a>
       <?php if($post["userid"] == $_SESSION["userid"]) { ?>
         <a class="edit" href="editPost?postID=<?=$post["id"];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
       <?php } ?>
+
     </div>
 
     <div class="content">
@@ -281,7 +283,7 @@ function cardExpand($postID) {
         <?=$post["likes"];?>
       </div>
       <div class="float-right">
-        <a href="#"><?=$post["comments"];?> comments</a>
+        <a href="#commentsDiv"><?=$post["comments"];?> comments</a>
         <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
         data-content="
           <a href='#' title='test add link'>Report</a>
