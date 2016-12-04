@@ -684,7 +684,7 @@ a:hover {
   text-align: right;
 }
 
-.content-title > a.follow-btn {
+.content-title .follow-btn {
   border-radius: 3px;
   background-color: transparent;
   border: 1px solid var(--primary-color);
@@ -700,7 +700,7 @@ a:hover {
   letter-spacing: 0.5px;
 }
 
-.content-title > a.follow-btn:hover {
+.content-title .follow-btn:hover {
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;

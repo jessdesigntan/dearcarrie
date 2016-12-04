@@ -65,13 +65,21 @@
                           <h4>About</h4>
                           <?php
                             if (!checkLogin()) {
-                              if ($followingTopic) {
+                              if ($followingTopic) { //user following topic
                           ?>
-                                <a class="follow-btn">Unfollow Topic</a>
+                                <form>
+                                  <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
+                                  <input type="hidden" name="topic" value='<?=$topic["id"]?>'>
+                                  <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn2" type="button" class="follow-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
+                                </form>
                           <?php
-                            } else {
+                            } else { //user not following topic
                           ?>
-                                <a class="follow-btn">Follow Topic</a>
+                              <form>
+                                <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
+                                <input type="hidden" name="topic" value='<?=$topic["id"]?>'>
+                                <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="followBtn2" type="button" class="follow-btn" value="Follow Topic">
+                              </form>
                           <?php
                               }
                             }
@@ -137,7 +145,8 @@
               unfollowBtn = this.responseText;
               $('#followBtn1').val(this.responseText);
               $('#unfollowBtn1').val(this.responseText);
-
+              $('#followBtn2').val(this.responseText);
+              $('#unfollowBtn2').val(this.responseText);
           }
       };
       xmlhttp.open("GET","followTopics?userid="+userid+"&topicid="+topicid,true);
@@ -162,6 +171,8 @@
               unfollowBtn = this.responseText;
               $('#followBtn1').val(this.responseText);
               $('#unfollowBtn1').val(this.responseText);
+              $('#followBtn2').val(this.responseText);
+              $('#unfollowBtn2').val(this.responseText);
           }
       };
       xmlhttp.open("GET","unfollowTopics?userid="+userid+"&topicid="+topicid,true);
