@@ -365,45 +365,6 @@ function commentCard($id) {
 <?php
 }
 
-function mainSideContent() {
-?>
-  <div class="main-sidebar">
-    <div class="side-content">
-      <div class="content-title">
-        <h4>Trending</h4>
-        <a href="post">Read all &#8594;</a>
-      </div>
-      <a href="post" class="mini-card">
-        <p>26 Things That Won’t Cure My Depression</p>
-      </a>
-      <a href="post" class="mini-card">
-        <p>Doctors put me on 40 different meds for bipolar and depression. It almost killed me.</p>
-      </a>
-      <a href="post" class="mini-card">
-        <p>Desperately Seeking Einstein’s Assistant</p>
-      </a>
-      <a href="post" class="mini-card">
-        <p>How I’m Handling My Depression (Using an App)</p>
-      </a>
-    </div>
-
-    <div class="side-content">
-      <div class="content-title">
-        <h4>Topics</h4>
-        <a href="topic">See all &#8594;</a>
-      </div>
-      <ul>
-        <li><a href="topicDetails">Bipolar</a></li>
-        <li><a href="topicDetails">Relationship</a></li>
-        <li><a href="topicDetails">Financial</a></li>
-        <li><a href="topicDetails">Suicide</a></li>
-      </ul>
-    </div>
-  </div>
-  <script>staticBar('.main-sidebar','640')</script>
-<?php
-}
-
 function sideFilter() {
 ?>
   <div class="content-title">

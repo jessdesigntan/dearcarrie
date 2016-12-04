@@ -2,6 +2,8 @@
 <?php
   include('controllers/templates.php');
   $mainTopics = displayMainTopics();
+  $featuredTopics = displayFeaturedTopics();
+  $trendingPosts = displayTrendingPosts();
 ?>
 <html lang="en">
   <?php head("Dear Carrie"); ?>
@@ -39,7 +41,32 @@
             ?>
           </div><!-- END left column col-sm-8 -->
           <div class="col-sm-3">
-            <?= mainSideContent(); ?>
+              <div class="main-sidebar">
+                  <div class="side-content">
+                      <div class="content-title">
+                        <h4>Trending</h4>
+                        <a href="search">Read all &#8594;</a>
+                      </div>
+                      <?php foreach($trendingPosts as $trendingPost) { ?>
+                      <a href="post?postID=<?=$trendingPost['id'];?>" class="mini-card">
+                        <p><?=$trendingPost['title'];?></p>
+                      </a>
+                      <?php } ?>
+                  </div>
+
+                  <div class="side-content">
+                      <div class="content-title">
+                          <h4>Topics</h4>
+                          <a href="topic">See all &#8594;</a>
+                      </div>
+                      <ul>
+                          <?php foreach ($featuredTopics as $featuredTopic) { ?>
+                          <li><a href="topicDetails?topicID=<?=$featuredTopic["id"];?>"><?=$featuredTopic["title"];?></a></li>
+                          <?php } ?>
+                      </ul>
+                  </div>
+              </div>
+              <script>staticBar('.main-sidebar','640')</script>
           </div><!-- END right column col-sm-4 -->
 
       </div>
