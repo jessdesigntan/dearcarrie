@@ -267,7 +267,7 @@ function cardExpand($postID) {
         <div class="views"><?=$post["views"];?></div>
       </div>
       <?php
-        if (!checkLogin()) {
+        if (!checkLogin() && $_SESSION["userid"] != $user["id"]) {
           if ($followingPost) { //user following topic
       ?>
             <form>
