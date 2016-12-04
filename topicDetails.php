@@ -25,7 +25,7 @@
               <p class="lead"><?=$topic["short_desc"];?></p>
               <?php
                 if (!checkLogin()) {
-                  if ($followingTopic) {
+                  if ($followingTopic) { //user following topic
               ?>
                     <form>
                       <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
@@ -33,7 +33,7 @@
                       <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn1" type="button" class="white-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
                     </form>
               <?php
-                } else {
+                } else { //user not following topic
               ?>
                   <form>
                     <input type="hidden" name="userid" value='<?=$_SESSION["userid"];?>'>
@@ -108,16 +108,22 @@
   </body>
 
   <script>
-  function unfollowMouseOver() {
-    $('#unfollowBtn1').val("Unfollow Topic");
+  var followBtn = "Follow Topic";
+  var unfollowBtn = "Following";
+
+  /*function unfollowMouseOver() {
+    $('#unfollowBtn1').val("Unfollow");
   }
 
   function unfollowMouseOut() {
     $('#unfollowBtn1').val("Following");
-  }
+  }*/
 
   function followTopic(userid, topicid) {
-
+      if (followBtn == "Following") {
+          unfollowTopic(userid, topicid);
+          return;
+      }
       if (window.XMLHttpRequest) {
           // code for IE7+, Firefox, Chrome, Opera, Safari
           xmlhttp = new XMLHttpRequest();
@@ -127,10 +133,38 @@
       }
       xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
+              followBtn = this.responseText;
+              unfollowBtn = this.responseText;
               $('#followBtn1').val(this.responseText);
+              $('#unfollowBtn1').val(this.responseText);
+
           }
       };
       xmlhttp.open("GET","followTopics?userid="+userid+"&topicid="+topicid,true);
+      xmlhttp.send();
+  }
+
+  function unfollowTopic(userid, topicid) {
+      if (unfollowBtn == "Follow Topic") {
+          followTopic(userid, topicid);
+          return;
+      }
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              followBtn = this.responseText;
+              unfollowBtn = this.responseText;
+              $('#followBtn1').val(this.responseText);
+              $('#unfollowBtn1').val(this.responseText);
+          }
+      };
+      xmlhttp.open("GET","unfollowTopics?userid="+userid+"&topicid="+topicid,true);
       xmlhttp.send();
   }
   </script>

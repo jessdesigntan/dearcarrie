@@ -425,6 +425,12 @@ function followTopic ($userid, $topicid) {
 	validateQuery($conn, $sql);
 }
 
+function unfollowTopic ($userid, $topicid) {
+	$conn = connectToDataBase();
+	$sql = "DELETE FROM topic_follow WHERE userid = '$userid' AND topicid = '$topicid'";
+	validateQuery($conn, $sql);
+}
+
 function isFollowingTopic ($userid, $topicid) {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM topic_follow WHERE userid='$userid' AND topicid='$topicid' LIMIT 1";

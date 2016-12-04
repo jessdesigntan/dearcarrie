@@ -3,8 +3,8 @@
   $userid = $_GET["userid"];
   $topicid = $_GET["topicid"];
 
-  followTopic($userid,$topicid);
+  unfollowTopic($userid,$topicid);
 
-  echo "Following";
-
+  echo "Follow Topic";
+  
 ?>
