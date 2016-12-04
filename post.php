@@ -70,7 +70,7 @@
               $('#unfollowBtn1').val(this.responseText);
           }
       };
-      xmlhttp.open("GET","followPosts?userid="+userid+"&postid="+postid,true);
+      xmlhttp.open("GET","followFunctions?userid="+userid+"&postid="+postid+"&action=followpost",true);
       xmlhttp.send();
   }
 
@@ -94,7 +94,8 @@
               $('#unfollowBtn1').val(this.responseText);
           }
       };
-      xmlhttp.open("GET","unfollowPosts?userid="+userid+"&postid="+postid,true);
+      //xmlhttp.open("GET","unfollowPosts?userid="+userid+"&postid="+postid,true);
+      xmlhttp.open("GET","followFunctions?userid="+userid+"&postid="+postid+"&action=unfollowpost",true);
       xmlhttp.send();
   }
   </script>

@@ -104,7 +104,7 @@
               $('#unfollowBtn1').val(this.responseText);
           }
       };
-      xmlhttp.open("GET","followTopics?userid="+userid+"&topicid="+topicid,true);
+      xmlhttp.open("GET","followFunctions?userid="+userid+"&topicid="+topicid+"&action=followtopic",true);
       xmlhttp.send();
   }
 
@@ -128,7 +128,7 @@
               $('#unfollowBtn1').val(this.responseText);
           }
       };
-      xmlhttp.open("GET","unfollowTopics?userid="+userid+"&topicid="+topicid,true);
+      xmlhttp.open("GET","followFunctions?userid="+userid+"&topicid="+topicid+"&action=unfollowtopic",true);
       xmlhttp.send();
   }
   </script>

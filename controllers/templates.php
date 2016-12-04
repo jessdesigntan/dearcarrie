@@ -283,16 +283,9 @@ function cardExpand($postID) {
           }
         }
       ?>
-
-
-
-
-
-
       <?php if($post["userid"] == $_SESSION["userid"]) { ?>
         <a class="edit" href="editPost?postID=<?=$post["id"];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
       <?php } ?>
-
     </div>
 
     <div class="content">
@@ -305,6 +298,10 @@ function cardExpand($postID) {
         <a href="#" class="star-icon"></a>
         <?=$post["likes"];?>
       </div>
+
+
+
+
       <div class="float-right">
         <a href="#commentsDiv"><?=$post["comments"];?> comments</a>
         <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
