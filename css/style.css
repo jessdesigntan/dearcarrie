@@ -33,6 +33,7 @@
   32. small-wrapper
   33. post-empty-state
   34. btn-group overwrites
+  35. media overwrites
 */
 
 /*=============================
@@ -42,6 +43,7 @@
   --light-bg: #fafafa;
   --light-border: #e6e6e6;
   --primary-color: #ff5a5f;
+  --light-primary-color: #ffd9da;
   --light-text: #aaaaaa;
   --text-color: #444444;
   --medium-text: #888888;
@@ -1497,4 +1499,41 @@ form.editable-fields select:hover {
   border: 1px solid var(--admin-secondary-color);
   color: white;
   box-shadow: none;
+}
+
+/*=============================
+    35. media overwrites
+===============================*/
+.media {
+  border-bottom: 1px solid var(--light-border);
+  margin-bottom: 10px;
+  padding: 15px 10px;
+  margin-top: -10px;
+}
+
+.media .new {
+  display: none;
+}
+
+.media.active .new {
+  display: block;
+}
+
+.media:hover {
+  background-color: var(--light-bg);
+}
+
+.media > div > a > img {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.media-body, .media-left, .media-right {
+  vertical-align: middle;
+}
+
+.media p.small {
+  font-size: 11px;
+  margin: 0;
+  text-align: center;
 }

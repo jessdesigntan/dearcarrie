@@ -102,6 +102,7 @@ function navbar() {
               <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
             <?php } ?>
             <li class="show-mobile"><a href="editProfile?userID=<?=$_SESSION["userid"];?>" class="light-text">Edit Profile</a></li>
+            <li class="show-mobile"><a href="activity" class="light-text">Activity</a></li>
             <li class="show-mobile"><a href="logout" class="light-text">Logout</a></li>
           <?php } ?>
           <!-- /signed in -->
@@ -113,6 +114,7 @@ function navbar() {
               <li><a href="profile?userID=<?=$_SESSION["userid"];?>">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
               <li><a href="editProfile?userID=<?=$_SESSION["userid"];?>">Edit Profile</a></li>
+              <li><a href="activity">Activity</a></li>
               <?php if (checkRole($_SESSION["role"], "admin")) { ?>
                 <li role="separator" class="divider"></li>
                 <li><a href="dashboard">Admin Dashboard</a></li>
@@ -256,10 +258,10 @@ function cardExpand($postID) {
   <div class="card mBottom-40 edit">
     <div class="header">
       <div class="image">
-        <a href="#"><img src="<?=$user["image"];?>"></a>
+        <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
       </div>
       <div class="author-details">
-        <div><a href="profile"><?=$user["name"];?></a> in <a href="topicDetails">Bipolar</a></div>
+        <div><a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a> in <a href="topicDetails">Bipolar</a></div>
         <div class="date"><?=$post["timestamp"];?></div>
         <div class="views"><?=$post["views"];?></div>
       </div>
@@ -302,11 +304,11 @@ function commentCard($id) {
   <div class="card comment-card">
     <div class="header">
       <div class="image">
-        <a href="#"><img src="<?=$user["image"];?>"></a>
+        <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
       </div>
       <div class="author-details">
         <div>
-          <a href="profile"><?=$user["name"];?></a>
+          <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
           <!-- only for psychiatrist -->
           <?php if ($user["role"] == "expert") { ?>
             <span class="label label-primary" style="text-transform:uppercase;"><?=$user["role"];?></span>
