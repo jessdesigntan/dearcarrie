@@ -419,6 +419,18 @@ function countPostByTopicID($topicid) {
 	return $value["total"];
 }
 
+function countFollowersByTopicID($topicid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total
+					FROM topic_follow
+					WHERE topicid = '$topicid'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
 function followTopic ($userid, $topicid) {
 	$conn = connectToDataBase();
 	$sql = "INSERT INTO topic_follow (userid, topicid) VALUES ('$userid', '$topicid')";

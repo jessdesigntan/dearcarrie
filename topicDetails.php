@@ -4,7 +4,8 @@
   $topicID = $_GET["topicID"];
   $topic = getTopicByID($topicID);
   $posts = getPostsByTopicID($topicID);
-  $postCount = countPostByTopicID($id);
+  $postCount = countPostByTopicID($topicID);
+  $followerCount = countFollowersByTopicID($topicID);
   $followingTopic = isFollowingTopic($_SESSION["userid"],$topicID);
 ?>
 
@@ -96,7 +97,7 @@
                       <div class="dual-hero">
                           <div>
                             <p class="topic-detail-title">Followers</p>
-                            <p class="lead"><?=$topic["followers"];?></p>
+                            <p class="lead"><?=$followerCount;?></p>
                           </div>
                           <div>
                             <p class="topic-detail-title">Posts</p>
@@ -118,15 +119,7 @@
   <script>
   var followBtn = "Follow Topic";
   var unfollowBtn = "Following";
-
-  /*function unfollowMouseOver() {
-    $('#unfollowBtn1').val("Unfollow");
-  }
-
-  function unfollowMouseOut() {
-    $('#unfollowBtn1').val("Following");
-  }*/
-
+  
   function followTopic(userid, topicid) {
       if (followBtn == "Following") {
           unfollowTopic(userid, topicid);
