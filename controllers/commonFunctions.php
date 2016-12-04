@@ -476,4 +476,47 @@ function unfollowPost ($userid, $postid) {
 	$sql = "DELETE FROM post_follow WHERE userid = '$userid' AND postid = '$postid'";
 	validateQuery($conn, $sql);
 }
+
+function followUser ($currentuser, $userid) {
+	$conn = connectToDataBase();
+	$sql = "INSERT INTO user_follow (userid, follower) VALUES ('$userid', '$currentuser')";
+	validateQuery($conn, $sql);
+}
+
+function unfollowUser ($currentuser, $userid) {
+	$conn = connectToDataBase();
+	$sql = "DELETE FROM user_follow WHERE follower = '$currentuser' AND userid = '$userid'";
+	validateQuery($conn, $sql);
+}
+
+function isFollowingUser ($currentuser, $userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM user_follow WHERE userid='$userid' AND follower='$currentuser' LIMIT 1";
+	$result = $conn->query($sql);
+	if (mysqli_num_rows($result) > 0) {
+			return true; //is following
+	} else {
+		return false;
+	}
+}
+
+function countFollowersByUserID($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM user_follow WHERE userid='$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function countTopicsFollowedByUserID($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM topic_follow WHERE userid='$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
 ?>

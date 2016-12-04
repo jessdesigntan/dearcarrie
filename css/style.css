@@ -1190,9 +1190,23 @@ h4.hero-center::after {
   font-weight: 200;
 }
 
-.user-header > .details > p:first-child::after {
+.user-header > .details > p::after {
   content: '\00B7';
   margin-left: 5px;
+}
+
+.user-header > .details > p:last-child::after {
+  display: none;;
+}
+
+.user-header > .button {
+  display: block;
+  margin: 5px 0;
+}
+
+.user-header > .button input.primary-line-btn {
+  border-radius: 4px;
+  padding: 5px 15px;
 }
 
 .user-header img {
