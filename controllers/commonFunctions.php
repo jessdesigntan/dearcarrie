@@ -560,5 +560,4 @@ function displayTrendingPosts() {
 	return $resArr;
 }
 
-
 ?>

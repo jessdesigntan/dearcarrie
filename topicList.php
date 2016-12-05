@@ -6,6 +6,8 @@
 ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Topic List"); ?>
+  <script src="css/jquery.dataTables.min.css"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
 
   <body>
     <?= navbar(); ?>
@@ -23,7 +25,8 @@
             <div class="panel-body">
                   <a href="addTopic" class="btn btn-primary" style="color:white;" >Add Topic</a>
             </div>
-            <table class="table table-hover table-bordered table-striped">
+            <table id="topic-list" class="table table-hover table-bordered table-striped">
+                <thead>
                 <tr>
                     <th>Date</th>
                     <th>Topic ID</th>
@@ -33,6 +36,9 @@
                     <th>Post</th>
                     <th></th>
                 </tr>
+                </thead>
+
+                <tbody>
                 <?php
                   foreach ($topics as $topic) {
                     $postCount = countPostByTopicID($topic["id"]);
@@ -56,6 +62,7 @@
                     <td><a href="adminTopicDetails?topicID=<?=$topic["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
+                </tbody>
             </table>
         </div><!-- END post table-->
 
@@ -85,6 +92,18 @@
     <?php footer(); ?>
     <script>
         $("#topicsNav").addClass("active");
+        $('#topic-list').DataTable( {
+                columnDefs: [ {
+                    targets: [ 0 ],
+                    orderData: [ 0, 1 ]
+                }, {
+                    targets: [ 1 ],
+                    orderData: [ 1, 0 ]
+                }, {
+                    targets: [ 4 ],
+                    orderData: [ 4, 0 ]
+                } ]
+            } );
     </script>
   </body>
 

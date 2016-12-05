@@ -6,6 +6,8 @@
 ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Post List"); ?>
+  <script src="css/jquery.dataTables.min.css"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
 
   <body>
     <?= navbar(); ?>
@@ -20,7 +22,8 @@
             <div class="panel-heading">
                 <h4 class="admin-sec-color">Total Posts: 3455</h4>
             </div>
-            <table class="table table-hover table-bordered table-striped">
+            <table id="post-list" class="table table-hover table-bordered table-striped">
+                <thead>
                 <tr>
                     <th>Post ID</th>
                     <th>Date</th>
@@ -30,6 +33,9 @@
                     <th>Comment</th>
                     <th></th>
                 </tr>
+                </thead>
+
+                <tbody>
                 <?php foreach ($posts as $post) { ?>
                 <tr>
                     <td><?=$post["id"];?></td>
@@ -42,6 +48,7 @@
                     <td><a href="postDetails?postID=<?=$post["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
+                </tbody>
             </table>
         </div><!-- END post table-->
 
@@ -71,6 +78,18 @@
     <?php footer(); ?>
     <script>
         $("#postsNav").addClass("active");
+            $('#post-list').DataTable( {
+                columnDefs: [ {
+                    targets: [ 0 ],
+                    orderData: [ 0, 1 ]
+                }, {
+                    targets: [ 1 ],
+                    orderData: [ 1, 0 ]
+                }, {
+                    targets: [ 4 ],
+                    orderData: [ 4, 0 ]
+                } ]
+            } );
     </script>
   </body>
 

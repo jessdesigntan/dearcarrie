@@ -6,6 +6,8 @@
 ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin User List"); ?>
+  <script src="css/jquery.dataTables.min.css"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
 
   <body>
     <?= navbar(); ?>
@@ -20,7 +22,8 @@
             <div class="panel-heading">
                 <h4 class="admin-sec-color">Total Users: 455</h4>
             </div>
-            <table class="table table-hover table-bordered table-striped">
+            <table id="user-list" class="table table-hover table-bordered table-striped">
+                <thead>
                 <tr>
                     <th>User ID</th>
                     <th>Name</th>
@@ -28,6 +31,9 @@
                     <th>Role</th>
                     <th></th>
                 </tr>
+                </thead>
+
+                <tbody>
                 <?php foreach ($users as $user) { ?>
                 <tr>
                     <td><?=$user["id"];?></td>
@@ -37,6 +43,7 @@
                     <td><a href="userDetails?userID=<?=$user["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
+                </tbody>
             </table>
         </div><!-- END top 10 post today-->
 
@@ -66,6 +73,18 @@
     <?php footer(); ?>
     <script>
         $("#usersNav").addClass("active");
+        $('#user-list').DataTable( {
+                columnDefs: [ {
+                    targets: [ 0 ],
+                    orderData: [ 0, 1 ]
+                }, {
+                    targets: [ 1 ],
+                    orderData: [ 1, 0 ]
+                }, {
+                    targets: [ 4 ],
+                    orderData: [ 4, 0 ]
+                } ]
+            } );
     </script>
   </body>
 
