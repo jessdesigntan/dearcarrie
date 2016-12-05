@@ -7,7 +7,9 @@
 <html lang="en">
   <?php head("Dear Carrie - Admin User List"); ?>
   <script src="css/jquery.dataTables.min.css"></script>
+  <script src="css/dataTables.bootstrap.min.css"></script>
   <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/dataTables.bootstrap.min.js"></script>
 
   <body>
     <?= navbar(); ?>
