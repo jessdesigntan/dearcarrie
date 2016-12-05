@@ -59,6 +59,7 @@ function head($title, $ogTitle){
  * @return top navbar html codes
  */
 function navbar() {
+  $featuredTopics = displayFeaturedTopics();
 ?>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid page-container">
@@ -79,7 +80,11 @@ function navbar() {
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="topic">All topics</a></li>
+              <?php foreach ($featuredTopics as $featuredTopic) { ?>
+              <li><a href="topicDetails?topicID=<?=$featuredTopic["id"];?>"><?=$featuredTopic["title"];?></a></li>
+              <?php } ?>
+              <div class="divider"></div>
+              <li><a href="topic">All Topics</a></li>
             </ul>
           </li>
         </ul>
