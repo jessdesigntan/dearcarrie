@@ -6,11 +6,6 @@
 ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Post List"); ?>
-  <!--<script src="css/jquery.dataTables.min.css"></script>-->
-  <!--<script src="css/dataTables.bootstrap.min.css"></script>-->
-  <!--<script src="js/jquery.dataTables.min.js"></script>-->
-  <!--<script src="js/dataTables.bootstrap.min.js"></script>-->
-
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"/>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
   <style>
@@ -62,7 +57,7 @@
             </tbody>
         </table>
 
-      
+
     </div><!-- ./page-container -->
 
     <?php footer(); ?>
