@@ -153,6 +153,24 @@ function displayAllPost() {
 	return $resArr;
 }
 
+function suggestedPost() {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC LIMIT 3";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
 function displayAllTopicsOrderByTitleAsc() {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM topics ORDER BY title ASC";

@@ -4,6 +4,7 @@
   $postID = $_GET["postID"];
   $post = getPostByID($postID);
   $comments = getAllCommentsByPostID($postID);
+  $suggestedPosts = suggestedPost();
 ?>
 <html lang="en">
   <?php head($post["title"], $post["title"]); ?>
@@ -41,7 +42,18 @@
       </div>
     </div><!-- END page-container -->
 
-    <?php suggestedReading(); ?>
+    <div class="suggested-container">
+        <div class="page-container">
+            <h4 class="hero-center">Suggested For You</h4>
+            <div class="row">
+                <?php foreach($suggestedPosts as $posts) { ?>
+                <div class="col-sm-4">
+                    <?php suggestedCard($posts["id"]); ?>
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
 
     <?= footer(); ?>
   </body>

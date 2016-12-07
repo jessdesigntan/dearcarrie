@@ -516,12 +516,13 @@ a:hover {
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 18px;
+  width: 18px;
+  height: 18px;
   padding-top: 4px;
   padding-left: 20px;
   padding-right: 5px;
   background-color: white;
   border: none;
-  display: inline;
 }
 
 .card .footer input.star-icon:hover, .card .footer input.star-icon.active {
@@ -1313,7 +1314,7 @@ h4.hero-center::after {
 }
 
 /*=============================
-    25. form-overwrites
+    25. form overwrites
 ===============================*/
 form label {
   text-transform: uppercase;
@@ -1330,6 +1331,15 @@ form label {
 
 .form-control:focus {
   border-color: var(--primary-color);
+}
+
+form.like-inline {
+  display: table;
+}
+
+form.like-inline > * {
+  display: table-cell;
+  vertical-align: top;
 }
 
 /*=============================

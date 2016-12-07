@@ -204,7 +204,7 @@ function card($id) {
         if (!checkLogin()) {
           if ($likedPost) { //user has liked the post
       ?>
-            <form>
+            <form class="like-inline">
               <input onclick="unlikePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likePostBtn<?=$id;?>" type="button">
               <p><?=$postLikeCount;?> Likes</p>
             </form>
@@ -212,7 +212,7 @@ function card($id) {
       <?php
           } else {
       ?>
-            <form>
+            <form class="like-inline">
               <input onclick="likePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikePostBtn<?=$id;?>" type="button">
               <p><?=$postLikeCount;?> Likes</p>
             </form>
@@ -236,41 +236,69 @@ function card($id) {
   </div>
 </div>
 <script src="js/likePost.js"></script>
+
 <?php
 }
 
-function suggestedCard() {
+function suggestedCard($id) {
+  $post = getPostByID($id);
+  $user = getUserByID($post["userid"]);
+  $postLikeCount = countPostLikes($id);
+  $commentCount = countCommentsByPostID($id);
 ?>
-  <div class="card">
-    <div class="header">
-      <div class="image">
-        <a href="#"><img src="images/default.svg"></a>
-      </div>
-      <div class="author-details">
-        <div><a href="profile">Jess Tan</a> in <a href="topicDetails">Bipolar</a></div>
-        <div class="date">12 Aug 16</div>
-        <div class="views">1.2k</div>
-      </div>
+<div class="card">
+  <div class="header">
+    <div class="image">
+      <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
     </div>
-
-    <div class="content short">
-      <a href="post">
-        <h4>Ryan Lochte Is the Ugly American</h4>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-      </a>
+    <div class="author-details">
+      <div><a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a> in <a href="topicDetails">Mental Health</a></div>
+      <div class="date"><?=$post["timestamp"];?></div>
+      <div class="views"><?=$post["views"];?></div>
     </div>
-
-    <div class="footer">
-      <div class="float-left">
-        <a href="#" class="star-icon"></a>
-        200
-      </div>
-      <div class="float-right">
-        <a href="#">400 comments</a>
-      </div>
-    </div>
-    <a href="post" class="read-more-footer">Read more</a>
   </div>
+
+  <div class="content short">
+    <a href="post?postID=<?=$post["id"];?>">
+      <h4><?=$post["title"];?></h4>
+      <p><?=$post["description"];?></p>
+    </a>
+  </div>
+
+  <div class="footer">
+    <div class="float-left">
+      <?php
+        if (!checkLogin()) {
+          if ($likedPost) { //user has liked the post
+      ?>
+            <form class="like-inline">
+              <input onclick="unlikePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likePostBtn<?=$id;?>" type="button">
+              <p><?=$postLikeCount;?> Likes</p>
+            </form>
+
+      <?php
+          } else {
+      ?>
+            <form class="like-inline">
+              <input onclick="likePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikePostBtn<?=$id;?>" type="button">
+              <p><?=$postLikeCount;?> Likes</p>
+            </form>
+      <?php
+          }
+        }
+      ?>
+    </div>
+    <div class="float-right">
+      <a href="#"><?=$commentCount?> comments</a>
+      <script>
+        $("[data-toggle=popover]").popover({html:true})
+      </script>
+    </div>
+  </div>
+  <a href="post" class="read-more-footer">Read more</a>
+</div>
+<script src="js/likePost.js"></script>
+
 <?php
 }
 
@@ -353,14 +381,14 @@ function cardExpand($postID) {
           if (!checkLogin()) {
             if ($likedPost) { //user has liked the post
         ?>
-              <form>
+              <form class="like-inline">
                 <input onclick="unlikePost(this.id,<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon active" id="likePostBtn" type="button">
                 <p><?=$postLikeCount;?> Likes</p>
               </form>
         <?php
             } else {
         ?>
-              <form>
+              <form class="like-inline">
                 <input onclick="likePost(this.id,<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon" id="unlikePostBtn" type="button">
                 <p><?=$postLikeCount;?> Likes</p>
               </form>
@@ -426,7 +454,7 @@ function commentCard($id) {
           if (!checkLogin()) {
             if ($likedComment) { //user has liked the post
         ?>
-              <form>
+              <form class="like-inline">
                 <input onclick="unlikeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likeCommentBtn<?=$id;?>" type="button">
                 <p><?=$commentLikes;?> Likes</p>
               </form>
@@ -434,7 +462,7 @@ function commentCard($id) {
         <?php
             } else {
         ?>
-              <form>
+              <form class="like-inline">
                 <input onclick="likeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikeCommentBtn<?=$id;?>" type="button">
                 <p><?=$commentLikes;?> Likes</p>
               </form>
@@ -513,27 +541,6 @@ function loginModal() {
 function scrollTopBtn() {
 ?>
   <a class="top-btn" onclick="scrollToTop();" href="javascript:;"></a>
-<?php
-}
-
-function suggestedReading() {
-?>
-  <div class="suggested-container">
-    <div class="page-container">
-      <h4 class="hero-center">Suggested For You</h4>
-      <div class="row">
-        <div class="col-sm-4">
-          <?php suggestedCard(); ?>
-        </div>
-        <div class="col-sm-4">
-          <?php suggestedCard(); ?>
-        </div>
-        <div class="col-sm-4">
-          <?php suggestedCard(); ?>
-        </div>
-      </div>
-    </div>
-  </div>
 <?php
 }
 
