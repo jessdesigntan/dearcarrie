@@ -567,4 +567,36 @@ function displayTrendingPosts() {
 	return $resArr;
 }
 
+function likePost ($userid, $postid) {
+	$conn = connectToDataBase();
+	$sql = "INSERT INTO post_like (userid, postid) VALUES ('$userid', '$postid')";
+	validateQuery($conn, $sql);
+}
+
+function unlikePost ($userid, $postid) {
+	$conn = connectToDataBase();
+	$sql = "DELETE FROM post_like WHERE userid = '$userid' AND postid = '$postid'";
+	validateQuery($conn, $sql);
+}
+
+function hasLikedPost ($userid, $postid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM post_like WHERE userid='$userid' AND postid='$postid' LIMIT 1";
+	$result = $conn->query($sql);
+	if (mysqli_num_rows($result) > 0) {
+			return true; //is following
+	} else {
+		return false;
+	}
+}
+
+function countPostLikes($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM post_like WHERE postid='$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
 ?>

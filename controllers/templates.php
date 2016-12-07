@@ -5,7 +5,7 @@
 ?>
 
 
-<?php 
+<?php
 /**
  * Display <head> section, include all dependencies for NORMAL users pages
  *
@@ -56,7 +56,7 @@ function head($title, $ogTitle){
         src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css"
         href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
- 
+
         <script type="text/javascript">
                 $(document).ready(function(){
                     $("#keyword").autocomplete({
@@ -112,7 +112,7 @@ function navbar() {
         </ul>
         <form class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
             <input type="text" class="nav-search" placeholder="Search anything . . ." name="keyword" id="keyword">
-        </form> 
+        </form>
 
 
         <ul class="nav navbar-nav navbar-right">
@@ -174,6 +174,8 @@ function navbar() {
 function card($id) {
   $post = getPostByID($id);
   $user = getUserByID($post["userid"]);
+  $likedPost = hasLikedPost($_SESSION["userid"], $id);
+  $postLikeCount = countPostLikes($id);
 ?>
 <div class="card">
   <div class="header">
@@ -197,8 +199,26 @@ function card($id) {
 
   <div class="footer">
     <div class="float-left">
-      <a href="#" class="star-icon"></a>
-      <?=$post["likes"];?>
+      <?php
+        if (!checkLogin()) {
+          if ($likedPost) { //user has liked the post
+      ?>
+            <form>
+              <input onclick="unlikePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likePostBtn<?=$id;?>" type="button">
+              <p><?=$postLikeCount;?> Likes</p>
+            </form>
+
+      <?php
+          } else {
+      ?>
+            <form>
+              <input onclick="likePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikePostBtn<?=$id;?>" type="button">
+              <p><?=$postLikeCount;?> Likes</p>
+            </form>
+      <?php
+          }
+        }
+      ?>
     </div>
     <div class="float-right">
       <a href="#"><?=$post["comments"];?> comments</a>
@@ -214,6 +234,7 @@ function card($id) {
     </div>
   </div>
 </div>
+<script src="js/likePost.js"></script>
 <?php
 }
 
@@ -284,6 +305,8 @@ function cardExpand($postID) {
   $post = getPostByID($postID);
   $user = getUserByID($post["userid"]);
   $followingPost = isFollowingPost($_SESSION["userid"], $post["id"]);
+  $likedPost = hasLikedPost($_SESSION["userid"], $post["id"]);
+  $postLikeCount = countPostLikes($postID);
 ?>
   <div class="card mBottom-40 edit">
     <div class="header">
@@ -324,12 +347,26 @@ function cardExpand($postID) {
 
     <div class="footer">
       <div class="float-left">
-        <a onclick="likePost(<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon"></a>
-        <?=$post["likes"];?>
+        <?php
+          if (!checkLogin()) {
+            if ($likedPost) { //user has liked the post
+        ?>
+              <form>
+                <input onclick="unlikePost(this.id,<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon active" id="likePostBtn" type="button">
+                <p><?=$postLikeCount;?> Likes</p>
+              </form>
+        <?php
+            } else {
+        ?>
+              <form>
+                <input onclick="likePost(this.id,<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon" id="unlikePostBtn" type="button">
+                <p><?=$postLikeCount;?> Likes</p>
+              </form>
+        <?php
+            }
+          }
+        ?>
       </div>
-
-
-
 
       <div class="float-right">
         <a href="#commentsDiv"><?=$post["comments"];?> comments</a>
@@ -345,6 +382,8 @@ function cardExpand($postID) {
       </div>
     </div>
   </div>
+
+  <script src="js/likePost.js"></script>
 <?php
 }
 

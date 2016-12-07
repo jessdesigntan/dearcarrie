@@ -511,7 +511,7 @@ a:hover {
   color: var(--light-text);
 }
 
-.card .footer .star-icon {
+.card .footer input.star-icon {
   background-image: url(../images/star.svg);
   background-position: left center;
   background-repeat: no-repeat;
@@ -519,15 +519,14 @@ a:hover {
   padding-top: 4px;
   padding-left: 20px;
   padding-right: 5px;
-  transition: all 0.3s ease 0s;
+  background-color: white;
+  border: none;
+  display: inline;
 }
 
-.card .footer .star-icon:hover, .card .footer .star-icon.active {
+.card .footer input.star-icon:hover, .card .footer input.star-icon.active {
   background-image: url(../images/star-filled.svg);
-}
-
-.card .footer .star-icon.active:hover {
-  background-image: url(../images/star.svg);
+  text-decoration: none;
 }
 
 .card .footer .dots-icon img {

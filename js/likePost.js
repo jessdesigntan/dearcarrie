@@ -1,10 +1,10 @@
+var likeBtn = "Like Post";
+var unlikeBtn = "Liked";
 
-var likeBtn = "Follow Post";
-var unlikeBtn = "Following";
-
-function likePost(userid, postid) {
-    if (followBtn == "Following") {
-        unfollowPost(userid, postid);
+function likePost(ele, userid, postid) {
+    if (likeBtn == "Liked") {
+        $('#'+ele).removeClass("active");
+        unlikePost(ele, userid, postid);
         return;
     }
     if (window.XMLHttpRequest) {
@@ -16,19 +16,19 @@ function likePost(userid, postid) {
     }
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            //followBtn = this.responseText;
-            //unfollowBtn = this.responseText;
-            $('#followBtn1').val(this.responseText);
-            $('#unfollowBtn1').val(this.responseText);
+            likeBtn = this.responseText.trim();
+            unlikeBtn = this.responseText.trim();
+            $('#'+ele).addClass("active");
         }
     };
-    xmlhttp.open("GET","followFunctions?userid="+userid+"&postid="+postid+"&action=followpost",true);
+    xmlhttp.open("GET","likeFunctions?userid="+userid+"&postid="+postid+"&action=likepost",true);
     xmlhttp.send();
 }
 
-function unfollowPost(userid, postid) {
-    if (unfollowBtn == "Follow Post") {
-        followPost(userid, postid);
+function unlikePost(ele, userid, postid) {
+    if (unlikeBtn == "Like Post") {
+        $('#'+ele).addClass("active");
+        likePost(ele, userid, postid);
         return;
     }
     if (window.XMLHttpRequest) {
@@ -40,18 +40,11 @@ function unfollowPost(userid, postid) {
     }
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            followBtn = this.responseText;
-            unfollowBtn = this.responseText;
-            $('#followBtn1').val(this.responseText);
-            $('#unfollowBtn1').val(this.responseText);
+            likeBtn = this.responseText.trim();
+            unlikeBtn = this.responseText.trim();
+            $('#'+ele).removeClass("active");
         }
     };
-    //xmlhttp.open("GET","unfollowPosts?userid="+userid+"&postid="+postid,true);
-    xmlhttp.open("GET","followFunctions?userid="+userid+"&postid="+postid+"&action=unfollowpost",true);
+    xmlhttp.open("GET","likeFunctions?userid="+userid+"&postid="+postid+"&action=unlikepost",true);
     xmlhttp.send();
 }
-
-
-$('.delete').on('click', function () {
-     return confirm('Are you sure you want to delete this comment?');
- });
