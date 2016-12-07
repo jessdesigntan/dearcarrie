@@ -392,6 +392,8 @@ function cardExpand($postID) {
 function commentCard($id) {
   $comment = getCommentByID($id);
   $user = getUserByID($comment["userid"]);
+  $likedComment = hasLikedComment($_SESSION["userid"],$id);
+  $commentLikes = countCommentsLikes($id);
 ?>
   <div class="card edit comment-card">
     <div class="header">
@@ -420,7 +422,26 @@ function commentCard($id) {
 
     <div class="footer">
       <div class="float-left">
-        <a href="#" class="star-icon"></a><?=$comment["likes"];?>
+        <?php
+          if (!checkLogin()) {
+            if ($likedComment) { //user has liked the post
+        ?>
+              <form>
+                <input onclick="unlikeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likeCommentBtn<?=$id;?>" type="button">
+                <p><?=$commentLikes;?> Likes</p>
+              </form>
+
+        <?php
+            } else {
+        ?>
+              <form>
+                <input onclick="likeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikeCommentBtn<?=$id;?>" type="button">
+                <p><?=$commentLikes;?> Likes</p>
+              </form>
+        <?php
+            }
+          }
+        ?>
       </div>
       <div class="float-right">
         <a class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
@@ -435,6 +456,7 @@ function commentCard($id) {
       </div>
     </div>
   </div>
+  <script src="js/likeComment.js"></script>
 <?php
 }
 

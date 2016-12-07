@@ -609,4 +609,37 @@ function countCommentsByPostID($id) {
 	$conn->close();
 	return $value["total"];
 }
+
+function hasLikedComment ($userid, $commentid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM comment_like WHERE userid='$userid' AND commentid='$commentid' LIMIT 1";
+	$result = $conn->query($sql);
+	if (mysqli_num_rows($result) > 0) {
+			return true; //is following
+	} else {
+		return false;
+	}
+}
+
+function countCommentsLikes($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM comment_like WHERE commentid='$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function likeComment ($userid, $commentid) {
+	$conn = connectToDataBase();
+	$sql = "INSERT INTO comment_like (userid, commentid) VALUES ('$userid', '$commentid')";
+	validateQuery($conn, $sql);
+}
+
+function unlikeComment ($userid, $commentid) {
+	$conn = connectToDataBase();
+	$sql = "DELETE FROM comment_like WHERE userid = '$userid' AND commentid = '$commentid'";
+	validateQuery($conn, $sql);
+}
 ?>
