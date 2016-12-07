@@ -176,6 +176,7 @@ function card($id) {
   $user = getUserByID($post["userid"]);
   $likedPost = hasLikedPost($_SESSION["userid"], $id);
   $postLikeCount = countPostLikes($id);
+  $commentCount = countCommentsByPostID($id);
 ?>
 <div class="card">
   <div class="header">
@@ -221,7 +222,7 @@ function card($id) {
       ?>
     </div>
     <div class="float-right">
-      <a href="#"><?=$post["comments"];?> comments</a>
+      <a href="#"><?=$commentCount?> comments</a>
       <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
       data-content="
         <a href='#' title='test add link'>Report</a>
@@ -307,6 +308,7 @@ function cardExpand($postID) {
   $followingPost = isFollowingPost($_SESSION["userid"], $post["id"]);
   $likedPost = hasLikedPost($_SESSION["userid"], $post["id"]);
   $postLikeCount = countPostLikes($postID);
+  $commentCount = countCommentsByPostID($postID);
 ?>
   <div class="card mBottom-40 edit">
     <div class="header">
@@ -369,7 +371,7 @@ function cardExpand($postID) {
       </div>
 
       <div class="float-right">
-        <a href="#commentsDiv"><?=$post["comments"];?> comments</a>
+        <a href="#commentsDiv"><?=$commentCount?> comments</a>
         <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
         data-content="
           <a href='#' title='test add link'>Report</a>

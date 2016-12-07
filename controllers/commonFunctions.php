@@ -599,4 +599,14 @@ function countPostLikes($id) {
 	$conn->close();
 	return $value["total"];
 }
+
+function countCommentsByPostID($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM comments WHERE postid='$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
 ?>
