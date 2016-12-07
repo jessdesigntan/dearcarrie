@@ -48,4 +48,5 @@
 
 
   <script src="js/followPost.js"></script>
+  <!--<script src="js/likePost.js"></script>-->
 </html>

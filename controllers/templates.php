@@ -324,7 +324,7 @@ function cardExpand($postID) {
 
     <div class="footer">
       <div class="float-left">
-        <a href="#" class="star-icon"></a>
+        <a onclick="likePost(<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon"></a>
         <?=$post["likes"];?>
       </div>
 
