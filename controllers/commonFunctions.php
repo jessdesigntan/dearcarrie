@@ -13,6 +13,13 @@ function checkLogin() {
 	}
 }
 
+function redirectNonUsers() {
+	if (checkLogin()) {
+		echo "<script type='text/javascript'>window.top.location='/fyp/login';</script>";
+		exit;
+	}
+}
+
 function checkRole($userRole, $role) {
 	if($userRole != $role) {
 		return false;

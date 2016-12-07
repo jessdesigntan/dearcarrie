@@ -131,7 +131,7 @@ function navbar() {
               <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
             <?php } ?>
             <li class="show-mobile"><a href="editProfile?userID=<?=$_SESSION["userid"];?>" class="light-text">Edit Profile</a></li>
-            <li class="show-mobile"><a href="activity" class="light-text">Activity</a></li>
+            <li class="show-mobile"><a href="notifications" class="light-text">Notifications</a></li>
             <li class="show-mobile"><a href="logout" class="light-text">Logout</a></li>
           <?php } ?>
           <!-- /signed in -->
@@ -143,7 +143,7 @@ function navbar() {
               <li><a href="profile?userID=<?=$_SESSION["userid"];?>">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
               <li><a href="editProfile?userID=<?=$_SESSION["userid"];?>">Edit Profile</a></li>
-              <li><a href="activity">Activity</a></li>
+              <li><a href="notifications">Notifications</a></li>
               <?php if (checkRole($_SESSION["role"], "admin")) { ?>
                 <li role="separator" class="divider"></li>
                 <li><a href="dashboard">Admin Dashboard</a></li>
@@ -352,7 +352,7 @@ function commentCard($id) {
   $comment = getCommentByID($id);
   $user = getUserByID($comment["userid"]);
 ?>
-  <div class="card comment-card">
+  <div class="card edit comment-card">
     <div class="header">
       <div class="image">
         <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
@@ -367,6 +367,9 @@ function commentCard($id) {
           <!-- /only for psychiatrist -->
         </div>
         <div class="date no-after"><?=$comment["datetime"];?></div>
+        <?php if ($user["id"] == $_SESSION["userid"]) { ?>
+        <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <?php } ?>
       </div>
     </div>
 
@@ -379,9 +382,9 @@ function commentCard($id) {
         <a href="#" class="star-icon"></a><?=$comment["likes"];?>
       </div>
       <div class="float-right">
-        <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
+        <a class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
         data-content="
-          <a href='#' title='test add link'>Report</a>
+          <a href='#' title='test add link'>Delete</a>
           <a href='#' title='test add link'>Share</a>
           "
         ><img src="images/dots.svg"></a>

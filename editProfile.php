@@ -3,6 +3,7 @@
   include('controllers/templates.php');
   $userID = $_GET["userID"];
   $user = getUserByID($userID);
+  redirectNonUsers();
   goBackIfNotEqual($_SESSION["userid"], $userID);
 ?>
 

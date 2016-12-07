@@ -7,7 +7,7 @@ $desc = nl2br($desc); //add <br/> to every breakline
 
 //Add to db
 $conn = connectToDataBase();
-$userID = getUserIDByEmail($_SESSION["email"]);
+$userID = $_SESSION["userid"];
 
 $sql = "INSERT INTO posts (userid, title, description)
 VALUES ('$userID', '$title', '$desc')";
