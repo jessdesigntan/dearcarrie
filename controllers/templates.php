@@ -3,8 +3,9 @@
   session_start();
   include('commonFunctions.php');
 ?>
-<?php
 
+
+<?php 
 /**
  * Display <head> section, include all dependencies for NORMAL users pages
  *
@@ -48,6 +49,27 @@ function head($title, $ogTitle){
     <!-- wow.js for css animations & initialization -->
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
+
+    <script type="text/javascript"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css"
+        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+ 
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#keyword").autocomplete({
+                        source:'getautocomplete.php',
+                        minLength:1,
+                        select: function(event,ui){
+                             $("#keyword").val(ui.item.value); //Set the new value for the textbox once user selects an item in the list
+                             $(".searchform").submit(); // To submit the form in order to retrieve the results
+                          }
+                    });
+                });
+        </script>
+
   </head>
 <?php
 }
@@ -88,9 +110,11 @@ function navbar() {
             </ul>
           </li>
         </ul>
-        <form class="navbar-form navbar-left hide-mobile" action="search" method="get">
-            <input type="text" class="nav-search" placeholder="Search anything . . ." name="keyword">
-        </form>
+        <form class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
+            <input type="text" class="nav-search" placeholder="Search anything . . ." name="keyword" id="keyword">
+        </form> 
+
+
         <ul class="nav navbar-nav navbar-right">
           <!-- not signed in -->
           <?php if (checkLogin()) { ?>

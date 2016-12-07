@@ -6,6 +6,9 @@
 
 <html lang="en">
   <?php head("Anti-depression"); ?>
+ <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
 
   <body>
     <?= scrollTopBtn(); ?>
@@ -25,8 +28,11 @@
           <?php
             $posts = searchPost($keyword);
             foreach ($posts as $post) {
+
               card($post["id"]);
+        
             }
+
           ?>
         </div><!-- END left column col-sm-9 -->
 
@@ -35,5 +41,12 @@
 
 
     <?= footer(); ?>
+ <!--   <script>
+      $(function() {
+        $( "#skills" ).autocomplete({
+          source: 'search.php'
+        });
+    });
+    </script> -->
   </body>
 </html>
