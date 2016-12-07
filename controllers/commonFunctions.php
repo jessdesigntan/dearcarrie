@@ -660,4 +660,27 @@ function unlikeComment ($userid, $commentid) {
 	$sql = "DELETE FROM comment_like WHERE userid = '$userid' AND commentid = '$commentid'";
 	validateQuery($conn, $sql);
 }
+
+function getPostTopics ($postid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT c.topicid AS topicid, t.title AS title
+					FROM topics t
+					INNER JOIN curation c on c.topicid = t.id
+					WHERE c.postid = '$postid'
+					";
+
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
 ?>

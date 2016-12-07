@@ -184,7 +184,20 @@ function card($id) {
       <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
     </div>
     <div class="author-details">
-      <div><a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a> in <a href="topicDetails">Mental Health</a></div>
+      <div>
+        <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+        <span class="topics-comma">
+        <?php
+           $topics = getPostTopics($id);
+           if (count($topics) > 0) { echo ' in ';}
+           foreach ($topics as $topic) {
+       ?>
+             <a href="topicDetails?topicID=<?=$topic["topicid"];?>"><?=$topic["title"];?></a>
+       <?php
+           }
+        ?>
+       </span>
+      </div>
       <div class="date"><?=$post["timestamp"];?></div>
       <div class="views"><?=$post["views"];?></div>
     </div>
@@ -252,7 +265,20 @@ function suggestedCard($id) {
       <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
     </div>
     <div class="author-details">
-      <div><a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a> in <a href="topicDetails">Mental Health</a></div>
+      <div>
+        <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+        <span class="topics-comma">
+        <?php
+           $topics = getPostTopics($id);
+           if (count($topics) > 0) { echo ' in ';}
+           foreach ($topics as $topic) {
+       ?>
+             <a href="topicDetails?topicID=<?=$topic["topicid"];?>"><?=$topic["title"];?></a>
+       <?php
+           }
+        ?>
+       </span>
+      </div>
       <div class="date"><?=$post["timestamp"];?></div>
       <div class="views"><?=$post["views"];?></div>
     </div>
@@ -344,7 +370,20 @@ function cardExpand($postID) {
         <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
       </div>
       <div class="author-details">
-        <div><a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a> in <a href="topicDetails">Bipolar</a></div>
+        <div>
+            <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+             <span class="topics-comma">
+             <?php
+                $topics = getPostTopics($postID);
+                if (count($topics) > 0) { echo ' in ';}
+                foreach ($topics as $topic) {
+            ?>
+                  <a href="topicDetails?topicID=<?=$topic["topicid"];?>"><?=$topic["title"];?></a>
+            <?php
+                }
+             ?>
+            </span>
+        </div>
         <div class="date"><?=$post["timestamp"];?></div>
         <div class="views"><?=$post["views"];?></div>
       </div>
