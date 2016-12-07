@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+  redirectNonUsers();
+?>
 
 <html lang="en">
   <?php head("Add Post"); ?>
@@ -10,7 +13,7 @@
       <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
               <div class="content-title">
-                  <h4>Activity</h4>
+                  <h4>Notifications</h4>
               </div>
               <div class="media">
                   <div class="media-left">
