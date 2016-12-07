@@ -98,5 +98,9 @@
       xmlhttp.open("GET","followFunctions?userid="+userid+"&postid="+postid+"&action=unfollowpost",true);
       xmlhttp.send();
   }
+
+  $('.delete').on('click', function () {
+       return confirm('Are you sure you want to delete this comment?');
+   });
   </script>
 </html>
