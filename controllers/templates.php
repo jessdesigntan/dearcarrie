@@ -55,6 +55,18 @@ function head($title, $ogTitle){
     <script src="js/jquery-1.9.1.js"></script>
     <script src="js/jquery-ui.js"></script>
 
+        <script>
+          $(document).ready(function(){
+            $( "#keyword" ).autocomplete({
+              source: "suggestions.php",
+              select: function(event,ui){
+                $("#keyword").val(ui.item.value); /*Set the new value for the textbox once user selects an item in the list*/
+                $(".searchform").submit(); /*To submit the form in order to retrieve the results*/
+              }
+            });
+          })
+
+
     <script>
 
     $(document).ready(function(){
