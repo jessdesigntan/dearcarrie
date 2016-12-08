@@ -55,7 +55,6 @@ function head($title, $ogTitle){
     <script src="js/jquery-1.9.1.js"></script>
     <script src="js/jquery-ui.js"></script>
 
-
     <script>
 
     $(document).ready(function(){

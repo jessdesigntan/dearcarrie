@@ -16,12 +16,13 @@ function followTopic(userid, topicid) {
     }
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            followBtn = this.responseText;
-            unfollowBtn = this.responseText;
-            $('#followBtn1').val(this.responseText);
-            $('#unfollowBtn1').val(this.responseText);
-            $('#followBtn2').val(this.responseText);
-            $('#unfollowBtn2').val(this.responseText);
+            var res = this.responseText.trim();
+            followBtn = res;
+            unfollowBtn = res;
+            $('#followBtn1').val(res);
+            $('#unfollowBtn1').val(res);
+            $('#followBtn2').val(res);
+            $('#unfollowBtn2').val(res);
         }
     };
     xmlhttp.open("GET","followFunctions?userid="+userid+"&topicid="+topicid+"&action=followtopic",true);
@@ -42,12 +43,13 @@ function unfollowTopic(userid, topicid) {
     }
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            followBtn = this.responseText;
-            unfollowBtn = this.responseText;
-            $('#followBtn1').val(this.responseText);
-            $('#unfollowBtn1').val(this.responseText);
-            $('#followBtn2').val(this.responseText);
-            $('#unfollowBtn2').val(this.responseText);
+            var res = this.responseText.trim();
+            followBtn = res;
+            unfollowBtn = res;
+            $('#followBtn1').val(res);
+            $('#unfollowBtn1').val(res);
+            $('#followBtn2').val(res);
+            $('#unfollowBtn2').val(res);
         }
     };
     xmlhttp.open("GET","followFunctions?userid="+userid+"&topicid="+topicid+"&action=unfollowtopic",true);

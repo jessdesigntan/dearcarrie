@@ -16,8 +16,8 @@ function followPost(userid, postid) {
     }
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            followBtn = this.responseText;
-            unfollowBtn = this.responseText;
+            followBtn = this.responseText.trim();
+            unfollowBtn = this.responseText.trim();
             $('#followBtn1').val(this.responseText);
             $('#unfollowBtn1').val(this.responseText);
         }
@@ -40,8 +40,8 @@ function unfollowPost(userid, postid) {
     }
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            followBtn = this.responseText;
-            unfollowBtn = this.responseText;
+            followBtn = this.responseText.trim();
+            unfollowBtn = this.responseText.trim();
             $('#followBtn1').val(this.responseText);
             $('#unfollowBtn1').val(this.responseText);
         }
