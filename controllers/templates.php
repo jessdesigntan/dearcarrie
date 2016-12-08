@@ -50,25 +50,57 @@ function head($title, $ogTitle){
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
 
+    <!-- autocomplete for top search bar -->
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
 
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-  
-        <script>
-          $(document).ready(function(){
-            $( "#keyword" ).autocomplete({
-              source: "suggestions.php",
-              select: function(event,ui){
-                $("#keyword").val(ui.item.value); /*Set the new value for the textbox once user selects an item in the list*/
-                $(".searchform").submit(); /*To submit the form in order to retrieve the results*/
-              }
-            });
-          })
 
-        </script>
+    <script>
+
+    $(document).ready(function(){
+
+              runScript("suggestions");
+
+    })
+
+
+    function runScript(x){
+
+        $("#keyword").datepicker("destroy");
+
+        $( "#keyword" ).autocomplete({
+                source: x + ".php",
+                select: function(event,ui){
+                    $("#keyword").val(ui.item.value); /*Set the new value for the textbox once user selects an item in the list*/
+                    $(".searchform").submit(); /*To submit the form in order to retrieve the results*/
+                }
+         });
+
+
+
+    }
+
+
+    function runDate(){
+
+      $( "#keyword" ).datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect : function(){
+        $('.searchform').submit();   
+    }
+      });
+
+
+
+    }
+    
+
+    </script>
+
 
   </head>
+
 <?php
 }
 
@@ -108,9 +140,22 @@ function navbar() {
             </ul>
           </li>
         </ul>
-        <form class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
+        <form id="myForm" class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
+
             <input id="keyword" type="text" class="nav-search" placeholder="Search anything . . ." name="keyword">
-        </form>
+            <div style="float:right;">
+            <table>
+            <tr>
+            <td></td>
+            <td><input name="searchOption" type="radio" id="rdbtitle" value="suggestions" checked="checked" style="margin-left: 1em;" onchange="runScript(this.value);"/> Title </td>
+            <td><input name="searchOption" type="radio" id="rdbtopic" value="topic_suggestions" style="margin-left: 1em;" onchange="runScript(this.value);" /> Topic </td>
+            <td><input name="searchOption" type="radio" id="rdbdate" value="Date" style="margin-left: 1em;" onchange="runDate();" /> Date </td>
+            </tr>
+            </table>
+            </div>
+                    
+        </form>        
+
 
 
 

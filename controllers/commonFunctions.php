@@ -306,11 +306,49 @@ function searchPost($keyword) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 showErrorMessage("No posts found"); 
 	}
 	$conn->close();
 	return $resArr;
 }
+
+function searchPostByDate($keyword) {
+	 $conn = connectToDataBase();
+	 $sql = "SELECT * FROM posts WHERE timestamp lIKE '%$keyword%' AND published = 1";
+	 $result = $conn->query($sql);
+	 $resArr = array();
+
+	 if ($result->num_rows > 0) {
+	   // output data of each row
+	   while($row = $result->fetch_assoc()) {
+	   		$resArr[] = $row;
+	   }
+	 } else {
+	   	showErrorMessage("No posts found");
+	 }
+	 $conn->close();
+	 return $resArr;
+}
+
+function searchTopic($keyword) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM topics WHERE title lIKE '%$keyword%' AND published = 1";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No topics found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+
 
 //for uploading of imageSizefunction uploadImage($imageName, $imageType, $imageSize, $imageTmpName, $imageError){
 //returns string finalImageName
