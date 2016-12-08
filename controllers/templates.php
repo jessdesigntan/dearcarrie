@@ -50,24 +50,22 @@ function head($title, $ogTitle){
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
 
-    <script type="text/javascript"
-        src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript"
-        src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-        <link rel="stylesheet" type="text/css"
-        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
 
-        <script type="text/javascript">
-                $(document).ready(function(){
-                    $("#keyword").autocomplete({
-                        source:'getautocomplete.php',
-                        minLength:1,
-                        select: function(event,ui){
-                             $("#keyword").val(ui.item.value); //Set the new value for the textbox once user selects an item in the list
-                             $(".searchform").submit(); // To submit the form in order to retrieve the results
-                          }
-                    });
-                });
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  
+        <script>
+          $(document).ready(function(){
+            $( "#keyword" ).autocomplete({
+              source: "suggestions.php",
+              select: function(event,ui){
+                $("#keyword").val(ui.item.value); /*Set the new value for the textbox once user selects an item in the list*/
+                $(".searchform").submit(); /*To submit the form in order to retrieve the results*/
+              }
+            });
+          })
+
         </script>
 
   </head>
@@ -111,8 +109,10 @@ function navbar() {
           </li>
         </ul>
         <form class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
-            <input type="text" class="nav-search" placeholder="Search anything . . ." name="keyword" id="keyword">
+            <input id="keyword" type="text" class="nav-search" placeholder="Search anything . . ." name="keyword">
         </form>
+
+
 
 
         <ul class="nav navbar-nav navbar-right">
