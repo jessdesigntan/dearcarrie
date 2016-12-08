@@ -185,11 +185,12 @@ input {
   display: none !important;
 }
 
-.topics-comma > * ::after {
+
+.topics-comma > *::after {
   content: ',';
 }
 
-.topics-comma > * :last-child::after {
+.topics-comma > *:last-child::after {
   content: '';
 }
 
