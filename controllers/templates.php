@@ -148,38 +148,11 @@ function navbar() {
             </ul>
           </li>
         </ul>
-<<<<<<< HEAD
         <form id="myForm" class="navbar-form navbar-left hide-mobile" action="search" method="get">
-
-            <input id="search_keyword_id" type="text" class="search_keyword" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
-            <div id="result"></div>
-
-        </form>
-=======
-        <form id="myForm" class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
-
-            <input id="keyword" type="text" class="nav-search" placeholder="Search anything . . ." name="keyword">
+            <input id="search_keyword_id" type="text" class="search_keyword nav-search" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
             <button type="submit" class="hidden-submit"></button>
-
-
-
-            <div style="float:right;">
-              <table>
-                <tr>
-                  <td></td>
-                  <td><input name="searchOption" type="radio" id="rdbtitle" value="suggestions" checked="checked" style="margin-left: 1em;" onchange="runScript(this.value);"/> Title </td>
-                  <td><input name="searchOption" type="radio" id="rdbtopic" value="topic_suggestions" style="margin-left: 1em;" onchange="runScript(this.value);" /> Topic </td>
-                  <td><input name="searchOption" type="radio" id="rdbdate" value="Date" style="margin-left: 1em;" onchange="runDate();" /> Date </td>
-                </tr>
-              </table>
-            </div>
-
+            <div id="result"></div>
         </form>
-
-
-
-
-
 
         <ul class="nav navbar-nav navbar-right">
           <!-- not signed in -->

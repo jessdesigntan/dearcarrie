@@ -13,9 +13,6 @@
   }
   #search_keyword_id
   {
-    width:300px;
-    border:solid 1px #CDCDCD;
-    padding:10px;
     font-size:14px;
   }
   #result
@@ -32,9 +29,9 @@
   .show
   {
     font-family:tahoma;
-    padding:10px; 
+    padding:10px;
     border-bottom:1px #CDCDCD dashed;
-    font-size:15px; 
+    font-size:15px;
   }
   .show:hover
   {
