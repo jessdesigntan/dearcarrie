@@ -296,7 +296,7 @@ function countPostByUserID($id) {
 
 function searchPost($keyword) {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts WHERE title lIKE '%$keyword%' OR description LIKE '%$keyword%' AND published = 1";
+	$sql = "SELECT * FROM posts WHERE (title lIKE '%$keyword%' OR description LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND published = 1";
 	$result = $conn->query($sql);
 	$resArr = array();
 

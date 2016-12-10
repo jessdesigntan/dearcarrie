@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <?php
   include('controllers/templates.php');
-  $keyword = $_GET["keyword"];
-  $searchOption = $_GET["searchOption"];
+  $keyword = $_GET["search_keyword_id"];
 ?>
 
 <html lang="en">
@@ -27,24 +26,12 @@
             <a href="#">Sort by Relevance &#9662;</a>
           </div>
           <?php
-            if ($searchOption == "suggestions") {
+
                 $posts = searchPost($keyword);
                 foreach ($posts as $post) {
                   card($post["id"]);
                 }
-            }
-            else if($searchOption == "topic_suggestions"){
-                $topics = searchTopic($keyword);
-              foreach ($topics as $topic) {
-                topicCard($topic["id"]);
-              }
-            }
-            else {
-                $posts = searchPostByDate($keyword);
-                foreach ($posts as $post) {
-                  card($post["id"]);
-                }
-            }
+          
           ?>
         </div><!-- END left column col-sm-9 -->
 

@@ -12,21 +12,24 @@
  * @param $title show page title
  * @return <head> html codes
  */
-function head($title, $ogTitle){
+function head($title){
 ?>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="http://imgur.com/a/qtFfN">
-    <?php if($ogTitle == "" || $ogTitle == null) { ?>
+<!--     <?php if($ogTitle == "" || $ogTitle == null) { ?>
       <meta property="og:title" content="<?=$ogTitle;?>">
     <?php } else { ?>
       <meta property="og:title" content="Write to Carrie about your problems">
-    <?php } ?>
+    <?php } ?> -->
     <title><?=$title;?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Autocomplete -->
+    <link href="css/autocomplete.css" rel="stylesheet">
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -50,64 +53,61 @@ function head($title, $ogTitle){
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
 
-    <!-- autocomplete for top search bar -->
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <script src="js/jquery-1.9.1.js"></script>
-    <script src="js/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+      $(function(){
+      $(".search_keyword").keyup(function() 
+      { 
+          var search_keyword_value = $(this).val();
+          var dataString = 'search_keyword='+ search_keyword_value;
+          if(search_keyword_value!='')
+          {
+              $.ajax({
+                  type: "POST",
+                  url: "suggestions.php",
+                  data: dataString,
+                  cache: false,
+                  success: function(html)
+                      {
+                          $("#result").html(html).show();
+                      }
+              });
+          }
+          else{
 
-        <script>
-          $(document).ready(function(){
-            $( "#keyword" ).autocomplete({
-              source: "suggestions.php",
-              select: function(event,ui){
-                $("#keyword").val(ui.item.value); /*Set the new value for the textbox once user selects an item in the list*/
-                $(".searchform").submit(); /*To submit the form in order to retrieve the results*/
-              }
-            });
-          })
+            $("#result").fadeOut();
+          }
 
-
-    <script>
-
-    $(document).ready(function(){
-
-              runScript("suggestions");
-
-    })
-
-
-    function runScript(x){
-
-        $("#keyword").datepicker("destroy");
-
-        $( "#keyword" ).autocomplete({
-                source: x + ".php",
-                select: function(event,ui){
-                    $("#keyword").val(ui.item.value); /*Set the new value for the textbox once user selects an item in the list*/
-                    $(".searchform").submit(); /*To submit the form in order to retrieve the results*/
-                }
-         });
-
-
-
-    }
-
-
-    function runDate(){
-
-      $( "#keyword" ).datepicker({
-        dateFormat: 'yy-mm-dd',
-        onSelect : function(){
-        $('.searchform').submit();   
-    }
+          return false;    
       });
 
+      $('#result').click(function(e){ 
+
+            var $clicked = $(e.target);
+            var el = $clicked[0].tagName.toLowerCase();
+            if (el == 'strong'){
+            $clicked = $clicked.parent();
+            }
+            else if (el == 'span'){
+            $clicked = $clicked.parent();
+            }
+
+            var $name = $clicked.find('.posts_details').html();  
+            var decoded = $("<div/>").html($name).text();
+            decoded = decoded.split(":")[1].trim();
+            $('#search_keyword_id').val(decoded);
 
 
-    }
-    
+            $("#myForm").submit();
 
-    </script>
+
+       });
+   
+       
+
+      });
+
+</script>
 
 
   </head>
@@ -151,23 +151,12 @@ function navbar() {
             </ul>
           </li>
         </ul>
-        <form id="myForm" class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
+        <form id="myForm" class="navbar-form navbar-left hide-mobile" action="search" method="get">
 
-            <input id="keyword" type="text" class="nav-search" placeholder="Search anything . . ." name="keyword">
-            <div style="float:right;">
-            <table>
-            <tr>
-            <td></td>
-            <td><input name="searchOption" type="radio" id="rdbtitle" value="suggestions" checked="checked" style="margin-left: 1em;" onchange="runScript(this.value);"/> Title </td>
-            <td><input name="searchOption" type="radio" id="rdbtopic" value="topic_suggestions" style="margin-left: 1em;" onchange="runScript(this.value);" /> Topic </td>
-            <td><input name="searchOption" type="radio" id="rdbdate" value="Date" style="margin-left: 1em;" onchange="runDate();" /> Date </td>
-            </tr>
-            </table>
-            </div>
+            <input id="search_keyword_id" type="text" class="search_keyword" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
+            <div id="result"></div>
                     
         </form>        
-
-
 
 
 
@@ -706,3 +695,4 @@ function errorAlert($msg) {
 }
 
 ?>
+
