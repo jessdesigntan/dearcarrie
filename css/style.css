@@ -34,6 +34,7 @@
   33. post-empty-state
   34. btn-group overwrites
   35. media overwrites
+  36. segment-nav
 */
 
 /*=============================
@@ -1588,4 +1589,63 @@ form.editable-fields select:hover {
   font-size: 11px;
   margin: 0;
   text-align: center;
+}
+
+/*=============================
+    36. segment-nav
+===============================*/
+.segment-nav > ul {
+  padding: 0;
+  list-style-type: none;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.segment-nav > ul > li {
+  display: inline-block;
+  margin: 0;
+}
+
+.segment-nav > ul > li > a {
+  padding: 10px 15px;
+  display: inline-block;
+  color: #333;
+}
+
+.segment-nav > ul > li > a:hover {
+  text-decoration: none;
+}
+
+.segment-nav > ul > li > a.active,  .segment-nav > ul > li > a.active:hover {
+  border-bottom: 2px solid #333;
+  font-weight: bold;
+  color: #333;
+}
+
+.segment-nav > ul > li > a:hover {
+  border-bottom: 2px solid var(--light-border);
+  font-weight: bold;
+  color: var(--light-text);
+}
+
+
+@media only screen and (max-width: 767px) {
+  .segment-nav > ul > li {
+    display: block;
+    text-align: center;
+    border: 1px solid var(--light-border);
+  }
+
+  .segment-nav > ul > li > a {
+    width: 100%;
+  }
+
+  .segment-nav > ul > li > a.active {
+    background: #333;
+    display: block;
+    border: 1px solid var(--light-border);
+  }
+
+  .segment-nav > ul > li > a.active {
+    color: white;
+  }
 }

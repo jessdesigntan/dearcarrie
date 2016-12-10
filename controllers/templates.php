@@ -388,6 +388,8 @@ function suggestedCard($id) {
 function topicCard($id) {
   $topic = getTopicByID($id);
   $postCount = countPostByTopicID($id);
+  $followingTopic = isFollowingTopic($_SESSION["userid"],$topic["id"]);
+  $followerCount = countFollowersByTopicID($topic["id"]);
 ?>
   <div class="card topic-card">
     <div class="image">
@@ -398,15 +400,29 @@ function topicCard($id) {
       <a href="topicDetails?topicID=<?=$topic["id"];?>">
         <h4><?=$topic["title"];?></h4>
         <p><?=$topic["description"];?></p>
-        <div class="followers"><?=$topic["followers"];?> Followers</div>
+        <div class="followers"><?=$followerCount;?> Followers</div>
         <div class="posts"><?=$postCount;?> Posts</div>
       </a>
     </div>
 
     <div class="action">
-      <?php if (!checkLogin()) { ?>
-        <a class="primary-line-btn">Follow Topic</a>
-      <?php } ?>
+      <?php
+        if (!checkLogin()) {
+          if ($followingTopic) { //user following topic
+      ?>
+            <form>
+              <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn1" type="button" class="primary-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
+            </form>
+      <?php
+        } else { //user not following topic
+      ?>
+          <form>
+            <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="followBtn1" type="button" class="primary-line-btn" value="Follow Topic">
+          </form>
+      <?php
+          }
+        }
+      ?>
     </div>
   </div>
 <?php
@@ -705,4 +721,87 @@ function errorAlert($msg) {
 <?php
 }
 
+
+
+function commentCardProfile($id) {
+  $comment = getCommentByID($id);
+  $user = getUserByID($comment["userid"]);
+  $likedComment = hasLikedComment($_SESSION["userid"],$id);
+  $commentLikes = countCommentsLikes($id);
+  $post = getPostByID($comment["postid"]);
+?>
+  <div class="card edit comment-card">
+    <div class="header">
+      <div class="image">
+        <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
+      </div>
+      <div class="author-details">
+        <div>
+          <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+          in
+          <a href="post?postID=<?=$post["id"];?>"><?=$post["title"];?></a>
+          <!-- only for psychiatrist -->
+          <?php if ($user["role"] == "expert") { ?>
+            <span class="label label-primary" style="text-transform:uppercase;"><?=$user["role"];?></span>
+          <?php } ?>
+          <!-- /only for psychiatrist -->
+        </div>
+        <div class="date no-after"><?=$comment["datetime"];?></div>
+        <?php if ($user["id"] == $_SESSION["userid"]) { ?>
+        <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <?php } ?>
+      </div>
+    </div>
+
+    <div class="content">
+      <p><?=$comment["comment"];?></p>
+    </div>
+
+    <div class="footer">
+      <div class="float-left">
+        <?php
+          if (!checkLogin()) {
+            if ($likedComment) { //user has liked the post
+        ?>
+              <form class="like-inline">
+                <input onclick="unlikeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likeCommentBtn<?=$id;?>" type="button">
+                <p><?=$commentLikes;?> Likes</p>
+              </form>
+
+        <?php
+            } else {
+        ?>
+              <form class="like-inline">
+                <input onclick="likeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikeCommentBtn<?=$id;?>" type="button">
+                <p><?=$commentLikes;?> Likes</p>
+              </form>
+        <?php
+            }
+          }
+        ?>
+      </div>
+    </div>
+  </div>
+  <script src="js/likeComment.js"></script>
+<?php
+}
+
+function userCard($id) {
+  $user = getUserByID($id);
+?>
+  <div class="card">
+    <div class="header" style="margin-bottom:0;">
+      <div class="image">
+        <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
+      </div>
+      <div class="author-details">
+        <div>
+          <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+        </div>
+        <div><?=$user["description"];?></div>
+      </div>
+    </div>
+  </div>
+<?php
+}
 ?>

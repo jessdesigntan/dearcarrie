@@ -306,7 +306,7 @@ function searchPost($keyword) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found"); 
+		 showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -715,6 +715,83 @@ function getPostTopics ($postid) {
 		 while($row = $result->fetch_assoc()) {
 			 $resArr[] = $row;
 		 }
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+function getPostsLikedByUser($userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT *
+					FROM posts p
+					INNER JOIN post_like l ON p.id = l.postid
+					WHERE l.userid = '$userid'
+				 ";
+
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+function getCommentsByUserID($userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT *
+					FROM comments
+					WHERE userid='$userid'
+				 ";
+
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+function getFollowing($userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM user_follow WHERE follower = '$userid'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+function getFollowers($userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM user_follow WHERE userid = '$userid'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
 	}
 
 	$conn->close();
