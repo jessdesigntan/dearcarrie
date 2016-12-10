@@ -35,6 +35,7 @@
   34. btn-group overwrites
   35. media overwrites
   36. segment-nav
+  37. dropdown
 */
 
 /*=============================
@@ -1648,4 +1649,36 @@ form.editable-fields select:hover {
   .segment-nav > ul > li > a.active {
     color: white;
   }
+}
+
+/*=============================
+    38. dropdown
+===============================*/
+a.dropdown:hover {
+  text-decoration: none;
+}
+
+a.dropdown > ul {
+  display: none;
+  list-style-type: none;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding-left: 20px;
+}
+
+a.dropdown > ul > li {
+  padding: 8px 5px;
+}
+
+a.dropdown > ul > li:hover {
+  color: #333;
+}
+
+a.dropdown:hover > ul {
+  display: block;
+  position: absolute;
+  background-color: var(--light-border);
+  right: 0;
 }
