@@ -581,10 +581,19 @@ a:hover {
   -o-transition: width 0.5s ease;
   -ms-transition: width 0.5s ease;
   transition: width 0.5s ease;
+  position: relative;
 }
 
 .nav-search:focus {
   width: 350px;
+}
+
+.hidden-submit {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 20px;
+  opacity: 0;
 }
 /*=============================
     8. side-content
