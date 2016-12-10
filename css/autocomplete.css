@@ -2,7 +2,6 @@
 
 <style type="text/css">
   .web{
-    font-family:tahoma;
     size:12px;
     top:10%;
     border:1px solid #CDCDCD;
@@ -11,32 +10,27 @@
     width:38%;
     margin:auto;
   }
-  #search_keyword_id
-  {
-    font-size:14px;
-  }
+
   #result
   {
     position:absolute;
-    width:300px;
+    width:350px;
     display:none;
-    margin-top:-1px;
+    margin-top:-2px;
     border-top:0px;
     overflow:hidden;
-    border:1px #CDCDCD solid;
-    background-color: white;
+    background-color: #f3f3f3;
   }
   .show
   {
-    font-family:tahoma;
     padding:10px;
-    border-bottom:1px #CDCDCD dashed;
-    font-size:15px;
+    border-top:1px #ddd solid;
+    font-size:13px;
   }
   .show:hover
   {
-    background:#364956;
-    color:#FFF;
+    background:#e7e7e7;
+    color:#333;
     cursor:pointer;
   }
 </style>

@@ -570,7 +570,8 @@ a:hover {
   background-color: var(--light-border);
   border: none;
   box-shadow: none;
-  border-radius: 16px;
+  /*border-radius: 16px;*/
+  border-radius: 3px;
   background: rgba(0,0,0,0.05) url('../images/icon-search.svg') no-repeat 7px center;
   height: 34px;
   padding-left: 30px;
@@ -1692,6 +1693,10 @@ a.dropdown:hover > ul {
   right: 0;
 }
 
+/*=============================
+    39. badge
+===============================*/
+
 .badge {
   background-color: var(--light-border);
   color: var(--primary-color);
@@ -1701,3 +1706,8 @@ a.dropdown:hover > ul {
   top: 15px;
   border-radius: 3px;
 }
+
+
+/*=============================
+    40. autocomplete
+===============================*/

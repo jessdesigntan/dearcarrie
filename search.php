@@ -2,6 +2,7 @@
 <?php
   include('controllers/templates.php');
   $keyword = $_GET["search_keyword_id"];
+  $posts = searchPost($keyword);
 ?>
 
 <html lang="en">
@@ -32,22 +33,17 @@
             </a>
           </div>
           <!-- do an if-else for posts count -->
-          <div class="post-empty-state">
-              <div>
-                  <h4>No posts found</h4>
-              </div>
-          </div>
-          <!-- /do an if-else for posts count -->
-
-
-          <?php
-
-                $posts = searchPost($keyword);
-                foreach ($posts as $post) {
-                  card($post["id"]);
-                }
-          
-          ?>
+          <?php if(count($posts) == 0) { ?>
+            <div class="post-empty-state">
+                <div>
+                    <h4>No posts found</h4>
+                </div>
+            </div>
+          <?php } else {
+            foreach ($posts as $post) {
+              card($post["id"]);
+            }
+          }?>
         </div><!-- END left column col-sm-9 -->
 
       </div>
