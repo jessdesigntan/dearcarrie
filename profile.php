@@ -123,10 +123,10 @@
       }
       xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-              followBtn = this.responseText;
-              unfollowBtn = this.responseText;
-              $('#followBtn1').val(this.responseText);
-              $('#unfollowBtn1').val(this.responseText);
+              followBtn = this.responseText.trim();
+              unfollowBtn = this.responseText.trim();
+              $('#followBtn1').val(this.responseText.trim());
+              $('#unfollowBtn1').val(this.responseText.trim());
           }
       };
       xmlhttp.open("GET","followFunctions?userid="+userid+"&currentuser="+currentUser+"&action=followuser",true);
@@ -147,10 +147,10 @@
       }
       xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-              followBtn = this.responseText;
-              unfollowBtn = this.responseText;
-              $('#followBtn1').val(this.responseText);
-              $('#unfollowBtn1').val(this.responseText);
+              followBtn = this.responseText.trim();
+              unfollowBtn = this.responseText.trim();
+              $('#followBtn1').val(this.responseText.trim());
+              $('#unfollowBtn1').val(this.responseText.trim());
           }
       };
       //xmlhttp.open("GET","unfollowPosts?userid="+userid+"&postid="+postid,true);

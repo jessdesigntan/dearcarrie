@@ -98,14 +98,14 @@ function head($title, $ogTitle){
       $( "#keyword" ).datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect : function(){
-        $('.searchform').submit();   
+        $('.searchform').submit();
     }
       });
 
 
 
     }
-    
+
 
     </script>
 
@@ -164,8 +164,8 @@ function navbar() {
             </tr>
             </table>
             </div>
-                    
-        </form>        
+
+        </form>
 
 
 
@@ -291,7 +291,7 @@ function card($id) {
       ?>
     </div>
     <div class="float-right">
-      <a href="#"><?=$commentCount?> comments</a>
+      <a href="post?postID=<?=$post["id"];?>#commentsDiv"><?=$commentCount?> comments</a>
       <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
       data-content="
         <a href='#' title='test add link'>Report</a>
