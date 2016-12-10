@@ -1691,3 +1691,13 @@ a.dropdown:hover > ul {
   background-color: var(--light-border);
   right: 0;
 }
+
+.badge {
+  background-color: var(--light-border);
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 9px;
+  padding: 5px 7px;
+  top: 15px;
+  border-radius: 3px;
+}

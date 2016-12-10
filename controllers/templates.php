@@ -53,11 +53,11 @@ function head($title){
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
 
-    
+
     <script type="text/javascript">
       $(function(){
-      $(".search_keyword").keyup(function() 
-      { 
+      $(".search_keyword").keyup(function()
+      {
           var search_keyword_value = $(this).val();
           var dataString = 'search_keyword='+ search_keyword_value;
           if(search_keyword_value!='')
@@ -78,10 +78,10 @@ function head($title){
             $("#result").fadeOut();
           }
 
-          return false;    
+          return false;
       });
 
-      $('#result').click(function(e){ 
+      $('#result').click(function(e){
 
             var $clicked = $(e.target);
             var el = $clicked[0].tagName.toLowerCase();
@@ -92,7 +92,7 @@ function head($title){
             $clicked = $clicked.parent();
             }
 
-            var $name = $clicked.find('.posts_details').html();  
+            var $name = $clicked.find('.posts_details').html();
             var decoded = $("<div/>").html($name).text();
             decoded = decoded.split(":")[1].trim();
             $('#search_keyword_id').val(decoded);
@@ -101,7 +101,7 @@ function head($title){
             $("#myForm").submit();
 
        });
- 
+
       });
 
       </script>
@@ -119,6 +119,7 @@ function head($title){
  */
 function navbar() {
   $featuredTopics = displayFeaturedTopics();
+  $countNotifications = count(getUnseenNotificationCount($_SESSION["userid"]));
 ?>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid page-container">
@@ -152,8 +153,8 @@ function navbar() {
 
             <input id="search_keyword_id" type="text" class="search_keyword" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
             <div id="result"></div>
-                    
-        </form>        
+
+        </form>
 =======
         <form id="myForm" class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
 
@@ -174,7 +175,9 @@ function navbar() {
             </div>
 
         </form>
->>>>>>> ec6f2bf71871239f8c94d0ae9cb0ca7b8ede643c
+
+
+
 
 
 
@@ -201,12 +204,22 @@ function navbar() {
 
           <li class="dropdown hide-mobile">
             <?php if (!checkLogin()) { ?>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION["name"];?> <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <?=$_SESSION["name"];?>
+              <?php if($countNotifications != 0) { ?>
+              <span class="badge"><?=$countNotifications?></span>
+              <?php } ?>
+              <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu">
               <li><a href="profile?userID=<?=$_SESSION["userid"];?>">Profile</a></li>
               <li><a href="addPost">Add Post</a></li>
               <li><a href="editProfile?userID=<?=$_SESSION["userid"];?>">Edit Profile</a></li>
-              <li><a href="notifications">Notifications</a></li>
+              <li><a href="notifications">Notifications
+                <?php if($countNotifications != 0) { ?>
+                  <span class="badge"><?=$countNotifications;?></span></a>
+                <?php } ?>
+              </li>
               <?php if (checkRole($_SESSION["role"], "admin")) { ?>
                 <li role="separator" class="divider"></li>
                 <li><a href="dashboard">Admin Dashboard</a></li>
@@ -812,4 +825,3 @@ function userCard($id) {
 <?php
 }
 ?>
-

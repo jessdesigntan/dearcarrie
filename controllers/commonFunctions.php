@@ -798,4 +798,106 @@ function getFollowers($userid) {
 	return $resArr;
 }
 
+function getNotificationsByUserID($userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN posts p ON n.item = p.id
+					WHERE n.type = 'post_follow' AND p.userid='$userid'
+					UNION
+					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN users u ON n.item = u.id
+					WHERE n.type = 'user_follow' AND u.id='$userid'
+					UNION
+					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN posts p ON n.item = p.id
+					WHERE n.type = 'post_like' AND p.userid='$userid'
+					UNION
+					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN comments c ON n.item = c.id
+					INNER JOIN posts p ON p.id = c.postid
+					WHERE n.type = 'new_comment' AND p.userid='$userid'
+					UNION
+					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN comments c ON n.item = c.id
+					WHERE n.type = 'comment_like' AND c.userid='$userid'
+				";
+
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+function getUserNameByID($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT * FROM users WHERE id = '$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	return $value;
+}
+
+function changeNotificationSeen($item, $type, $from_user) {
+	$conn = connectToDataBase();
+
+	$sql = "UPDATE notifications SET seen=1 WHERE item='$item' AND type='$type' AND from_user='$from_user'";
+	validateQuery($conn, $sql);
+}
+
+function getUnseenNotificationCount($userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN posts p ON n.item = p.id
+					WHERE n.type = 'post_follow' AND p.userid='$userid' AND n.seen=0
+					UNION
+					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN users u ON n.item = u.id
+					WHERE n.type = 'user_follow' AND u.id='$userid' AND n.seen=0
+					UNION
+					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN posts p ON n.item = p.id
+					WHERE n.type = 'post_like' AND p.userid='$userid' AND n.seen=0
+					UNION
+					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN comments c ON n.item = c.id
+					INNER JOIN posts p ON p.id = c.postid
+					WHERE n.type = 'new_comment' AND p.userid='$userid' AND n.seen=0
+					UNION
+					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
+					FROM notifications n
+					INNER JOIN comments c ON n.item = c.id
+					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.seen=0
+				";
+
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
 ?>

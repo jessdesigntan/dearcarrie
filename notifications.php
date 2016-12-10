@@ -2,6 +2,7 @@
 <?php
   include('controllers/templates.php');
   redirectNonUsers();
+  $notifications = getNotificationsByUserID($_SESSION["userid"]);
 ?>
 
 <html lang="en">
@@ -15,36 +16,45 @@
               <div class="content-title">
                   <h4>Notifications</h4>
               </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="profile">
-                          <img class="media-object" src="images/default.svg">
-                      </a>
-                  </div>
-                  <div class="media-body">
-                      <a href="profile" class="primary-color">Jess Tan</a> is following you now
-                      <div class="new pull-right primary-color">&bull;</div>
-                  </div>
+              <?php
+              foreach($notifications as $notification) {
+                $user = getUserNameByID($notification["from_user"]);
+                $comment = getCommentByID($notification["item"]);
+                changeNotificationSeen($notification["item"],$notification["type"],$notification["from_user"]);
 
-                  <div class="media-right">
-                      <p class="small light-text">10 Days</p>
-                  </div>
-              </div>
-              <div class="media active">
-                  <div class="media-left">
-                      <a href="profile">
-                          <img class="media-object" src="images/default.svg">
-                      </a>
-                  </div>
-                  <div class="media-body">
-                      <a href="profile" class="primary-color">Jess Tan</a> is following you now
-                      <div class="new pull-right primary-color">&bull;</div>
-                  </div>
+                if (!$notification["seen"]) {
+                    echo '<div class="media active">';
+                }
 
-                  <div class="media-right">
-                      <p class="small light-text">10 Days</p>
-                  </div>
-              </div>
+                else {
+                  echo '<div class="media">';
+                }
+              ?>
+                <!--<div class="media active">-->
+                    <div class="media-left">
+                        <a href="profile">
+                            <img class="media-object" src="<?=$user["image"];?>">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a>
+                        <?php if ($notification["type"] == "user_follow") { ?>
+                              is following you now
+                        <?php } if ($notification["type"] == "post_like") { ?>
+                              like your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
+                        <?php } if ($notification["type"] == "new_comment") { ?>
+                              commented on your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
+                        <?php } if ($notification["type"] == "comment_like") { ?>
+                              liked your <a href="post?postID=<?=$comment["postid"];?>" class="primary-color">comment</a>
+                        <?php } ?>
+                        <div class="new pull-right primary-color">&bull;</div>
+                    </div>
+
+                    <div class="media-right">
+                        <p class="small light-text">10 Days</p>
+                    </div>
+                </div>
+              <?php } ?>
           </div><!-- END left column col-sm-8 -->
       </div>
     </div><!-- END page-container -->
