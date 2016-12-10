@@ -162,7 +162,7 @@ function navbar() {
           <?php } ?>
           <!-- /not signed in -->
 
-          <!-- signed in -->
+          <!-- signed in for mobile -->
           <?php if (!checkLogin()) { ?>
             <li><a href="addPost" class="cta-btn" >Post</a></li>
             <li class="show-mobile"><a href="profile" class="light-text"><?=$_SESSION["name"];?></a></li>
@@ -173,8 +173,10 @@ function navbar() {
             <li class="show-mobile"><a href="notifications" class="light-text">Notifications</a></li>
             <li class="show-mobile"><a href="logout" class="light-text">Logout</a></li>
           <?php } ?>
-          <!-- /signed in -->
+          <!-- /signed in for mobile-->
 
+
+          <!-- signed in for desktop -->
           <li class="dropdown hide-mobile">
             <?php if (!checkLogin()) { ?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -190,9 +192,9 @@ function navbar() {
               <li><a href="editProfile?userID=<?=$_SESSION["userid"];?>">Edit Profile</a></li>
               <li><a href="notifications">Notifications
                 <?php if($countNotifications != 0) { ?>
-                  <span class="badge"><?=$countNotifications;?></span></a>
+                  <span class="badge"><?=$countNotifications;?></span>
                 <?php } ?>
-              </li>
+              </a></li>
               <?php if (checkRole($_SESSION["role"], "admin")) { ?>
                 <li role="separator" class="divider"></li>
                 <li><a href="dashboard">Admin Dashboard</a></li>
