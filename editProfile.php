@@ -5,6 +5,7 @@
   $user = getUserByID($userID);
   redirectNonUsers();
   goBackIfNotEqual($_SESSION["userid"], $userID);
+  $errorMsg = $_GET["msg"];
 ?>
 
 <html lang="en">
@@ -44,24 +45,33 @@
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading"><h4>Password</h4></div>
-            <div class="panel-body">
-              <form>
-                <div class="form-group">
-                  <label>Old Password</label>
-                  <input type="password" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label>New Password</label>
-                  <input type="password" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label>Confirm New Password</label>
-                  <input type="password" class="form-control">
-                </div>
-                <button class="primary-line-btn" type="submit">Change Password</button>
-              </form>
-            </div>
+              <div class="panel-heading"><h4>Password</h4></div>
+              <div class="panel-body">
+                  <div class="alert alert-danger alert-dismissable fade in" id="alert">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <p id="errorMsg"></p>
+                  </div>
+                  <?php
+                      if(!ifEmpty($errorMsg)) {
+                          errorAlert($errorMsg);
+                      }
+                  ?>
+                  <form id="pwForm" method="post" action="editPasswordProcess" name="pwForm">
+                      <div class="form-group">
+                          <label>Old Password</label>
+                          <input name="password_old" type="password" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <label>New Password</label>
+                          <input name="password_new" type="password" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <label>Confirm New Password</label>
+                          <input name="password_confirm" type="password" class="form-control">
+                      </div>
+                      <button class="primary-line-btn" type="submit">Change Password</button>
+                  </form>
+              </div>
           </div>
         </div>
       </div><!-- ./row -->
@@ -70,5 +80,36 @@
 
     <?= footer(); ?>
   </body>
+
+    <script>
+    $("#alert").hide();
+
+    $('#pwForm').submit(function() {
+      //set variables
+      var oldpw = document.forms["pwForm"]["password_old"].value;
+      var newpw = document.forms["pwForm"]["password_new"].value;
+      var cfmpw = document.forms["pwForm"]["password_confirm"].value;
+      var validation = true;
+      var msg = "";
+
+      if (oldpw == null || oldpw == "") {
+        validation = false;
+        msg += "Please fill up your current password. ";
+      }
+
+      //check if new password is correct
+      if (newpw != cfmpw || newpw  == null || newpw == "") {
+        validation = false;
+        msg += "Please make sure your new password is the same for both fields";
+      }
+
+      if (!validation) {
+        document.getElementById("errorMsg").innerHTML = msg;
+        $(".alert").show();
+      }
+
+      return validation;
+    });
+    </script>
 
 </html>
