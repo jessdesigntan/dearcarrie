@@ -100,15 +100,11 @@ function head($title){
 
             $("#myForm").submit();
 
-
        });
-   
-       
-
+ 
       });
 
-</script>
-
+      </script>
 
   </head>
 
@@ -151,12 +147,34 @@ function navbar() {
             </ul>
           </li>
         </ul>
+<<<<<<< HEAD
         <form id="myForm" class="navbar-form navbar-left hide-mobile" action="search" method="get">
 
             <input id="search_keyword_id" type="text" class="search_keyword" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
             <div id="result"></div>
                     
         </form>        
+=======
+        <form id="myForm" class="navbar-form navbar-left hide-mobile searchform" action="search" method="get">
+
+            <input id="keyword" type="text" class="nav-search" placeholder="Search anything . . ." name="keyword">
+            <button type="submit" class="hidden-submit"></button>
+
+
+
+            <div style="float:right;">
+              <table>
+                <tr>
+                  <td></td>
+                  <td><input name="searchOption" type="radio" id="rdbtitle" value="suggestions" checked="checked" style="margin-left: 1em;" onchange="runScript(this.value);"/> Title </td>
+                  <td><input name="searchOption" type="radio" id="rdbtopic" value="topic_suggestions" style="margin-left: 1em;" onchange="runScript(this.value);" /> Topic </td>
+                  <td><input name="searchOption" type="radio" id="rdbdate" value="Date" style="margin-left: 1em;" onchange="runDate();" /> Date </td>
+                </tr>
+              </table>
+            </div>
+
+        </form>
+>>>>>>> ec6f2bf71871239f8c94d0ae9cb0ca7b8ede643c
 
 
 
@@ -280,7 +298,7 @@ function card($id) {
       ?>
     </div>
     <div class="float-right">
-      <a href="#"><?=$commentCount?> comments</a>
+      <a href="post?postID=<?=$post["id"];?>#commentsDiv"><?=$commentCount?> comments</a>
       <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
       data-content="
         <a href='#' title='test add link'>Report</a>
@@ -377,6 +395,8 @@ function suggestedCard($id) {
 function topicCard($id) {
   $topic = getTopicByID($id);
   $postCount = countPostByTopicID($id);
+  $followingTopic = isFollowingTopic($_SESSION["userid"],$topic["id"]);
+  $followerCount = countFollowersByTopicID($topic["id"]);
 ?>
   <div class="card topic-card">
     <div class="image">
@@ -387,15 +407,29 @@ function topicCard($id) {
       <a href="topicDetails?topicID=<?=$topic["id"];?>">
         <h4><?=$topic["title"];?></h4>
         <p><?=$topic["description"];?></p>
-        <div class="followers"><?=$topic["followers"];?> Followers</div>
+        <div class="followers"><?=$followerCount;?> Followers</div>
         <div class="posts"><?=$postCount;?> Posts</div>
       </a>
     </div>
 
     <div class="action">
-      <?php if (!checkLogin()) { ?>
-        <a class="primary-line-btn">Follow Topic</a>
-      <?php } ?>
+      <?php
+        if (!checkLogin()) {
+          if ($followingTopic) { //user following topic
+      ?>
+            <form>
+              <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn1" type="button" class="primary-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
+            </form>
+      <?php
+        } else { //user not following topic
+      ?>
+          <form>
+            <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="followBtn1" type="button" class="primary-line-btn" value="Follow Topic">
+          </form>
+      <?php
+          }
+        }
+      ?>
     </div>
   </div>
 <?php
@@ -694,5 +728,88 @@ function errorAlert($msg) {
 <?php
 }
 
+
+
+function commentCardProfile($id) {
+  $comment = getCommentByID($id);
+  $user = getUserByID($comment["userid"]);
+  $likedComment = hasLikedComment($_SESSION["userid"],$id);
+  $commentLikes = countCommentsLikes($id);
+  $post = getPostByID($comment["postid"]);
+?>
+  <div class="card edit comment-card">
+    <div class="header">
+      <div class="image">
+        <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
+      </div>
+      <div class="author-details">
+        <div>
+          <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+          in
+          <a href="post?postID=<?=$post["id"];?>"><?=$post["title"];?></a>
+          <!-- only for psychiatrist -->
+          <?php if ($user["role"] == "expert") { ?>
+            <span class="label label-primary" style="text-transform:uppercase;"><?=$user["role"];?></span>
+          <?php } ?>
+          <!-- /only for psychiatrist -->
+        </div>
+        <div class="date no-after"><?=$comment["datetime"];?></div>
+        <?php if ($user["id"] == $_SESSION["userid"]) { ?>
+        <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <?php } ?>
+      </div>
+    </div>
+
+    <div class="content">
+      <p><?=$comment["comment"];?></p>
+    </div>
+
+    <div class="footer">
+      <div class="float-left">
+        <?php
+          if (!checkLogin()) {
+            if ($likedComment) { //user has liked the post
+        ?>
+              <form class="like-inline">
+                <input onclick="unlikeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likeCommentBtn<?=$id;?>" type="button">
+                <p><?=$commentLikes;?> Likes</p>
+              </form>
+
+        <?php
+            } else {
+        ?>
+              <form class="like-inline">
+                <input onclick="likeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikeCommentBtn<?=$id;?>" type="button">
+                <p><?=$commentLikes;?> Likes</p>
+              </form>
+        <?php
+            }
+          }
+        ?>
+      </div>
+    </div>
+  </div>
+  <script src="js/likeComment.js"></script>
+<?php
+}
+
+function userCard($id) {
+  $user = getUserByID($id);
+?>
+  <div class="card">
+    <div class="header" style="margin-bottom:0;">
+      <div class="image">
+        <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
+      </div>
+      <div class="author-details">
+        <div>
+          <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+        </div>
+        <div><?=$user["description"];?></div>
+      </div>
+    </div>
+  </div>
+<?php
+}
 ?>
 

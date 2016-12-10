@@ -24,19 +24,19 @@
                       <button class="primary-line-btn" type="submit" id="commentsDiv">Submit</button>
                   </form>
                   <hr/>
-                  <?php
-                    foreach ($comments as $comment) {
-                      commentCard($comment["id"]);
-                    }
-                  ?>
               <?php } else { ?>
-                  <div class="post-empty-state">
-                      <div>
-                          <h4>Sign up to start commenting</h4>
-                          <a class="primary-line-btn" href="signup">Sign up</a>
-                      </div>
-                  </div>
+                <div class="post-empty-state mBottom-20">
+                    <div>
+                        <h4>Sign up to start commenting</h4>
+                        <a class="primary-line-btn" href="signup">Sign up</a>
+                    </div>
+                </div>
               <?php } ?>
+              <?php
+                foreach ($comments as $comment) {
+                  commentCard($comment["id"]);
+                }
+              ?>
         </div><!-- END right column col-sm-8 -->
 
       </div>

@@ -5,6 +5,11 @@
   $user = getUserByID($userID);
   $followingUser = isFollowingUser($_SESSION["userid"], $user["id"]);
   $topics = getTopicsFollowedByUserID($userID);
+  $likedPosts = getPostsLikedByUser($userID);
+  $comments = getCommentsByUserID($userID);
+  $topicCount = countTopicsFollowedByUserID($userID);
+  $followingUsers = getFollowing($userID);
+  $followers = getFollowers($userID);
 ?>
 
 <html lang="en">
@@ -28,7 +33,7 @@
             <div class="details">
                 <p><?=countPostByUserID($userID);?> Posts</p>
                 <p><?=countFollowersByUserID($userID);?> Followers</p>
-                <a href="#" data-toggle="modal" data-target="#topicsModal">Following <?=countTopicsFollowedByUserID($userID);?> Topics</a>
+                <p><?=$topicCount;?> Topics</p>
             </div>
             <div class="button">
                 <?php
@@ -51,19 +56,26 @@
             </div>
           </div>
 
-          <div class="content-title">
-            <?php if ($_SESSION["userid"] == $userID) {?>
-              <h4>Your Posts</h4>
-            <?php } else { ?>
-              <h4><?=$user["name"];?>'s Posts</h4>
-            <?php } ?>
+          <div class="segment-nav">
+              <ul>
+                  <li><a id="postTab" onclick="nav(this.id)">Posts</a></li>
+                  <?php if ($_SESSION["userid"] == $userID) {?>
+                    <li><a id="likeTab" onclick="nav(this.id)">Your Likes</a></li>
+                    <li><a id="commentTab" onclick="nav(this.id)">Your Comments</a></li>
+                    <li><a id="topicTab" onclick="nav(this.id)">Topics</a></li>
+                  <?php } ?>
+                  <li><a id="followingTab" onclick="nav(this.id)">Following</a></li>
+                  <li><a id="followTab" onclick="nav(this.id)">Followers</a></li>
+              </ul>
           </div>
+
+          <!-- 1. post div -->
           <?php
             $posts = displayAllPostByUserID($userID);
 
             if (count($posts) == 0) {
           ?>
-              <div class="post-empty-state">
+              <div class="post-empty-state" id="postDiv">
                   <div>
                       <h4>No posts yet</h4>
                       <a class="primary-line-btn" href="addPost">Write something</a>
@@ -72,90 +84,122 @@
           <?php
             }
             else {
-              foreach ($posts as $post) {
-                card($post["id"]);
-              }
-            }
           ?>
-        </div>
+          <div id="postDiv">
+            <?php
+                foreach ($posts as $post) {
+                  card($post["id"]);
+                }
+            ?>
+          </div>
+          <?php
+            }
+          ?><!-- 1. /post div -->
+
+          <!-- 2. /likes div -->
+          <div id="likesDiv">
+              <?php
+              if (count($likedPosts) == 0) {
+              ?>
+                <div class="post-empty-state">
+                    <div>
+                        <h4>No likes yet</h4>
+                    </div>
+                </div>
+              <?php
+              } else {
+                foreach($likedPosts as $likedPost) {
+                  card($likedPost["id"]);
+                }
+              }
+              ?>
+          </div>
+          <!-- 2. /likes div -->
+
+          <!-- 3. /comment div -->
+          <div id="commentsDiv">
+              <?php
+                if (count($likedPosts) == 0) {
+              ?>
+                <div class="post-empty-state">
+                    <div>
+                        <h4>No comments yet</h4>
+                    </div>
+                </div>
+              <?php
+                } else {
+                  foreach($comments as $comment) {
+                    commentCardProfile($comment["id"]);
+                  }
+                }
+              ?>
+          </div>
+          <!-- 3. /comment div -->
+
+          <!-- 4. /topics div -->
+          <div id="topicsDiv">
+              <?php if (count($topics) == 0) { ?>
+                <div class="post-empty-state">
+                    <div>
+                        <h4>Not following any topics yet</h4>
+                        <a class="primary-line-btn" href="topic">View Topics</a>
+                    </div>
+                </div>
+              <?php
+                } else {
+                  foreach($topics as $topic) {
+                  topicCard($topic["id"]);
+                }
+              }
+              ?>
+          </div>
+          <!-- 4. /comment div -->
+
+          <!-- 5. /following div -->
+          <div id="followingDiv">
+              <?php if (count($followingUsers) == 0) { ?>
+                <div class="post-empty-state">
+                    <div>
+                        <h4>Not following anyone yet</h4>
+                    </div>
+                </div>
+              <?php
+                } else {
+                  foreach($followingUsers as $followingUser) {
+                  userCard($followingUser["userid"]);
+                }
+              }
+              ?>
+          </div>
+          <!-- 5. /following div -->
+
+          <!-- 6. /follower div -->
+          <div id="followersDiv">
+              <?php if (count($followers) == 0) { ?>
+                <div class="post-empty-state">
+                    <div>
+                        <h4>No followers yet</h4>
+                    </div>
+                </div>
+              <?php
+                } else {
+                  foreach($followers as $follower) {
+                  userCard($follower["follower"]);
+                }
+              }
+              ?>
+          </div>
+          <!-- 6. /follower div -->
+
+        </div><!-- ./col-sm-8 -->
       </div><!-- ./row -->
 
-      <div class="modal fade" id="topicsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Topics</h4>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                  <?php
-                    foreach ($topics as $topic) {
-                  ?>
-                    <div class="col-sm-12">
-                      <?= topicCard($topic["id"]); ?>
-                    </div><!-- END col-sm-12 -->
-                  <?php } ?>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
 
     <?= footer(); ?>
   </body>
-  <script>
-  var followBtn = "Follow";
-  var unfollowBtn = "Following";
 
-  function followUser(currentUser, userid) {
-      if (followBtn == "Following") {
-          unfollowUser(currentUser, userid);
-          return;
-      }
-      if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-      } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-              followBtn = this.responseText;
-              unfollowBtn = this.responseText;
-              $('#followBtn1').val(this.responseText);
-              $('#unfollowBtn1').val(this.responseText);
-          }
-      };
-      xmlhttp.open("GET","followFunctions?userid="+userid+"&currentuser="+currentUser+"&action=followuser",true);
-      xmlhttp.send();
-  }
-
-  function unfollowUser(currentUser, userid) {
-      if (unfollowBtn == "Follow") {
-          followUser(currentUser, userid);
-          return;
-      }
-      if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-      } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-              followBtn = this.responseText;
-              unfollowBtn = this.responseText;
-              $('#followBtn1').val(this.responseText);
-              $('#unfollowBtn1').val(this.responseText);
-          }
-      };
-      //xmlhttp.open("GET","unfollowPosts?userid="+userid+"&postid="+postid,true);
-      xmlhttp.open("GET","followFunctions?userid="+userid+"&currentuser="+currentUser+"&action=unfollowuser",true);
-      xmlhttp.send();
-  }
-  </script>
+  <script src="js/profile.js"></script>
+  <script src="js/followTopic.js"></script>
 </html>
