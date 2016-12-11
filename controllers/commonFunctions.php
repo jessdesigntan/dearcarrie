@@ -919,10 +919,14 @@ function calculateDays($date) {
 
 	// and you might want to convert to integer
 	$numberDays = intval($numberDays);
+
 	if ($numberDays == 0 | $numberDays == 1) {
 		return "1 day ago";
-	} else {
+	} else if ($numberDays < 30) {
 		return $numberDays." days ago";
+	}
+	else {
+		return date('d-M-y',strtotime($date));
 	}
 }
 ?>
