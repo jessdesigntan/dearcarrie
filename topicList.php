@@ -47,7 +47,6 @@
             <tbody>
             <?php
               foreach ($topics as $topic) {
-                $postCount = countPostByTopicID($topic["id"]);
             ?>
             <tr>
                 <td><?=$topic["date"];?></td>
@@ -63,8 +62,8 @@
                       <span class="label label-primary"><?=$topic["type"];?></span>
                     <?php } ?>
                 </td>
-                <td><?=$topic["followers"];?></td>
-                <td><?=$postCount;?></td>
+                <td><?= countFollowersByTopicID($topic["id"]); ?></td>
+                <td><?= countPostByTopicID($topic["id"]); ?></td>
                 <td><a href="adminTopicDetails?topicID=<?=$topic["id"];?>" class="admin-sec-color">View</a></td>
             </tr>
             <?php } ?>

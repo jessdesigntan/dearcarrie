@@ -92,8 +92,8 @@
                             <td><?=$post["id"];?><input type="hidden" name="postid" value="<?=$post["id"];?>"></td>
                             <td><a href="userDetails?userID=<?=$post["userid"];?>"><?=$post["userid"];?></a></td>
                             <td><?=$post["timestamp"];?></td>
-                            <td><?=$post["likes"];?></td>
-                            <td><?=$post["comments"];?></td>
+                            <td><?= countPostLikes($post["id"]); ?></td>
+                            <td><?= countCommentsByPostID($post["id"]); ?></td>
                             <td><?php echo displayPubStatus($post["published"]);?></td>
                         </tr>
                     </table>

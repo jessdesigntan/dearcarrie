@@ -572,6 +572,16 @@ function countFollowersByUserID($id) {
 	return $value["total"];
 }
 
+function countFollowingByUserID($userid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM user_follow WHERE follower='$userid'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
 function countTopicsFollowedByUserID($id) {
 	$conn = connectToDataBase();
 	$sql = "SELECT COUNT(*) AS total FROM topic_follow WHERE userid='$id'";

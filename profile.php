@@ -33,6 +33,7 @@
             <div class="details">
                 <p><?=countPostByUserID($userID);?> Posts</p>
                 <p><?=countFollowersByUserID($userID);?> Followers</p>
+                <p><?=countFollowingByUserID($userID);?> Following</p>
                 <p><?=$topicCount;?> Topics</p>
             </div>
             <div class="button">

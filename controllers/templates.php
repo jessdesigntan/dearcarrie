@@ -731,18 +731,18 @@ function userCard($id) {
   $user = getUserByID($id);
 ?>
   <div class="card">
-    <div class="header" style="margin-bottom:0;">
-      <div class="image">
-        <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
-      </div>
-      <div class="author-details">
-        <div>
-          <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+      <div class="header" style="margin-bottom:0;">
+        <div class="image">
+          <a href="profile?userID=<?=$user["id"];?>"><img src="<?=$user["image"];?>"></a>
         </div>
-        <div><?=$user["description"];?></div>
+        <div class="author-details">
+          <div>
+            <a href="profile?userID=<?=$user["id"];?>"><?=$user["name"];?></a>
+          </div>
+          <div><?=$user["description"];?></div>
+        </div>
       </div>
     </div>
-  </div>
 <?php
 }
 ?>

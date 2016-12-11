@@ -4,7 +4,6 @@
   redirectToLogin($_SESSION["role"], "admin");
   $topicID = $_GET["topicID"];
   $topic = getTopicByID($topicID);
-  $postCount = countPostByTopicID($topicID);
 ?>
 
 <html lang="en">
@@ -49,8 +48,8 @@
                         </tr>
                         <tr>
                             <td><?=$topic["id"];?><input type="hidden" name="topicid" value="<?=$topic["id"];?>"></td>
-                            <td><?=$topic["followers"];?></td>
-                            <td><?=$postCount;?></td>
+                            <td><?= countFollowersByTopicID($topic["id"]); ?></td>
+                            <td><?= countPostByTopicID($topic["id"]); ?></td>
                             <td><?=$topic["score"];?></td>
                         </tr>
                     </table>

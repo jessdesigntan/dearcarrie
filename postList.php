@@ -49,8 +49,8 @@
                 <!-- remember to do a substring function to keep the text to one line -->
                 <td><?=$post["title"];?></td>
                 <td><a href="userDetails?userID=<?=$post["userid"];?>"><?=$post["userid"];?></a></td>
-                <td>43</td>
-                <td>10</td>
+                <td><?= countPostLikes($post["id"]); ?></td>
+                <td><?= countCommentsByPostID($post["id"]); ?></td>
                 <td><a href="postDetails?postID=<?=$post["id"];?>" class="admin-sec-color">View</a></td>
             </tr>
             <?php } ?>

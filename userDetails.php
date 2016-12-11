@@ -39,12 +39,16 @@
                             <th>ID</th>
                             <th>Email</th>
                             <th>Date Joined</th>
+                            <th>Followers</th>
+                            <th>Following</th>
                             <th>Role</th>
                         </tr>
                         <tr>
                             <td><?=$user["id"];?><input type="hidden" name="userid" value="<?=$user["id"];?>"></td>
                             <td><?=$user["email"];?></td>
                             <td><?=$user["datejoin"];?></td>
+                            <td><?=countFollowersByUserID($user["id"]);?></td>
+                            <td><?=countFollowingByUserID($user["id"]);?></td>
                             <td>
                                 <select name="role">
                                     <option <?php if($user["role"]=="admin") echo "selected" ?> value="admin">Admin</option>
@@ -95,35 +99,14 @@
                         <tr>
                             <td><?=$post["id"];?></td>
                             <td><?=$post["title"];?></td>
-                            <td><?=$post["likes"];?></td>
-                            <td><?=$post["comments"];?></td>
+                            <td><?= countPostLikes($post["id"]); ?></td>
+                            <td><?= countCommentsByPostID($post["id"]); ?></td>
                             <td><a href="postDetails?postID=<?=$post["id"];?>" class="admin-sec-color">View</a></td>
                         </tr>
                         <?php } ?>
                     </table>
                 </div><!-- END top 10 post today-->
 
-                <nav aria-label="Page navigation">
-                    <center>
-                      <ul class="pagination">
-                          <li>
-                              <a href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                              </a>
-                          </li>
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#">5</a></li>
-                          <li>
-                              <a href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                              </a>
-                          </li>
-                      </ul>
-                    </center>
-                </nav>
             </div><!-- ./col-sm-8 -->
         </div><!-- ./row -->
     </div><!-- ./page-container -->

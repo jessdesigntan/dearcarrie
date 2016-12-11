@@ -88,7 +88,7 @@
                       <?php if ($topic["tel"] != null) { ?>
                       <div class="mBottom-40">
                           <p>Tel: <?=$topic["tel"];?></p>
-                          <a href="#"><?=$topic["url"];?></a>
+                          <a href="<?=$topic['url'];?>"><?=$topic["url"];?></a>
                       </div>
                       <?php } ?>
                       <div class="dual-hero">
