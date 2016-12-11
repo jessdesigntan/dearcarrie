@@ -195,7 +195,7 @@ function card($id) {
         ?>
        </span>
       </div>
-      <div class="date"><?=$post["timestamp"];?></div>
+      <div class="date"><?php echo calculateDays($post['timestamp']); ?></div>
       <div class="views"><?=$post["views"];?></div>
     </div>
   </div>
@@ -276,7 +276,7 @@ function suggestedCard($id) {
         ?>
        </span>
       </div>
-      <div class="date"><?=$post["timestamp"];?></div>
+      <div class="date"><?php echo calculateDays($post['timestamp']); ?></div>
       <div class="views"><?=$post["views"];?></div>
     </div>
   </div>
@@ -397,7 +397,7 @@ function cardExpand($postID) {
              ?>
             </span>
         </div>
-        <div class="date"><?=$post["timestamp"];?></div>
+        <div class="date"><?php echo calculateDays($post['timestamp']); ?></div>
         <div class="views"><?=$post["views"];?></div>
       </div>
       <?php
@@ -489,7 +489,7 @@ function commentCard($id) {
           <?php } ?>
           <!-- /only for psychiatrist -->
         </div>
-        <div class="date no-after"><?=$comment["datetime"];?></div>
+        <div class="date no-after"><?php echo calculateDays($comment['datetime']); ?></div>
         <?php if ($user["id"] == $_SESSION["userid"]) { ?>
         <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
         <?php } ?>
