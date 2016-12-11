@@ -15,20 +15,20 @@ if ($action == "update") {
           WHERE id = '$postid'";
 }
 
-else if ($action == "publish") {
+if ($action == "publish") {
   // if delete
   $sql = "UPDATE posts
           SET published = 1
           WHERE id = '$postid'";
 }
 
-else if ($action == "unpublish") {
+if ($action == "unpublish") {
   $sql = "UPDATE posts
           SET published = 0
           WHERE id = '$postid'";
 }
 
-else if ($action == "topic") {
+if ($action == "topic") {
   //delete previous topics
   $sql = "DELETE FROM curation WHERE postid = '$postid'";
   $result = $conn->query($sql);
@@ -45,8 +45,7 @@ else if ($action == "topic") {
 
 }
 
-//$result = $conn->query($sql);
-//validateQuery($conn, $sql);
+validateQuery($conn, $sql);
 
 //Re-direct
 header("location: postDetails?postID=$postid");
