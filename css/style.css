@@ -36,6 +36,9 @@
   35. media overwrites
   36. segment-nav
   37. dropdown
+  38. badge
+  39. autocomplete
+  40. fixed-share-sidebar
 */
 
 /*=============================
@@ -1662,7 +1665,7 @@ form.editable-fields select:hover {
 }
 
 /*=============================
-    38. dropdown
+    37. dropdown
 ===============================*/
 a.dropdown:hover {
   text-decoration: none;
@@ -1695,7 +1698,7 @@ a.dropdown:hover > ul {
 }
 
 /*=============================
-    39. badge
+    38. badge
 ===============================*/
 
 .badge {
@@ -1710,7 +1713,7 @@ a.dropdown:hover > ul {
 
 
 /*=============================
-    40. autocomplete
+    39. autocomplete
 ===============================*/
 .web {
   size:12px;
@@ -1741,4 +1744,56 @@ a.dropdown:hover > ul {
   background:#e7e7e7;
   color:#333;
   cursor:pointer;
+}
+
+/*=============================
+    40. fixed-share-sidebar
+===============================*/
+
+.fixed-share-sidebar {
+  position: fixed;
+  display: block;
+  background-color: #f7f7f7;
+  padding: 15px;
+  right: 0;
+  text-align: center;
+}
+
+.fixed-share-sidebar > h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.fixed-share-sidebar > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.fixed-share-sidebar > ul > li {
+  margin-bottom: 20px;
+}
+
+.fixed-share-sidebar > ul > li > a:hover {
+  transition: all 0.3s ease 0s;
+}
+
+.fixed-share-sidebar > ul > li > a:hover {
+  opacity: 0.7;
+}
+
+.fixed-share-sidebar > ul > li:last-child {
+  margin-bottom: 0;
+}
+
+.fixed-share-sidebar img {
+  width: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+  .fixed-share-sidebar {
+    display: none;
+  }
 }

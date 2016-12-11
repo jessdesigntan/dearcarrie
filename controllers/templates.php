@@ -233,15 +233,6 @@ function card($id) {
     </div>
     <div class="float-right">
       <a href="post?postID=<?=$post["id"];?>#commentsDiv"><?=$commentCount?> comments</a>
-      <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
-      data-content="
-        <a href='#' title='test add link'>Report</a>
-        <a href='#' title='test add link'>Share</a>
-        "
-      ><img src="images/dots.svg"></a>
-      <script>
-        $("[data-toggle=popover]").popover({html:true})
-      </script>
     </div>
   </div>
 </div>
@@ -375,7 +366,6 @@ function cardExpand($postID) {
   $followingPost = isFollowingPost($_SESSION["userid"], $post["id"]);
   $likedPost = hasLikedPost($_SESSION["userid"], $post["id"]);
   $postLikeCount = countPostLikes($postID);
-  $commentCount = countCommentsByPostID($postID);
 ?>
   <div class="card mBottom-40 edit">
     <div class="header">
@@ -451,16 +441,7 @@ function cardExpand($postID) {
       </div>
 
       <div class="float-right">
-        <a href="#commentsDiv"><?=$commentCount?> comments</a>
-        <a href="#" class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
-        data-content="
-          <a href='#' title='test add link'>Report</a>
-          <a href='#' title='test add link'>Share</a>
-          "
-        ><img src="images/dots.svg"></a>
-        <script>
-          $("[data-toggle=popover]").popover({html:true})
-        </script>
+        <a href="#commentsDiv">Report</a>
       </div>
     </div>
   </div>
@@ -524,15 +505,7 @@ function commentCard($id) {
         ?>
       </div>
       <div class="float-right">
-        <a class="dots-icon" data-placement="bottom" tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
-        data-content="
-          <a href='#' title='test add link'>Delete</a>
-          <a href='#' title='test add link'>Share</a>
-          "
-        ><img src="images/dots.svg"></a>
-        <script>
-          $("[data-toggle=popover]").popover({html:true})
-        </script>
+        <a href="#">Report</a>
       </div>
     </div>
   </div>
