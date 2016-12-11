@@ -28,9 +28,6 @@ function head($title){
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-    <!-- Autocomplete -->
-    <link href="css/autocomplete.css" rel="stylesheet">
-
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
@@ -48,63 +45,12 @@ function head($title){
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/autocomplete.js"></script>
 
     <!-- wow.js for css animations & initialization -->
     <script src="js/wow.js"></script>
     <script>new WOW().init();</script>
 
-
-    <script type="text/javascript">
-      $(function(){
-      $(".search_keyword").keyup(function()
-      {
-          var search_keyword_value = $(this).val();
-          var dataString = 'search_keyword='+ search_keyword_value;
-          if(search_keyword_value!='')
-          {
-              $.ajax({
-                  type: "POST",
-                  url: "suggestions.php",
-                  data: dataString,
-                  cache: false,
-                  success: function(html)
-                      {
-                          $("#result").html(html).show();
-                      }
-              });
-          }
-          else{
-
-            $("#result").fadeOut();
-          }
-
-          return false;
-      });
-
-      $('#result').click(function(e){
-
-            var $clicked = $(e.target);
-            var el = $clicked[0].tagName.toLowerCase();
-            if (el == 'strong'){
-            $clicked = $clicked.parent();
-            }
-            else if (el == 'span'){
-            $clicked = $clicked.parent();
-            }
-
-            var $name = $clicked.find('.posts_details').html();
-            var decoded = $("<div/>").html($name).text();
-            decoded = decoded.split(":")[1].trim();
-            $('#search_keyword_id').val(decoded);
-
-
-            $("#myForm").submit();
-
-       });
-
-      });
-
-      </script>
 
   </head>
 

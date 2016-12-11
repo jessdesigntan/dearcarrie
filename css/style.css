@@ -1676,6 +1676,7 @@ a.dropdown > ul {
   font-size: 11px;
   letter-spacing: 1px;
   padding-left: 20px;
+  z-index: 1;
 }
 
 a.dropdown > ul > li {
@@ -1711,3 +1712,33 @@ a.dropdown:hover > ul {
 /*=============================
     40. autocomplete
 ===============================*/
+.web {
+  size:12px;
+  top:10%;
+  border:1px solid #CDCDCD;
+  border-radius:10px;
+  padding:10px;
+  width:38%;
+  margin:auto;
+}
+
+#result {
+  position:absolute;
+  width:350px;
+  display:none;
+  margin-top:-2px;
+  border-top:0px;
+  overflow:hidden;
+  background-color: #f3f3f3;
+}
+.show {
+  padding:10px;
+  border-top:1px #ddd solid;
+  font-size:13px;
+}
+
+.show:hover {
+  background:#e7e7e7;
+  color:#333;
+  cursor:pointer;
+}
