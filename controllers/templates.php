@@ -378,6 +378,7 @@ function cardExpand($postID) {
   $followingPost = isFollowingPost($_SESSION["userid"], $post["id"]);
   $likedPost = hasLikedPost($_SESSION["userid"], $post["id"]);
   $postLikeCount = countPostLikes($postID);
+  reportModal("post", $postID, $postID);
 ?>
   <div class="card mBottom-40 edit">
     <div class="header">
@@ -453,7 +454,7 @@ function cardExpand($postID) {
       </div>
 
       <div class="float-right">
-        <a href="#commentsDiv">Report</a>
+        <a data-toggle="modal" data-target="#reportModal">Report</a>
       </div>
     </div>
   </div>
@@ -467,6 +468,7 @@ function commentCard($id) {
   $user = getUserByID($comment["userid"]);
   $likedComment = hasLikedComment($_SESSION["userid"],$id);
   $commentLikes = countCommentsLikes($id);
+  reportModal("comment", $id, $comment["postid"]);
 ?>
   <div class="card edit comment-card">
     <div class="header">
@@ -517,11 +519,32 @@ function commentCard($id) {
         ?>
       </div>
       <div class="float-right">
-        <a href="#">Report</a>
+        <a onclick="showReportForm(<?=$id?>);">Report</a>
+      </div>
+      <div class="report-form" id="report-form<?=$id?>">
+        <hr/>
+        <form action="addReportProcess" method="post">
+          <label>Why are you reporting this comment?</label>
+          <input name="postid" type="hidden" value="<?=$comment["postid"]?>">
+          <input name="type" type="hidden" value="comment">
+          <input name="itemid" type="hidden" value="<?=$id?>">
+          <textarea name="desc" class="form-control mBottom-20" required></textarea>
+          <button onclick="hideReportForm(<?=$id?>)" type="button" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
       </div>
     </div>
   </div>
   <script src="js/likeComment.js"></script>
+  <script>
+    $(".report-form").hide();
+    function showReportForm(e) {
+      $("#report-form"+e).slideDown();
+    }
+    function hideReportForm(e) {
+      $("#report-form"+e).slideUp();
+    }
+  </script>
 <?php
 }
 
@@ -728,6 +751,32 @@ function userCard($id) {
         </div>
       </div>
     </div>
+<?php
+}
+
+function reportModal($itemtype, $itemid, $postid) {
+?>
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>Why are you reporting this post?</h4>
+      </div>
+      <form method="post" action="addReportProcess" class="comment-box">
+        <div class="modal-body">
+          <input name="postid" type="hidden" value="<?=$postid?>">
+          <input name="type" type="hidden" value="<?=$itemtype?>">
+          <input name="itemid" type="hidden" value="<?=$itemid?>">
+          <textarea name="desc" id="desc" rows="5" placeholder="Type here..." onkeyup="auto_grow(this)" required></textarea>
+        </div>
+      <div class="modal-footer">
+        <button type="submit" class="primary-line-btn">Submit</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <?php
 }
 ?>

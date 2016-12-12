@@ -929,14 +929,6 @@ a.facebook-btn:hover{
   overflow-y: auto;
 }
 
-.modal-header::after {
-  display: block;
-  width: 30px;
-  border-bottom: 2px solid black;
-  content: '';
-  margin: 20px auto 0 auto;
-}
-
 .modal-header {
   border-bottom: 0;
 }
@@ -957,39 +949,6 @@ a.facebook-btn:hover{
   }
 }
 
-.modal-open {
-  overflow: auto;
-}
-
-.modal-open[style] {
-  padding-right: 0px !important;
-  padding-left: 0px !important;
-}
-
-.modal-footer {
-  text-align: center;
-}
-
-.modal form label {
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: var(--medium-text);
-}
-
-.modal form input {
-  height: 45px;
-  border-radius: 0;
-  letter-spacing: 1px;
-}
-
-h4.modal-title {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
 
 /*=============================
     15. scroll to top
@@ -1829,4 +1788,12 @@ a.dropdown:hover > ul {
   right: 100%;
   width: 100%;
   height: 3px;
+}
+
+.report-form {
+  float: left;
+  clear: both;
+  margin-top: 10px;
+  width: 100%;
+  text-align: right;
 }

@@ -46,6 +46,7 @@ function redirectToLogin($userRole, $role) {
 /***************** DB INITIALIZATION *********************/
 function connectToDataBase() {
 	$theLineToDatabase =  mysqli_connect("localhost","root","root","dearcarrie");
+	//$theLineToDatabase =  mysqli_connect("localhost","tjljess60","123456","dearcarrie");
 
 	if(!$theLineToDatabase) {
 		header("location: error.php?msg=Database connection error");
