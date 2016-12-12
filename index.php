@@ -10,7 +10,7 @@
 
   <body>
     <?= navbar(); ?>
-
+    <div class="loader"></div>
     <div class="page-container">
       <div class="main-banner-grid row">
           <?php

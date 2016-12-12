@@ -49,11 +49,15 @@ function head($title){
 
     <!-- wow.js for css animations & initialization -->
     <script src="js/wow.js"></script>
+    <script src="js/pace.js"></script>
     <script>new WOW().init();</script>
-
+    <script>
+      $(window).load(function() {
+      	$(".loader").fadeOut("slow");
+      })
+    </script>
 
   </head>
-
 <?php
 }
 
