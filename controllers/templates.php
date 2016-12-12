@@ -102,7 +102,7 @@ function navbar() {
 
         <ul class="nav navbar-nav navbar-right">
           <!-- not signed in -->
-          <?php if (checkLogin()) { ?>
+          <?php if (checkLogin() && empty($_SESSION['FBID'])) { ?>
           <li><a href="login" class="light-text">Login</a></li>
           <li><a href="signup" class="cta-btn">Sign up</a></li>
           <?php } ?>
@@ -121,6 +121,14 @@ function navbar() {
           <?php } ?>
           <!-- /signed in for mobile-->
 
+          <!-- signed in Facebook-->
+          <?php if (isset($_SESSION['FBID'])) { ?>
+            <li><a href="addPost" class="cta-btn" >Post</a></li>
+            <li><img src="https://graph.facebook.com/<?php echo $_SESSION['FBID']; ?>/picture"></li>
+            <li><?php echo $_SESSION['FULLNAME']; ?></li>    
+            <li><a href="fblogout.php">Logout</a></li>
+          <?php } ?>
+          <!-- /signed in Facebook-->
 
           <!-- signed in for desktop -->
           <li class="dropdown hide-mobile">
