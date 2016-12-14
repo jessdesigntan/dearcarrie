@@ -930,4 +930,32 @@ function calculateDays($date) {
 		return date('d-M-y',strtotime($date));
 	}
 }
+
+function displayAllReports() {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM reports ORDER BY id DESC, seen DESC";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function getReportByID ($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT * FROM reports WHERE id = '$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	return $value;
+}
+
 ?>
