@@ -26,8 +26,8 @@
             $rows_returned = $query->num_rows;
         }
  
-	$bold_search_keyword = '<strong>'.$search_keyword.'</strong>';
-	if($rows_returned > 0){
+    	$bold_search_keyword = '<strong>'.$search_keyword.'</strong>';
+    	if($rows_returned > 0){
             while($rowRecord = $query->fetch_assoc()) 
             {		
                 echo '<div class="show" align="left"><span class="posts_details">'.str_ireplace($search_keyword,$bold_search_keyword,$rowRecord['source'].$rowRecord['title']).'</span></div>'; 	
@@ -35,5 +35,7 @@
         }else{
             echo '<div class="show" align="left">No matching records.</div>'; 	
         }
-    }	
+    } else {
+        echo '<div class="show">Search Data is Required</div>'
+    }
 ?>
