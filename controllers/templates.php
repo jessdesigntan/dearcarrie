@@ -183,9 +183,11 @@ function navbar() {
 function card($id) {
   $post = getPostByID($id);
   $user = getUserByID($post["userid"]);
-  $likedPost = hasLikedPost($_SESSION["userid"], $id);
-  $postLikeCount = countPostLikes($id);
-  $commentCount = countCommentsByPostID($id);
+  if(isset($_SESSION["userid"])){
+    $likedPost = hasLikedPost($_SESSION["userid"], $id);
+    $postLikeCount = countPostLikes($id);
+    $commentCount = countCommentsByPostID($id);
+  }
 ?>
 <div class="card">
   <div class="header">
