@@ -19,11 +19,6 @@ function head($title){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="http://imgur.com/a/qtFfN">
-<!--     <?php if($ogTitle == "" || $ogTitle == null) { ?>
-      <meta property="og:title" content="<?=$ogTitle;?>">
-    <?php } else { ?>
-      <meta property="og:title" content="Write to Carrie about your problems">
-    <?php } ?> -->
     <title><?=$title;?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -129,7 +124,7 @@ function navbar() {
           <?php if (isset($_SESSION['FBID'])) { ?>
             <li><a href="addPost" class="cta-btn" >Post</a></li>
             <li><img src="https://graph.facebook.com/<?php echo $_SESSION['FBID']; ?>/picture"></li>
-            <li><?php echo $_SESSION['FULLNAME']; ?></li>    
+            <li><?php echo $_SESSION['FULLNAME']; ?></li>
             <li><a href="fblogout.php">Logout</a></li>
           <?php } ?>
           <!-- /signed in Facebook-->
@@ -183,10 +178,10 @@ function navbar() {
 function card($id) {
   $post = getPostByID($id);
   $user = getUserByID($post["userid"]);
+  $postLikeCount = countPostLikes($id);
+  $commentCount = countCommentsByPostID($id);
   if(isset($_SESSION["userid"])){
     $likedPost = hasLikedPost($_SESSION["userid"], $id);
-    $postLikeCount = countPostLikes($id);
-    $commentCount = countCommentsByPostID($id);
   }
 ?>
 <div class="card">

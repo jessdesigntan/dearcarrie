@@ -1,6 +1,4 @@
 <?php
-ob_start();
-session_start();
 /***************** SESSION FUNCTIONS *********************/
 
 // return true if user is logged in
