@@ -1,8 +1,22 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
-<?php redirectToLogin($_SESSION["role"], "admin"); ?>
+<?php
+  include('controllers/templates.php');
+  redirectToLogin($_SESSION["role"], "admin");
+  $reports = displayAllReports();
+?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Report List"); ?>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
+  <style>
+  /* hard overwrite */
+  .form-control {
+    height: 30px !important;
+    border-radius: 0;
+    letter-spacing: 1px;
+    margin: 0 5px;
+  }
+  </style>
 
   <body>
     <?= navbar(); ?>
@@ -13,60 +27,52 @@
             <li><a href="dashboard">Dashboard</a></li>
             <li class="active"><a href="#">Report</a></li>
         </ol>
-        <div class="panel panel-default summary-panel">
-            <div class="panel-heading">
-                <h4 class="admin-sec-color">Total Report: 25</h4>
-            </div>
-            <table class="table table-hover table-bordered table-striped">
+        <table id="report-list" class="table table-hover table-bordered table-striped">
+            <thead>
                 <tr>
                     <th>Report ID</th>
                     <th>Date</th>
                     <th>User ID</th>
-                    <th>Post ID</th>
+                    <th>Type</th>
+                    <th>Item ID</th>
                     <th>Comment</th>
-                    <th>Status</th>
+                    <th>Seen</th>
                     <th></th>
                 </tr>
-                <?php for ($i=1; $i<=10; $i++) { ?>
+            </thead>
+            <tbody>
+                <?php foreach($reports as $report) { ?>
                 <tr>
-                    <td>123123</td>
-                    <td>12 Jan 2016</td>
-                    <td>5454</td>
-                    <td>34534</td>
-                    <td>Normal</td>
-                    <td>Seen/ unseen</td>
-                    <td><a href="reportDetails" class="admin-sec-color">View</a></td>
+                    <td><?=$report["id"];?></td>
+                    <td><?=$report["date"];?></td>
+                    <td><?=$report["userid"];?></td>
+                    <td><?=$report["type"];?></td>
+                    <td><?=$report["itemid"];?></td>
+                    <td><?=$report["comment"];?></td>
+                    <td><?=$report["seen"];?></td>
+                    <td><a href="reportDetails?reportID=<?=$report["id"];?>" class="admin-sec-color">View</a></td>
                 </tr>
                 <?php } ?>
-            </table>
-        </div><!-- END top 10 post today-->
-
-        <nav aria-label="Page navigation">
-            <center>
-              <ul class="pagination">
-                  <li>
-                      <a href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                      </a>
-                  </li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li>
-                      <a href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                      </a>
-                  </li>
-              </ul>
-            </center>
-        </nav>
+            </tbody>
+        </table>
     </div><!-- ./page-container -->
 
     <?php footer(); ?>
     <script>
         $("#reportNav").addClass("active");
+
+        $('#report-list').DataTable( {
+            columnDefs: [ {
+                targets: [ 0 ],
+                orderData: [ 0, 1 ]
+            }, {
+                targets: [ 1 ],
+                orderData: [ 1, 0 ]
+            }, {
+                targets: [ 4 ],
+                orderData: [ 4, 0 ]
+            } ]
+        } );
     </script>
   </body>
 
