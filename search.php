@@ -2,7 +2,45 @@
 <?php
   include('controllers/templates.php');
   $keyword = $_GET["search_keyword_id"];
-  $posts = searchPost($keyword);
+  //$posts = searchPost($keyword);
+  $conn = connectToDataBase();
+
+  if(!isset($_POST['value'])) {
+      $posts = searchPost($keyword);
+    }
+    else
+    {
+      if($_POST['value'] == 'allTime') {
+          // query to get all posts
+          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND published = 1";
+      }
+      elseif($_POST['value'] == 'today') {
+          // query to get all today's posts
+          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND DATE(timestamp) = curdate() AND published = 1";
+      }
+      elseif($_POST['value'] == 'thisMonth') {
+          // query to get all this month's posts
+          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) AND published = 1";
+      } 
+      elseif($_POST['value'] == 'thisYear') {
+          // query to get all this year's posts
+          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND YEAR(timestamp) = year(curdate()) AND published = 1";
+      }
+
+      $result = $conn->query($sql);
+      $posts = array();
+
+      if ($result->num_rows > 0) {
+         // output data of each row
+         while($row = $result->fetch_assoc()) {
+           $posts[] = $row;
+         }
+      } else {
+         showErrorMessage("No posts found");
+      }
+      $conn->close();
+    }
+ 
 ?>
 
 <html lang="en">
@@ -24,13 +62,19 @@
         <div class="col-sm-8">
           <div class="content-title">
             <h4>Search Results: <span class="primary-color"><?=$keyword;?></span></h4>
-            <a class="dropdown">Sort by &#9662;
-                <ul>
-                    <li>Today</li>
-                    <li>This month</li>
-                    <li>This year</li>
-                </ul>
-            </a>
+            
+              <form action="search.php?search_keyword_id=<?=$keyword;?>" method='post' name='form_filter'>
+              Show posts:<br>
+                <select name="value" onchange="this.form.submit()">
+                    <option value=""></option>
+                    <option value="allTime">All time</option>
+                    <option value="today">Today</option>
+                    <option value="thisMonth">This month</option>
+                    <option value="thisYear">This year</option>
+                </select>
+                  <!--<input type='submit' value = 'Filter'>-->
+              </form>
+            
           </div>
           <!-- do an if-else for posts count -->
           <?php if(count($posts) == 0) { ?>

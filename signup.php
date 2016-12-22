@@ -42,7 +42,7 @@
               <div class="text">Login with Facebook</div>
           </a>
           <hr/>
-          <a href="signup" class="primary-color"><center>Already signed up? Log in here.</center></a>
+          <a href="login" class="primary-color"><center>Already signed up? Log in here.</center></a>
         </div>
     </div><!-- END page-container -->
     <?= footer(); ?>

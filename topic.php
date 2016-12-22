@@ -35,7 +35,7 @@
             foreach ($curatedTopics as $topic) {
             $postCount = countPostByTopicID($topic["id"]);
             $followerCount = countFollowersByTopicID($topic["id"]);
-            $followingTopic = isFollowingTopic($_SESSION["userid"],$topic["id"]);
+            $followingTopic = isFollowingTopic(isset($_SESSION["userid"]),$topic["id"]);
           ?>
             <div class="col-sm-12">
                 <div class="card topic-card">

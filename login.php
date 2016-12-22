@@ -11,7 +11,7 @@
   <body>
     <?= navbar(); ?>
 
-    <?php if ($_SESSION['FBID']):  header("Location: /fyp");?>      <!--  After user login  -->
+    <?php if (isset($_SESSION['FBID'])):  header("Location: /fyp");?>      <!--  After user login  -->
      
     <?php else: ?>     <!-- Before login --> 
     <div class="page-container">

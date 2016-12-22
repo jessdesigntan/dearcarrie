@@ -51,8 +51,7 @@ function head($title){
       	$(".loader").fadeOut("slow");
       })
     </script>
-
-  </head>
+  </head> 
 <?php
 }
 
@@ -64,7 +63,9 @@ function head($title){
  */
 function navbar() {
   $featuredTopics = displayFeaturedTopics();
-  $countNotifications = count(getUnseenNotificationCount($_SESSION["userid"]));
+  if(isset($_SESSION["userid"])){
+    $countNotifications = count(getUnseenNotificationCount($_SESSION["userid"]));
+  }
 ?>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid page-container">
@@ -372,8 +373,10 @@ function topicCard($id) {
 function cardExpand($postID) {
   $post = getPostByID($postID);
   $user = getUserByID($post["userid"]);
-  $followingPost = isFollowingPost($_SESSION["userid"], $post["id"]);
-  $likedPost = hasLikedPost($_SESSION["userid"], $post["id"]);
+  if(isset($_SESSION["userid"])){
+    $followingPost = isFollowingPost($_SESSION["userid"], $post["id"]);
+    $likedPost = hasLikedPost($_SESSION["userid"], $post["id"]);
+  }
   $postLikeCount = countPostLikes($postID);
   reportModal("post", $postID, $postID);
 ?>
@@ -417,9 +420,10 @@ function cardExpand($postID) {
           }
         }
       ?>
-      <?php if($post["userid"] == $_SESSION["userid"]) { ?>
+      <?php if(isset($_SESSION["userid"])){
+        if($post["userid"] == $_SESSION["userid"]) { ?>
         <a class="edit" href="editPost?postID=<?=$post["id"];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-      <?php } ?>
+      <?php } } ?>
     </div>
 
     <div class="content">
@@ -547,11 +551,17 @@ function commentCard($id) {
 
 function sideFilter() {
 ?>
+
+  <a href="#" class="active">All Results<span class="badge">1.2k</span></a>
+
+  <br />
+
   <div class="content-title">
     <h4>Filter</h4>
   </div>
-  <a href="#" class="active">Posts<span class="badge">1.2k</span></a>
+  <a href="#">Posts<span class="badge">1.2k</span></a>
   <a href="#">Topics<span class="badge">6</span></a>
+  
   <script>staticBar('.filter-sidebar','30');</script>
 <?php
 }

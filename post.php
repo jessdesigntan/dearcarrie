@@ -25,14 +25,15 @@
         <div class="col-sm-8 col-sm-offset-2">
             <?= cardExpand($post["id"]); ?>
               <h4><?php if ($commentCount != 0) { echo $commentCount; } ?> Responses</h4>
-              <?php if ($_SESSION["userid"] != "") { ?>
+              <?php if(isset($_SESSION["userid"])){
+                if ($_SESSION["userid"] != "") { ?>
                   <form action="addCommentProcess" method="post" class="comment-box">
                       <input type="hidden" name="postid" value="<?=$postID;?>">
                       <textarea name="comment" placeholder="Write a comment..." onkeyup="auto_grow(this)"></textarea>
                       <button class="primary-line-btn" type="submit" id="commentsDiv">Submit</button>
                   </form>
                   <hr/>
-              <?php } else { ?>
+              <?php } } else { ?>
                 <div class="post-empty-state mBottom-20">
                     <div>
                         <h4>Sign up to start commenting</h4>
