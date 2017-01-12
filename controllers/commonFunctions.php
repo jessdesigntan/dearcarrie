@@ -136,7 +136,13 @@ function getCommentByID($id) {
 
 function displayAllPost() {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC";
+
+	$limit = 20; //limit for posts loaded
+	$page = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH); //get current page for scroll
+	//get current starting point of records
+	$start = (($page-1) * $limit);
+
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC LIMIT $start, $limit"; //added $start and $limit
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -146,7 +152,8 @@ function displayAllPost() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
+		exit();
 	}
 	$conn->close();
 	return $resArr;

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Dec 10, 2016 at 07:09 PM
--- Server version: 5.6.28
--- PHP Version: 7.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Jan 11, 2017 at 07:10 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -154,19 +154,28 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `userid`, `title`, `description`, `timestamp`, `score`, `likes`, `comments`, `views`, `published`) VALUES
-(2, 30, 'New', 'First Line<br />\nSecond line<br />\n<br />\nFourth line', '2016-11-30 12:01:27', 0, 0, 0, 0, 0),
+(2, 30, 'New', 'First Line<br />\nSecond line<br />\n<br />\nFourth line', '2017-01-11 06:08:52', 0, 0, 0, 0, 1),
 (3, 30, 'fd', 'fdf', '2016-11-30 11:55:32', 0, 0, 0, 0, 1),
 (4, 30, '111', '22222', '2016-11-30 11:55:35', 0, 0, 0, 0, 1),
 (5, 30, 'fgfg', 'fgfgf', '2016-11-30 11:55:39', 0, 0, 0, 0, 1),
 (6, 30, 'fgfg', 'fgfgf', '2016-11-30 11:55:41', 0, 0, 0, 0, 1),
 (7, 30, 'fgfg', 'fgfgf', '2016-11-30 11:55:42', 0, 0, 0, 0, 1),
-(8, 30, 'fgfg', 'fgfgf', '2016-11-30 12:01:20', 0, 0, 0, 0, 0),
-(9, 30, 'fgfg', 'fgfgf', '2016-11-30 12:00:58', 0, 0, 0, 0, 0),
-(10, 30, 'Title here', 'this is my story<br />\r\n<br />\r\nspace<br />\r\n<br />\r\none more time<br />\r\ntesting', '2016-11-30 12:00:30', 0, 0, 0, 0, 0),
-(11, 30, 'hahahaha', 'lolololool', '2016-11-30 11:57:16', 0, 0, 0, 0, 0),
-(12, 30, 'ok', 'change again', '2016-11-30 11:55:55', 0, 0, 0, 0, 0),
+(8, 30, 'fgfg', 'fgfgf', '2017-01-11 06:09:00', 0, 0, 0, 0, 1),
+(9, 30, 'fgfg', 'fgfgf', '2017-01-11 06:08:57', 0, 0, 0, 0, 1),
+(10, 30, 'Title here', 'this is my story<br />\r\n<br />\r\nspace<br />\r\n<br />\r\none more time<br />\r\ntesting', '2017-01-11 06:09:10', 0, 0, 0, 0, 1),
+(11, 30, 'hahahaha', 'lolololool', '2017-01-11 06:09:05', 0, 0, 0, 0, 1),
+(12, 30, 'ok', 'change again', '2017-01-11 06:09:15', 0, 0, 0, 0, 1),
 (13, 33, 'New title', 'So lame', '2016-12-02 15:16:13', 0, 0, 0, 0, 1),
-(14, 30, 'bipolar test', 'alalalalalalla bipolar', '2016-12-08 15:58:47', 0, 0, 0, 0, 1);
+(14, 30, 'bipolar test', 'alalalalalalla bipolar', '2016-12-08 15:58:47', 0, 0, 0, 0, 1),
+(15, 30, 'search', 'search filter', '2016-12-23 11:19:39', 0, 0, 0, 0, 1),
+(16, 34, 'trial', 'blog post', '2017-01-09 10:45:11', 0, 0, 0, 0, 1),
+(17, 34, 'here', 'posting', '2017-01-09 10:46:33', 0, 0, 0, 0, 1),
+(18, 34, 'testing', 'my story', '2017-01-09 10:46:51', 0, 0, 0, 0, 1),
+(19, 34, 'add', 'again', '2017-01-09 10:52:38', 0, 0, 0, 0, 1),
+(20, 34, 'strike', 'please', '2017-01-09 10:52:53', 0, 0, 0, 0, 1),
+(21, 34, 'yes', 'alright', '2017-01-09 10:53:07', 0, 0, 0, 0, 1),
+(22, 30, 'eat disorder', 'bulimia', '2017-01-11 06:08:16', 0, 0, 0, 0, 1),
+(23, 30, 'great', 'again', '2017-01-11 06:08:25', 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -410,7 +419,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `reports`
 --

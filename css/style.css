@@ -1797,3 +1797,7 @@ a.dropdown:hover > ul {
   width: 100%;
   text-align: right;
 }
+
+.loading-info{
+  text-align: center;
+}
