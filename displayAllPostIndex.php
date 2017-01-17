@@ -2,7 +2,7 @@
 
 include('controllers/templates.php');
 
-$posts = displayAllPost();
+$posts = displayAllPostIndex();
 foreach ($posts as $post) {
 	card($post["id"]);
 }
