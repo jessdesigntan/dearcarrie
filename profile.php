@@ -60,7 +60,7 @@
           <div class="segment-nav">
               <ul>
                   <li><a id="postTab" onclick="nav(this.id)">Posts</a></li>
-                  <?php if ($_SESSION["userid"] == $userID) {?>
+                  <?php if (isset($_SESSION["userid"]) && $_SESSION["userid"] == $userID) {?>
                     <li><a id="likeTab" onclick="nav(this.id)">Your Likes</a></li>
                     <li><a id="commentTab" onclick="nav(this.id)">Your Comments</a></li>
                     <li><a id="topicTab" onclick="nav(this.id)">Topics</a></li>
