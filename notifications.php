@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="media-right">
-                        <p class="small light-text">10 Days</p>
+                        <p class="small light-text"><?php echo calculateDays($notification['timestamp']); ?></p>
                     </div>
                 </div>
               <?php } ?>
