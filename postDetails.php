@@ -183,7 +183,7 @@
 
     <?php footer(); ?>
     <script>
-        $("#usersNav").addClass("active");
+        $("#postsNav").addClass("active");
         $("#postLink").addClass("active");
         $("#topicDiv").hide();
         $("#topicBtns").hide();

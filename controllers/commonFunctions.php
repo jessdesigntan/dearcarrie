@@ -1013,4 +1013,53 @@ function countReportsByPostID($id) {
 	return $value["total"];
 }
 
+function countTotalUsers() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM users";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function countTotalPosts() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM posts";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function countTotalComments() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM comments";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function displayAllPostOrderbyViews() {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY views DESC";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
 ?>
