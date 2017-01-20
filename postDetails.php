@@ -6,6 +6,8 @@
   $post = getPostByID($postID);
   $topics = displayAllTopicsOrderByTitleAsc();
   $postTopics = getAllTopicsByPostID($postID);
+  $reports = getAllReportsByPostID($postID);
+  $comments = getAllCommentsByPostID($postID);
 ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Post Details"); ?>
@@ -42,7 +44,7 @@
                           <a href="post?postID=<?=$post["id"];?>" class="btn btn-default btn-block">Go to post</a>
                           <hr/>
                           <p>No. of reports</p>
-                          <h4 class="primary-color">3</h4>
+                          <h4 class="primary-color"><?=countReportsByPostID($postID);?></h4>
                       </div>
                   </div>
                 </div><!-- ./col-sm-4 -->
@@ -118,36 +120,36 @@
                     </div><!-- END user details-->
 
                     <div class="panel panel-default summary-panel">
-                        <div class="panel-heading">All Reports (3)</div>
+                        <div class="panel-heading">All Reports (<?=countReportsByPostID($postID);?>)</div>
                         <table class="table table-hover table-bordered table-striped">
                             <tr>
                                 <th>User ID</th>
                                 <th>Date</th>
                                 <th>Comments</th>
                             </tr>
-                            <?php for ($i=1; $i<=3; $i++) { ?>
+                            <?php foreach ($reports as $report) { ?>
                             <tr>
-                                <td><a href="userDetails" class="admin-sec-color">123123</a></td>
-                                <td>12 Jan 2016</td>
-                                <td><a href="commentDetails">I dont like this post, it is offensive</a></td>
+                                <td><a href="userDetails" class="admin-sec-color"><?=$report["userid"];?></a></td>
+                                <td><?=$report["date"];?></td>
+                                <td><a href="reportDetails?reportID=<?=$report["id"];?>"><?=$report["comment"];?></a></td>
                             </tr>
                             <?php } ?>
                         </table>
                     </div><!-- END top 10 post today-->
 
                     <div class="panel panel-default summary-panel">
-                        <div class="panel-heading">All Comment (342)</div>
+                        <div class="panel-heading">All Comments (<?=countCommentsByPostID($postID);?>)</div>
                         <table class="table table-hover table-bordered table-striped">
                             <tr>
                                 <th>User ID</th>
                                 <th>Date</th>
                                 <th>Comment</th>
                             </tr>
-                            <?php for ($i=1; $i<=10; $i++) { ?>
+                            <?php foreach ($comments as $comment) { ?>
                             <tr>
-                                <td><a href="userDetails" class="admin-sec-color">123123</a></td>
-                                <td>12 Jan 2016</td>
-                                <td><a href="commentDetails">Great Post!</a></td>
+                                <td><a href="userDetails" class="admin-sec-color"><?=$comment["userid"];?></a></td>
+                                <td><?=$comment["datetime"];?></td>
+                                <td><a href="commentDetails?commentID=<?=$comment["id"];?>"><?=$comment["comment"];?></a></td>
                             </tr>
                             <?php } ?>
                         </table>
@@ -181,7 +183,7 @@
 
     <?php footer(); ?>
     <script>
-        $("#usersNav").addClass("active");
+        $("#postsNav").addClass("active");
         $("#postLink").addClass("active");
         $("#topicDiv").hide();
         $("#topicBtns").hide();

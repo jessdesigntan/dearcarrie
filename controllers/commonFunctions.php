@@ -47,7 +47,7 @@ function connectToDataBase() {
 	//$theLineToDatabase =  mysqli_connect("localhost","tjljess60","123456","dearcarrie");
 
 	if(!$theLineToDatabase) {
-		header("location: error.php?msg=Database connection error");
+		header("location: error.php?msg=Database connection first error");
 		exit();
 	}
 	else {
@@ -65,7 +65,6 @@ function getUserIDByEmail ($email) {
 	return $value["id"];
 }
 
-
 /***************** QUICK CHECKS *********************/
 //return true if empty
 function ifEmpty($var) {
@@ -79,7 +78,7 @@ function ifEmpty($var) {
 
 function validateQuery($conn, $sql){
 	if ($conn->query($sql) === FALSE) {
-		header("location: error.php?msg=Database connection error");
+		header("location: error.php?msg=validate query error");
 		exit();
 	}
 }
@@ -137,7 +136,7 @@ function getCommentByID($id) {
 function displayAllPost() {
 	$conn = connectToDataBase();
 
-	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC"; 
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC";
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -604,6 +603,29 @@ function followUser ($currentuser, $userid) {
 	$conn = connectToDataBase();
 	$sql = "INSERT INTO user_follow (userid, follower) VALUES ('$userid', '$currentuser')";
 	validateQuery($conn, $sql);
+
+	//get userid email
+	$recipientEmail = getUserNameByID($userid);
+	//send email
+  $subject = "You have a new follower!";
+  // Get HTML contents from file
+  $htmlContent = file_get_contents("email/new_follower.php");
+  $htmlContent = str_replace("{name}", $_SESSION["name"], $htmlContent);
+
+  // Set content-type for sending HTML email
+  $headers = "MIME-Version: 1.0" . "\r\n";
+  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+  // Additional headers
+  $headers .= 'From: Dear Carrie<jess_tjl@hotmail.com>' . "\r\n";
+  //$headers .= 'Cc: codexworld@gmail.com' . "\r\n";
+  // Send email
+  if(mail($recipientEmail["email"],$subject,$htmlContent,$headers)):
+    $successMsg = 'Email has sent successfully.';
+  else:
+    $errorMsg = 'Some problem occurred, please try again.';
+  endif;
+
 }
 
 function unfollowUser ($currentuser, $userid) {
@@ -870,11 +892,12 @@ function getFollowers($userid) {
 }
 
 function getNotificationsByUserID($userid) {
+	$currUser = $_SESSION["userid"];
 	$conn = connectToDataBase();
 	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_follow' AND p.userid='$userid'
+					WHERE n.type = 'post_follow' AND p.userid='$userid' AND p.userid != '$currUser'
 					UNION
 					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
@@ -884,18 +907,18 @@ function getNotificationsByUserID($userid) {
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_like' AND p.userid='$userid'
+					WHERE n.type = 'post_like' AND p.userid='$userid' AND p.userid != '$currUser'
 					UNION
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
 					INNER JOIN posts p ON p.id = c.postid
-					WHERE n.type = 'new_comment' AND p.userid='$userid'
+					WHERE n.type = 'new_comment' AND p.userid='$userid' AND p.userid != '$currUser'
 					UNION
 					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
-					WHERE n.type = 'comment_like' AND c.userid='$userid'
+					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.from_user != '$currUser'
 				";
 
 	$result = $conn->query($sql);
@@ -929,11 +952,12 @@ function changeNotificationSeen($item, $type, $from_user) {
 }
 
 function getUnseenNotificationCount($userid) {
+	$currUser = $_SESSION["userid"];
 	$conn = connectToDataBase();
 	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_follow' AND p.userid='$userid' AND n.seen=0
+					WHERE n.type = 'post_follow' AND p.userid='$userid' AND n.seen=0  AND p.userid != '$currUser'
 					UNION
 					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
@@ -943,18 +967,18 @@ function getUnseenNotificationCount($userid) {
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_like' AND p.userid='$userid' AND n.seen=0
+					WHERE n.type = 'post_like' AND p.userid='$userid' AND n.seen=0 AND p.userid != '$currUser'
 					UNION
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
 					INNER JOIN posts p ON p.id = c.postid
-					WHERE n.type = 'new_comment' AND p.userid='$userid' AND n.seen=0
+					WHERE n.type = 'new_comment' AND p.userid='$userid' AND n.seen=0 AND p.userid != '$currUser'
 					UNION
 					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
-					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.seen=0
+					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.seen=0 AND n.from_user != '$currUser'
 				";
 
 	$result = $conn->query($sql);
@@ -989,6 +1013,7 @@ function calculateDays($date) {
 	else {
 		return date('d-M-y',strtotime($date));
 	}
+
 }
 
 function displayAllReports() {
@@ -1016,6 +1041,113 @@ function getReportByID ($id) {
 	$result = $conn->query($sql);
 	$value = $result->fetch_assoc();
 	return $value;
+}
+
+function getAllReportsByPostID($postid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM reports WHERE itemid = '$postid' AND type = 'post'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function countReportsByPostID($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM reports WHERE itemid='$id' AND type = 'post'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function countTotalUsers() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM users";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function countTotalPosts() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM posts";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function countTotalComments() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM comments";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
+}
+
+function displayAllPostOrderbyViews() {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY views DESC";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function sendCommentEmail($userid, $postid, $comment) {
+	$recipientID = getPostByID($postid);
+	$recipientEmail = getUserNameByID($recipientID["userid"]);
+
+	if ($recipientEmail["id"] != $_SESSION["userid"]) {
+		//get recipient email
+
+	  $subject = "You have a new comment on your post";
+	  // Get HTML contents from file
+	  $htmlContent = file_get_contents("email/new_comment.php");
+	  $htmlContent = str_replace("{name}", $_SESSION["name"], $htmlContent);
+	  $htmlContent = str_replace("{comment}", $comment, $htmlContent);
+	  $htmlContent = str_replace("{url}", "http://www.jessdesigntan.com/fyp/post?postID=".$postid, $htmlContent);
+
+	  // Set content-type for sending HTML email
+	  $headers = "MIME-Version: 1.0" . "\r\n";
+	  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+	  // Additional headers
+	  $headers .= 'From: Dear Carrie<jess_tjl@hotmail.com>' . "\r\n";
+	  //$headers .= 'Cc: codexworld@gmail.com' . "\r\n";
+	  // Send email
+	  if(mail($recipientEmail["email"],$subject,$htmlContent,$headers)):
+	    $successMsg = 'Email has sent successfully.';
+	  else:
+	    $errorMsg = 'Some problem occurred, please try again.';
+	  endif;
+	}
 }
 
 ?>
