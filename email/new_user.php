@@ -29,7 +29,7 @@
                                           </tr>
 																					<tr style="padding:0 20px;display:block;">
 																						<td align="center" style="display:block;margin-top:20px;">
-                                                <p style="color:#404040;font-size:16px;line-height:24px;font-weight:lighter;padding:0;margin:0">Thank you for signing up with us!<br/><br/></p>
+                                                <p style="color:#404040;font-size:16px;line-height:24px;font-weight:lighter;padding:0;margin:0">Hi {name}, thank you for signing up with us!<br/><br/></p>
                                                 <p style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Dear Carrie is a community support site dedicated to depression and mental health.</p>
 																								<p style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Come read and share your stories with our community.</p>
                                             </td>
