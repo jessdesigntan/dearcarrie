@@ -14,6 +14,10 @@ validateQuery($conn, $sql);
 
 $postID = $conn->insert_id;
 $conn->close();
+
+//send email
+sendCommentEmail($userid, $postid, $comment);
+
 //Re-direct
 header("location: post?postID=$postid");
 ?>

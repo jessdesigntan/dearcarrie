@@ -65,7 +65,6 @@ function getUserIDByEmail ($email) {
 	return $value["id"];
 }
 
-
 /***************** QUICK CHECKS *********************/
 //return true if empty
 function ifEmpty($var) {
@@ -568,6 +567,29 @@ function followUser ($currentuser, $userid) {
 	$conn = connectToDataBase();
 	$sql = "INSERT INTO user_follow (userid, follower) VALUES ('$userid', '$currentuser')";
 	validateQuery($conn, $sql);
+
+	//get userid email
+	$recipientEmail = getUserNameByID($userid);
+	//send email
+  $subject = "You have a new follower!";
+  // Get HTML contents from file
+  $htmlContent = file_get_contents("email/new_follower.php");
+  $htmlContent = str_replace("{name}", $_SESSION["name"], $htmlContent);
+
+  // Set content-type for sending HTML email
+  $headers = "MIME-Version: 1.0" . "\r\n";
+  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+  // Additional headers
+  $headers .= 'From: Dear Carrie<jess_tjl@hotmail.com>' . "\r\n";
+  //$headers .= 'Cc: codexworld@gmail.com' . "\r\n";
+  // Send email
+  if(mail($recipientEmail["email"],$subject,$htmlContent,$headers)):
+    $successMsg = 'Email has sent successfully.';
+  else:
+    $errorMsg = 'Some problem occurred, please try again.';
+  endif;
+
 }
 
 function unfollowUser ($currentuser, $userid) {
@@ -1060,6 +1082,36 @@ function displayAllPostOrderbyViews() {
 	}
 	$conn->close();
 	return $resArr;
+}
+
+function sendCommentEmail($userid, $postid, $comment) {
+	$recipientID = getPostByID($postid);
+	$recipientEmail = getUserNameByID($recipientID["userid"]);
+
+	if ($recipientEmail["id"] != $_SESSION["userid"]) {
+		//get recipient email
+
+	  $subject = "You have a new comment on your post";
+	  // Get HTML contents from file
+	  $htmlContent = file_get_contents("email/new_comment.php");
+	  $htmlContent = str_replace("{name}", $_SESSION["name"], $htmlContent);
+	  $htmlContent = str_replace("{comment}", $comment, $htmlContent);
+	  $htmlContent = str_replace("{url}", "http://www.jessdesigntan.com/fyp/post?postID=".$postid, $htmlContent);
+
+	  // Set content-type for sending HTML email
+	  $headers = "MIME-Version: 1.0" . "\r\n";
+	  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+	  // Additional headers
+	  $headers .= 'From: Dear Carrie<jess_tjl@hotmail.com>' . "\r\n";
+	  //$headers .= 'Cc: codexworld@gmail.com' . "\r\n";
+	  // Send email
+	  if(mail($recipientEmail["email"],$subject,$htmlContent,$headers)):
+	    $successMsg = 'Email has sent successfully.';
+	  else:
+	    $errorMsg = 'Some problem occurred, please try again.';
+	  endif;
+	}
 }
 
 ?>
