@@ -45,7 +45,7 @@ if ($action == "topic") {
 
 }
 
-validateQuery($conn, $sql);
+//validateQuery($conn, $sql);
 
 //Re-direct
 header("location: postDetails?postID=$postid");

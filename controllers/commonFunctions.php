@@ -47,7 +47,7 @@ function connectToDataBase() {
 	//$theLineToDatabase =  mysqli_connect("localhost","tjljess60","123456","dearcarrie");
 
 	if(!$theLineToDatabase) {
-		header("location: error.php?msg=Database connection error");
+		header("location: error.php?msg=Database connection first error");
 		exit();
 	}
 	else {
@@ -79,7 +79,7 @@ function ifEmpty($var) {
 
 function validateQuery($conn, $sql){
 	if ($conn->query($sql) === FALSE) {
-		header("location: error.php?msg=Database connection error");
+		header("location: error.php?msg=validate query error");
 		exit();
 	}
 }
@@ -983,6 +983,34 @@ function getReportByID ($id) {
 	$result = $conn->query($sql);
 	$value = $result->fetch_assoc();
 	return $value;
+}
+
+function getAllReportsByPostID($postid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM reports WHERE itemid = '$postid' AND type = 'post'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function countReportsByPostID($id) {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS total FROM reports WHERE itemid='$id' AND type = 'post'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["total"];
 }
 
 ?>
