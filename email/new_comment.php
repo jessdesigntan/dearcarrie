@@ -1,3 +1,6 @@
+<?php
+//{name}, {comment}, {url}
+?>
 <div style="font-family:HelveticaNeue-Light,Arial,sans-serif;">
 	<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -17,20 +20,14 @@
                                     <td colspan="3" align="center" style="margin:0;padding:0;">
                                         <table width="690" align="center" border="0" cellspacing="0" cellpadding="0" style="margin:0px!important;">
                                         <tbody>
-																					<!--<tr>
-																						<td align="center">
-																							<img src="http://jessdesigntan.com/fyp/images/split.jpg" width="100%">
-																						</td>
-																					</tr>-->
                                         	<tr>
                                             <td align="center" style="display:block;margin-top:30px;">
-                                                <h1 style="font-weight:100;">Welcome to Dear Carrie!</h1>
+                                                <h1 style="font-weight:100;">{name} just commented on your post!</h1>
                                             </td>
                                           </tr>
 																					<tr style="padding:0 20px;display:block;">
 																						<td align="center" style="display:block;margin-top:20px;">
-                                                <p style="color:#404040;font-size:16px;line-height:24px;font-weight:lighter;padding:0;margin:0">Thank you for signing up with us!<br/><br/></p>
-                                                <p style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Dear Carrie is a community support site dedicated to depression and mental health.</p>
+                                                <p style="font-style:italic;background-color:#eee;display:inline-block;padding:20px 50px;color:#404040;font-size:16px;line-height:22px;font-weight:300;margin:0 0 25px 0;">"{comment}"</p>
 																								<p style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Come read and share your stories with our community.</p>
                                             </td>
                                           </tr>
@@ -40,7 +37,7 @@
                                                     <table align="center" cellpadding="0" cellspacing="0" style="font-family:HelveticaNeue-Light,Arial,sans-serif;margin:0 auto;padding:0">
                                                     <tbody>
                                                     	<tr>
-                                                            <td align="center" style="margin:0;text-align:center"><a href="http://www.jessdesigntan.com/fyp" style="text-transform:uppercase;font-size:13px;line-height:20px;text-decoration:none;color:#ffffff;background-color:#ff5a5f;padding:12px 30px;display:block;letter-spacing:2px" target="_blank">Go to site</a></td>
+                                                            <td align="center" style="margin:0;text-align:center"><a href="{url}" style="text-transform:uppercase;font-size:13px;line-height:20px;text-decoration:none;color:#ffffff;background-color:#ff5a5f;padding:12px 30px;display:block;letter-spacing:2px" target="_blank">Visit your post</a></td>
                                                       	</tr>
                                                    	</tbody>
                                                     </table>

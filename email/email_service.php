@@ -1,8 +1,9 @@
 <?php
-$to = 'jtan185@e.ntu.edu.sg';
+$to = 'jess_tjl@hotmail.com';
 $subject = "Welcome to Dear Carrie!";
 // Get HTML contents from file
-$htmlContent = file_get_contents("new_user.php");
+$htmlContent = file_get_contents("new_follower.php");
+$htmlContent = str_replace("{name}", "Jess", $htmlContent);
 
 // Set content-type for sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";
