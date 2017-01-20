@@ -37,7 +37,7 @@
               <button type="submit" class="primary-line-btn" id="submitBtn">Sign up</button>
           </form>
           <hr/>
-          <a class="facebook-btn">
+          <a class="facebook-btn" href="fbconfig.php">
               <img src="images/facebookIcon.png" width="10"/>
               <div class="text">Login with Facebook</div>
           </a>

@@ -96,6 +96,7 @@ function navbar() {
         </ul>
         <form id="myForm" class="navbar-form navbar-left hide-mobile" action="search" method="get">
             <input id="search_keyword_id" type="text" class="search_keyword nav-search" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
+            <input type="hidden" name="tp" value="all">
             <button type="submit" class="hidden-submit"></button>
             <div id="result"></div>
         </form>
@@ -330,7 +331,7 @@ function suggestedCard($id) {
 function topicCard($id) {
   $topic = getTopicByID($id);
   $postCount = countPostByTopicID($id);
-  $followingTopic = isFollowingTopic($_SESSION["userid"],$topic["id"]);
+  $followingTopic = isFollowingTopic(isset($_SESSION["userid"]),$topic["id"]);
   $followerCount = countFollowersByTopicID($topic["id"]);
 ?>
   <div class="card topic-card">
@@ -549,18 +550,21 @@ function commentCard($id) {
 <?php
 }
 
-function sideFilter() {
+function sideFilter($keyword) {
+  $posts = searchPost($keyword);
+  $countPost = getCountPosts($keyword);
+  $countTopic = getCountTopics($keyword);
 ?>
 
-  <a href="#" class="active">All Results<span class="badge">1.2k</span></a>
+  <a href="search?search_keyword_id=<?php echo $keyword;?>&tp=all" <?php if (isset($_GET['tp']) && $_GET['tp'] == "all"){echo "class='active'";} ?>>All Results<span class="badge"><?php echo count($posts);?></span></a>
 
   <br />
 
   <div class="content-title">
     <h4>Filter</h4>
   </div>
-  <a href="#">Posts<span class="badge">1.2k</span></a>
-  <a href="#">Topics<span class="badge">6</span></a>
+  <a href="searchposts?search_keyword_id=<?php echo $keyword;?>&tp=post" <?php if ($_GET['tp'] == 'post'){echo "class='active'";} ?>>Posts<span class="badge"><?php echo count($countPost);?></span></a>
+  <a href="searchtopics?search_keyword_id=<?php echo $keyword;?>&tp=topic" <?php if ($_GET['tp'] == 'topic'){echo "class='active'";} ?>>Topics<span class="badge"><?php echo count($countTopic);?></span></a>
   
   <script>staticBar('.filter-sidebar','30');</script>
 <?php

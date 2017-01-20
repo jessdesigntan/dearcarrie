@@ -337,6 +337,42 @@ function searchPost($keyword) {
 	return $resArr;
 }
 
+function getCountPosts($keyword) { //for Search Filter Post
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND published = 1";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 //showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
+function getCountTopics($keyword) { //for Search Filter Topic
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM posts p WHERE id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id) AND published = 1";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 //showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
 function searchPostByDate($keyword) {
 	 $conn = connectToDataBase();
 	 $sql = "SELECT * FROM posts WHERE timestamp lIKE '%$keyword%' AND published = 1";
