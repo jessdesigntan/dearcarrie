@@ -137,7 +137,7 @@ function getCommentByID($id) {
 function displayAllPost() {
 	$conn = connectToDataBase();
 
-	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC"; 
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC";
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -834,11 +834,12 @@ function getFollowers($userid) {
 }
 
 function getNotificationsByUserID($userid) {
+	$currUser = $_SESSION["userid"];
 	$conn = connectToDataBase();
 	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_follow' AND p.userid='$userid'
+					WHERE n.type = 'post_follow' AND p.userid='$userid' AND p.userid != '$currUser'
 					UNION
 					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
@@ -848,18 +849,18 @@ function getNotificationsByUserID($userid) {
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_like' AND p.userid='$userid'
+					WHERE n.type = 'post_like' AND p.userid='$userid' AND p.userid != '$currUser'
 					UNION
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
 					INNER JOIN posts p ON p.id = c.postid
-					WHERE n.type = 'new_comment' AND p.userid='$userid'
+					WHERE n.type = 'new_comment' AND p.userid='$userid' AND p.userid != '$currUser'
 					UNION
 					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
-					WHERE n.type = 'comment_like' AND c.userid='$userid'
+					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.from_user != '$currUser'
 				";
 
 	$result = $conn->query($sql);
@@ -893,11 +894,12 @@ function changeNotificationSeen($item, $type, $from_user) {
 }
 
 function getUnseenNotificationCount($userid) {
+	$currUser = $_SESSION["userid"];
 	$conn = connectToDataBase();
 	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_follow' AND p.userid='$userid' AND n.seen=0
+					WHERE n.type = 'post_follow' AND p.userid='$userid' AND n.seen=0  AND p.userid != '$currUser'
 					UNION
 					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
@@ -907,18 +909,18 @@ function getUnseenNotificationCount($userid) {
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_like' AND p.userid='$userid' AND n.seen=0
+					WHERE n.type = 'post_like' AND p.userid='$userid' AND n.seen=0 AND p.userid != '$currUser'
 					UNION
 					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
 					INNER JOIN posts p ON p.id = c.postid
-					WHERE n.type = 'new_comment' AND p.userid='$userid' AND n.seen=0
+					WHERE n.type = 'new_comment' AND p.userid='$userid' AND n.seen=0 AND p.userid != '$currUser'
 					UNION
 					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
 					FROM notifications n
 					INNER JOIN comments c ON n.item = c.id
-					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.seen=0
+					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.seen=0 AND n.from_user != '$currUser'
 				";
 
 	$result = $conn->query($sql);
@@ -953,6 +955,7 @@ function calculateDays($date) {
 	else {
 		return date('d-M-y',strtotime($date));
 	}
+
 }
 
 function displayAllReports() {
