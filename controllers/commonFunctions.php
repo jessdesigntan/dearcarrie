@@ -146,7 +146,7 @@ function displayAllPost() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -189,7 +189,7 @@ function suggestedPost() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -207,7 +207,7 @@ function displayAllTopicsOrderByTitleAsc() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No topics found");
+		 //showErrorMessage("No topics found");
 	}
 	$conn->close();
 	return $resArr;
@@ -226,7 +226,7 @@ function displayAllPostByUserID($id) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -244,7 +244,7 @@ function displayAllTopics() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -262,7 +262,7 @@ function displayAllUsers() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -298,7 +298,7 @@ function getAllTopicsByPostID($id) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -330,7 +330,7 @@ function searchPost($keyword) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -384,7 +384,7 @@ function searchPostByDate($keyword) {
 	   		$resArr[] = $row;
 	   }
 	 } else {
-	   	showErrorMessage("No posts found");
+	   	//showErrorMessage("No posts found");
 	 }
 	 $conn->close();
 	 return $resArr;
@@ -402,7 +402,7 @@ function searchTopic($keyword) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No topics found");
+		 //showErrorMessage("No topics found");
 	}
 	$conn->close();
 	return $resArr;
@@ -521,7 +521,7 @@ function getPostsByTopicID($topicid) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -691,7 +691,7 @@ function getTopicsFollowedByUserID($id) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No topics found");
+		 //showErrorMessage("No topics found");
 	}
 	$conn->close();
 	return $resArr;
@@ -710,7 +710,7 @@ function displayTrendingPosts() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -1011,7 +1011,7 @@ function displayAllReports() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -1038,7 +1038,7 @@ function getAllReportsByPostID($postid) {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;
@@ -1097,7 +1097,7 @@ function displayAllPostOrderbyViews() {
 			 $resArr[] = $row;
 		 }
 	} else {
-		 showErrorMessage("No posts found");
+		 //showErrorMessage("No posts found");
 	}
 	$conn->close();
 	return $resArr;

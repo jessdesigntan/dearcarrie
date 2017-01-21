@@ -1,5 +1,5 @@
 <?php
   //Config Global Variables
-  $facebookUrl = 'http://localhost:8888/fyp/fbconfig.php';
+  $facebookUrl = 'http://jessdesigntan.com/fyp/fbconfig.php';
 
 ?>
