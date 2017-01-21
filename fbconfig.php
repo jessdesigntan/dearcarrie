@@ -1,4 +1,5 @@
 <?php
+include("controllers/config.php");
 session_start();
 // added in v4.0.0
 require_once 'autoload.php';
@@ -16,7 +17,7 @@ use Facebook\HttpClients\FacebookHttpable;
 // init app with app id and secret
 FacebookSession::setDefaultApplication( '369194556763501','8587548e0a7148a79412da64f8a600f8' );
 // login helper with redirect_uri
-    $helper = new FacebookRedirectLoginHelper('http://localhost/FYP/fbconfig.php' );
+    $helper = new FacebookRedirectLoginHelper($facebookUrl);
 try {
   $session = $helper->getSessionFromRedirect();
 } catch( FacebookRequestException $ex ) {
@@ -35,7 +36,7 @@ if ( isset( $session ) ) {
  	    $fbfullname = $graphObject->getProperty('name'); // To Get Facebook full name
 	    $femail = $graphObject->getProperty('email');    // To Get Facebook email ID
 	/* ---- Session Variables -----*/
-	    $_SESSION['FBID'] = $fbid;           
+	    $_SESSION['FBID'] = $fbid;
         $_SESSION['FULLNAME'] = $fbfullname;
 	    $_SESSION['EMAIL'] =  $femail;
     /* ---- header location after session ----*/

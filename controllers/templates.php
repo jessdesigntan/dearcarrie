@@ -51,7 +51,7 @@ function head($title){
       	$(".loader").fadeOut("slow");
       })
     </script>
-  </head> 
+  </head>
 <?php
 }
 
@@ -565,7 +565,7 @@ function sideFilter($keyword) {
   </div>
   <a href="searchposts?search_keyword_id=<?php echo $keyword;?>&tp=post" <?php if ($_GET['tp'] == 'post'){echo "class='active'";} ?>>Posts<span class="badge"><?php echo count($countPost);?></span></a>
   <a href="searchtopics?search_keyword_id=<?php echo $keyword;?>&tp=topic" <?php if ($_GET['tp'] == 'topic'){echo "class='active'";} ?>>Topics<span class="badge"><?php echo count($countTopic);?></span></a>
-  
+
   <script>staticBar('.filter-sidebar','30');</script>
 <?php
 }
