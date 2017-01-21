@@ -996,24 +996,7 @@ function getUnseenNotificationCount($userid) {
 }
 
 function calculateDays($date) {
-	$now = strtotime(date('y-m-d'));
-	$newDate = strtotime(date('y-m-d',strtotime($date)));
-	$timeDiff = abs($now - $newDate);
-
-	$numberDays = $timeDiff/86400;  // 86400 seconds in one day
-
-	// and you might want to convert to integer
-	$numberDays = intval($numberDays);
-
-	if ($numberDays == 0 | $numberDays == 1) {
-		return "1 day ago";
-	} else if ($numberDays < 30) {
-		return $numberDays." days ago";
-	}
-	else {
-		return date('d-M-y',strtotime($date));
-	}
-
+	return date('d M y',strtotime($date));
 }
 
 function displayAllReports() {
