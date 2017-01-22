@@ -456,7 +456,9 @@ function cardExpand($postID) {
       </div>
 
       <div class="float-right">
-        <a data-toggle="modal" data-target="#reportModal">Report</a>
+        <?php if (!checkLogin() && $_SESSION["userid"] != $user["id"]) { ?>
+          <a data-toggle="modal" data-target="#reportModal">Report</a>
+        <?php } ?>
       </div>
     </div>
   </div>
@@ -521,7 +523,9 @@ function commentCard($id) {
         ?>
       </div>
       <div class="float-right">
-        <a onclick="showReportForm(<?=$id?>);">Report</a>
+        <?php if (!checkLogin() && $_SESSION["userid"] != $user["id"]) { ?>
+          <a onclick="showReportForm(<?=$id?>);">Report</a>
+        <?php } ?>
       </div>
       <div class="report-form" id="report-form<?=$id?>">
         <hr/>
