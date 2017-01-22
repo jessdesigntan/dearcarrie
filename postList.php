@@ -2,7 +2,7 @@
 <?php
   include('controllers/templates.php');
   redirectToLogin($_SESSION["role"], "admin");
-  $posts = displayAllPost();
+  $posts = displayAllPostAdmin();
 ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Post List"); ?>

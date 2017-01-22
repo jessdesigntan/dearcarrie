@@ -17,7 +17,7 @@
         <ol class="breadcrumb">
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="topicList">Topics</a></li>
-            <li class="active"><?=$topic["name"];?></li>
+            <li class="active"><?=$topic["title"];?></li>
         </ol>
 
         <div class="row">

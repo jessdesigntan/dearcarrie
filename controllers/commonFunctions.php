@@ -152,6 +152,25 @@ function displayAllPost() {
 	return $resArr;
 }
 
+function displayAllPostAdmin() {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT * FROM posts ORDER BY id DESC";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 //showErrorMessage("No posts found");
+	}
+	$conn->close();
+	return $resArr;
+}
+
 function displayAllPostIndex() {
 	$conn = connectToDataBase();
 
