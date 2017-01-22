@@ -66,6 +66,7 @@
                   if(data.trim().length == 0){
                     //notify user if nothing to load
                     //$('.loading-info').html("No more records!");
+                    $('.loading-info').html("");
                     return;
                   }
                   $('.loading-info').hide(); //hide loading spinner animation once data is received
