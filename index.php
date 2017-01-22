@@ -33,7 +33,7 @@
             <div class="content-title">
               <h4>Top Stories For You</h4>
             </div>
-            
+
             <?php
               /*$posts = displayAllPost();
               foreach ($posts as $post) {
@@ -43,7 +43,7 @@
 
             <?php //for infinite scrolling ?>
             <div id="results"><!-- results appear here --></div>
-            <div class="loading-info"><img src="images/ajax-loader.gif" /><!-- loading spinner --></div>
+            <div class="loading-info"><img src="images/ripple.svg" /><!-- loading spinner --></div>
             <script type="text/javascript">
             var track_page = 1; //track user scroll as page number, page number starts from 1
             var loading  = false; //prevents multiple loads
@@ -52,25 +52,25 @@
 
             $(window).scroll(function() { //detect page scroll
               if($(window).scrollTop() + $(window).height() >= $(document).height()) { //if user scrolled to bottom of the page
-                track_page++; //increases page number 
-                load_contents(track_page); //loads content 
+                track_page++; //increases page number
+                load_contents(track_page); //loads content
               }
-            });   
+            });
             //Ajax load function
             function load_contents(track_page){
                 if(loading == false){
                 loading = true;  //set loading flag on
-                $('.loading-info').show(); //show loading spinner animation 
+                $('.loading-info').show(); //show loading spinner animation
                 $.post( 'displayAllPostIndex.php', {'page': track_page}, function(data){
                   loading = false; //set loading flag off once the content is loaded
                   if(data.trim().length == 0){
                     //notify user if nothing to load
-                    $('.loading-info').html("No more records!");
+                    //$('.loading-info').html("No more records!");
                     return;
                   }
                   $('.loading-info').hide(); //hide loading spinner animation once data is received
                   $("#results").append(data); //append loaded data into #results element
-                
+
                 }).fail(function(xhr, ajaxOptions, thrownError) { //any errors?
                   alert(thrownError); //alert with HTTP error
                 })
