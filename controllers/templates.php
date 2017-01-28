@@ -123,12 +123,12 @@ function navbar() {
           <!-- /signed in for mobile-->
 
           <!-- signed in Facebook-->
-          <?php if (isset($_SESSION['FBID'])) { ?>
+          <?php /*if (isset($_SESSION['FBID'])) { ?>
             <li><a href="addPost" class="cta-btn" >Post</a></li>
             <li><img src="https://graph.facebook.com/<?php echo $_SESSION['FBID']; ?>/picture"></li>
             <li><?php echo $_SESSION['FULLNAME']; ?></li>
             <li><a href="fblogout.php">Logout</a></li>
-          <?php } ?>
+          <?php }*/ ?>
           <!-- /signed in Facebook-->
 
           <!-- signed in for desktop -->
@@ -470,7 +470,7 @@ function cardExpand($postID) {
 function commentCard($id) {
   $comment = getCommentByID($id);
   $user = getUserByID($comment["userid"]);
-  $likedComment = hasLikedComment($_SESSION["userid"],$id);
+  $likedComment = hasLikedComment(isset($_SESSION["userid"]),$id);
   $commentLikes = countCommentsLikes($id);
   reportModal("comment", $id, $comment["postid"]);
 ?>
@@ -489,7 +489,7 @@ function commentCard($id) {
           <!-- /only for psychiatrist -->
         </div>
         <div class="date no-after"><?php echo calculateDays($comment['datetime']); ?></div>
-        <?php if ($user["id"] == $_SESSION["userid"]) { ?>
+        <?php if (isset($_SESSION["userid"]) && $user["id"] == $_SESSION["userid"]) { ?>
         <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
         <?php } ?>
       </div>
