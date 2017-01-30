@@ -62,7 +62,7 @@ if ( isset( $session ) ) {
 
     //begin get exist user ?
     $email = $femail;
-    $sql = "SELECT * FROM users WHERE email = '$email' or email = '$fbid'";
+    $sql = "SELECT * FROM users WHERE email = '$email' /*or email = '$fbid'*/";
     $result = $conn->query($sql);
     $value = $result->fetch_assoc();
 
@@ -75,9 +75,9 @@ if ( isset( $session ) ) {
       $hashPassword = md5($myPass);
       //save to table user for new user
       if ($femail == ""){
-        $sqls = "INSERT INTO users (name, email, password, affliate)
+       /* $sqls = "INSERT INTO users (name, email, password, affliate)
       VALUES ('$fbfullname', '$fbid', '$hashPassword', 'facebook')";
-      }else{
+      }else{ */
         $sqls = "INSERT INTO users (name, email, password, affliate)
       VALUES ('$fbfullname', '$femail', '$hashPassword', 'facebook')";
       }
@@ -85,7 +85,7 @@ if ( isset( $session ) ) {
       validateQuery($conn, $sqls);
 
       //begin to get new facebook user from table user
-      $myFbUser = "SELECT * FROM users WHERE email = '$femail' or email = '$fbid'";
+      $myFbUser = "SELECT * FROM users WHERE email = '$femail' or /*email = '$fbid'*/";
       $resultFb = $conn->query($myFbUser);
       $myFb = $resultFb->fetch_assoc();
 
