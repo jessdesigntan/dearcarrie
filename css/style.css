@@ -39,6 +39,7 @@
   38. badge
   39. autocomplete
   40. fixed-share-sidebar
+  41. media-object
 */
 
 /*=============================
@@ -841,6 +842,23 @@ footer ul > li > a {
 /*=============================
     13. buttons
 ===============================*/
+.primary-btn {
+  border-radius: 30px;
+  color: white;
+  border: 1px solid var(--primary-color);
+  background-color: var(--primary-color) !important;
+  padding: 10px 20px;
+  transition: all 0.3s ease 0s;
+  font-weight: 300;
+  min-width: 100px;
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-hover-color);
+  color: white !important;
+  text-decoration: none;
+}
+
 .primary-line-btn {
   border-radius: 30px;
   background-color: transparent;
@@ -1800,4 +1818,31 @@ a.dropdown:hover > ul {
 
 .loading-info{
   text-align: center;
+}
+
+/*=============================
+    41. media-object
+===============================*/
+.media-object {
+  display: table;
+  width: 100%;
+  margin-bottom: 30px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--light-border);
+}
+
+.media-object img {
+  width: 60%;
+}
+
+.media-object > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.media-object > div:first-child {
+  text-align: center;
+}
+
+.media-object p {
+  font-size: 16px;
 }

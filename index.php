@@ -12,6 +12,20 @@
     <?= navbar(); ?>
     <div class="loader"></div>
     <div class="page-container">
+      <?php if(checkLogin()) { ?>
+          <div class="media-object">
+              <div class="hide-mobile">
+                  <img src="images/chat.svg">
+              </div>
+              <div>
+                  <h3>Share your stories.</h3>
+                  <p class="mBottom-20">Dear Carrie is a community of readers and writers offering unique perspectives on ideas large and small.</p>
+                  <a class="primary-btn small">Sign up</a>
+                  <a class="primary-line-btn small">Login</a>
+              </div>
+          </div>
+      <?php } ?>
+
       <div class="main-banner-grid row">
           <?php
             foreach ($mainTopics as $topic) {
