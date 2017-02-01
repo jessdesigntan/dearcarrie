@@ -11,7 +11,7 @@
   <body>
     <?= navbar(); ?>
     <div class="page-container">
-      <h3 class="hero-center">Featured Topics</h3>
+      <!--<h3 class="hero-center">Featured Topics</h3>
       <div class="row">
           <?php foreach ($featuredTopics as $featuredTopic) { ?>
           <div class="col-sm-6">
@@ -26,7 +26,7 @@
               </div>
           </div>
           <?php } ?>
-      </div>
+      </div>-->
 
       <h3 class="hero-center">Curated Topics</h3>
 
