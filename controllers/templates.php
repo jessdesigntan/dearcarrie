@@ -489,9 +489,6 @@ function commentCard($id) {
           <!-- /only for psychiatrist -->
         </div>
         <div class="date no-after"><?php echo calculateDays($comment['datetime']); ?></div>
-        <?php if (isset($_SESSION["userid"]) && $user["id"] == $_SESSION["userid"]) { ?>
-        <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-        <?php } ?>
       </div>
     </div>
 
@@ -525,6 +522,8 @@ function commentCard($id) {
       <div class="float-right">
         <?php if (!checkLogin() && $_SESSION["userid"] != $user["id"]) { ?>
           <a onclick="showReportForm(<?=$id?>);">Report</a>
+        <?php } else { ?>
+          <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
         <?php } ?>
       </div>
       <div class="report-form" id="report-form<?=$id?>">
