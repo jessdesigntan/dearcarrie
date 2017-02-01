@@ -38,40 +38,7 @@
             $followingTopic = isFollowingTopic(isset($_SESSION["userid"]),$topic["id"]);
           ?>
             <div class="col-sm-12">
-                <div class="card topic-card">
-                    <div class="image">
-                      <a href="topicDetails?topicID=<?=$topic["id"];?>"><img src="<?=$topic["main_image"];?>" class="img-responsive"></a>
-                    </div>
-
-                    <div class="content short">
-                      <a href="topicDetails?topicID=<?=$topic["id"];?>">
-                        <h4><?=$topic["title"];?></h4>
-                        <p><?=$topic["description"];?></p>
-                        <div class="followers"><?=$followerCount;?> Followers</div>
-                        <div class="posts"><?=$postCount;?> Posts</div>
-                      </a>
-                    </div>
-
-                    <div class="action">
-                      <?php
-                        if (!checkLogin()) {
-                          if ($followingTopic) { //user following topic
-                      ?>
-                            <form>
-                              <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn1" type="button" class="primary-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
-                            </form>
-                      <?php
-                        } else { //user not following topic
-                      ?>
-                          <form>
-                            <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="followBtn1" type="button" class="primary-line-btn" value="Follow Topic">
-                          </form>
-                      <?php
-                          }
-                        }
-                      ?>
-                    </div>
-                </div>
+                <?php topicCard($topic["id"]); ?>
             </div><!-- END col-sm-12 -->
           <?php } ?>
       </div>

@@ -331,7 +331,7 @@ function suggestedCard($id) {
 function topicCard($id) {
   $topic = getTopicByID($id);
   $postCount = countPostByTopicID($id);
-  $followingTopic = isFollowingTopic(isset($_SESSION["userid"]),$topic["id"]);
+  $followingTopic = isFollowingTopic($_SESSION["userid"],$id);
   $followerCount = countFollowersByTopicID($topic["id"]);
 ?>
   <div class="card topic-card">
@@ -348,25 +348,26 @@ function topicCard($id) {
       </a>
     </div>
 
-    <div class="action">
+    <!--<div class="action">
       <?php
         if (!checkLogin()) {
           if ($followingTopic) { //user following topic
       ?>
             <form>
-              <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="unfollowBtn1" type="button" class="primary-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
+              <input onclick="unfollowTopic(<?=$_SESSION['userid'];?>,<?=$id?>);" id="unfollowBtn1" type="button" class="primary-line-btn" value="Following" onmouseover="unfollowMouseOver();" onmouseout="unfollowMouseOut()">
             </form>
       <?php
         } else { //user not following topic
       ?>
           <form>
-            <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$topic['id']?>);" id="followBtn1" type="button" class="primary-line-btn" value="Follow Topic">
+            <input onclick="followTopic(<?=$_SESSION['userid'];?>,<?=$id?>);" id="followBtn1" type="button" class="primary-line-btn" value="Follow Topic">
           </form>
       <?php
           }
         }
       ?>
-    </div>
+    </div>-->
+    <script src="js/followTopic.js"></script>
   </div>
 <?php
 }
