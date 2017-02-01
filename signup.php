@@ -39,7 +39,7 @@
           <hr/>
           <a class="facebook-btn" href="fbconfig.php">
               <img src="images/facebookIcon.png" width="10"/>
-              <div class="text">Login with Facebook</div>
+              <div class="text">Sign up with Facebook</div>
           </a>
           <hr/>
           <a href="login" class="primary-color"><center>Already signed up? Log in here.</center></a>

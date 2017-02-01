@@ -20,8 +20,8 @@
               <div>
                   <h3>Share your stories.</h3>
                   <p class="mBottom-20">Dear Carrie is a community of readers and writers offering unique perspectives on ideas large and small.</p>
-                  <a class="primary-btn small">Sign up</a>
-                  <a class="primary-line-btn small">Login</a>
+                  <a href="signup" style="color:white;" class="primary-btn small">Sign up</a>
+                  <a href="login" class="primary-line-btn small">Login</a>
               </div>
           </div>
       <?php } ?>
