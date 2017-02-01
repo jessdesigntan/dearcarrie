@@ -336,11 +336,11 @@ a:hover {
 }
 
 .card.topic-card .content{
-  width: 60%;
+  width: 100%;
 }
 
 .card.topic-card .action{
-  width: 30%;
+  width: 20%;
   text-align: right;
 }
 
