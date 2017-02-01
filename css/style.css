@@ -625,7 +625,7 @@ a:hover {
   width: 130px;
 }
 
-.filter-sidebar > a {
+.filter-sidebar > a, .filter-sidebar > p {
   display: block;
   font-size: 16px;
   font-weight: 200;

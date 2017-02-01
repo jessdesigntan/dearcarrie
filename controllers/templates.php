@@ -560,15 +560,12 @@ function sideFilter($keyword) {
   $countTopic = getCountTopics($keyword);
 ?>
 
-  <a href="search?search_keyword_id=<?php echo $keyword;?>&tp=all" <?php if (isset($_GET['tp']) && $_GET['tp'] == "all"){echo "class='active'";} ?>>All Results<span class="badge"><?php echo count($posts);?></span></a>
-
-  <br />
-
+  <!--<a href="search?search_keyword_id=<?php echo $keyword;?>&tp=all" <?php if (isset($_GET['tp']) && $_GET['tp'] == "all"){echo "class='active'";} ?>>All Results<span class="badge"><?php echo count($posts);?></span></a>-->
   <div class="content-title">
-    <h4>Filter</h4>
+    <h4>Results</h4>
   </div>
-  <a href="searchposts?search_keyword_id=<?php echo $keyword;?>&tp=post" <?php if ($_GET['tp'] == 'post'){echo "class='active'";} ?>>Posts<span class="badge"><?php echo count($countPost);?></span></a>
-  <a href="searchtopics?search_keyword_id=<?php echo $keyword;?>&tp=topic" <?php if ($_GET['tp'] == 'topic'){echo "class='active'";} ?>>Topics<span class="badge"><?php echo count($countTopic);?></span></a>
+  <p>Posts<span class="badge"><?php echo count($countPost);?></span></>
+  <!--<a href="searchtopics?search_keyword_id=<?php echo $keyword;?>&tp=topic" <?php if ($_GET['tp'] == 'topic'){echo "class='active'";} ?>>Topics<span class="badge"><?php echo count($countTopic);?></span></a>-->
 
   <script>staticBar('.filter-sidebar','30');</script>
 <?php
