@@ -19,11 +19,12 @@
           <div class="panel panel-default">
             <div class="panel-heading"><h4>Edit Profile</h4></div>
             <div class="panel-body">
-              <form action="editProfileProcess" method="post">
+              <form action="editProfileProcess" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <input name="userid" type="hidden" value="<?=$user["id"];?>">
                   <label for="name">Image</label>
-                  <input type="file">
+                  <input type="file" name="imageNew">
+                  <input type="hidden" name="imageOld">
                   <img src="<?=$user["image"];?>" width="80">
                   <input name="image" type="hidden" value="<?=$user["image"];?>">
                 </div>
