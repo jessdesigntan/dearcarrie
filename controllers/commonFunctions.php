@@ -494,7 +494,7 @@ function displayFeaturedTopics() {
 
 function displayCuratedTopics() {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM topics WHERE type = 'curated' ORDER BY order_num";
+	$sql = "SELECT * FROM topics WHERE type = 'curated' ORDER BY title";
 	$result = $conn->query($sql);
 	$resArr = array();
 
