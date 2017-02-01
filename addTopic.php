@@ -33,7 +33,6 @@
                             <td>
                                 <select name="type">
                                     <option value="curated">Choose one</option>
-                                    <option value="featured">Featured</option>
                                     <option value="curated">Curated</option>
                                     <option value="main">Main</option>
                                 </select>

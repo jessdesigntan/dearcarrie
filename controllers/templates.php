@@ -62,7 +62,7 @@ function head($title){
  * @return top navbar html codes
  */
 function navbar() {
-  $featuredTopics = displayFeaturedTopics();
+  $curatedTopics = displayCuratedTopics();
   if(isset($_SESSION["userid"])){
     $countNotifications = count(getUnseenNotificationCount($_SESSION["userid"]));
   }
@@ -86,8 +86,8 @@ function navbar() {
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <?php foreach ($featuredTopics as $featuredTopic) { ?>
-              <li><a href="topicDetails?topicID=<?=$featuredTopic["id"];?>"><?=$featuredTopic["title"];?></a></li>
+              <?php foreach ($curatedTopics as $curatedTopic) { ?>
+              <li><a href="topicDetails?topicID=<?=$curatedTopic["id"];?>"><?=$curatedTopic["title"];?></a></li>
               <?php } ?>
               <div class="divider"></div>
               <li><a href="topic">All Topics</a></li>
