@@ -6,8 +6,6 @@ $postid = $_POST["postid"];
 $title = $_POST["title"];
 $desc = htmlentities($_POST["desc"], ENT_QUOTES);
 $topics = $_POST['topic'];
-echo $desc;
-echo $action;
 
 $conn = connectToDataBase();
 
@@ -46,8 +44,6 @@ if ($action == "topic") {
 
 
 }
-
-validateQuery($conn, $sql);
 
 //Re-direct
 header("location: postDetails?postID=$postid");
