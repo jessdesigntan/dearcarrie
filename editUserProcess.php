@@ -25,21 +25,20 @@ if ($imageName != "") {
 $conn = connectToDataBase();
 if ($action == "update") {
   $sql = "UPDATE users SET name='$name', description='$desc', role='$role', image='$image' WHERE id = '$userid'";
+  $result = $conn->query($sql);
 }
 else {
   // if delete
-  $sql = "UPDATE users SET active = 0 WHERE id = '$userid'";
+  $sql = "DELETE FROM users WHERE id = '$userid'";
+  $result = $conn->query($sql);
 }
-
-$result = $conn->query($sql);
-validateQuery($conn, $sql);
 
 //Re-direct
 if ($action == "update") {
   header("location: userDetails?userID=$userid");
 }
 else {
-  header("location: userDetails?userID=$userid");
+  header("location: userList");
 }
 
 ?>

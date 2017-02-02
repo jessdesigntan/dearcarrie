@@ -13,6 +13,7 @@ if ($action == "update") {
   $sql = "UPDATE posts
           SET title = '$title', description = '$desc'
           WHERE id = '$postid'";
+  $result = $conn->query($sql);
 }
 
 if ($action == "publish") {
@@ -20,12 +21,14 @@ if ($action == "publish") {
   $sql = "UPDATE posts
           SET published = 1
           WHERE id = '$postid'";
+  $result = $conn->query($sql);
 }
 
 if ($action == "unpublish") {
   $sql = "UPDATE posts
           SET published = 0
           WHERE id = '$postid'";
+  $result = $conn->query($sql);
 }
 
 if ($action == "topic") {
