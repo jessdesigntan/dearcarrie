@@ -3,7 +3,7 @@
   include('controllers/templates.php');
   $mainTopics = displayMainTopics();
   $topics = displayAllTopicsOrderByTitleAsc();
-  $trendingPosts = displayTrendingPosts();
+  $recentPosts = displayRecentPosts();
 ?>
 <html lang="en">
   <?php head("Dear Carrie"); ?>
@@ -102,9 +102,9 @@
                         <h4>Recent Posts</h4>
                         <a href="search">Read all &#8594;</a>
                       </div>
-                      <?php foreach($trendingPosts as $trendingPost) { ?>
-                      <a href="post?postID=<?=$trendingPost['id'];?>" class="mini-card">
-                        <p><?=$trendingPost['title'];?></p>
+                      <?php foreach($recentPosts as $recentPost) { ?>
+                      <a href="post?postID=<?=$recentPost['id'];?>" class="mini-card">
+                        <p><?=$recentPost['title'];?></p>
                       </a>
                       <?php } ?>
                   </div>

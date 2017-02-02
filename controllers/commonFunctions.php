@@ -179,7 +179,7 @@ function displayAllPostIndex() {
 	//get current starting point of records
 	$start = (($page-1) * $limit);
 
-	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC LIMIT $start, $limit"; //added $start and $limit
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY views DESC LIMIT $start, $limit"; //added $start and $limit
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -739,7 +739,7 @@ function getPostsFollowedByUserID($id) {
 
 
 //to be improved
-function displayTrendingPosts() {
+function displayRecentPosts() {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC LIMIT 4";
 	$result = $conn->query($sql);
