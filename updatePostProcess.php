@@ -4,7 +4,7 @@ include("controllers/templates.php");
 $action = $_POST["action"];
 $postid = $_POST["postid"];
 $title = $_POST["title"];
-$desc = $_POST["desc"];
+$desc = htmlspecialchars($_POST["desc"]);
 $topics = $_POST['topic'];
 
 $conn = connectToDataBase();

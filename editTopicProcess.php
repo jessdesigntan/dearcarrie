@@ -8,8 +8,8 @@ $order = $_POST["order"];
 $title = $_POST["title"];
 $mainImage = $_POST["main_image_old"];
 $backgroundImage = $_POST["background_old"];
-$short_desc = $_POST["short_desc"];
-$desc = $_POST["desc"];
+$short_desc = htmlspecialchars($_POST["short_desc"]);
+$desc = htmlspecialchars($_POST["desc"]);
 $url = $_POST["url"];
 $tel = $_POST["tel"];
 

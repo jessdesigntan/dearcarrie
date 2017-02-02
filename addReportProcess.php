@@ -5,7 +5,7 @@ $postid = $_POST["postid"];
 $userid = $_SESSION["userid"];
 $itemid = $_POST["itemid"];
 $type = $_POST["type"];
-$desc = $_POST["desc"];
+$desc = htmlspecialchars($_POST["desc"]);
 //Add to db
 $conn = connectToDataBase();
 

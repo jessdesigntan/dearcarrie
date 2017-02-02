@@ -2,9 +2,8 @@
 include ("controllers/templates.php");
 $postID = $_POST["postID"];
 $title = $_POST["title"];
-$desc = $_POST["desc"];
+$desc = htmlspecialchars($_POST["desc"]);
 $action = $_POST["action"];
-
 
 $conn = connectToDataBase();
 if ($action == "update") {

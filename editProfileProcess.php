@@ -3,7 +3,7 @@ include ("controllers/templates.php");
 $userid = $_POST["userid"];
 $image = $_POST["imageOld"];
 $name = $_POST["name"];
-$desc = $_POST["desc"];
+$desc = htmlspecialchars($_POST["desc"]);
 $email = $_POST["email"];
 
 $imageName = $_FILES["imageNew"]["name"];
