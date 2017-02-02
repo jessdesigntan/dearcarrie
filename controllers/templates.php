@@ -96,7 +96,7 @@ function navbar() {
 
         <ul class="nav navbar-nav navbar-right">
 
-          <li><a href="topic">Editor's Picks</a></li>
+          <li class="show-mobile"><a href="topic">Editor's Picks</a></li>
           <!-- not signed in -->
           <?php if (checkLogin() && empty($_SESSION['FBID'])) { ?>
           <li><a href="login" class="light-text">Login</a></li>
