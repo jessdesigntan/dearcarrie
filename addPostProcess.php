@@ -3,7 +3,6 @@ include("controllers/templates.php");
 
 $title = $_POST["title"];
 $desc = trim($_POST["desc"]);
-$desc = nl2br($desc); //add <br/> to every breakline
 $desc = htmlentities($desc, ENT_QUOTES);
 
 

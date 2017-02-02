@@ -430,7 +430,7 @@ function cardExpand($postID) {
 
     <div class="content">
       <h4><?=$post["title"];?></h4>
-      <p><?=$post["description"];?></p>
+      <?php echo '<p> ' . nl2br($post['description']) . '</p>'; ?>
     </div>
 
     <div class="footer">
