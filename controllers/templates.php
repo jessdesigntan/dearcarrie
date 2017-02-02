@@ -83,15 +83,8 @@ function navbar() {
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav hide-mobile">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <?php foreach ($curatedTopics as $curatedTopic) { ?>
-              <li><a href="topicDetails?topicID=<?=$curatedTopic["id"];?>"><?=$curatedTopic["title"];?></a></li>
-              <?php } ?>
-              <div class="divider"></div>
-              <li><a href="topic">All Topics</a></li>
-            </ul>
+          <li>
+            <a href="topic">Editor's Picks</a>
           </li>
         </ul>
         <form id="myForm" class="navbar-form navbar-left hide-mobile" action="search" method="get">
@@ -102,6 +95,8 @@ function navbar() {
         </form>
 
         <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="topic">Editor's Picks</a></li>
           <!-- not signed in -->
           <?php if (checkLogin() && empty($_SESSION['FBID'])) { ?>
           <li><a href="login" class="light-text">Login</a></li>
@@ -111,8 +106,8 @@ function navbar() {
 
           <!-- signed in for mobile -->
           <?php if (!checkLogin()) { ?>
-            <li><a href="addPost" class="cta-btn" >Post</a></li>
-            <li class="show-mobile"><a href="profile" class="light-text"><?=$_SESSION["name"];?></a></li>
+            <li><a href="addPost" class="cta-btn" >Add Post</a></li>
+            <li class="show-mobile"><a href="profile" class="light-text">Your Profile</a></li>
             <?php if (checkRole($_SESSION["role"], "admin")) { ?>
               <li class="show-mobile"><a href="dashboard" class="light-text">Admin Dashboard</a></li>
             <?php } ?>
@@ -622,7 +617,7 @@ function footer() {
   <footer class="footer">
     <div class="page-container">
       <div class="row">
-        <div class="col-sm-12 pull-left">
+        <div class="col-sm-12">
           <img src="images/logo.svg" class="logo">
         </div>
         <div class="col-sm-12">

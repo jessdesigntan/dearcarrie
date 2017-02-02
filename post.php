@@ -6,6 +6,7 @@
   $comments = getAllCommentsByPostID($postID);
   $suggestedPosts = suggestedPost();
   $commentCount = countCommentsByPostID($postID);
+  increasePostView($postID);
 ?>
 
 <html lang="en">
@@ -28,8 +29,8 @@
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-    </script>   
-    
+    </script>
+
     <?= scrollTopBtn(); ?>
     <?= navbar(); ?>
 

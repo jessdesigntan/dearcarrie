@@ -2,7 +2,7 @@
 <?php
   include('controllers/templates.php');
   $mainTopics = displayMainTopics();
-  $featuredTopics = displayFeaturedTopics();
+  $topics = displayAllTopicsOrderByTitleAsc();
   $trendingPosts = displayTrendingPosts();
 ?>
 <html lang="en">
@@ -99,7 +99,7 @@
               <div class="main-sidebar">
                   <div class="side-content">
                       <div class="content-title">
-                        <h4>Trending</h4>
+                        <h4>Recent Posts</h4>
                         <a href="search">Read all &#8594;</a>
                       </div>
                       <?php foreach($trendingPosts as $trendingPost) { ?>
@@ -115,8 +115,8 @@
                           <a href="topic">See all &#8594;</a>
                       </div>
                       <ul>
-                          <?php foreach ($featuredTopics as $featuredTopic) { ?>
-                          <li><a href="topicDetails?topicID=<?=$featuredTopic["id"];?>"><?=$featuredTopic["title"];?></a></li>
+                          <?php foreach ($topics as $topic) { ?>
+                          <li><a href="topicDetails?topicID=<?=$topic["id"];?>"><?=$topic["title"];?></a></li>
                           <?php } ?>
                       </ul>
                   </div>

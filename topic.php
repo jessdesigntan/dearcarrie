@@ -28,7 +28,7 @@
           <?php } ?>
       </div>-->
 
-      <h3 class="hero-center">Curated Topics</h3>
+      <h3 class="hero-center">Editor's Picks</h3>
 
       <div class="row">
           <?php

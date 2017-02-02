@@ -1187,4 +1187,10 @@ function randomPassword() {
 }
 ///end random password
 
+function increasePostView($id) {
+	$conn = connectToDataBase();
+	$sql = "UPDATE posts SET views = views + 1 WHERE id = '$id'";
+	validateQuery($conn, $sql);
+}
+
 ?>
