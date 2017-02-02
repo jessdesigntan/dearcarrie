@@ -13,7 +13,7 @@
     <div class="loader"></div>
     <div class="page-container">
       <?php if(checkLogin()) { ?>
-          <div class="media-object">
+          <div class="signup-banner">
               <div class="hide-mobile">
                   <img src="images/chat.svg">
               </div>

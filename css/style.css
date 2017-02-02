@@ -39,7 +39,7 @@
   38. badge
   39. autocomplete
   40. fixed-share-sidebar
-  41. media-object
+  41. signup-banner
 */
 
 /*=============================
@@ -1822,9 +1822,9 @@ a.dropdown:hover > ul {
 }
 
 /*=============================
-    41. media-object
+    41. signup-banner
 ===============================*/
-.media-object {
+.signup-banner {
   display: table;
   width: 100%;
   margin-bottom: 30px;
@@ -1832,18 +1832,18 @@ a.dropdown:hover > ul {
   border-bottom: 1px solid var(--light-border);
 }
 
-.media-object img {
+.signup-banner img {
   width: 60%;
 }
 
-.media-object > div {
+.signup-banner > div {
   display: table-cell;
   vertical-align: middle;
 }
-.media-object > div:first-child {
+.signup-banner > div:first-child {
   text-align: center;
 }
 
-.media-object p {
+.signup-banner p {
   font-size: 16px;
 }
