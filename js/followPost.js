@@ -1,4 +1,3 @@
-
 var followBtn = "Follow Post";
 var unfollowBtn = "Following";
 
@@ -46,7 +45,6 @@ function unfollowPost(userid, postid) {
             $('#unfollowBtn1').val(this.responseText);
         }
     };
-    //xmlhttp.open("GET","unfollowPosts?userid="+userid+"&postid="+postid,true);
     xmlhttp.open("GET","followFunctions?userid="+userid+"&postid="+postid+"&action=unfollowpost",true);
     xmlhttp.send();
 }

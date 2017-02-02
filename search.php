@@ -22,12 +22,12 @@
       elseif($_POST['value'] == 'thisMonth') {
           // query to get all this month's posts
           $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
-      } 
+      }
       elseif($_POST['value'] == 'thisYear') {
           // query to get all this year's posts
           $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
       }
-      
+
       $result = $conn->query($sql);
       $posts = array();
 
@@ -41,7 +41,7 @@
       }
       $conn->close();
     }
- 
+
 ?>
 
 <html lang="en">
@@ -53,6 +53,17 @@
     <?= scrollTopBtn(); ?>
     <?= navbar(); ?>
     <div class="page-container">
+      <div class="row hide-mobile">
+        <div class="col-sm-12">
+          <div class="large-search">
+            <form action="search">
+              <input name="search_keyword_id" autocomplete="off" onfocus="this.value = this.value;" id="mainSearch" type="text" value="<?=$keyword;?>" placeholder="Search anything">
+              <button type="submit" class="hidden-submit"></button>
+            </form>
+          </div><!-- END large-search -->
+        </div><!-- END col-sm-12 -->
+      </div><!-- END row -->
+
       <div class="row">
         <div class="col-sm-2">
           <div class="filter-sidebar">
@@ -61,10 +72,10 @@
         </div><!-- END right column col-sm-3 -->
 
 
-        <div class="col-sm-8">
+        <div class="col-sm-10">
           <div class="content-title">
             <h4>Search Results: <span class="primary-color"><?=$keyword;?></span></h4>
-            
+
               <form action="search.php?search_keyword_id=<?=$keyword;?>&tp=all" method='post' name='form_filter' style="float:right;">
               Show posts: &nbsp;
                 <select name="value" onchange="this.form.submit()">
@@ -75,7 +86,7 @@
                 </select>
                   <!--<input type='submit' value = 'Filter'>-->
               </form>
-            
+
           </div>
           <!-- do an if-else for posts count -->
           <?php if(count($posts) == 0) { ?>
@@ -97,5 +108,8 @@
 
     <?= footer(); ?>
 
+    <script>
+      document.getElementById("mainSearch").focus();
+    </script>
   </body>
 </html>

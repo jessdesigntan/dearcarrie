@@ -88,6 +88,11 @@ function nav(e) {
     removeActiveDiv();
     $("#followersDiv").fadeIn();
   }
+
+  if (e == "postFollowTab") {
+    removeActiveDiv();
+    $("#postfollowDiv").fadeIn();
+  }
 }
 
 function removeActiveTab() {
@@ -97,6 +102,7 @@ function removeActiveTab() {
   $("#topicTab").removeClass("active");
   $("#followingTab").removeClass("active");
   $("#followTab").removeClass("active");
+  $("#postFollowTab").removeClass("active");
 }
 
 function removeActiveDiv() {
@@ -106,4 +112,5 @@ function removeActiveDiv() {
   $("#topicsDiv").hide();
   $("#followingDiv").hide();
   $("#followersDiv").hide();
+  $("#postfollowDiv").hide();
 }

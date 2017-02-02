@@ -716,6 +716,28 @@ function getTopicsFollowedByUserID($id) {
 	return $resArr;
 }
 
+function getPostsFollowedByUserID($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT *
+					FROM post_follow f
+					INNER JOIN posts p ON f.postid = p.id
+					WHERE f.userid = '$id'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+
 //to be improved
 function displayTrendingPosts() {
 	$conn = connectToDataBase();

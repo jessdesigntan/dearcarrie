@@ -10,6 +10,7 @@
   $topicCount = countTopicsFollowedByUserID($userID);
   $followingUsers = getFollowing($userID);
   $followers = getFollowers($userID);
+  $postFollow = getPostsFollowedByUserID($userID);
 ?>
 
 <html lang="en">
@@ -19,7 +20,7 @@
     <?= navbar(); ?>
     <div class="page-container">
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
           <div class="user-header">
             <div class="header">
                 <div>
@@ -64,6 +65,7 @@
                     <li><a id="likeTab" onclick="nav(this.id)">Your Likes</a></li>
                     <li><a id="commentTab" onclick="nav(this.id)">Your Comments</a></li>
                     <li><a id="topicTab" onclick="nav(this.id)">Topics</a></li>
+                    <li><a id="postFollowTab" onclick="nav(this.id)">Posts You Follow</a></li>
                   <?php } ?>
                   <li><a id="followingTab" onclick="nav(this.id)">Following</a></li>
                   <li><a id="followTab" onclick="nav(this.id)">Followers</a></li>
@@ -191,6 +193,24 @@
               ?>
           </div>
           <!-- 6. /follower div -->
+
+          <!-- 6. /postfollowDiv -->
+          <div id="postfollowDiv">
+              <?php if (count($postFollow) == 0) { ?>
+                <div class="post-empty-state">
+                    <div>
+                        <h4>Not following any posts yet</h4>
+                    </div>
+                </div>
+              <?php
+                } else {
+                  foreach($postFollow as $post) {
+                  card($post["id"]);
+                }
+              }
+              ?>
+          </div>
+          <!-- 7. /postfollowDiv -->
 
         </div><!-- ./col-sm-8 -->
       </div><!-- ./row -->

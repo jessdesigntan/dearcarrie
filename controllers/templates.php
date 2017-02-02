@@ -170,7 +170,7 @@ function navbar() {
 
     <div class="mobile-search-bar show-mobile">
         <form action="search">
-            <input type="text" class="nav-search" placeholder="Search anything . . .">
+            <input type="text" id="search_keyword_id" name="search_keyword_id" autocomplete="off" class="nav-search" placeholder="Search anything . . .">
         </form>
     </div><!--/.mobile-search-bar -->
   </nav>
@@ -567,7 +567,7 @@ function sideFilter($keyword) {
   <p>Posts<span class="badge"><?php echo count($countPost);?></span></>
   <!--<a href="searchtopics?search_keyword_id=<?php echo $keyword;?>&tp=topic" <?php if ($_GET['tp'] == 'topic'){echo "class='active'";} ?>>Topics<span class="badge"><?php echo count($countTopic);?></span></a>-->
 
-  <script>staticBar('.filter-sidebar','30');</script>
+  <script>staticBar('.filter-sidebar','125');</script>
 <?php
 }
 
