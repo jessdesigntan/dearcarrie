@@ -314,13 +314,13 @@ function suggestedCard($id) {
       ?>
     </div>
     <div class="float-right">
-      <a href="#"><?=$commentCount?> comments</a>
+      <a href="post?postID=<?=$id;?>"><?=$commentCount?> comments</a>
       <script>
         $("[data-toggle=popover]").popover({html:true})
       </script>
     </div>
   </div>
-  <a href="post" class="read-more-footer">Read more</a>
+  <a href="post?postID=<?=$id;?>" class="read-more-footer">Read more</a>
 </div>
 <script src="js/likePost.js"></script>
 
