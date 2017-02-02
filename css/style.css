@@ -809,17 +809,21 @@ footer ul {
   color: var(--medium-text);
 }
 
-footer ul > li:first-child {
-  text-transform: uppercase;
+footer ul > li {
   color: var(--light-text);
-  letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 5px;
+  padding: 5px 0;
+  display: inline-block;
 }
 
-footer ul > li > a {
-  padding: 5px 0;
-  display: block;
+footer ul > li::after {
+  content: '\00B7';
+  margin: 0 10px;
+}
+
+footer ul > li:last-child::after {
+  content: none;
 }
 
 /*=============================

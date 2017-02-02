@@ -617,6 +617,7 @@ function scrollTopBtn() {
 }
 
 function footer() {
+  $topics = displayAllTopicsOrderByTitleAsc();
 ?>
   <footer class="footer">
     <div class="page-container">
@@ -624,31 +625,19 @@ function footer() {
         <div class="col-sm-12 pull-left">
           <img src="images/logo.svg" class="logo">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-12">
           <ul>
-            <li>Trending Topics</li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-4">
-          <ul>
-            <li>Featured Topics</li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-4">
-          <ul>
-            <li>Top Topics</li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
-            <li><a href="topicDetails">Bipolar</a></li>
+            <?php
+              $i = 1;
+              foreach($topics as $topic) {
+                if ($i % 1 == 0) {
+            ?>
+                <li><a href="topicDetails?topicID=<?=$topic['id'];?>"><?=$topic["title"];?></a></li>
+            <?php
+                }
+                $i++;
+              }
+            ?>
           </ul>
         </div>
       </div>
