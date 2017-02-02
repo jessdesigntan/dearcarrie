@@ -4,7 +4,7 @@ include("controllers/templates.php");
 $userid = $_POST["userid"];
 $role = $_POST["role"];
 $name = $_POST["name"];
-$desc = htmlspecialchars($_POST["desc"]);
+$desc = htmlentities($_POST["desc"], ENT_QUOTES);
 $image = $_POST["imageOld"];
 $action = $_POST["action"];
 // image

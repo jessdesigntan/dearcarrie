@@ -9,7 +9,7 @@ $url = $_POST["url"];
 $tel = $_POST["tel"];
 $desc = trim($_POST["desc"]);
 $desc = nl2br($desc); //add <br/> to every breakline
-$desc = htmlspecialchars($desc);
+$desc = htmlentities($desc, ENT_QUOTES);
 //main image
 $mImageName = $_FILES["main"]["name"];
 $mImageType = $_FILES["main"]["type"];

@@ -2,7 +2,7 @@
 include ("controllers/templates.php");
 $postID = $_POST["postID"];
 $title = $_POST["title"];
-$desc = htmlspecialchars($_POST["desc"]);
+$desc = htmlentities($_POST["desc"], ENT_QUOTES);
 $action = $_POST["action"];
 
 $conn = connectToDataBase();

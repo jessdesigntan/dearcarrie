@@ -9,7 +9,7 @@ $title = $_POST["title"];
 $mainImage = $_POST["main_image_old"];
 $backgroundImage = $_POST["background_old"];
 $short_desc = htmlspecialchars($_POST["short_desc"]);
-$desc = htmlspecialchars($_POST["desc"]);
+$desc = htmlentities($_POST["desc"], ENT_QUOTES);
 $url = $_POST["url"];
 $tel = $_POST["tel"];
 

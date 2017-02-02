@@ -4,7 +4,7 @@ include("controllers/templates.php");
 $action = $_POST["action"];
 $postid = $_POST["postid"];
 $title = $_POST["title"];
-$desc = htmlspecialchars($_POST["desc"]);
+$desc = htmlentities($_POST["desc"], ENT_QUOTES);
 $topics = $_POST['topic'];
 echo $desc;
 echo $action;

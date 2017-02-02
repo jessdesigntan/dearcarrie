@@ -4,7 +4,9 @@ include("controllers/templates.php");
 $title = $_POST["title"];
 $desc = trim($_POST["desc"]);
 $desc = nl2br($desc); //add <br/> to every breakline
-$desc = htmlspecialchars($desc);
+$desc = htmlentities($desc, ENT_QUOTES);
+
+
 //Add to db
 $conn = connectToDataBase();
 $userID = $_SESSION["userid"];
@@ -18,4 +20,5 @@ $postID = $conn->insert_id;
 $conn->close();
 //Re-direct
 header("location: post?postID=$postID");
+
 ?>

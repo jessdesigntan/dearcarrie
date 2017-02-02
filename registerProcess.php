@@ -2,7 +2,7 @@
 include("controllers/templates.php");
 
 //Get form values
-$name = $_POST["name"];
+$name = htmlentities($_POST["name"],ENT_QUOTES);
 $email = $_POST["email"];
 $password = $_POST["password1"];
 $password2 = $_POST["password2"];

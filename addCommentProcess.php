@@ -3,7 +3,7 @@ include("controllers/templates.php");
 $postid = $_POST["postid"];
 $comment = trim($_POST["comment"]);
 $comment = nl2br($comment);
-$comment = htmlspecialchars($comment);
+$comment = htmlentities($comment, ENT_QUOTES);
 $userid = $_SESSION["userid"];
 //Add to db
 $conn = connectToDataBase();
