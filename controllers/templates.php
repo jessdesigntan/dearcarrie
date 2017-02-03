@@ -489,7 +489,7 @@ function commentCard($id) {
     </div>
 
     <div class="content">
-      <p><?=$comment["comment"];?></p>
+      <?php echo '<p> ' . nl2br($comment["comment"]) . '</p>'; ?>
     </div>
 
     <div class="footer">

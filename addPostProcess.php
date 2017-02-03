@@ -1,7 +1,7 @@
 <?php
 include("controllers/templates.php");
 
-$title = $_POST["title"];
+$title = htmlentities($_POST["title"], ENT_QUOTES);
 $desc = trim($_POST["desc"]);
 $desc = htmlentities($desc, ENT_QUOTES);
 
