@@ -235,6 +235,11 @@ function card($id) {
       <?php
           }
         }
+        else {
+      ?>
+          <p><?=$postLikeCount;?> Likes</p>
+      <?php
+        }
       ?>
     </div>
     <div class="float-right">
@@ -252,6 +257,9 @@ function suggestedCard($id) {
   $user = getUserByID($post["userid"]);
   $postLikeCount = countPostLikes($id);
   $commentCount = countCommentsByPostID($id);
+  if(isset($_SESSION["userid"])){
+    $likedPost = hasLikedPost($_SESSION["userid"], $id);
+  }
 ?>
 <div class="card">
   <div class="header">
@@ -305,6 +313,11 @@ function suggestedCard($id) {
             </form>
       <?php
           }
+        }
+        else {
+      ?>
+          <p><?=$postLikeCount;?> Likes</p>
+      <?php
         }
       ?>
     </div>
@@ -448,6 +461,11 @@ function cardExpand($postID) {
         <?php
             }
           }
+          else {
+        ?>
+            <p><?=$postLikeCount;?> Likes</p>
+        <?php
+          }
         ?>
       </div>
 
@@ -466,7 +484,9 @@ function cardExpand($postID) {
 function commentCard($id) {
   $comment = getCommentByID($id);
   $user = getUserByID($comment["userid"]);
-  $likedComment = hasLikedComment(isset($_SESSION["userid"]),$id);
+  if(isset($_SESSION["userid"])){
+    $likedComment = hasLikedComment($_SESSION["userid"],$id);
+  }
   $commentLikes = countCommentsLikes($id);
   reportModal("comment", $id, $comment["postid"]);
 ?>
@@ -494,6 +514,7 @@ function commentCard($id) {
 
     <div class="footer">
       <div class="float-left">
+
         <?php
           if (!checkLogin()) {
             if ($likedComment) { //user has liked the post
@@ -518,8 +539,13 @@ function commentCard($id) {
       <div class="float-right">
         <?php if (!checkLogin() && $_SESSION["userid"] != $user["id"]) { ?>
           <a onclick="showReportForm(<?=$id?>);">Report</a>
-        <?php } else { ?>
-          <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <?php } else {
+                if (!checkLogin()) {
+        ?>
+                  <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <?php
+                }
+         ?>
         <?php } ?>
       </div>
       <div class="report-form" id="report-form<?=$id?>">
