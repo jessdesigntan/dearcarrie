@@ -10,7 +10,7 @@
     {
         $search_keyword  = $_POST['search_keyword'];
         $sql= "SELECT title, 'Title: ' as source FROM posts WHERE (title LIKE '%$search_keyword%') AND published = 1
-                        UNION ALL SELECT title, 'Topic: ' as source FROM topics WHERE (title LIKE '%$search_keyword%') AND published = 1";
+                        UNION ALL SELECT title, 'Topic: ' as source FROM topics WHERE (title LIKE '%$search_keyword%') AND published = 1 limit 10";
         $query=$conn->query($sql);
 
         if($query === false) {
