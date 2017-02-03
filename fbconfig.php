@@ -48,7 +48,7 @@ if ( isset( $session ) ) {
     /* ---- header location after session ----*/
 
     //begin to get photo from facebook account
-    /*$url = 'http://graph.facebook.com/' . $fbid . '/picture?type=large';
+    $url = 'http://graph.facebook.com/' . $fbid . '/picture?type=large';
     $ch = curl_init();
     curl_setopt ($ch, CURLOPT_URL, $url);
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -57,7 +57,7 @@ if ( isset( $session ) ) {
     $fileName = 'images/profile/'.$fbid.'.jpg';
     $file = fopen($fileName, 'w+');
     fputs($file, $data);
-    fclose($file);*/
+    fclose($file);
     //end to get photo from facebook account
 
     //begin get exist user ?
@@ -75,11 +75,11 @@ if ( isset( $session ) ) {
       $hashPassword = md5($myPass);
       //save to table user for new user
       if ($femail == ""){
-        $sqls = "INSERT INTO users (name, email, password, affliate)
-      VALUES ('$fbfullname', '$fbid', '$hashPassword', 'facebook')";
+        $sqls = "INSERT INTO users (name, email, password, affliate, image)
+      VALUES ('$fbfullname', '$fbid', '$hashPassword', 'facebook', '$fileName')";
       }else{
-        $sqls = "INSERT INTO users (name, email, password, affliate)
-      VALUES ('$fbfullname', '$femail', '$hashPassword', 'facebook')";
+        $sqls = "INSERT INTO users (name, email, password, affliate, image)
+      VALUES ('$fbfullname', '$femail', '$hashPassword', 'facebook', '$fileName')";
       }
 
       validateQuery($conn, $sqls);
