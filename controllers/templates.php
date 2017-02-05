@@ -19,6 +19,7 @@ function head($title){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="http://imgur.com/a/qtFfN">
+    <meta property="og:title" content="Dear Carrie is a community of readers and writers offering unique perspectives on mental-health related issues." />
     <title><?=$title;?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -235,6 +236,11 @@ function card($id) {
       <?php
           }
         }
+        else {
+      ?>
+          <p><?=$postLikeCount;?> Likes</p>
+      <?php
+        }
       ?>
     </div>
     <div class="float-right">
@@ -252,6 +258,9 @@ function suggestedCard($id) {
   $user = getUserByID($post["userid"]);
   $postLikeCount = countPostLikes($id);
   $commentCount = countCommentsByPostID($id);
+  if(isset($_SESSION["userid"])){
+    $likedPost = hasLikedPost($_SESSION["userid"], $id);
+  }
 ?>
 <div class="card">
   <div class="header">
@@ -305,6 +314,11 @@ function suggestedCard($id) {
             </form>
       <?php
           }
+        }
+        else {
+      ?>
+          <p><?=$postLikeCount;?> Likes</p>
+      <?php
         }
       ?>
     </div>
@@ -448,6 +462,11 @@ function cardExpand($postID) {
         <?php
             }
           }
+          else {
+        ?>
+            <p><?=$postLikeCount;?> Likes</p>
+        <?php
+          }
         ?>
       </div>
 
@@ -466,7 +485,9 @@ function cardExpand($postID) {
 function commentCard($id) {
   $comment = getCommentByID($id);
   $user = getUserByID($comment["userid"]);
-  $likedComment = hasLikedComment(isset($_SESSION["userid"]),$id);
+  if(isset($_SESSION["userid"])){
+    $likedComment = hasLikedComment($_SESSION["userid"],$id);
+  }
   $commentLikes = countCommentsLikes($id);
   reportModal("comment", $id, $comment["postid"]);
 ?>
@@ -489,11 +510,12 @@ function commentCard($id) {
     </div>
 
     <div class="content">
-      <p><?=$comment["comment"];?></p>
+      <?php echo '<p> ' . nl2br($comment["comment"]) . '</p>'; ?>
     </div>
 
     <div class="footer">
       <div class="float-left">
+
         <?php
           if (!checkLogin()) {
             if ($likedComment) { //user has liked the post
@@ -518,8 +540,13 @@ function commentCard($id) {
       <div class="float-right">
         <?php if (!checkLogin() && $_SESSION["userid"] != $user["id"]) { ?>
           <a onclick="showReportForm(<?=$id?>);">Report</a>
-        <?php } else { ?>
-          <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <?php } else {
+                if (!checkLogin()) {
+        ?>
+                  <a class="delete" href="deleteCommentProcess?userID=<?=$comment['userid'];?>&postID=<?=$comment['postid'];?>&commentID=<?=$id?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <?php
+                }
+         ?>
         <?php } ?>
       </div>
       <div class="report-form" id="report-form<?=$id?>">

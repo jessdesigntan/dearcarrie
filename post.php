@@ -47,7 +47,7 @@
         <div class="col-sm-8 col-sm-offset-2">
 
             <?= cardExpand($post["id"]); ?>
-              <h4><?php if ($commentCount != 0) { echo $commentCount; } ?> Responses</h4>
+              <h4><?php if ($commentCount != 0) { echo $commentCount; } else { echo '0'; } ?> Responses</h4>
               <?php if(isset($_SESSION["userid"])){
                 if ($_SESSION["userid"] != "") { ?>
                   <form action="addCommentProcess" method="post" class="comment-box">
@@ -59,8 +59,9 @@
               <?php } } else { ?>
                 <div class="post-empty-state mBottom-20">
                     <div>
-                        <h4>Sign up to start commenting</h4>
+                        <h4>Sign up or login to start commenting</h4>
                         <a class="primary-line-btn" href="signup">Sign up</a>
+                        <a class="primary-line-btn" href="login">Login</a>
                     </div>
                 </div>
               <?php } ?>

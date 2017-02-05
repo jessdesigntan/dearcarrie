@@ -48,6 +48,7 @@ if ( isset( $session ) ) {
     /* ---- header location after session ----*/
 
     //begin to get photo from facebook account
+    /*
     $url = 'http://graph.facebook.com/' . $fbid . '/picture?type=large';
     $ch = curl_init();
     curl_setopt ($ch, CURLOPT_URL, $url);
@@ -59,6 +60,10 @@ if ( isset( $session ) ) {
     fputs($file, $data);
     fclose($file);
     //end to get photo from facebook account
+    */
+
+    //fb image using direct url
+    $fbImage = 'http://graph.facebook.com/'.$fbid.'/picture?type=large';
 
     //begin get exist user ?
     $email = $femail;
@@ -76,10 +81,10 @@ if ( isset( $session ) ) {
       //save to table user for new user
       if ($femail == ""){
         $sqls = "INSERT INTO users (name, email, password, affliate, image)
-      VALUES ('$fbfullname', '$fbid', '$hashPassword', 'facebook', '$fileName')";
+      VALUES ('$fbfullname', '$fbid', '$hashPassword', 'facebook', '$fbImage')";
       }else{
         $sqls = "INSERT INTO users (name, email, password, affliate, image)
-      VALUES ('$fbfullname', '$femail', '$hashPassword', 'facebook', '$fileName')";
+      VALUES ('$fbfullname', '$femail', '$hashPassword', 'facebook', '$fbImage')";
       }
 
       validateQuery($conn, $sqls);
@@ -102,7 +107,7 @@ if ( isset( $session ) ) {
       $_SESSION["role"] = $value["role"];
       $_SESSION["name"] = strtok($value["name"], " "); //get first word of the name
     }
-    
+
 
   header("Location: index.php");
 } else {
