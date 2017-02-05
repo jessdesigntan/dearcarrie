@@ -80,7 +80,7 @@
                   if(data.trim().length == 0){
                     //notify user if nothing to load
                     //$('.loading-info').html("No more records!");
-                    $('.loading-info').html("");
+                    $('.loading-info').html("<img class='wow bounceIn' src='images/sea.svg' style='width:10%;'>");
                     return;
                   }
                   $('.loading-info').hide(); //hide loading spinner animation once data is received
