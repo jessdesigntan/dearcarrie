@@ -3,6 +3,10 @@
 <?php redirectToLogin($_SESSION["role"], "admin"); ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Add Topic"); ?>
+  <link rel="stylesheet" type="text/css" href="css/imgareaselect-animated.css" />
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 
   <body>
     <?= navbar(); ?>
@@ -55,7 +59,14 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="file" name="main">
+                                <!-- image preview area-->
+                                <img id="uploadPreview" style="display:none;"/>
+                                <input type="file" id="uploadImage" accept="image/jpeg" name="main">
+                                <!-- hidden inputs for crop -->
+                                <input type="hidden" id="x" name="x" />
+                                <input type="hidden" id="y" name="y" />
+                                <input type="hidden" id="w" name="w" />
+                                <input type="hidden" id="h" name="h" />
                             </td>
                         </tr>
                         <tr>
@@ -63,7 +74,14 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="file" name="background">
+                                <!-- image preview area-->
+                                <img id="uploadPreview2" style="display:none;"/>
+                                <input type="file" id="uploadImage2" accept="image/jpeg" name="background">
+                                <!-- hidden inputs for crop -->
+                                <input type="hidden" id="x2" name="x2" />
+                                <input type="hidden" id="y2" name="y2" />
+                                <input type="hidden" id="w2" name="w2" />
+                                <input type="hidden" id="h2" name="h2" />
                             </td>
                         </tr>
                         <tr>

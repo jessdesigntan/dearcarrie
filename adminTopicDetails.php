@@ -7,8 +7,11 @@
 ?>
 
 <html lang="en">
-  <?php head("Dear Carrie - Admin Topic Details"); ?>
-
+    <?php head("Dear Carrie - Admin Topic Details"); ?>
+    <link rel="stylesheet" type="text/css" href="css/imgareaselect-animated.css" />
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
   <body>
     <?= navbar(); ?>
     <?= adminNav(); ?>
@@ -82,9 +85,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="file" name="main_image_new">
+                                <!-- image preview area-->
+                                <img id="uploadPreview" style="display:none;"/>
+                                <input type="file" name="main" id="uploadImage" accept="image/jpeg">
                                 <input type="hidden" name="main_image_old" value="<?=$topic["main_image"];?>">
                                 <img src="<?=$topic["main_image"];?>" class="img-responsive">
+                                <!-- hidden inputs for crop -->
+                                <input type="hidden" id="x" name="x" />
+                                <input type="hidden" id="y" name="y" />
+                                <input type="hidden" id="w" name="w" />
+                                <input type="hidden" id="h" name="h" />
                             </td>
                         </tr>
                         <tr>
@@ -92,9 +102,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="file" name="background_new">
+                                <!-- image preview area-->
+                                <img id="uploadPreview2" style="display:none;"/>
+                                <input type="file" name="background" id="uploadImage2" accept="image/jpeg">
                                 <input type="hidden" name="background_old" value="<?=$topic["background"];?>">
                                 <img src="<?=$topic["background"];?>" class="img-responsive">
+                                <!-- hidden inputs for crop -->
+                                <input type="hidden" id="x2" name="x2" />
+                                <input type="hidden" id="y2" name="y2" />
+                                <input type="hidden" id="w2" name="w2" />
+                                <input type="hidden" id="h2" name="h2" />
                             </td>
                         </tr>
                         <tr>
