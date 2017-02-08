@@ -14,7 +14,10 @@
 
   validateQuery($conn, $sql);
 
-  $conn->close();
+  $to_user = getUserbyPostID($postID);
+  $sql = "DELETE FROM notifications WHERE type = 'comment_new' AND from_user = '$userID' AND to_user = '$to_user' AND item = '$postID'";
+  validateQuery($conn, $sql);
+
   //Re-direct
   header("location: post?postID=$postID");
 ?>

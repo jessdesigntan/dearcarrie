@@ -106,6 +106,28 @@ function getUserByID($id) {
 	return $value;
 }
 
+function getUserbyPostID($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT userid AS user FROM posts WHERE id = '$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["user"];
+}
+
+function getUserbyCommentID($id) {
+	$conn = connectToDataBase();
+
+	$sql = "SELECT userid AS user FROM comments WHERE id = '$id'";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+
+	$conn->close();
+	return $value["user"];
+}
+
 function getTopicByID($id) {
 	$conn = connectToDataBase();
 
@@ -608,13 +630,25 @@ function isFollowingPost ($userid, $postid) {
 
 function followPost ($userid, $postid) {
 	$conn = connectToDataBase();
+	$to_user = getUserbyPostID($postid);
 	$sql = "INSERT INTO post_follow (userid, postid) VALUES ('$userid', '$postid')";
 	validateQuery($conn, $sql);
+
+	//notifications
+	if ($to_user != $userid) {
+		$sql = "INSERT INTO notifications (item, type, from_user, to_user)
+		VALUES ('$postid', 'post_follow', '$userid', '$to_user')";
+		validateQuery($conn, $sql);
+	}
 }
 
 function unfollowPost ($userid, $postid) {
 	$conn = connectToDataBase();
+	$to_user = getUserbyPostID($postid);
 	$sql = "DELETE FROM post_follow WHERE userid = '$userid' AND postid = '$postid'";
+	validateQuery($conn, $sql);
+
+	$sql = "DELETE FROM notifications WHERE type = 'post_follow' AND from_user = '$userid' AND to_user = '$to_user' AND item = '$postid'";
 	validateQuery($conn, $sql);
 }
 
@@ -645,11 +679,18 @@ function followUser ($currentuser, $userid) {
     $errorMsg = 'Some problem occurred, please try again.';
   endif;
 
+	//notification
+	$sql = "INSERT INTO notifications (item, type, from_user, to_user)
+	VALUES ('$currentuser', 'user_follow', '$currentuser', '$userid')";
+	validateQuery($conn, $sql);
 }
 
 function unfollowUser ($currentuser, $userid) {
 	$conn = connectToDataBase();
 	$sql = "DELETE FROM user_follow WHERE follower = '$currentuser' AND userid = '$userid'";
+	validateQuery($conn, $sql);
+
+	$sql = "DELETE FROM notifications WHERE type = 'user_follow' AND from_user = '$currentuser' AND to_user = '$userid' AND item = '$currentuser'";
 	validateQuery($conn, $sql);
 }
 
@@ -761,11 +802,24 @@ function likePost ($userid, $postid) {
 	$conn = connectToDataBase();
 	$sql = "INSERT INTO post_like (userid, postid) VALUES ('$userid', '$postid')";
 	validateQuery($conn, $sql);
+
+	$to_user = getUserbyPostID($postid);
+	//notifications
+	if ($to_user != $userid) {
+		$sql = "INSERT INTO notifications (item, type, from_user, to_user)
+		VALUES ('$postid', 'post_like', '$userid', '$to_user')";
+		validateQuery($conn, $sql);
+	}
 }
 
 function unlikePost ($userid, $postid) {
 	$conn = connectToDataBase();
 	$sql = "DELETE FROM post_like WHERE userid = '$userid' AND postid = '$postid'";
+	validateQuery($conn, $sql);
+
+	//notifications
+	$to_user = getUserbyPostID($postid);
+	$sql = "DELETE FROM notifications WHERE type = 'post_like' AND from_user = '$userid' AND to_user = '$to_user' AND item = '$postid'";
 	validateQuery($conn, $sql);
 }
 
@@ -825,11 +879,23 @@ function likeComment ($userid, $commentid) {
 	$conn = connectToDataBase();
 	$sql = "INSERT INTO comment_like (userid, commentid) VALUES ('$userid', '$commentid')";
 	validateQuery($conn, $sql);
+
+	$to_user = getUserByCommentID($commentid);
+	//notifications
+	if ($to_user != $userid) {
+		$sql = "INSERT INTO notifications (item, type, from_user, to_user)
+		VALUES ('$commentid', 'comment_like', '$userid', '$to_user')";
+		validateQuery($conn, $sql);
+	}
 }
 
 function unlikeComment ($userid, $commentid) {
 	$conn = connectToDataBase();
 	$sql = "DELETE FROM comment_like WHERE userid = '$userid' AND commentid = '$commentid'";
+	validateQuery($conn, $sql);
+
+	$to_user = getUserByCommentID($commentid);
+	$sql = "DELETE FROM notifications WHERE type = 'comment_like' AND from_user = '$userid' AND to_user = '$to_user' AND item = '$commentid'";
 	validateQuery($conn, $sql);
 }
 
@@ -933,45 +999,19 @@ function getFollowers($userid) {
 }
 
 function getNotificationsByUserID($userid) {
-	$currUser = $_SESSION["userid"];
 	$conn = connectToDataBase();
-	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_follow' AND p.userid='$userid' AND p.userid != '$currUser'
-					UNION
-					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN users u ON n.item = u.id
-					WHERE n.type = 'user_follow' AND u.id='$userid'
-					UNION
-					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_like' AND p.userid='$userid' AND p.userid != '$currUser'
-					UNION
-					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN comments c ON n.item = c.id
-					INNER JOIN posts p ON p.id = c.postid
-					WHERE n.type = 'new_comment' AND p.userid='$userid' AND p.userid != '$currUser'
-					UNION
-					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN comments c ON n.item = c.id
-					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.from_user != '$currUser'
-				";
-
+	$sql = "SELECT * FROM notifications WHERE to_user = '$userid' ORDER BY timestamp DESC";
 	$result = $conn->query($sql);
 	$resArr = array();
 
 	if ($result->num_rows > 0) {
-		// output data of each row
-		while($row = $result->fetch_assoc()) {
-			$resArr[] = $row;
-		}
+		 // output data of each row
+		 while($row = $result->fetch_assoc()) {
+			 $resArr[] = $row;
+		 }
+	} else {
+		 //showErrorMessage("No posts found");
 	}
-
 	$conn->close();
 	return $resArr;
 }
@@ -985,42 +1025,16 @@ function getUserNameByID($id) {
 	return $value;
 }
 
-function changeNotificationSeen($item, $type, $from_user) {
+function changeNotificationSeen($userid) {
 	$conn = connectToDataBase();
 
-	$sql = "UPDATE notifications SET seen=1 WHERE item='$item' AND type='$type' AND from_user='$from_user'";
+	$sql = "UPDATE notifications SET seen = 1 WHERE to_user = '$userid'";
 	validateQuery($conn, $sql);
 }
 
 function getUnseenNotificationCount($userid) {
-	$currUser = $_SESSION["userid"];
 	$conn = connectToDataBase();
-	$sql = "SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_follow' AND p.userid='$userid' AND n.seen=0  AND p.userid != '$currUser'
-					UNION
-					SELECT u.id as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN users u ON n.item = u.id
-					WHERE n.type = 'user_follow' AND u.id='$userid' AND n.seen=0
-					UNION
-					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN posts p ON n.item = p.id
-					WHERE n.type = 'post_like' AND p.userid='$userid' AND n.seen=0 AND p.userid != '$currUser'
-					UNION
-					SELECT p.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN comments c ON n.item = c.id
-					INNER JOIN posts p ON p.id = c.postid
-					WHERE n.type = 'new_comment' AND p.userid='$userid' AND n.seen=0 AND p.userid != '$currUser'
-					UNION
-					SELECT c.userid as to_user, n.item, n.from_user, n.type, n.seen
-					FROM notifications n
-					INNER JOIN comments c ON n.item = c.id
-					WHERE n.type = 'comment_like' AND c.userid='$userid' AND n.seen=0 AND n.from_user != '$currUser'
-				";
+	$sql = "SELECT * FROM notifications WHERE to_user = '$userid' AND seen = 0";
 
 	$result = $conn->query($sql);
 	$resArr = array();
@@ -1192,5 +1206,6 @@ function increasePostView($id) {
 	$sql = "UPDATE posts SET views = views + 1 WHERE id = '$id'";
 	validateQuery($conn, $sql);
 }
+
 
 ?>

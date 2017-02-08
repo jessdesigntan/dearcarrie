@@ -12,8 +12,14 @@ VALUES ('$userid', '$postid', '$comment')";
 
 validateQuery($conn, $sql);
 
-$postID = $conn->insert_id;
-$conn->close();
+//notification
+$to_user = getUserbyPostID($postid);
+if ($to_user != $from_user) {
+  $sql = "INSERT INTO notifications (item, type, from_user, to_user)
+  VALUES ('$postid', 'comment_new', '$userid', '$to_user')";
+  validateQuery($conn, $sql);
+}
+
 
 //send email
 sendCommentEmail($userid, $postid, $comment);

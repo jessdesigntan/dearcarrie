@@ -16,7 +16,13 @@ VALUES ('$userID', '$title', '$desc')";
 validateQuery($conn, $sql);
 
 $postID = $conn->insert_id;
-$conn->close();
+
+//notifications to followers of users
+$sql = "INSERT INTO notifications (item, type, from_user)
+values ('$postID', 'user_new_post', '$userID')";
+
+validateQuery($conn, $sql);
+
 //Re-direct
 header("location: post?postID=$postID");
 

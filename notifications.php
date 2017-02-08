@@ -20,7 +20,7 @@
               foreach($notifications as $notification) {
                 $user = getUserNameByID($notification["from_user"]);
                 $comment = getCommentByID($notification["item"]);
-                changeNotificationSeen($notification["item"],$notification["type"],$notification["from_user"]);
+                changeNotificationSeen($_SESSION["userid"]);
 
                 if (!$notification["seen"]) {
                     echo '<div class="media active">';
@@ -42,10 +42,12 @@
                               is following you now
                         <?php } if ($notification["type"] == "post_like") { ?>
                               like your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
-                        <?php } if ($notification["type"] == "new_comment") { ?>
+                        <?php } if ($notification["type"] == "comment_new") { ?>
                               commented on your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
                         <?php } if ($notification["type"] == "comment_like") { ?>
                               liked your <a href="post?postID=<?=$comment["postid"];?>" class="primary-color">comment</a>
+                        <?php } if ($notification["type"] == "post_follow") { ?>
+                              is following your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
                         <?php } ?>
                         <div class="new pull-right primary-color">&bull;</div>
                     </div>
