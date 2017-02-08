@@ -27,12 +27,12 @@
                 <input type="email" class="form-control" name="email" required>
               </div>
               <div class="form-group">
-                <label class="control-label">Password</label>
-                <input type="password" class="form-control" name="password1" required>
+                <label class="control-label">Password (At least 6 characters)</label>
+                <input type="password" class="form-control" name="password1" required pattern=".{6,}" >
               </div>
               <div class="form-group">
                 <label class="control-label">Confirm Password</label>
-                <input type="password" class="form-control" name="password2" required>
+                <input type="password" class="form-control" name="password2" required pattern=".{6,}" >
               </div>
               <button type="submit" class="primary-line-btn" id="submitBtn">Sign up</button>
           </form>
