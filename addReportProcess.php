@@ -5,12 +5,12 @@ $postid = $_POST["postid"];
 $userid = $_SESSION["userid"];
 $itemid = $_POST["itemid"];
 $type = $_POST["type"];
-$desc = htmlentities($desc, ENT_QUOTES);
+$comment = htmlentities($_POST["desc"], ENT_QUOTES);
 //Add to db
 $conn = connectToDataBase();
 
 $sql = "INSERT INTO reports (userid, itemid, comment, type)
-VALUES ('$userid', '$itemid', '$desc', '$type')";
+VALUES ('$userid', '$itemid', '$comment', '$type')";
 
 validateQuery($conn, $sql);
 

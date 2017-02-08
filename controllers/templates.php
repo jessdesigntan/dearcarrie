@@ -244,7 +244,7 @@ function card($id) {
       ?>
     </div>
     <div class="float-right">
-      <a href="post?postID=<?=$post["id"];?>#commentsDiv"><?=$commentCount?> comments</a>
+      <a href='post?postID=<?=$post["id"];?>'><?=$commentCount?> comments</a>
     </div>
   </div>
 </div>
