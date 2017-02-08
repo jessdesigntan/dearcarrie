@@ -18,10 +18,15 @@ validateQuery($conn, $sql);
 $postID = $conn->insert_id;
 
 //notifications to followers of users
-$sql = "INSERT INTO notifications (item, type, from_user)
-values ('$postID', 'user_new_post', '$userID')";
+$followers = getFollowers($userID);
+foreach ($followers as $follower) {
+  $to_user = $follower["follower"];
+  $sql = "INSERT INTO notifications (item, type, from_user, to_user)
+  values ('$postID', 'user_new_post', '$userID', '$to_user')";
 
-validateQuery($conn, $sql);
+  mysqli_query($conn, $sql);
+}
+
 
 //Re-direct
 header("location: post?postID=$postID");
