@@ -26,12 +26,12 @@ $desc = htmlentities($desc, ENT_QUOTES);
 
 //check extension
 $valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-$max_file_size = 400 * 1024; #400kb
-$max_file_size2 = 400 * 1024; #400kb
-$nw = 2000; # image with # height main
-$nh = 1000;
-$nw2 = 2000; # image with # height background
-$nh2 = 1000;
+$max_file_size = 500 * 1024; #500kb
+$max_file_size2 = 500 * 1024; #500kb
+// $nw = 2000; # image with # height main
+// $nh = 1000;
+// $nw2 = 2000; # image with # height background
+// $nh2 = 1000;
 
 if ( (isset($_FILES['main']) && $_FILES['main']['error'] == 0) || (isset($_FILES['background']) && $_FILES['background']['error'] == 0) ) {
 	if ((! $_FILES['main']['error'] && $_FILES['main']['size'] < $max_file_size) || (! $_FILES['background']['error'] && $_FILES['background']['size'] < $max_file_size2)) {

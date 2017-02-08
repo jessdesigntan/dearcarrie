@@ -15,12 +15,12 @@ $tel = $_POST["tel"];
 
 //check extension
 $valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-$max_file_size = 400 * 1024; #400kb
-$max_file_size2 = 400 * 1024; #400kb
-$nw = 2000; # image with # height main
-$nh = 1000;
-$nw2 = 2000; # image with # height background
-$nh2 = 1000;
+$max_file_size = 500 * 1024; #500kb
+$max_file_size2 = 500 * 1024; #500kb
+// $nw = 2000; # image with # height main
+// $nh = 1000;
+// $nw2 = 2000; # image with # height background
+// $nh2 = 1000;
 
 
 // main image

@@ -3,9 +3,9 @@
 <?php redirectToLogin($_SESSION["role"], "admin"); ?>
 <html lang="en">
   <?php head("Dear Carrie - Admin Add Topic"); ?>
-  <link rel="stylesheet" type="text/css" href="css/imgareaselect-animated.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/imgareaselect-animated.css" /> -->
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script>
+  <!-- <script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script> -->
   <script type="text/javascript" src="js/script.js"></script>
 
   <body>
