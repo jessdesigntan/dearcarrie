@@ -33,14 +33,15 @@ foreach ($postFollowers as $postFollower) {
 
 //notification to people who commented on the post
 $postCommenters = getUserThatCommented($postid);
-foreach ($postFollowers as $postFollower) {
-  $to_user = $postFollower["userid"];
+foreach ($postCommenters as $postCommenter) {
+  $to_user = $postCommenter["userid"];
   if ($to_user != $userid) {
     $sql = "INSERT INTO notifications (item, type, from_user, to_user)
     values ('$postid', 'new_comment_commented', '$userid', '$to_user')";
+
+    mysqli_query($conn, $sql);
   }
 
-  mysqli_query($conn, $sql);
 }
 
 //send email

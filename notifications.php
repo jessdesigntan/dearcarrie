@@ -47,9 +47,9 @@
                               <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a> liked your <a href="post?postID=<?=$comment["postid"];?>" class="primary-color">comment</a>
                         <?php } if ($notification["type"] == "post_follow") { ?>
                               <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a> is following your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
-                        <?php } if ($notification["type"] == "new_comment_post_follow") { ?>
+                        <?php } if ($notification["type"] == "new_comment_follow_post") { ?>
                               There is a new comment on the <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> you follow
-                        <?php } if ($notification["type"] == "new_comment_post_follow") { ?>
+                        <?php } if ($notification["type"] == "new_comment_commented") { ?>
                               There is a new comment on the <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> you commented
                         <?php } ?>
                         <div class="new pull-right primary-color">&bull;</div>
