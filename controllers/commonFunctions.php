@@ -998,6 +998,40 @@ function getFollowers($userid) {
 	return $resArr;
 }
 
+function getPostFollowers($postid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM post_follow WHERE postid = '$postid'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
+function getUserThatCommented($postid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM comments WHERE postid = '$postid'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
 function getNotificationsByUserID($userid) {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM notifications WHERE to_user = '$userid' ORDER BY timestamp DESC";

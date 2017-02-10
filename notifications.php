@@ -37,17 +37,20 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a>
                         <?php if ($notification["type"] == "user_follow") { ?>
-                              is following you now
+                              <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a> is following you now
                         <?php } if ($notification["type"] == "post_like") { ?>
-                              like your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
+                              <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a> like your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
                         <?php } if ($notification["type"] == "comment_new") { ?>
-                              commented on your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
+                              <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a> commented on your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
                         <?php } if ($notification["type"] == "comment_like") { ?>
-                              liked your <a href="post?postID=<?=$comment["postid"];?>" class="primary-color">comment</a>
+                              <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a> liked your <a href="post?postID=<?=$comment["postid"];?>" class="primary-color">comment</a>
                         <?php } if ($notification["type"] == "post_follow") { ?>
-                              is following your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
+                              <a href="profile?userID=<?=$user["id"];?>" class="primary-color"><?=$user["name"];?></a> is following your <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a>
+                        <?php } if ($notification["type"] == "new_comment_post_follow") { ?>
+                              There is a new comment on the <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> you follow
+                        <?php } if ($notification["type"] == "new_comment_post_follow") { ?>
+                              There is a new comment on the <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> you commented
                         <?php } ?>
                         <div class="new pull-right primary-color">&bull;</div>
                     </div>
