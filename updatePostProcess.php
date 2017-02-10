@@ -40,9 +40,14 @@ if ($action == "topic") {
     $sql = "INSERT INTO curation (topicid, postid) VALUES('$topicid', '$postid')";
     $result = $conn->query($sql);
 
-    //increase posts by 1 in topics table
-    $sql = "UPDATE curation (topicid, postid) VALUES('$topicid', '$postid')";
-    $result = $conn->query($sql);
+    //for every topic inserted,
+    $followers = getTopicFollowers($topicid);
+    foreach ($followers as $follower) {
+      $to_user = $follower["userid"];
+      $sql1 = "INSERT INTO notifications (item, type, to_user, from_user)
+      VALUES ('$topicid', 'new_post_topic', '$to_user', '$postid')";
+      mysqli_query($conn, $sql1);
+    }
   }
 
 

@@ -998,6 +998,23 @@ function getFollowers($userid) {
 	return $resArr;
 }
 
+function getTopicFollowers($topicid) {
+	$conn = connectToDataBase();
+	$sql = "SELECT * FROM topic_follow WHERE topicid = '$topicid'";
+	$result = $conn->query($sql);
+	$resArr = array();
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$resArr[] = $row;
+		}
+	}
+
+	$conn->close();
+	return $resArr;
+}
+
 function getPostFollowers($postid) {
 	$conn = connectToDataBase();
 	$sql = "SELECT * FROM post_follow WHERE postid = '$postid'";

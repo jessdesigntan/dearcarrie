@@ -33,7 +33,11 @@
                 <!--<div class="media active">-->
                     <div class="media-left">
                         <a href="profile">
-                            <img class="media-object" src="<?=$user["image"];?>">
+                            <?php if ($notification["type"] == "new_post_topic") { ?>
+                                <img class="media-object" src="images/default.svg">
+                            <?php } else { ?>
+                                <img class="media-object" src="<?=$user["image"];?>">
+                            <?php } ?>
                         </a>
                     </div>
                     <div class="media-body">
@@ -51,6 +55,8 @@
                               There is a new comment on the <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> you follow
                         <?php } if ($notification["type"] == "new_comment_commented") { ?>
                               There is a new comment on the <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> you commented
+                        <?php } if ($notification["type"] == "new_post_topic") { ?>
+                              There is a new post in the <a href="topicDetails?topicID=<?=$notification["item"];?>" class="primary-color">topic</a> you followed
                         <?php } ?>
                         <div class="new pull-right primary-color">&bull;</div>
                     </div>
