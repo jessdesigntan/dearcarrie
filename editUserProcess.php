@@ -5,13 +5,12 @@ $userid = $_POST["userid"];
 $role = $_POST["role"];
 $name = $_POST["name"];
 $desc = htmlentities($_POST["desc"], ENT_QUOTES);
-//$image = $_POST["imageOld"];
 $action = $_POST["action"];
 
 //check extension
 $valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-$max_file_size = 500 * 1024; #500kb
-$nw = $nh = 200; # image with # height
+$max_file_size = 1000 * 1024; #1000kb
+$nw = $nh = 250; # image with # height
 
 // if ($imageName != "") {
 //   if ($image != "images/default.svg") {
@@ -69,9 +68,9 @@ if ($action == "update") {
     $conn = connectToDataBase();
     $sql = "UPDATE users SET active = 0 WHERE id = '$userid'";
     $result = $conn->query($sql);
-  validateQuery($conn, $sql);
+    validateQuery($conn, $sql);
 
-  header("location: userDetails?userID=$userid");
+    header("location: userDetails?userID=$userid");
 }
 
 ?>

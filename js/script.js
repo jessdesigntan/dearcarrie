@@ -38,7 +38,10 @@ $(document).ready(function() {
 
 		oFReader.onload = function (oFREvent) {
 	   		p.attr('src', oFREvent.target.result).fadeIn();
+	   		$('img#uploadPreview').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 210 });
 		};
+
+		
 	});
 
 	// prepare instant preview
@@ -52,20 +55,22 @@ $(document).ready(function() {
 
 		oFReader.onload = function (oFREvent) {
 	   		q.attr('src', oFREvent.target.result).fadeIn();
+	   		$('img#uploadPreview2').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 210 });
 		};
 	});
 
 	// implement imgAreaSelect plug in (http://odyniec.net/projects/imgareaselect/)
 	$('img#uploadPreview').imgAreaSelect({
 		// set crop ratio (optional)
-		//aspectRatio: '1:1',
+		aspectRatio: '1:1',
 		onSelectEnd: setInfo
+
 	});
 
 	// implement imgAreaSelect plug in (http://odyniec.net/projects/imgareaselect/)
 	$('img#uploadPreview2').imgAreaSelect({
 		// set crop ratio (optional)
-		//aspectRatio: '1:1',
+		aspectRatio: '1:1',
 		onSelectEnd: setInfoDua
 	});
 });

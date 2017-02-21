@@ -68,8 +68,8 @@
                                 <th>Image</th>
                                 <td>
                                     <!-- image preview area-->
-                                    <img id="uploadPreview" style="display:none;"/>
-                                    <input type="file" id="uploadImage" accept="image/jpeg" name="image">
+                                    <img id="uploadPreview" style="display:none;width:100%;"/>
+                                    <input type="file" id="uploadImage" accept="image/*" name="image">
                                     <!-- <input type="hidden" value="<?=$user["image"];?>" name="imageOld"> -->
                                     <img src="<?=$user["image"];?>" width="80">
 

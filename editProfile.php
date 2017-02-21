@@ -24,12 +24,12 @@
             <div class="panel-heading"><h4>Edit Profile</h4></div>
             <div class="panel-body">
               <!-- image preview area-->
-              <img id="uploadPreview" style="display:none;"/>
+              <img id="uploadPreview" style="display:none;width:100%;"/>
               <form action="editProfileProcess" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <input name="userid" type="hidden" value="<?=$user["id"];?>">
                   <label for="name">Image</label>
-                  <input type="file" id="uploadImage" accept="image/jpeg" name="image">
+                  <input type="file" id="uploadImage" accept="image/*" name="image">
 
                   <img src="<?=$user["image"];?>" width="80">
                   <!-- <input name="oldimage" type="hidden" value="<?=$user["image"];?>"> -->
