@@ -33,7 +33,7 @@
                           <hr/>
                           <button name="action" value="update" class="btn btn-primary btn-block" type="submit">Update Topic</a>
                           <?php if ($topic["published"]) { ?>
-                          <button name="action" value="unpublish" class="btn btn-danger btn-block" type="submit">Unpublish Topic</a>
+                          <button name="action" value="delete" class="btn btn-danger btn-block" type="submit">Delete Topic</a>
                           <?php } else { ?>
                             <button name="action" value="publish" class="btn btn-success btn-block" type="submit">Publish Topic</a>
                           <?php } ?>

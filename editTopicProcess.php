@@ -71,14 +71,14 @@ if ($action == "update") {
         //save to database
         $conn = connectToDataBase();
         if ($mImageName != ""){
-          $main_image = uploadImage($mImageName, $mImageType, $mImageSize, $mImageTmpName, $mImageError, "topics");  
+          $main_image = uploadImage($mImageName, $mImageType, $mImageSize, $mImageTmpName, $mImageError, "topics");
           $sql = "UPDATE topics
           SET main_image='$main_image', title='$title', short_desc='$short_desc', description='$desc', url='$url', tel='$tel', type='$type', order_num='$order'
           WHERE id = '$topicid'";
           $result = $conn->query($sql);
-          
+
         }
-        
+
         if ($bImageName != ""){
           $background = uploadImage($bImageName, $bImageType, $bImageSize, $bImageTmpName, $bImageError, "topics");
           $sql = "UPDATE topics
@@ -120,13 +120,13 @@ if ($action == "update") {
 
         // imagedestroy($dstImg);
         // imagedestroy($dstImg2);
-        
-        
+
+
         //Re-direct
         header("location: adminTopicDetails?topicID=$topicid");
       } else {
         echo 'unknown problem!';
-      } 
+      }
     // } else {
     //   echo 'file is too small or large';
     // }
@@ -143,9 +143,12 @@ if ($action == "update") {
     //Re-direct
     header("location: adminTopicDetails?topicID=$topicid");
   }
-}else{
+}if ($action == "delete"){
   // if delete / unpublish
-  $sql = "UPDATE topics SET published = 0 WHERE id = '$topicid'";
+  $conn = connectToDataBase();
+  $sql = "DELETE FROM topics WHERE id = '$topicid'";
+  validateQuery($conn, $sql);
+  header("location: topicList");
 }
 
 ?>
