@@ -57,6 +57,9 @@
                               There is a new comment on the <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> you commented
                         <?php } if ($notification["type"] == "new_post_topic") { ?>
                               There is a new post in the <a href="topicDetails?topicID=<?=$notification["item"];?>" class="primary-color">topic</a> you followed
+                        <?php } if ($notification["type"] == "user_new_post") { ?>
+                              <?php $username = getUserByID($notification["from_user"]); ?>
+                              There is a new <a href="post?postID=<?=$notification["item"];?>" class="primary-color">post</a> from <a href="profile?userID=<?=$username['id'];?>" class="primary-color"><?=$username["name"];?></a>
                         <?php } ?>
                         <div class="new pull-right primary-color">&bull;</div>
                     </div>
