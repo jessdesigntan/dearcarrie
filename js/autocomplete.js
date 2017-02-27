@@ -24,6 +24,10 @@ $(".search_keyword").keyup(function()
     return false;
 });
 
+$(window).click(function() { //hide #result suggestion when click outside
+  $("#result").fadeOut();
+});
+
 $('#result').click(function(e){
 
       var $clicked = $(e.target);
