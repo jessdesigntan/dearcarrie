@@ -4,7 +4,6 @@
   include('commonFunctions.php');
 ?>
 
-
 <?php
 /**
  * Display <head> section, include all dependencies for NORMAL users pages
@@ -51,6 +50,22 @@ function head($title){
       $(window).load(function() {
       	$(".loader").fadeOut("slow");
       })
+
+      //start check search textbox
+      $(document).ready(function(){
+          $('#myForm').submit(function(){
+           if($.trim($('#search_keyword_id').val()) == '')
+           {
+             alert("Please type something in the search bar!");
+             return false;
+           }
+          else 
+          {
+           return true;
+          }     
+        })
+      });
+      //end check search textbox
     </script>
   </head>
 <?php
@@ -89,7 +104,7 @@ function navbar() {
           </li>
         </ul>
         <form id="myForm" class="navbar-form navbar-left hide-mobile" action="search" method="get">
-            <input required id="search_keyword_id" type="text" class="search_keyword nav-search" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
+            <input id="search_keyword_id" type="text" class="search_keyword nav-search" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
             <input type="hidden" name="tp" value="all">
             <button type="submit" class="hidden-submit"></button>
             <div id="result"></div>
