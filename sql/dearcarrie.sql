@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.0.10.14
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Feb 10, 2017 at 06:15 AM
--- Server version: 5.6.28
--- PHP Version: 5.6.25
+-- Host: localhost:3306
+-- Generation Time: Mar 03, 2017 at 02:10 AM
+-- Server version: 5.5.52-cll-lve
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `dearcarrie`
@@ -26,57 +26,35 @@ SET time_zone = "+00:00";
 -- Table structure for table `comments`
 --
 
-CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `postid` int(11) NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `likes` int(11) NOT NULL,
-  `comment` varchar(255) NOT NULL,
-  `published` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `comment` text NOT NULL,
+  `published` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `userid`, `postid`, `datetime`, `likes`, `comment`, `published`) VALUES
-(4, 30, 7, '2016-12-02 16:43:15', 0, 'hahaha', 1),
-(5, 30, 7, '2016-12-02 16:43:22', 0, 'test scroll', 1),
-(7, 38, 13, '2016-12-02 16:51:54', 0, 'normal comment here', 1),
-(10, 30, 6, '2016-12-07 15:09:07', 0, 'haha', 1),
-(12, 40, 14, '2016-12-10 18:14:39', 0, 'newnenwenwe', 1),
-(13, 40, 7, '2016-12-10 18:14:49', 0, 'morecomment', 1),
-(16, 30, 14, '2017-01-18 07:33:00', 0, 'i like this', 1),
-(17, 30, 7, '2017-01-18 10:26:57', 0, 'asdasdasd', 1),
-(18, 30, 7, '2017-01-18 10:30:58', 0, 'aadsasdasd', 1),
-(19, 40, 7, '2017-01-18 10:31:18', 0, 'asdsdasdasd', 1),
-(20, 40, 7, '2017-01-18 10:31:20', 0, 'asdasdasd', 1),
-(21, 40, 7, '2017-01-20 15:51:20', 0, 'lol', 1),
-(22, 40, 5, '2017-01-20 15:52:22', 0, 'first', 1),
-(23, 40, 5, '2017-01-20 15:53:03', 0, 'second', 1),
-(24, 40, 5, '2017-01-20 15:54:34', 0, 'third', 1),
-(25, 40, 5, '2017-01-20 15:55:37', 0, 'third', 1),
-(26, 40, 5, '2017-01-20 15:55:54', 0, 'third', 1),
-(27, 40, 5, '2017-01-20 15:56:03', 0, 'sixth', 1),
-(28, 40, 5, '2017-01-20 15:56:16', 0, 'sixth', 1),
-(29, 40, 5, '2017-01-20 15:57:09', 0, 'sixth', 1),
-(30, 40, 5, '2017-01-20 15:57:10', 0, 'sixth', 1),
-(31, 40, 5, '2017-01-20 15:57:15', 0, 'sixth', 1),
-(32, 40, 5, '2017-01-20 15:57:16', 0, 'sixth', 1),
-(33, 40, 5, '2017-01-20 15:59:22', 0, 'wtf', 1),
-(34, 40, 5, '2017-01-20 16:00:15', 0, '13', 1),
-(35, 40, 5, '2017-01-20 16:01:42', 0, '14', 1),
-(36, 40, 5, '2017-01-20 16:02:30', 0, '15', 1),
-(37, 40, 5, '2017-01-20 16:03:04', 0, '16', 1),
-(38, 40, 5, '2017-01-20 16:03:29', 0, '17', 1),
-(39, 40, 5, '2017-01-20 16:04:01', 0, 'This should be working', 1),
-(40, 30, 7, '2017-01-20 16:04:28', 0, 'hi', 1),
-(41, 30, 14, '2017-02-01 15:36:22', 0, 'aaaa', 1),
-(42, 30, 15, '2017-02-02 14:28:41', 0, 'CAN&#039;T', 1),
-(45, 30, 27, '2017-02-03 15:20:02', 0, 'dfsdf\r\nsdf\r\n\r\n\r\nsfdsdf', 1),
-(46, 30, 26, '2017-02-03 15:29:54', 0, 'lll', 1),
-(51, 52, 7, '2017-02-08 18:43:22', 0, 'asdas', 1);
+(2, 65, 0, '2017-02-01 15:34:35', 0, '', 1),
+(3, 65, 18, '2017-02-01 15:35:07', 0, 'One thing that helps me is to remember that I am not my job, and that I am not my job title. My mind often tricks me into believing that I am somehow attached or anchored to my workplace, but it is, in fact, my own volition that keeps me returning every day. If I no longer have my job, life will continue, and I will remain just as human and alive.<br />\r\nI also try to stay mindful and practice mindfulness during the most stressful periods. Focusing on my breathing, meditating while walking, and being aware of the rushing currents of thought flowing through my mind all help me remain at peace.', 1),
+(4, 51, 18, '2017-02-02 07:19:25', 0, 'How about just doing what you can, being careful not to try do what you cannot?<br />\r\nAt my previous workplace, things were not going well for me even though I tried my utter best. I was warned that I might be have to let go even. I then sort of gave up trying my best, as I considered it a lost cause. As though by a miracle, at my next performance evaluation I was told that I had improved in my functioning sufficiently to stay.<br />\r\n<br />\r\nHowever, I know as a fact that my performance did decrease, it was merely circumstance that the perception was changed. Factors well beyond my control caused that organization to not function well. Realizing that I eventually quit that job and sought out one where I would feel more at home :)', 1),
+(5, 74, 17, '2017-02-03 13:50:36', 0, 'I&rsquo;ve had all of those symptoms/thoughts as well. To me it&rsquo;s all about having a good support system around you&hellip; be it co-workers, friends, or hopefully family. I have tremendous social anxiety and an inferiority complex, so to compensate I have to act overly confident to convince myself just to leave my house at times. I&rsquo;ve tried to get comfortable with being uncomfortable, but that is easier said than done.', 1),
+(9, 74, 27, '2017-02-03 13:53:02', 0, 'Thanks Theo. I was so stunned at how liberally the term is used, more specifically in manners so mild the person has not a flue 1/10th of the severe and unimaginable symptoms of PTSD. I hoped yo replace the lack of regard for this term with a notion much more plausible to their situation, instead of using a term that nobody unless they have it, have business using. Thanks for your article', 1),
+(11, 71, 17, '2017-02-03 14:00:25', 0, 'I wholeheartedly agree with what you are saying. I also see those qualities in me due to my illness, and I am thankful for that. I know we see how we handle our bipolar diagnosis differently, because we are two different individuals with different prior knowledge and experience backing us up. This is just my perspective on how I handle my own illness. Thank you for sharing yours as well :)', 1),
+(12, 71, 28, '2017-02-03 14:00:56', 0, 'years ago I began long distance running because it provided me temporary relief from my suffering. I thought it would get better but it never has. I try hard to have a positive outlook but I just don&#039;t find anything about life joyful anymore. I have a strong impostor syndrome and none of my achievements seem like achievements. I feel like I have no friends. I am finding it harder and harder to make new friends. I feel like I am a burden on my family and it is hard to get anyone to understand me. They just don&#039;t know what it&#039;s like. I find that my friends and family seem more sympathetic to strangers they don&#039;t know but when it comes to someone they know they can&#039;t offer the same sympathy. Why is that? They think you are needy or want attention . Anyway, I don&#039;t see the point in anything. I am unable to feel happy for anyone. I just want it all to end.', 1),
+(13, 74, 28, '2017-02-03 16:05:41', 0, 'Lisa!!!!! I LOVE you for sharing this as I know being completely vulnerable about a stigmatized subject isn&rsquo;t easy as I suffer with an anxiety disorder. \r\nKUDOS to you for your bravery ðŸ˜˜ðŸ˜˜ðŸ˜˜', 1),
+(14, 51, 15, '2017-02-05 14:51:28', 0, 'hello', 1),
+(15, 74, 26, '2017-02-07 16:01:15', 0, 'I&#039;ll not mince words. Plain and simple, it sucks. If they came up with a cure, I&#039;d be the first in line. I hate being at the mercy of my neurology, of having to rely on medication and therapy just to be able to do the normal everyday things that other people can do effortlessly, with having lost entire years down the dark hole of depression and mood swings.\r\n\r\nThat said, it can be done. I&#039;m doing it. I accept my illness and I do my best to work with it. But it makes life so much harder, not just the big things but the simple things like waking up, getting showered and dressed and going to work are monumental tasks sometimes.\r\n\r\nMedication and therapy are essential. I survived without them for years, but it took medication and therapy to give me the opportunity to not just survive, but to live.', 1),
+(16, 51, 52, '2017-02-10 06:58:21', 0, 'Not good.. :(', 1),
+(17, 0, 0, '2017-02-25 23:14:43', 0, '', 1),
+(18, 51, 17, '2017-03-03 07:08:38', 0, 'Thanks for all the positive response :)', 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +62,7 @@ INSERT INTO `comments` (`id`, `userid`, `postid`, `datetime`, `likes`, `comment`
 -- Table structure for table `comment_like`
 --
 
-CREATE TABLE `comment_like` (
+CREATE TABLE IF NOT EXISTS `comment_like` (
   `commentid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -95,15 +73,8 @@ CREATE TABLE `comment_like` (
 --
 
 INSERT INTO `comment_like` (`commentid`, `userid`, `datetime`) VALUES
-(4, 40, '2016-12-10 18:14:50'),
-(5, 40, '2016-12-10 18:14:53'),
-(4, 30, '2017-01-18 10:29:37'),
-(5, 30, '2017-01-18 10:30:48'),
-(17, 40, '2017-01-18 10:31:23'),
-(13, 40, '2017-01-18 10:31:25'),
-(45, 30, '2017-02-03 15:24:39'),
-(46, 30, '2017-02-03 15:29:56'),
-(5, 52, '2017-02-08 18:43:53');
+(1, 51, '2017-02-01 16:40:09'),
+(16, 64, '2017-02-10 06:58:57');
 
 -- --------------------------------------------------------
 
@@ -111,7 +82,7 @@ INSERT INTO `comment_like` (`commentid`, `userid`, `datetime`) VALUES
 -- Table structure for table `curation`
 --
 
-CREATE TABLE `curation` (
+CREATE TABLE IF NOT EXISTS `curation` (
   `topicid` int(11) NOT NULL,
   `postid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -121,26 +92,44 @@ CREATE TABLE `curation` (
 --
 
 INSERT INTO `curation` (`topicid`, `postid`) VALUES
-(8, 3),
-(9, 3),
-(11, 3),
-(12, 3),
-(10, 3),
-(10, 13),
-(9, 13),
-(12, 13),
-(8, 3),
-(9, 3),
-(11, 3),
-(12, 3),
-(10, 3),
-(10, 13),
-(9, 13),
-(12, 13),
-(12, 4),
-(9, 7),
-(11, 7),
-(12, 7);
+(9, 17),
+(7, 18),
+(4, 19),
+(6, 20),
+(3, 22),
+(1, 23),
+(4, 24),
+(11, 25),
+(2, 26),
+(5, 27),
+(8, 28),
+(3, 33),
+(2, 32),
+(10, 31),
+(6, 30),
+(4, 29),
+(10, 43),
+(2, 42),
+(6, 41),
+(3, 40),
+(8, 39),
+(9, 38),
+(8, 37),
+(5, 36),
+(1, 35),
+(7, 34),
+(7, 44),
+(10, 52),
+(6, 51),
+(6, 50),
+(8, 49),
+(8, 48),
+(11, 47),
+(11, 46),
+(4, 45),
+(4, 56),
+(8, 55),
+(11, 57);
 
 -- --------------------------------------------------------
 
@@ -148,7 +137,7 @@ INSERT INTO `curation` (`topicid`, `postid`) VALUES
 -- Table structure for table `notifications`
 --
 
-CREATE TABLE `notifications` (
+CREATE TABLE IF NOT EXISTS `notifications` (
   `seen` int(11) NOT NULL DEFAULT '0',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `item` int(11) NOT NULL,
@@ -162,18 +151,29 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`seen`, `timestamp`, `item`, `type`, `to_user`, `from_user`) VALUES
-(1, '2017-02-08 18:43:22', 7, 'comment_new', 30, 52),
-(1, '2017-02-08 18:43:25', 7, 'post_like', 30, 52),
-(1, '2017-02-08 18:43:27', 7, 'post_follow', 30, 52),
-(1, '2017-02-08 18:43:53', 5, 'comment_like', 30, 52),
-(1, '2017-02-08 18:55:10', 52, 'user_follow', 30, 52),
-(1, '2017-02-08 18:55:25', 30, 'user_follow', 52, 30),
-(1, '2017-02-08 19:06:10', 41, 'user_new_post', 30, 52),
-(1, '2017-02-08 19:06:39', 7, 'post_follow', 30, 40),
-(1, '2017-02-08 19:06:41', 7, 'post_like', 30, 40),
-(1, '2017-02-08 19:06:43', 40, 'user_follow', 30, 40),
-(0, '2017-02-08 19:07:01', 42, 'user_new_post', 52, 30),
-(0, '2017-02-08 19:07:01', 42, 'user_new_post', 40, 30);
+(1, '2017-02-10 06:58:00', 18, 'post_like', 64, 51),
+(1, '2017-02-10 06:58:09', 51, 'user_follow', 64, 51),
+(1, '2017-02-10 06:58:14', 52, 'post_follow', 64, 51),
+(1, '2017-02-10 06:58:21', 52, 'comment_new', 64, 51),
+(1, '2017-02-10 06:58:57', 16, 'comment_like', 51, 64),
+(1, '2017-02-22 14:48:01', 55, 'user_new_post', 51, 53),
+(1, '2017-02-22 14:55:00', 56, 'user_new_post', 51, 53),
+(1, '2017-02-22 14:57:49', 57, 'user_new_post', 51, 53),
+(0, '2017-02-22 16:24:50', 11, 'new_post_topic', 64, 57),
+(0, '2017-02-22 16:25:14', 4, 'new_post_topic', 74, 56),
+(0, '2017-02-22 16:25:14', 4, 'new_post_topic', 64, 56),
+(0, '2017-02-22 16:25:25', 8, 'new_post_topic', 74, 55),
+(0, '2017-02-22 16:25:25', 8, 'new_post_topic', 64, 55),
+(0, '2017-02-22 16:25:38', 57, 'post_follow', 53, 51),
+(0, '2017-02-22 16:25:42', 57, 'post_like', 53, 51),
+(0, '2017-02-22 16:25:49', 56, 'post_like', 53, 51),
+(0, '2017-02-23 01:17:14', 11, 'new_post_topic', 64, 57),
+(1, '2017-02-23 01:17:14', 11, 'new_post_topic', 51, 57),
+(0, '2017-02-25 23:14:43', 0, 'new_comment_commented', 65, 0),
+(0, '2017-02-25 23:14:43', 0, 'new_comment_commented', 0, 0),
+(0, '2017-03-02 17:43:45', 32, 'post_follow', 71, 51),
+(0, '2017-03-03 07:08:38', 17, 'new_comment_commented', 74, 51),
+(0, '2017-03-03 07:08:38', 17, 'new_comment_commented', 71, 51);
 
 -- --------------------------------------------------------
 
@@ -181,65 +181,69 @@ INSERT INTO `notifications` (`seen`, `timestamp`, `item`, `type`, `to_user`, `fr
 -- Table structure for table `posts`
 --
 
-CREATE TABLE `posts` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
+  `title` text,
   `description` text,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `score` double NOT NULL DEFAULT '0',
   `likes` int(11) NOT NULL DEFAULT '0',
   `comments` int(11) NOT NULL DEFAULT '0',
   `views` int(11) NOT NULL DEFAULT '0',
-  `published` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `published` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`id`, `userid`, `title`, `description`, `timestamp`, `score`, `likes`, `comments`, `views`, `published`) VALUES
-(2, 30, 'Newwwww', 'First Line\r\n\r\n\r\n\r\nSecond line\r\nFourth line', '2017-02-02 15:53:20', 0, 0, 0, 50, 0),
-(3, 30, 'fd', 'fdf', '2017-01-20 09:43:48', 0, 0, 0, 10, 1),
-(4, 30, '111', '22222', '2017-02-08 17:55:00', 0, 0, 0, 13, 1),
-(5, 30, 'fgfg', 'fgfgf', '2017-01-20 09:43:56', 0, 0, 0, 5, 1),
-(6, 30, 'fgfg', 'fgfgf', '2016-11-30 11:55:41', 0, 0, 0, 0, 1),
-(7, 30, 'fgfg', 'fgfgf', '2017-02-10 05:14:22', 0, 0, 0, 72, 1),
-(8, 30, 'fgfg', 'fgfgf', '2016-11-30 12:01:20', 0, 0, 0, 0, 0),
-(9, 30, 'fgfg', 'fgfgf', '2016-11-30 12:00:58', 0, 0, 0, 0, 0),
-(10, 30, 'Title here', 'this is my story<br />\r\n<br />\r\nspace<br />\r\n<br />\r\none more time<br />\r\ntesting', '2016-11-30 12:00:30', 0, 0, 0, 0, 0),
-(11, 30, 'hahahaha', 'lolololool', '2016-11-30 11:57:16', 0, 0, 0, 0, 0),
-(12, 30, 'ok', 'change again', '2016-11-30 11:55:55', 0, 0, 0, 0, 0),
-(13, 33, 'New title', 'So lame', '2017-02-08 16:50:07', 0, 0, 0, 6, 1),
-(14, 33, 'bipolar test', 'alalalalalalla bipolar', '2016-12-10 18:26:31', 0, 0, 0, 0, 1),
-(15, 30, 'test', 'I have pretty severe OCD. My main compulsions are counting (usually syllables), tapping, and having to move my body in certain ways - clenching my fists, rolling my eyes, sucking in my \r\n\r\nstomach, swallowing, bending a joint, etc. All day every day I sit counting and tapping and moving my body in weird ways over and over and over. Its makes my body hurt and makes me really self conscious in public because its probably quite noticeable&#039;&#039;&#039;', '2017-02-02 14:26:55', 0, 0, 0, 0, 1),
-(16, 30, 'test long', 'Loneliness seems to trigger it. Or maybe its silence.\r\nI tend to have something on in the background. Music, the TV. While I dont consider myself an extremely social person I have maybe a total of 4 close friends, I do like to be around people. Especially when my mind starts trying to turn on me and become something its not. When the thoughts start racing in, or when the thoughts disappear completely.', '2017-02-02 14:18:10', 0, 0, 0, 0, 1),
-(17, 30, 'test', '&#039;', '2017-02-02 14:23:38', 0, 0, 0, 0, 1),
-(18, 30, 'test', 'I &#039;dont reall like this ca&#039;t won&#039;t', '2017-02-02 14:23:52', 0, 0, 0, 0, 1),
-(19, 30, 'rwe', '&#039;', '2017-02-03 15:40:13', 0, 0, 0, 7, 1),
-(20, 30, 'fsdf', '&quot;', '2017-02-02 14:25:20', 0, 0, 0, 0, 1),
-(21, 30, 'fsdf', '(fgsfdfg\r\ngdfgdf\r\ng\r\n\r\ndfgdfgdfg', '2017-02-02 15:17:55', 0, 0, 0, 0, 1),
-(22, 30, 'breaklines', 'I do love my boyfriend but sometimes he is just too much! Like today... He forgot that we had made a dinner plan and left me waiting in front of the restaurant for 25 mins! Like really??? \r\n\r\nI don&#039;t think I am a high-maintenance girl but lately he has been really lacking in the attention \r\n\r\nnew line again\r\n\r\nnew here\r\n\r\n', '2017-02-02 15:17:38', 0, 0, 0, 0, 1),
-(23, 30, 'fdsfs', 'new&lt;br /&gt;\r\nf&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;br /&gt;\r\nsdfsdf&lt;br /&gt;\r\n&lt;br /&gt;\r\nsdofsdfsd', '2017-02-02 15:18:30', 0, 0, 0, 0, 1),
-(24, 30, 'ne', 'fdsfsdf&lt;br /&gt;\r\n&lt;br /&gt;\r\nsdfsdf&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;br /&gt;\r\nsdfsdf&lt;br /&gt;\r\nsdf', '2017-02-02 16:35:15', 0, 0, 0, 1, 1),
-(25, 30, 'werrwer', 'test this\r\n\r\nfdfdf\r\n\r\n\r\ndfdf\r\n\r\ndf', '2017-02-02 15:40:20', 0, 0, 0, 0, 1),
-(26, 30, 'final br', 'adasdasd\r\nbbcvxcvx\r\n\r\nbreakkk\r\nline', '2017-02-03 15:33:04', 0, 0, 0, 10, 1),
-(27, 30, 'tes&#039;', 'sdf', '2017-02-08 18:12:34', 0, 0, 0, 27, 1),
-(28, 51, 'dsadsad post', '123', '2017-02-08 17:00:35', 0, 0, 0, 2, 1),
-(29, 30, 'notification post', 'testing notifs', '2017-02-08 17:07:28', 0, 0, 0, 1, 1),
-(30, 30, 'sfsdf', 'sdfsdfsdf', '2017-02-08 17:08:16', 0, 0, 0, 0, 1),
-(31, 30, 'asd', 'asd', '2017-02-08 17:08:53', 0, 0, 0, 0, 1),
-(32, 30, 'Aa', 'aaa', '2017-02-08 17:09:09', 0, 0, 0, 0, 1),
-(33, 30, 'asd', 'asd', '2017-02-08 17:12:42', 0, 0, 0, 2, 1),
-(34, 30, 'adasdas', 'dasd', '2017-02-08 17:12:47', 0, 0, 0, 1, 1),
-(35, 30, 'test for real', '123', '2017-02-08 17:12:56', 0, 0, 0, 1, 1),
-(36, 30, 'testAGN', '123', '2017-02-08 17:14:12', 0, 0, 0, 1, 1),
-(37, 30, 'final', '123', '2017-02-08 17:15:59', 0, 0, 0, 2, 1),
-(38, 30, '38', '123', '2017-02-08 17:18:33', 0, 0, 0, 2, 1),
-(39, 30, '39', '123', '2017-02-08 17:24:51', 0, 0, 0, 2, 1),
-(40, 30, '123', '123', '2017-02-08 18:43:45', 0, 0, 0, 12, 1),
-(41, 52, '123', '123', '2017-02-08 19:06:23', 0, 0, 0, 2, 1),
-(42, 30, 'jess new post', '123', '2017-02-08 19:07:01', 0, 0, 0, 1, 1);
+(15, 53, 'Hi', 'test', '2016-03-03 06:55:45', 0.05, 0, 0, 19, 1),
+(17, 51, 'Bipolar and Me: Triggers, Rules, and Trusting Yourself', 'Loneliness seems to trigger it. Or maybe it&#039;s silence.\r\nI tend to have something on in the background. Music, the TV. While I don&#039;t consider myself an extremely social person (I have maybe a total of 4 close friends), I do like to be around people. Especially when my mind starts trying to turn on me and become something it&#039;s not. When the thoughts start racing in, or when the thoughts disappear completely.\r\nMaybe I&#039;m afraid of myself, or at least a part of myself. The part that I&#039;ve lived with all my life and that I&#039;ll always have to keep me company.\r\nThe medicines keep it quiet for the most part. But certain things, certain places, certain foods will make it louder.\r\n\r\nYou see there are rules you start living by when you have bipolar disorder.\r\nYou don&#039;t drink caffeine, you don&#039;t eat too much sugar, you don&#039;t stay up too late, and you never stay up all night to name a few.\r\nBipolar takes away that ability called trusting your gut, your instinct, yourself. You second guess almost every thought, afraid that&#039;s the mania or depression talking. You go out grocery shopping and realize you are buying things you don&#039;t need, racking up a higher bill than usual, and you begin to wonder: Is the mania creeping back in? Am I losing my rational sense again? Am I about to start losing it? And in the panic will creep, while meanwhile there are 3 people in line behind you waiting, as you almost freeze at the cash register.\r\nThat&#039;s the thing that it&#039;s taken years for me to get back. The ability to trust myself, my decisions. To be able to tell myself that not everything I think or do is influenced by the fact that I&#039;m living with bipolar disorder.', '2017-03-03 06:55:45', 0.87631012932158, 0, 0, 29, 1),
+(18, 64, 'Help dealing with workplace stress?', 'I work in an extremely popular restaurant. I am a waiter and it can get very busy for long periods of time. When I find myself stressed and overwhelmed, I don''t give my customers and employees true compassion. What is something I can do to handle the stress of the workplace, and to remember to show people compassion and love?', '2017-03-03 06:55:45', 0.81578381353211, 0, 0, 25, 1),
+(19, 67, 'Exams!!!', 'The title says it all... I cant stand to see even a single note or tutorial anymore!!! Siao liao.\r\n\r\nOn one hand, cannot not study. Later fail how? On the other hand, I prefer drinking bleach than memorizing this freaking protein structure. Who said uni is easier than JC?! Bull to the shit, I say!', '2017-03-03 06:55:45', 0.59736276090053, 0, 0, 18, 1),
+(20, 66, 'Tidy vs OCD', 'Can someone like tell me what differentiates someone who is tidy vs someone who suffers from OCD? I suspect I may have OCD but I am not too sure. Personally I just think I am tidy but some of my friends have made the OCD comment to me.', '2017-03-03 06:55:45', 0.59473118195316, 0, 0, 17, 1),
+(21, 51, 'tete', '&quot;&quot;&quot;&quot;', '2017-02-02 14:15:39', 0, 0, 0, 0, 0),
+(22, 66, 'My boyfriend', 'I do love my boyfriend but sometimes he is just too much! Like today... He forgot that we had made a dinner plan and left me waiting in front of the restaurant for 25 mins! Like really??? I don&#039;t think I am a high-maintenance girl but lately he has been really lacking in the attention department.\r\n\r\nI mean logically I understand. We&#039;ve been dating for 2 years and everyone, from nosy friends to romance columnists, has warned me that attention-deficit from your partner is to be expected once the relationship goes beyond a year. I guess I could just chalk it up to the embers of our romance dwindling down at this stage of our relationship. Perhaps, I am even hoping that is the sole reason for his behaviour as of late.\r\n\r\nHowever, some part of me can&#039;t help but think that perhaps he has fallen out of love. And an even more scandalous part of me suspect he is seeing someone else behind me. If it is true, I bet it is that bitch Glenda, his colleague! She has been eyeing him like a piece of fresh meat since he joined his new company. I know, our mutual friend who is working in the same company has told me so.\r\n\r\nI am so stressed these days due to this issue. I haven&#039;t been sleeping well and I have lost my appetite for the last couple of weeks. I am even contemplating on asking this mutual friend of ours to spy on him but so far I have managed to debate myself down and avoid making rash decision. To say I am torn is an understatement. I am desperate to know the truth and yet I am still too scared to face it. Can someone please tell me if I am just being paranoid or being smartly cautious?', '2017-03-03 06:55:45', 0.60525749774264, 0, 0, 21, 1),
+(23, 68, 'Ex-addict', 'I am an ex-drug addict who would like to share a short story of my life here in hopes that it would help others in similar situation. I have been clean for 5 years and everyday is still a struggle. The pull towards the forbidden still haunts me daily. Some days are easier. Others, not so easy.\r\n\r\nIf I had been wiser in my youthful days, I wouldn&#039;t have even tried. Like the saying goes, &quot;Prevention is always better than curing.&quot; However, for those of you that are using and want to try to quit, please don&#039;t think that there is no hope for you. It might be difficult to pull yourself out from the hole but you need to find your saviour. Your saviour can be a person, a thing or even an activity. \r\n\r\nFor me, it is music. I&#039;ve always loved playing music and dreamt of performing with my own band. This dream is what helped me out of the grasp of drugs. I couldn&#039;t play properly when I&#039;m high and I sure as hell wasn&#039;t getting any permission to stay in any band when I constantly didn&#039;t turn up for practice because I was too fucking high to care. \r\n\r\nI just want everyone who has dabbled in drugs know that it is POSSIBLE to break free if that is what you want. It is not going to be easy. I am not promising a walk in the park. I am talking about curdling on your bed, sweating profusely and having seizures cause your body is demanding that you poison it again. I am talking about facing judgemental gazes when strangers know about your past. But it is possible to enjoy the fruits of your effort as you are free from the chains of addiction. Free to pursue your dream and spend quality time with family and friends.\r\n\r\nSo I would like to end this post with a good luck wish. Good luck to all those who want to try to get clean. And congrats to those who have managed to be clean! I wish you luck and strength everyday. And hope you all had a happy CNY!', '2017-03-03 06:55:45', 0.5999943398479, 0, 0, 19, 1),
+(24, 69, '(T_T)', 'I am so stressed with my homework! Aargh!!! I don&#039;t even have time to finish watching DOTS and Twice&#039;s Vapp! I&#039;m like TT!', '2017-03-03 06:55:45', 0.69736276090053, 0, 0, 18, 1),
+(25, 70, 'Living with anxiety', 'I have always been a shy person since I was a kid. I don&#039;t like to do presentation in front of the class and feel uncomfortable surrounded by many strangers. But it has never caused my voice to tremble or my hand to shake uncontrollably.\r\n\r\nAs I grew, I find more confidence in myself and more accustomed to presenting in class. However, a few years back, out of the blue these things happened to me every time I talk in front of a class. Especially if I need to regurgitate the scripts I memorized. For others, they will perform well with more preparation but I think I become more nervous if I memorize. My body becomes hot n cold, my voice tremble and hands shaking although I have tried to control it.\r\n\r\nI&#039;m shy to talk about this with other people. Is this normal? Why is this suddenly happening when I get older while it didn&#039;t when I was a kid?', '2017-03-03 06:55:45', 0.59736276090053, 0, 0, 18, 1),
+(26, 71, 'My alters and I', 'I don&rsquo;t understand why I can&rsquo;t be me! A minimum of two personalities seem to live within me. Each serving their duty at a certain time in my life but they seem to ignore metamorphosis and cooperation.\r\n\r\nThe insecure boyish selfâ€Š&mdash;â€Š&ldquo;Pam&rdquo;- caused and still causes me the most trouble. She questions everyones intentions, sincerity and judgement. Judgement in the existence of her or her value. Intentions are always negative, selfish and destructive. Sincerity was so rare that Pam never understood its real purpose. She fought for attention which she associates with meaningfulness. Not learning the means to form healthy, organic and balanced friendships. One who doesn&rsquo;t see his/her own value makes it hard for others to love them. Happiness seems to be a disease that need to be cured with manipulation.\r\n\r\n No matter how much appreciation she receives, she downplays the importance. She is loud and can&rsquo;t be by herself . Over acting, bragging, lost of self-control are her means to case the skewed dream of belongingâ€Š&mdash;â€Šunachievable with these ways.\r\n\r\nThere is the powerhouseâ€Š&mdash;â€Š&ldquo;L&rdquo;â€Š&mdash;â€Šwho flourishes in a challenging and creative environment. She has no actual goal she wants to achieve in her career. The journey and it&rsquo;s sacrifices define her purpose in life. Being at her best when she can rebel agains something or someone. Challenging herself to prove to be capable of mastering or outdoing the opponent. Her wars are never personal but with herself. Deep within herself, she wants to be loved and find her place in society. She rarely allows her vulnerable side to surface and is surprised that when she does, her surrounding is confused and surprised. The only currency she accepts is success, knowledge and confidence. Alienating, distancing herself and dominating situations and others. In the next moment however downplaying herself to fit in. She knows of her capabilities, fortunes and value which she doesn&rsquo;t praise modestly in moments of alcohol or drug induced states of mind. Sober she is ashamed of this arrogance and plays down her assets. She is confident, smart and hardworking but has no healthy relationship to these assets. \r\n\r\nA networker par excellence\r\nThe least valued by herself yet beloved by others isâ€Š&mdash;â€Š&ldquo;Mother&rdquo;- the always caring, helpful and warm personality. She is there when needed and gives her all to support and care for others. Others wellbeing is her main priority. Going out of her way to create a comfortable atmosphere. Providing a home to who ever needs one. Being selfless to an unhealthy extend, always caring more about others then herself. She believes that only when one gives everything that one can experience happiness. Being that caring drowns all her energy or she is overwhelmed by the responsibility she took on. That is when she disappears to recharge and protect herself. This personality is very inconsistent and most vulnerable to being overpowered by Pat or L. Self-perception is dominated by weakness in showing emotions and opening the heart.\r\n\r\nThe most playful personality is -&rdquo;Lenny&rdquo;- a cheeky, playful and charming side that mostly blossoms with the presence of children. He simplifies the world and acts on intuition. Only the present moment is what matters. Wealth, possessions and tactics are unknown to him. The heart guides the way and the gut decides the direction. Free spirited, he forgets the world around him and is with himself. He flirts without understanding the purpose or potential consequences for an adult. Hugging, kissing and attention are ways to discover the world, show interest and form a bond. Without them there is emptiness in his world and all his love seems lost. The adult reality with its rules is ignored in order to stay in the moment. He hopes that his understanding of forming a bond is universally shared but fails therewith in the adult world. Therefore he is confronted with situations that he can&rsquo;t comprehend. He goes along, believing in the good. What happens then is often erased from his memory in order to have to hand over to another personality. In the worst case an other personalityâ€Š&mdash;â€Šlike L - has to intervene, scolds Lenny and banishes him. Leaving behind sadness, emptiness and shame.\r\nThey are all part of me. I need to start to value them instead of playing them out against each other.\r\n\r\nLenny allows me to live in the now. Treasuring moments, interactions and displaying unconditional affection. He is my cheeky, playful and innocent side.\r\nMother balances all my personalities and enforces empathy, understanding and thoughtfulness. She needs to find an equilibrium of caring without giving up oneself. Her strength will stabilize me and help grow a healthy self-esteem and relations.\r\n\r\n\r\nL needs to work out my true capabilities and preferences. They need then to be strengthened, affirmed and embedded in my personality. Accepting help, enforcing empathy and healthy confidence are her main challanges, but she can count on Mother for support.\r\n\r\n\r\nPam needs to talk more to L and Mother. Growing to like myself in all aspects is her task. Letting go of old beliefs will take time but is something she is equipped to do. When Lenny puts himself in danger she has to be the big sister and step in to protect him. Transforming her self-destructive energy in a positive asset that is valued and needed. Her energy can carry me a long way if it is applied correctly.', '2017-03-03 06:55:45', 0.77631012932158, 0, 0, 29, 1),
+(27, 72, 'My PTSD', 'I was incredibly nervous the first time I sought help. I was really doing it for my family and didn&rsquo;t see how talking would help, but when I spoke to my counselor and met other people with PTSD, I realised I wasn&rsquo;t the only one. My counselor taught me how to relax when I got scared or angry, and gave me the tools to deal with everyday life. We started talking about what happened. This was really hard to start with, but it got easier after a while. I talked a lot about the flashbacks I was having that made me feel angry. How could this have happened to me? Why couldn&rsquo;t I sleep? Why couldn&rsquo;t I stop the nightmares and thinking about the riots, the burning buildings and the mayhem of those couple of days? These were not the kind of questions I could talk to my wife, Kate, about, but it felt good talking to someone about it. It&rsquo;s been a difficult road for me and my family, but I&rsquo;m learning to deal with my demons, and my future is looking brighter.', '2017-03-03 06:55:45', 0.76841539247948, 0, 0, 26, 1),
+(28, 73, 'Depression: invisible yet very real', 'I have dealt with depression for several years now. It started off in my high school years. I felt lonely although I was surrounded by many &quot;friends&quot;. Just listening to their voices got me angry and I got irritated easily. It didn&#039;t help that I did badly in my subjects. Everyday felt like an endless torture. I thought everything would be better once I got to university.\r\n\r\nMe not doing well in high school resulted in me losing confidence on myself. Naturally, I avoided university major which are related to subjects I took in high school. I ended up choosing a major in which I didn&#039;t have any background before. Unsurprisingly, I didn&#039;t do well in university. Competing with people who are driven in this major plus I don&#039;t have interest in the major. But some things are a little bit better in university like I met several people I can call friends. They help me go through my university life.\r\n\r\nDepression causes me to have a complete loss of interest in everything. I used to enjoy playing Sims, reading books, drawing and interior design. Depression caused me to lose interest in all of these things. Nowadays, I just feel too tired to do any of these things. Besides, I am also busy with school. I was anxious to try anything that would help me with my depression.\r\n\r\nIt is almost graduation and I still don&#039;t know what I want to do with my life. I&#039;m afraid that I will make wrong choice again and need to bear the consequences again. How can I regain back my life motivation and interests?', '2016-06-02 06:55:45', 0.40346650520505, 0, 0, 30, 1),
+(29, 74, 'How to cope with ADHD in a high stress academic environment?', 'Hello everyone! I was diagnosed with ADHD combined type about 6 months ago, but I&#039;ve struggled through my college career for far longer than this. I&#039;ve taken breaks and constantly almost failed out my first go around. I&#039;m in my second round now, in a summer semester after my first year back. I&#039;ve definitely shown improvement (passing most everything with C&#039;s instead of failing everything) but of course it&#039;s always a struggle. I&#039;m in a top 25 university, majoring in classical studies and going into my 3rd semester of Greek and 1st semester of Latin in the fall. \r\n\r\nI was wondering, do you have any good, personal favorite strategies to help with coping with a high stress academic environment and high workload while trying to manage ADHD? Any strategies dealing with studying language would of course be particularly helpful but, heck, I can barely keep up with my regular life anyway, even life routine strats would be appreciated.', '2017-03-03 06:55:45', 0.61315223458474, 0, 0, 24, 1),
+(30, 71, 'OCD and Meâ€Šâ€”â€ŠThe Story So Far', 'I am not officially diagnosed with OCD but I am pretty confident I have it after talking to people who have it and doing research. It is a serious mental illness. It is different for everybody. When somebody says that they &ldquo;are so OCD&rdquo;, they are misunderstanding what it is. They usually say that after they do full cleaning or organizing session. That isn&rsquo;t OCD. That is just being clean. They don&rsquo;t realize that OCD has a variety of symptoms.\r\n\r\nMy OCD is more of obsessing than acting on my impulses. Mine is more of thinking. This means that when I see something, I analyze every bit of it. I have to do certain things to satisfy my mind. My OCD started after a bad car accident in 6th grade. I believe this the event that triggered my OCD into full swing.\r\nThe main symptom of my OCD is patterns. You know how on shows with geniuses, they show their point of view with diagrams and equations? That&rsquo;s sort of what it&rsquo;s like for me. If you look at 5 dots, you see 5 dots. If I look at 5 dots, I see a pattern. My patterns are usually skipping items. I will go to the 1st dot, 3rd dot and 5th dot and will be satisfied. If there is an even number of dots, it won&rsquo;t satisfy me. I will find ways to arrange the dots or objects to be odd. If I can&rsquo;t, it will bother me and I will keep going over it again and again because I am obsessed that there is no solution. This also stems into my obsession over odd numbers. I know that odd numbers result in being satisfied.\r\n\r\nThis is the best way I can show the way I see 5 dots. My mind tells me to choose the odd numbers.\r\nAnother symptom of my OCD that is bothersome is checking for signs of illness. This symptom came after my type 1 diabetes diagnosis. I think this came because I missed my symptoms for so long that it almost sent me into a coma, and I don&rsquo;t want to miss another diagnosis that could kill me. For example, if you get a sniffle and runny nose, you see a cold and treat it like nothing. If I get the same symptoms, my mind starts thinking that it could be pneumonia or another serious illness. If I&rsquo;m sick, I check my lymph nodes when I wake up. I check to make sure I don&rsquo;t have rashes. I check my ketones to make sure my kidneys aren&rsquo;t poisoning me from diabetes. You are supposed to check your ketones when you are vomiting. It&rsquo;s like a switch in my mind that I can&rsquo;t turn off. I recently got a Fitbit Blaze so I don&rsquo;t have to check my pulse constantly and make sure my heart is beating right.\r\n\r\nThe scariest symptom I have is when I drop something. If you drop a paper or something, you might pick it up, you might not. If I drop something and contemplate leaving it, my mind starts to think about all the bad things that could happen. If I accidentally drop a pen, I will think about leaving it. When I have that thought, my mind goes to another place. It thinks that my dog will get the pen and eat it and ingest the ink, causing her to die. It sounds drastic, but that&rsquo;s what my mind thinks. I can&rsquo;t stop my mind from wandering there. After that thought, I will pick up the pen.\r\n\r\nOne of the more recent symptoms that developed is making sure the doors are locked. It may seem like an everyday thing, but to me, it is checking 2 or 3 times to make sure it is locked. I have 3 doors to lock. I will lock them 1 time. I will go back around all 3 doors to make sure they are all locked. My mind tells me that if the door isn&rsquo;t locked, somebody will come into the house and hide out and hurt me and my family. Again, drastic but my mind is powerful.\r\nAs you can see, I have a lot of things to deal with on a daily basis. OCD causes me to lose sleep. I will look for patterns in my room. I will keep recalling whether or not I locked the doors before I went to bed. If I am unable to find patterns or I try to fight my symptoms, I get anxiety. I get anxiety going to doctor appointments because I am afraid they will find something serious that I missed and it can&rsquo;t be treated. I always carry a pen with me because when my anxiety gets up, I have to fidget and do something with my hands. I will take my pen and start clicking it. If it doesn&rsquo;t click, I will keep removing and replacing the cap. I bite the end of my pen caps.\r\n\r\nOCD is a serious illness. It causes people to stay in their homes and not leave. It causes people to scrub their hands raw. It causes my mind to never quiet down. My mind races at a pace of 1,000 miles an hour. I will eventually seek out a therapists help. I have a support system from my family and friends. They support me through everything. Until I seek out a therapists help, my friends and family are helping me cope.', '2017-03-03 06:55:45', 0.59736276090053, 0, 0, 18, 1),
+(31, 71, 'Have you ever thought about Suicide?', 'Back in December of 2004 - doesn&#039;t seem real it&#039;s been almost ten years, I was living in Portland Oregon attending college. I was sitting at home one night, writing my last research paper for the term. I had my Yahoo IM up, chatting to a few friends when a message from someone NOT on my list pops up. &quot;Have you ever thought about suicide?&quot;\r\n\r\nUh, ok - weird, but hey it&#039;s almost midnight on a Sunday night and stranger things have been asked to me before &quot;Can I see your tits?&quot; etc. So I message the stranger back for kicks, &quot;Sure who hasn&#039;t at some point why?&quot;\r\nWell asking that question opened pandora&#039;s box - he battered me with questions about how I wanted to die, why did I want to die, would I want to die with others etc. Obviously, getting creepier and creepier as the conversation continues. But I play along, assuming the guy is just screwing around with me. I ask him his name, he say&#039;s it&#039;s Jerry and I ask to see a picture. He sends me to a profile pic on Hot or Not and asks me if I think he&#039;s good looking. I tell him sure, yeah your cute whatever.\r\n\r\nHe asks to see a picture of me - I send him a random old photo of a girl on my myspace friends (yes it&#039;s that old, I realize now). And he tells me he thinks I&quot;m a 10. Awesome - thanks Jerry, who is obsessed with suicide. As the conversation continues he tells me he&#039;s sick of life and women don&#039;t seem to be attracted to him, so he wants to end it all. I tell him the things you&#039;re supposed to say to people in this situation - relationships are nothing, you&#039;re more important to the people in your life - don&#039;t do it, blah blah blah - I&#039;m not heartless, but I just don&#039;t feel like talking someone off of a ledge at now, 1am.\r\n\r\nJerry tells me he&#039;s met a lot of women online that want to kill themselves, and that he&#039;s planning a party for Valentine&#039;s Day (1.5 months from now) so everyone can come and do it together at his house in Klamath Falls Oregon. He asks me if I&#039;m interested in joining. I say, yeah sure but make an excuse that I don&#039;t have a car to get down there for it. He tells me there are a few women from Portland coming down for it, and one of them has a van, he&#039;s sure I can catch a ride. He say&#039;s he&#039;s built a beam in his home that will hold up to fifty bodies at once, but that I shouldn&#039;t wear shoes because they&#039;ll weigh me down.\r\n\r\nBy now, yes I&quot;m starting to realize this guy is acting very serious - and this is in fact NOT a joke. So I start asking him specifics, what his address is, what his full name is, who are the women traveling from Portland. He tells me their names, and that one of them is bringing her five children with her - and that they want to die as well.\r\n\r\nHUGE RED FLAGS are up at this point. So while I&quot;m still chatting with him, I call a friend of mine back home in Eastern Oregon who works as a 911 dispatcher. She&#039;s actually at work when I call her and after telling her the whole story, she advises me to hang up and call Portland Police Department right away - at least give them the info to pass to Klamath Falls. She makes a record in their system that I&#039;ve called just in case.\r\nI keep talking to Jerry and call the Portland Police - they send 2 officers out about an hour later and they pretty much laugh at me when I explain to them what&#039;s going on. I print out our chat log, give them the guys full name and address I&#039;ve already verified through google as being legit - (as far as google can) and they tell me to just quit talking to him. Simple as that and go about their business.\r\n\r\nDon&#039;t I feel stupid now? I call my friend back home and tell her what Portland PD did and she said to keep an eye on things, if he keeps talking just keep saving the conversation. So I do. For another two hours - and things just get to the point where I can&#039;t handle him anymore. He&#039;s battering me with questions about how do I want to die, wearing clothes or naked? Do I want to have sex before I die? Would I have a problem killing kids before? Would I want to hold hands with others while we hang? Finally I just told him I&#039;d be in touch closer to Valentine&#039;s Day.\r\n\r\nFor the most part, I laughed it off with some friends - because Portland PD never got back to me about anything, so of course I assumed it ended up being a very strange prank.\r\n\r\nFast Forward - February 10th 2005 a friend of mine calls me while I&#039;m on campus on my way to work, and tells me some guy down in Klamath Falls has been arrested for trying to set up a mass suicide pact for Valentine&#039;s Day. I&#039;m floored - I run to my office, log into a computer and sure enough it&#039;s everywhere on all news forums. Gerald Krien arrested for plotting Mass Suicide Valentine&#039;s Day Party.\r\n\r\nMy friend from back home see&#039;s the news and calls me, tells me I need to call back to the Portland PD and tell them I called this in back in December. I make the call, and an hour later two FBI agents are coming to pick me up at my job, taking me home and taking my entire computer to be analyzed. We sit in my living room and I&#039;m questioned over and over about my involvement and if I was really planning to commit suicide.\r\n\r\nI kept telling them over and over that I just talked to the guy as a joke - thought it was some sort of prank and that I only called the cops when he started talking about some woman from Portland bringing her kids too - and I&#039;d given all the info to the Portland PD officer&#039;s back in December, how was I supposed to know they never did anything with it? Which they didn&#039;t - they sat on it - probably shredded it, and never even sent any of the info to Klamath Falls.\r\nThe agents tell me the story has gotten a lot bigger and that Krien had contacted hundreds of people, at least thirty had agreed to come on Valentine&#039;s Day to his house and commit suicide together. One woman, her parents found some emails between she and Krien and called the police; that&#039;s how they finally got involved - not from me nearly two months ago, this happened less than week before Valentine&#039;s Day.\r\n\r\nI&#039;m freaked out, they drop me back off at the college and I tell my boss everything that&#039;s happened. She tells me that reporters have been calling non-stop since I left wanting to talk to me - she said she didn&#039;t give them my cell phone number, but that she thought it was only a matter of time before they showed up at the office. I was a student worker, my name is on the campus website/directory etc - if the AP got a hold of a police report, there was no saying how fast they could start tracking me down.\r\nI call my mom, tell her what&#039;s happened - she tells me she&#039;ll be up that evening to come get me and bring me home for a break. I take four days off , turn in what assignments I have left - the FBI has the rest on my tower and head off to Eastern Oregon to wait out the media.\r\n\r\nBIG mistake - HUGE. Because by the time I made it back home that night they&#039;d already tracked down my brother, and my sister in law thought it was so cool that ABC and CNN wanted to talk to me she gave them my parents address and my cell phone number - she&#039;s an idiot.\r\n\r\nI was harassed, chased down and semi-terrorized until I FINALLY gave an interview to Good Morning America. I hoped it would die down then, the story was out - WHO CARES. Wrong - WRONG! Apparently every freakin&#039; out let cares until you give them the 15 seconds of conversation the others didn&#039;t get.\r\nI had my 15 seconds of fame, and I never want to deal with that shit again - Krien is still sitting in the Salem state hospital for his crimes of solicitation to commit murder.\r\n\r\nMr. Have you ever thought of Suicide? Let&#039;s not meet in real life.', '2017-03-03 06:55:45', 0.5999943398479, 0, 0, 19, 1),
+(32, 71, 'I have Dissociative Identity Disorder', 'In 2013 I was diagnosed with Dissociative Identity Disorder (which was called multiple personality disorder until 1994). Many people live and function within my body. \r\n\r\nI don&#039;t get out much but I&#039;ve made a couple online friends I email with pretty frequently, and everyone definitely makes friends outside. When we tell someone we&#039;ve got DID they usually end up hanging out with a couple people more than others, like Emily was best friends with a girl who knew us, but that girl was friends with others too.\r\n\r\nI don&#039;t remember our first switch so I can&#039;t answer that too well. I remember the first time I switched in I was confused and pretty scared, because I have &quot;memories&quot; from stuff that happened previous to my coming to the system (a psychhological phenomena that&#039;s pretty normal in DID systems) and it was jarringly different. Plus weird body proportions and all that. I&#039;ll ask around and see if anyone has more info on the first switch we ever had though.\r\n\r\nWe lived a kind of &quot;double life&quot;. School was better than home. It was hell, but it was better than home. I remember feeling small, very afraid of losing things. We were terrified a lot but there were stretches of denial, of not knowing that we were terrified. There was a lot of snow, we were raised in the Colorado foothills, so the winters were long and white and that&#039;s one of our most vivid memories from childhood. I don&#039;t remember any of the abuse. I know it was probably largely sexual in nature from talking to other alters, but I don&#039;t know the full extent of it or who it involved beyond the main perpetrator, a longtime boyfriend of the body&#039;s mother. We were gifted in school until around puberty, but struggled socially. I don&#039;t think we had any friends until around fifth grade. We were introverted and read a lot, I think.', '2017-03-03 06:55:45', 0.60262591879527, 0, 0, 20, 1),
+(33, 71, 'I am still in love with my ex although I have a boyfriend', 'Hi good ppl. I have been in a relationship status for a month now. He is a good man trying his best to make me smile n happy. Always listening to me n have my back all the time. He is loving and our relationship is secure and safe. He is my best friend from two years. But from my side I don&#039;t have sparks or butterflies towards him and I&#039;m not happy to be his woman. I&#039;m not sexually attracted to him. And most of the time I&#039;m not thinking of him. I&#039;m thinking about my ex who I broke up 13 months ago . I saw him few weeks ago in my college. He came to say hi to me but I acted cold because I missed him deeply. He was my happiness, my peace of soul n mind. I never felt the way I felt to him. But we broke up because my family forced me to stop seeing him because if his religious beliefs. \r\n\r\nEvery time I&#039;m feeling down I think of my ex and. The good memories we had to make my day better. I keep going to bed crying and I feel lonely without him. \r\nEvery time I see him around my heart get excited n happy. However I dated many men after we broke up and still couldn&#039;t feel or enjoy myself with them and even broke many men&#039;s heart because I couldn&#039;t develop feelings . Idk what to do w my current man. He truly loves me and introduced me to his family but I don&#039;t wanna marry him and I can&#039;t see myself w him in few years. \r\nI&#039;m not the type who wanna get married but I have been dreaming at.m night that we got back together n having a peaceful relationship again.', '2017-03-03 06:55:45', 0.70525749774264, 0, 0, 21, 1),
+(34, 51, 'Question about stress at work...', 'Im in a bit of a bad place at work and looking for advice... Kinda hoping that the STW collective will know what to do...\r\n\r\nI work for a very large computer hardware supplier in technical support. I have over 5 years service. I am 2nd level support for server, storage and low end managed switch products for EMEA. I am the level 2 for about 25 front level agents. The structure should be a team of up to 20 front line agents, two level 2&#039;s and a team leader per team. Those of you in IT support will know how stressful a job like this can be - we offer everything from next day to 2 hour engineer on site support and make up about 10% to 25% of world wide server sales depending on which stats you trust...\r\n\r\nAbout 10 months ago my fellow level 2 moved and I was left as the only level two for the team. At the same time my team leader moved on so I got a new team leader, my team also grew to 25. Basically everything was left to me, this has resulted in me doing 12 hour shifts, 60 hour weeks etc. I have not used any of my holidays for this year (I cannot get managment approval for any days) and generally I have been worked into the ground. On top of this one of the level 2&#039;s in a different team has a personal problem with me and has been very in my face agressive. I also foolishly reported a different manager for un-ethical conduct (messing with customer survey returns to get a better customer sat score). My company has finally hired a replacement for the level 2 that left, this is a very close friend of my new manager who has never supported servers. He finally started today so I am expected to be carrying him now.\r\n\r\nThree / Four weeks back I went to HR to say how stressed I was (crying on a sunday night with fustration and anger and leaving work each night shaking with anger). This is after 3 maybe 4 months of telling my line manager the same thing. The HR response was &quot;suck it up or quit&quot;.\r\n\r\nMy line manager told me on monday last week I wouldnt be getting a pay rise I was promised a year ago and that my mid year rating (previously highly valued or exceptional) would be a below expections as I have had interactions with HR. I called in sick for the rest of the week or I would have done something stupid.\r\n\r\nI left work again today so angry I was looking for a fight on the bike.\r\n\r\nMy wife is really worried about me, I havent seen my mates at all this year and been out on the mountian bike three times, despite buying new rebas to replace my toras. I do nothing at the weekend other than sleep and I snap the face off my family.\r\n\r\nI think I need a bit of time away from work, but cant get any holidays. A few people have suggested getting the doctor to sign me off with stress but I am worried about how this looks on my CV. Is it a really bad thing?\r\n\r\nI have been actively looking for work but there is not much in IT in Glasgow \r\n\r\nAnyone been in a similar position and have any advice? Please?', '2017-03-03 06:55:45', 0.60525749774264, 0, 0, 21, 1),
+(35, 51, 'Finding treatment, what worked?', 'Finding addiction treatment can be a confusing, scary and overwhelming process. We&#039;re trying to provide a bit of advice for others who may be experiencing this process now.\r\n\r\nReflecting back on when you were looking for treatment for yourself or a loved one, what did you wish you knew? What would you want other people to know now about the process?', '2017-03-03 06:55:45', 0.5999943398479, 0, 0, 19, 1),
+(36, 51, 'Is it ever possible to get over PTSD and have life again?', 'Hi everyone,\r\n\r\nHere&#039;s a little background information on my story:\r\n\r\nGrowing up as a teen (15), I moved out early and started living with my boyfriend. He was physically and verbally abusive to me, as well as addicted to crack. When I was trying to sleep at night, he would steal my money for crack and bring strangers into the house late at night to do drugs. They would punch holes in the wall and yell for most of the night. I was very young then, and was scared all time time of making him angry/ felt like I wasn&#039;t able to leave that relationship. Eventually I did, but I got right into another abusive relationship. During that relationship, my boyfriends brother was raping me. Both of these situations set me up for falling into a position of forced prostitution- I was seeing a therapist for awhile who referred to what happened to me as &quot;sex trafficking&quot;. I was 19 years old. Needless to say, during that time, terrible things happened to me- I was drugged so severely once that I thought I was going to die.\r\nSince then, I was able to escape (read: flee) from that situation. I was extremely lucky and even received some help from my family. I&#039;ve been able to get myself through college and am even planning to apply for a graduate program in the medical/psych field.\r\n\r\nBecause of what I&#039;ve been through, I have pretty severe PTSD. It&#039;s been over 5 years since all of this happened to me, but I don&#039;t think that my symptoms have really gotten any better. When I was in class and when I am at work, I always have managed to get everything done, but am extremely anxious and begin to feel triggered/spaced out. Many times I start to feel panicked because I get a flashback and feel like I&#039;m trapped, even when I&#039;m in a totally safe situation. I have a boyfriend who is really supportive of me, but besides that I don&#039;t have many friends. I push people away and isolate myself because I don&#039;t think that it would be easy for people to understand me (what I&#039;ve been through). I also worry that when someone gets too close to me, that they can tell that I have PTSD or think that I&#039;m &quot;crazy&quot; or in pain/anxious. Sometimes it&#039;s very hard to relax in a totally neutral situation, because I feel so hyper vigilant, my heart racing, and on guard. I&#039;m also extremely private and don&#039;t like talking about what i&#039;ve been through.\r\n\r\nHas anyone been through something like this? How have you coped with chronic PTSD?', '2017-03-03 06:55:45', 0.69736276090053, 0, 0, 18, 1),
+(37, 51, 'Is this depression', 'I&#039;m a 14 year old and recently for no reason I&#039;ve seemed to have become a bit emotionally numb and i don&#039;t find my favourite things enjoyable anymore, I&#039;m not an expert on depression and i have no idea if what I&#039;m feeling is a bad patch or mild depression. How can i get over this?', '2017-03-03 06:55:45', 0.5999943398479, 0, 0, 19, 1),
+(38, 51, 'Can a person with bipolar disorder lead a happy, married life?', 'My husband has bipolar disorder with personality traits as C. We have been married now for two and a half years. I have known him since 8 years, he informed me about his illness before marriage. But, then I didn&#039;t give it a serious thought. Now, we hardly spend any day without quarrels...he makes fuss almost about everything...be it food...my clothes...his clothes..anything....his choices and interests change almost daily. \r\n\r\nRecently, I read other questions on Quora about having bipolar family members...most of them had horrible experiences living with bipolar partners. I am really scared and depressed now thinking about my future. Things have just degraded between us over the time...firstly he used to call me bad names...but in past he has also hit me( it was very rarer..and in series of arguments when I was also agitated). In general..when not depressed or irritated...he is very sweet and caring person. I know he really loves me a lot....I too love him very much. My head spins if I imagine my future without him.But, right now my future seems so doomed to me...do I have any chance of a happy relationship with him?', '2017-03-03 06:55:45', 0.69209960300579, 0, 0, 16, 1),
+(39, 51, 'Why do people with depression push others away?', 'I can tell you the reasons that I push people away. One, people who aren&rsquo;t depressed cannot and do not understand it. As a result, they say well-meaning things like &ldquo;Cheer up&rdquo;, &ldquo;Things will get better&rdquo;, &ldquo;There are a lot of people worse off than you so you should be thankful&rdquo;, &ldquo;Snap out of it&rdquo; (or &ldquo;Just get over it, will you?&rdquo;), &ldquo;Stop whining&rdquo;, &ldquo;You should volunteer or do something for others so you can see how lucky you are.&rdquo; or &ldquo;Oh well, s&amp;$t happens to all of us&rdquo;. Yes, I have heard all these comments at one time or another. The problem is when you are depressed, you do not think logically and therefore, any platitudes or &ldquo;logical&rdquo; statements will feel ignorant, unkind or unhelpful and will usually make you feel frustrated, weird, selfish or guilty, which results in feeling even more depressed. In order to avoid hearing these well-meaning comments, a depressed person will usually prefer to not interact with anyone.\r\n\r\nTwo, misery does not love company. Depressed people know they are a downer and feel guilty about it. They feel like a loser and they know that no one wants to be around a downer or a loser so they distance themselves until such time as they are happier. Oftentimes, though, they won&rsquo;t have to distance themselves as their &ldquo;friends&rdquo; or family members do it for them.\r\n\r\nThree, a person who has been depressed for a long time, especially if they have co-morbid issues like ADHD, Asperger&rsquo;s, OCD, etc., has had to endure betrayals, scorn, harsh criticisms, teasing, bullying and unkind comments for a long, long time. Because of this, the person has learned that most people are not nice, kind or good and thus, it is better to avoid and not trust most people.\r\n\r\nIf you have someone close to you that is depressed and pushing you away, you should let them know you are there to listen (but not judge) and help support them in any way you can. You shouldn&rsquo;t try to make them &ldquo;feel better&rdquo; (because you probably can&rsquo;t). You should call them to ask how they are doing but don&rsquo;t push them to talk if they don&rsquo;t want to. You can invite them to hang out (but not with too many other people, especially strangers) but don&rsquo;t be hurt or insulted if they refuse. If you are concerned they will harm themselves, you may need to talk to their parents, siblings, therapist, etc., if possible.\r\n\r\nBeing depressed sucks for everyone&hellip;the depressed person and the people around them. Just because a depressed person pushes you away doesn&rsquo;t mean they don&rsquo;t love you or value your friendship and care. They just loathe themselves and don&rsquo;t want to be a burden on you or anyone else. They are ill and need compassion not platitudes, tough love or exasperated comments.', '2017-03-03 06:55:45', 0.61315223458474, 0, 0, 24, 1),
+(40, 51, 'How can I ask my boyfriend to be more communicative in a LDR?', 'I&rsquo;ve already talked to him a few times. he says is working on it. I trust him but is frustrating because he does again and again and i am tired of leting him know how i feel since he is not changing.He barely calls and when he texts is often for a short update. I&#039;m tired of tell him. What can I do?', '2017-03-03 06:55:45', 0.60525749774264, 0, 0, 21, 1),
+(41, 51, 'How can OCD of thoughts be cured without professional help?', 'I have started doubting my own memory, there is an intense fear of losing all my memory which often leads me into depression and invokes suicidal feelings. I feel trapped in my own thoughts.', '2017-03-03 06:55:45', 0.5999943398479, 0, 0, 19, 1),
+(42, 51, 'Can people with multiple personalities interact with their alters?', 'If you have shared consciousness, then yes.\r\n\r\nWith my gf, she has shared consciousness between the alters. She can feel when another is around and there is arguments in her head a lot.\r\n\r\nShe has a &lsquo;mind space&rsquo; which is a room where all of her alters have beds. They are all decorated and she has no control over it at all, it just appeared and apparently is quite common in people with DID. They all sit and talk, comfort each other and argue within the mind space. Often she spends large amounts of time in there, especially if someone is upset and she doesn&#039;t know why.\r\n\r\nShe also only has a Birdseye view of it.\r\n\r\nIt&#039;s fascinating.', '2017-03-03 06:55:45', 0.60262591879527, 0, 0, 20, 1);
+INSERT INTO `posts` (`id`, `userid`, `title`, `description`, `timestamp`, `score`, `likes`, `comments`, `views`, `published`) VALUES
+(43, 51, 'How it feels to attempt suicide', 'It felt sad. That after 38 years, this is all my life had become. A misery I could no longer stand to be in.\r\n\r\nI had been suicidal since I was fourteen years old, because of something that happened to me (at my father&#039;s hands). Since then I had behaved in a manner that indicated a real lack of care regarding my own survival. \r\n\r\nI joined the Marines, and volunteered for dangerous things, drove too fast, got involved in things that might get me killed, and on and on. I just didn&#039;t care about being alive.\r\n\r\nAlong the way, the one constant companion to my life was the idea, &quot;if things get too bad, I&#039;ll just kill myself&quot;.\r\n\r\nThis constant daily thought consumed everything I did, and also allowed me to be reckless and carefree about far too many things. The idea that I had a free pass to behave in anyway I chose to, led me to harm a lot of good people.\r\n\r\nI didn&#039;t love myself and couldn&#039;t understand why anyone else could. I always assumed that there was some other motive behind their affections. I went out of my way to destroy every relationship I ever had. \r\n\r\nOnce my third wife and I separated , I really had nothing to lose anymore. She had been the first woman I had decided to stay in love with, and things went south anyway. I gave up. On everything.\r\n\r\nI committed a bunch of &quot;white collar&quot; crimes, stole a lot of money from some local banks, and hit the road. I had 19 warrants by the time I was done with life.\r\n\r\nAt this point, I really had nothing left to lose, and in my mind something to gain from suicide. I would at least be spared spending the rest of my life in a prison cell. Which is where I was headed if I got caught.\r\n\r\nOn the evening of my death, I purchased 22 Xanax ladders, and a fifth of Jose Cuervo. I lived on Sanibel Island, about a half mile from the beach. I drove out to the beach, took my Glock .40 caliber semi-automatic, the Xanax, and the tequila, and went for a walk.\r\n\r\nI sat down on the sand, and had a talk with a god I didn&#039;t believe in, I remember saying, &quot;God if you exist, and you love me, you&#039;ll save me&quot;. I didn&#039;t see how anything could stop me at this point. I was on a deserted beach at 3 AM, the draw bridge had just gone up, so no ambulance was coming to save me, even if I was found.\r\n\r\nI swallowed the Xanax, and drank as much of the tequila as I could, in a hurry. I carried it with me as I walked out into the water. When I got about waist deep, I drank some more, built up some courage and put the gun to my head. My idea was, I will shoot myself and die, but I have heard so many stories about people messing this part up, so I took out insurance. Even if I messed up the gun part, I would drown in the water. If that didn&#039;t do it, I knew the tequila-xanax cocktail would surely finish me off.\r\n\r\nI passed out before the gun went off. \r\n\r\nUnbeknownst to me, a Sanibel K-9 officer was walking his dog on the beach that evening. He later told me at the hospital that his dog never raises any hell at night, and usually just sleeps through the evening. This night was different. The dog would not stop barking to be let out, and when he let him out, the dog went to the gate and began barking again. He reluctantly put on some shorts and a shirt and took him for a walk on the beach.\r\n\r\nThe dog spotted me as I fell into the water. Once the dog took off after me, about 300&#039; from his recollection, he noticed something in the water too. The dog got to me first, and then the officer. They pulled me out of the water, and by now I had already drowned. He radioed for assistance, and began CPR.\r\n\r\nI woke up three days later from a coma, and I was bewildered to say the least. I was alive in spite of my best efforts. \r\n\r\nI am glad I was saved. I consider it a miracle, but you can chalk it up to an excellent first response infrastructure if you like.\r\n\r\nI am no longer suicidal, and even though I spent seven years in prison for my crimes, I have more going for me now than I have ever had in the past. I have learned that life is an experience and there is nothing better than experiencing life. With all of its tragedy, joy, and enlightenment. There is more to life than we can ever fit in a sentence, paragraph, or even a library.\r\n\r\nI love being alive.', '2017-03-03 06:55:45', 0.60262591879527, 0, 0, 20, 1),
+(44, 64, 'How do you de-stress after work?', 'I&#039;m having a problem &quot;leaving it at the office&quot;. I&#039;m looking for suggestions on how to leave work stress at work. Thanks in advance!! :)', '2017-03-03 06:55:45', 0.60788907669, 0, 0, 22, 1),
+(45, 64, 'What is your tip for reducing life stress during grad school?', 'What do you do that helps you reduce stress in non-grad school related parts of your life? Inevitably, I find that these things also make me less stressed out about grad school.\r\nI try to cook all of my lunches on Sundays so that I know what I&#039;m eating for the week. I recently bought paper plates, for busy weeks so I don&#039;t have to do as many dishes. I have regularly scheduled and written into my calendar hobbies (e.g., dance class twice a week). And I make sure to take my dog out on walks with at least some regularity.', '2017-03-03 06:55:45', 0.60788907669, 0, 0, 22, 1),
+(46, 64, 'What has helped my anxiety', 'I&rsquo;m not a doctor. Simply compiling everything that&rsquo;s been helpful for my anxiety and wish someone had told me this information years ago. I&rsquo;ve posted this on a few other threads but wanted as many people to see it as possible. Apologizing in advance for formatting and length. But please give it a go. Some of the information could be really helpful!\r\n\r\nBackground: Got diagnosed with GAD and OCD a while back and have been dealing with anxiety as far back as I can remember. Was on 10mg of Lexapro once a day for a year and a half. While it helped me get through some really tough life shit, the withdrawal, in my opinion, was not worth it. However, this isn&rsquo;t the case for everyone so do what feels right for you! Anyways, here&rsquo;s the meat:\r\n\r\n1) Diet -Cutting out processed sugars and starches has made a huge difference. I&#039;ve noticed that when I consume said foods, my anxiety &quot;brain fog&quot; and depersonalization/derealization gets significantly worse. However, starches can be hard to give up completely. As a fellow carbosaurus, I understand the struggle. I found that replacing white bread with wheat bread has really helped. Wheat pasta is a good substitute too, and there isn&rsquo;t (in my opinion) a huge taste difference. Also, brown rice instead of white rice. White rice has a high glycemic index and can spike your blood sugar, which leads me to my next point --&gt;\r\n\r\n-Low blood sugar can play a huge part in anxiety. Snacking on protein rich foods every few hours can help this. I carry around a bag of bulk cashews to snack on in case I can&rsquo;t access other food. Most grocery stores now offer those one-serving packets of peanut butter and almond butter, which are so convenient to carry around with you. Slim enough for a pocket even!\r\n\r\n-Speaking of sugar, even artificial sweeteners (Sucralose, Saccharin, etc.) have been shown to heighten anxiety. These can be found in diet sodas, low fat foods, gum, and even dairy items to name a few. Honey or agave nectar can be good substitutes. BONUS: Consuming local honey exposes you to allergens in your area, which can help with allergies!\r\n\r\n-Eliminating all beverages except water. Caffeinated and/or sugary drinks are basically the devil when it comes to anxiety so I&#039;d cut back on those if it&#039;s hard to eliminate all together.\r\n\r\n-Alcohol and other drugs can cause anxiety to soar. I&#039;ve noticed after a night of drinking my depression and anxiety sky rockets.\r\n\r\n-Daily Omega. I take two Omega 3-6-9 blend fish oil pills every day and can notice a difference if I don&#039;t take them for a week.\r\n\r\n-Magnesium glycinate supplements have been said to work for a lot of people. Be careful though because certain magnesium supplements can cause explosive diarrheaðŸ’©\r\n\r\n-There&rsquo;s still debate on this one but salt. Apparently in the refining process of table salt, it gets stripped of minerals and trace elements. Pink Himalayan crystal salt contains 84 minerals and trace elements. Some people even add a tiny sprinkle to their water bottle every day. If you want to try this, be careful not to overdo it as salt can cause uncomfortable bloating.\r\n\r\n2) Meditation CAN&#039;T SAY THIS ENOUGH\r\n\r\n-No exaggeration, this in combination with a fixed diet has been my savior. I feel so good I can&#039;t go back to living without meditation.\r\n\r\n-You don&#039;t have to be a guru hippy Mother Earth child to benefit from meditation or even learn how to meditate. There is an app called Headspace that provides excellent guided meditation highly recommended\r\n\r\n-Another user told me about an app called Breathe. From what I&#039;ve read it&#039;s provided people with relief and is a great meditation tool. I&rsquo;d recommend looking into both Headspace and Breathe, as people will always have a preference.\r\n\r\n-Guided meditations are great but it&#039;s important to know how to meditate in silence as well (you won&#039;t always have access to your smart phone for a meditation app). When I do this I set a timer for 10 minutes on my phone. I&#039;ll take five deep breaths (in through nose, out through mouth) and then close my eyes on the last breath out. Begin to breathe normally. I&#039;ll then focus on my breaths, counting to ten, and then start back at one. Side note: It&#039;s okay to lose focus! And tell yourself that when you realize you&#039;re not counting breaths anymore. &quot;Oh, my mind went off track and that&#039;s okay. I&#039;m going to focus on my breaths again&quot; and resume counting. I&#039;ve been meditating for six months now and still get sidetracked frequently.\r\n\r\n-Simple breathing. Whenever I feel the anxiety/nervousness/worry/etc. increasing, I&#039;ll go to the bathroom or another private place where I can sit in silence and count my breaths. This works as a good checkpoint through out the day, as I can try to &quot;refocus&quot; my mind.\r\n\r\n3) Therapy\r\n\r\n-Yay therapy! I&rsquo;ve been in therapy for the past 13 years. It has literally saved my life countless times. Therapy is beneficial for EVERYONE, especially those of us who suffer from anxiety.\r\n\r\n-I know some people have a hard time fitting therapy into their schedules or due to financial reasons (right there with you). A quick google search of &quot;best online counseling services&quot; ought to do the trick.\r\n\r\n-Not sure how it is in other countries but in America most colleges (and probably some high schools) provide free counseling services. These are real counselors and legally cannot contact your teachers, peers, or employers. Also, if you are nervous about your peers seeing you at the counseling center, think about that for a second. You are seeing them at the counseling center. Chances are they are also there for counseling. This can create an immediate and intimate bond between you guys, and maybe even someone to talk to about what&#039;s going on in your head.\r\n\r\n-For those afraid or who get anxiety about going to a counselor/therapist: Therapists are genuinely caring people. Most of them became therapists because they themselves have struggled with some sort of mental illness and/or a traumatic event. And they are legally required to maintain the integrity of your conversations, meaning they won&rsquo;t talk to people in your life or others about what you say. Everything you say is confidential. (That is unless you talk about harming yourself or others). I cannot stress how wonderful it feels to have someone in your life whose sole purpose is to listen to you vent about your feelings. One of our basic needs as humans is to feel heard. When we get that need met, we feel acknowledged and loved. This can mean all the world when it feels like no one in your life listens and/or understands the intensity of your anxiety.\r\n\r\n4) Journaling\r\n\r\n-Bring that pen to paper and vomit out all of your fears, angers, frustrations, sorrows, etc. Sometimes our anxiety gets stuck, and when we give it an outlet, it can make all the difference.\r\n\r\n-Writing virtually is good but I&rsquo;ve found that the act of physically writing out my emotions is so meaningful, and I feel a higher connection with my mental and emotional body.\r\n\r\n-In a previous thread I posted this information in, some people mentioned they didn&rsquo;t like reading their emotions because it made them feel guilty, angry, etc. It is okay to feel these emotions! BURN THE PAPER. Seriously. Burn. That. Shit. Up. Tear it up. Watch it go through a shredder. This is therapeutic! Feel like I have to say this&mdash;make sure if you do decide to go the burn route that you do it outside in a receptacle that can handle the heat!\r\n\r\n5) Podcasts\r\n\r\n-There are a number of very helpful anxiety podcasts. I&#039;d recommend The Anxiety Coach&#039;s Podcast. There are two new episodes each week (Wednesdays and Sundays) that somehow relate to anxiety. The host provides listeners with MANY tools for helping with anxiety, as well as an extremely diverse range of topics. I&#039;ve found that even episodes I don&#039;t think apply to my anxiety have always consisted of useful information and helpful tricks.\r\n\r\n-Other good podcasts include Anxiety Slayer, Anxiety Guru, The Anxiety Podcast, and The Anxiety Guy. Just like the meditation apps, give them all a try! If you don&rsquo;t like one you&rsquo;ll probably like another one more\r\n\r\n6) Exercise\r\n\r\n-GO OUTSIDE. Studies have proven time and time again that even just sitting in nature and hearing the sounds it has to offer lower cortisol levels (stress hormone)\r\n\r\n-Yoga. Any type is beneficial! I&#039;ve found the most anxiety relief from Restorative Yoga. The whole class consists of three poses (they aren&#039;t super complex yogi stances, usually lying on your back in a certain way)\r\n\r\n-Cardio is great for &quot;happy&quot; hormone production.\r\n\r\n-It&#039;s important to note which types of exercise make YOU feel good, as it&#039;s not the same for everyone. For example, running is great for you but if it&#039;s physically hurting your knees, ankles, etc. it&#039;s probably not the best for you. There&#039;s always a different form of exercise, and fortunately all types of exercise result in decreased anxiety! Any type of movement is better than no movement when it comes to anxiety :)\r\n\r\n7) Medication\r\n\r\n-Anxiety can be fucking torture. There is nothing worse than feeling like a prisoner to your own mind. Medication can definitely help soften this, especially if you are feeling like you can no longer go on.\r\n\r\n-Research your options. Talk to people you know who are taking something about what they like/don&rsquo;t like about being medicated. Read reviews. Read side effects (this might not be helpful if you are extremely prone to the placebo effect or have health anxiety).\r\n\r\n-READ ABOUT WITHDRAWAL. Once again, I am all for medication if you feel it is right for you. When I decided to go on Lexapro, I was 100% sure I wanted to. What I do regret is not researching withdrawal. Not only did I experience two weeks&rsquo; worth of physical symptoms (night sweats, racing heart) but also experienced severe depression and anxiety that was far worse than what I&rsquo;d experienced before going on it. I also have social anxiety now which I didn&rsquo;t have before. Anyways, the point of this is to research, research, research, and know your options!\r\n\r\n8) Random\r\n\r\n&quot;You Are the One&quot; by Kute Blackson is an inspirational read for anyone with anxiety\r\n-Posture makes a difference. Sitting up straight builds self-confidence and becomes easier with time\r\n\r\n-Write down quotes or phrases or mantras or whatever makes you feel good and hang them up in places where you&rsquo;ll see them frequently. Bathroom mirrors and inside front door are two really good places I utilize regularly. You can even write down reminders of why you&rsquo;re working on your anxiety.\r\n\r\n-PM me if you ever need someone to talk to! I&rsquo;m in the process of becoming a therapist myself so please please please contact me if you need to talk. I will not judge you and love to listen. Anxiety doesn&rsquo;t need to be a social taboo.\r\n\r\nIt&#039;s important to note that working on your anxiety is a process. There&#039;s not one thing that is a magic cure-all. You&#039;ll have great days, weeks even, and then not-so-great days. It&#039;s crucial to remember that the down days don&#039;t last forever. And as a reminder, be extremely gentle with yourself. It is okay to feel other emotions besides happiness. This may sound weird but welcome them. Allow them to be. The more you resist them the harder and stronger they&rsquo;ll come back.\r\n\r\nOnce again, please feel free to PM me if you need to talk/vent. Best of luck to you on your journey and thanks for reading!', '2017-03-03 06:55:45', 0.59736276090053, 0, 0, 18, 1),
+(47, 64, 'I think people with anxiety are very strong people', 'Iv suffered from anxiety for many years and after being out of the worst of it (with the help of herbal remedies), iv realized that people that suffer from anxiety and try to live normal life&#039;s are very strong people. It just amazes me. You guys are awesome.', '2017-03-03 06:55:45', 0.5999943398479, 0, 0, 19, 1),
+(48, 64, 'Depression is humiliating', 'It turns intelligent, kind people into zombies who can&rsquo;t wash a dish or change their socks. It affects the ability to think clearly, to feel anything, to ascribe value to your lifelong passions, your relative good fortune. It scoops out your normal healthy ability to cope with bad days and bad news, and replaces it with an unrecognizable sludge that finds no pleasure, no delight, no point in anything.\r\nYou alienate your friends because you can&rsquo;t comfort yourself socially, you risk your job because you can&rsquo;t concentrate, you live in moderate squalor because you have no energy to stand up, let alone take out the garbage. You become pathetic and you know it. And you have no capacity to stop the downward plunge. You have no perspective, no emotional reserves, no faith that it will get better. So you feel guilty and ashamed of your inability to deal with life like a regular human, which exacerbates the depression and the isolation.\r\n\r\nIf you&rsquo;ve never been depressed, thank your lucky stars and back off the folks who take a pill so they can make eye contact with the grocery store cashier. No one on earth would choose the nightmare of depression over an averagely turbulent normal life. It&rsquo;s not an incapacity to cope with day to day living in the modern world. It&rsquo;s an incapacity to function. At all.\r\n\r\nNo one chooses it. No one deserves it. It runs in families, it ruins families. You cannot imagine what it takes to feign normalcy, to show up to work, to make a doctors appointment, to pay bills, to walk your dog, to return library books on time, to keep enough toilet paper on hand, when you are exerting most of your capacity on trying not to kill yourself.\r\n\r\nDepression is real. Compassion is also real. And a depressed person may cling desperately to it until they are out of the woods and they may remember your compassion for the rest of their lives as a force greater than their depression.\r\nHave a heart.', '2017-03-03 06:55:45', 0.59736276090053, 0, 0, 18, 1),
+(49, 64, 'Who else feels like society as a whole does not take depression seriously? ', 'Depression is something that, fortunately, not too many people suffer from. Unfortunately, that means that those who suffer from it are in the minority. This makes it a rarity that you&#039;ll come across someone who understands what you&#039;re going through when you tell them you have severe depression.\r\n\r\nToo often you&#039;ll get people who tell you to get over it, or you&#039;ll feel better if you smile. My brain feels like a hole I&#039;m trapped in. I try to smile and be positive but keep getting sucked into despair by stupid triggers in my environment and myself (My impatience, when something or one is going slower than I like or just thinking about certain family members. When I&#039;m triggered I have to struggle for about the next hour to get out of the pit of despair I fall into.\r\n\r\nThat shows you depression is more than a mood to just get over. Depression and other mental disorders like anxiety and bipolar are disorders which little is known about and no one will talk about. I want this to change. I want to have an open discussion about how society sees mental illness. The only rule is no one insult anyone else in this discussion.', '2017-03-03 06:55:45', 0.60262591879527, 0, 0, 20, 1),
+(50, 64, 'It bothers me that people do not actually understand OCD', 'I constantly hear people say &quot;I&#039;m so OCD about keeping my room clean&quot; and &quot;all my books have to be in alphabetical order, I&#039;m so OCD&quot;. I hear it on TV all the time too.\r\n\r\nThe amount of pain and anxiety OCD has caused me and obviously many others is tremendous. I&#039;ve gotten a lot better, but in an age where people are so concerned about being &quot;tolerant&quot; it really pisses me off when people have no idea what it is, which is why I don&#039;t tell most people I have it. Perfectionism isn&#039;t OCD, at best it&#039;s OCPD, and people rarely understand the huge difference between the two. I have OCD but I&#039;m not even close to what you call a neat freak. It&#039;s all about the intrusive thoughts and how they affect your everyday behavior. There needs to be more awareness about mental health in general.', '2017-03-03 06:55:45', 0.7499943398479, 0, 0, 38, 1),
+(51, 64, 'How would you describe what living with OCD is like?', 'I have been asked this several times since being diagnosed. The best way I can put it is it is like being trapped inside your own body. You have obsessive thoughts that you do not want, and they start to control your actions, your feelings, and the way you live your life. A lot of times you do things or think things and you have no idea why. Of course for those living without OCD really do not understand what it is like, so I was wondering how do you describe living with OCD?', '2017-03-03 06:55:45', 0.71578381353211, 0, 0, 25, 1),
+(52, 64, 'What are your thoughts on suicide?', 'Have you attempted it? Do you know someone who has? Or what are your overall thoughts on suicide?', '2017-03-03 06:55:45', 0.79736276090053, 0, 0, 37, 1),
+(53, 77, '6.25pm', 'test timestamp', '2017-02-05 10:26:26', 0, 0, 0, 2, 0),
+(54, 70, 'A way for relaxation', 'It is very tiring to be so anxious about everything.. i hope i can find a way to calm myself.', '2017-03-03 06:55:45', 0.57631012932158, 0, 0, 10, 1),
+(55, 53, 'Symptoms of Depression', 'According to the National Institute of Mental Health, symptoms of depression may include the following:\r\n\r\nDifficulty concentrating, remembering details, and making decisions\r\nFatigue and decreased energy\r\nFeelings of guilt, worthlessness, and/or helplessness\r\nFeelings of hopelessness and/or pessimism\r\nInsomnia, early-morning wakefulness, or excessive sleeping\r\nIrritability, restlessness\r\nLoss of interest in activities or hobbies once pleasurable, including sex\r\nOvereating or appetite loss\r\nPersistent aches or pains, headaches, cramps, or digestive problems that do not ease even with treatment\r\nPersistent sad, anxious, or &quot;empty&quot; feelings\r\nThoughts of suicide, suicide attempts.\r\n\r\nBe careful if you have above symptoms.', '2017-03-03 06:55:45', 0.58420486616369, 0, 0, 13, 1),
+(56, 53, 'Stress is part of our life', 'Stress is anything that alters your natural balance. When stress is present, your body and your mind must attend to it in order to return you to balance. Your body reacts to stress by releasing hormones that help you cope with the situation.  That in turn takes energy away from the other functions of your brain, like concentrating, or taking action.  There are two different sources of stress: external triggers, like getting a poor grade or breaking up with your girlfriend/boyfriend, and internal triggers, like placing high expectations on yourself. \r\nStress is a part of everyday life. There are many instances when stress can be helpful. A fire alarm is intended to cause the stress that alerts you to avoid danger. The stress created by a deadline to finish a paper can motivate you to finish the assignment on time. But when experienced in excess, stress has the opposite effect. It can harm our emotional and physical health, and limit our ability to function at home, in school, and within our relationships. But the good news is that, since we are responsible for bringing about much of our own stress, we can also do much to manage stress by learning and practicing specific stress-reduction strategies.', '2017-03-03 06:55:45', 0.68157328721632, 0, 0, 12, 1),
+(57, 53, 'Ways of reducing and managing stress', 'A feeling of control and a healthy balance in your schedule is a necessary part of managing stress. Learning how to manage your responsibilities, accomplish your goals and still have time for rest and relaxation requires that you practice time management skills.\r\nTry setting a specific goal for yourself that will improve your mood and help you reduce stress. Start by filling out a goal-setting worksheet.\r\nAvoid procrastination. Putting off assignments or responsibilities until the last minute can create more mental and physical stress than staying on top of them.  Procrastination can affect many aspects of daily life, such as the quality of your work, the quality of your sleep, and your mood.   \r\nExercise regularly. Physical activity can help you burn off the energy generated by stress.\r\nPractice good sleep habits to ensure that you are well-rested. Sleep deprivation can cause many physical and mental problems and can increase stress.\r\nTry mindfulness meditation. Attend this workshop to learn a variety of ways to work more skillfully with the stress and anxiety related to college life.\r\nLimit (or eliminate) the use of stimulants like caffeine, which can elevate the stress response in your body.\r\nPace yourself throughout the day, taking regular breaks from work or other structured activities. During breaks from class, studying, or work, spend time walking outdoors, listen to music or just sit quietly, to clear and calm your mind.\r\nStart a journal. Many people find journaling to be helpful for managing stress, understanding emotions, and making decisions and changes in their lives.\r\nRealize that we all have limits. Learn to work within your limits and set realistic expectations for yourself and others.\r\nRecognize the role your own thoughts can play in causing you distress. Challenge beliefs you may hold about yourself and your situation that may not be accurate. For example, do you continuously fall short of what you think you &ldquo;should&rdquo; accomplish? When our minds continuously feed us messages about what we &ldquo;should&rdquo; achieve, &ldquo;ought&rdquo; to be, or &ldquo;mustn&#039;t&rdquo; do, we are setting ourselves up to fall short of goals that may be unrealistic, and to experience stress along the way. Learn techniques for replacing unrealistic thoughts with more realistic ones.\r\nFind humor in your life. Laughter can be a great tension-reducer.\r\nSeek the support of friends and family when you need to &ldquo;vent&rdquo; about situations that bring on stressful feelings. But make sure that you don&rsquo;t focus exclusively on negative experiences; try to also think of at least three things that are going well for you, and share those experiences.\r\nTry setting a specific goal for yourself that will improve your mood and help you reduce stress.', '2017-03-03 06:55:45', 0.68157328721632, 0, 0, 12, 1),
+(58, 0, '', '', '2017-03-01 14:09:18', 0, 0, 0, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -247,7 +251,7 @@ INSERT INTO `posts` (`id`, `userid`, `title`, `description`, `timestamp`, `score
 -- Table structure for table `post_follow`
 --
 
-CREATE TABLE `post_follow` (
+CREATE TABLE IF NOT EXISTS `post_follow` (
   `postid` int(11) NOT NULL,
   `userid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -257,8 +261,10 @@ CREATE TABLE `post_follow` (
 --
 
 INSERT INTO `post_follow` (`postid`, `userid`) VALUES
-(7, 52),
-(7, 40);
+(23, 71),
+(52, 51),
+(57, 51),
+(32, 51);
 
 -- --------------------------------------------------------
 
@@ -266,7 +272,7 @@ INSERT INTO `post_follow` (`postid`, `userid`) VALUES
 -- Table structure for table `post_like`
 --
 
-CREATE TABLE `post_like` (
+CREATE TABLE IF NOT EXISTS `post_like` (
   `postid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -277,14 +283,22 @@ CREATE TABLE `post_like` (
 --
 
 INSERT INTO `post_like` (`postid`, `userid`, `datetime`) VALUES
-(13, 30, '2017-02-02 07:47:07'),
-(14, 30, '2017-02-02 07:48:13'),
-(26, 30, '2017-02-03 15:36:21'),
-(3, 52, '2017-02-08 17:26:34'),
-(19, 30, '2017-02-08 17:52:00'),
-(4, 30, '2017-02-08 17:54:53'),
-(7, 52, '2017-02-08 18:43:25'),
-(7, 40, '2017-02-08 19:06:41');
+(24, 71, '2017-02-02 16:10:50'),
+(28, 74, '2017-02-03 13:55:50'),
+(26, 74, '2017-02-03 13:55:53'),
+(50, 51, '2017-02-03 15:00:42'),
+(28, 51, '2017-02-03 15:00:44'),
+(17, 51, '2017-02-03 15:00:48'),
+(27, 51, '2017-02-03 15:00:52'),
+(52, 51, '2017-02-03 15:02:28'),
+(38, 51, '2017-02-03 15:47:05'),
+(51, 51, '2017-02-03 15:47:12'),
+(33, 74, '2017-02-03 18:28:26'),
+(15, 51, '2017-02-05 14:51:22'),
+(36, 51, '2017-02-05 14:57:10'),
+(18, 51, '2017-02-10 06:58:00'),
+(57, 51, '2017-02-22 16:25:42'),
+(56, 51, '2017-02-22 16:25:49');
 
 -- --------------------------------------------------------
 
@@ -292,38 +306,25 @@ INSERT INTO `post_like` (`postid`, `userid`, `datetime`) VALUES
 -- Table structure for table `reports`
 --
 
-CREATE TABLE `reports` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `itemid` int(11) NOT NULL,
   `comment` varchar(255) NOT NULL,
   `seen` varchar(255) NOT NULL DEFAULT '0',
   `type` varchar(10) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `reports`
 --
 
 INSERT INTO `reports` (`id`, `userid`, `itemid`, `comment`, `seen`, `type`, `date`) VALUES
-(1, 30, 14, 'fasdads', '1', 'post', '2016-12-14 17:24:07'),
-(2, 30, 14, 'dont like', '1', 'post', '2016-12-14 17:24:07'),
-(3, 30, 14, '1', '0', 'post', '2016-12-14 17:24:07'),
-(4, 30, 14, '2', '0', 'post', '2016-12-14 17:24:07'),
-(5, 30, 40, 'ate ite', '0', 'comment', '2016-12-14 17:24:07'),
-(6, 30, 30, 'lalalalala', '1', 'comment', '2016-12-14 17:24:07'),
-(7, 30, 30, 'agn', '0', 'comment', '2016-12-14 17:24:07'),
-(8, 30, 40, 'test', '1', 'comment', '2016-12-14 17:24:07'),
-(9, 30, 15, 'laoaloaskdasd', '1', 'comment', '2016-12-14 17:24:07'),
-(10, 30, 14, 'test\r\n\r\n\r\n\r\n', '0', 'comment', '2016-12-14 17:24:07'),
-(11, 30, 14, 'hehehe', '0', 'post', '2017-01-18 08:12:03'),
-(12, 30, 7, 'report', '0', 'post', '2017-01-18 08:12:19'),
-(13, 30, 7, 'test', '0', 'post', '2017-01-18 08:13:19'),
-(14, 30, 12, 'hate it', '0', 'comment', '2017-01-22 06:37:01'),
-(15, 30, 13, '', '0', 'post', '2017-02-08 16:47:01'),
-(16, 30, 13, 'test new', '0', 'post', '2017-02-08 16:49:55'),
-(17, 30, 7, 'test comment', '0', 'comment', '2017-02-08 16:50:07');
+(1, 51, 27, '', '0', 'post', '2017-02-05 14:57:18'),
+(2, 51, 28, '', '0', 'post', '2017-02-08 16:46:22'),
+(3, 79, 0, '', '0', '', '2017-02-25 23:14:38');
 
 -- --------------------------------------------------------
 
@@ -331,8 +332,8 @@ INSERT INTO `reports` (`id`, `userid`, `itemid`, `comment`, `seen`, `type`, `dat
 -- Table structure for table `topics`
 --
 
-CREATE TABLE `topics` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `topics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `main_image` varchar(255) NOT NULL,
   `background` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -346,16 +347,26 @@ CREATE TABLE `topics` (
   `type` varchar(255) NOT NULL,
   `order_num` int(11) NOT NULL,
   `score` double NOT NULL DEFAULT '0',
-  `published` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `published` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `topics`
 --
 
 INSERT INTO `topics` (`id`, `main_image`, `background`, `title`, `short_desc`, `description`, `date`, `followers`, `posts`, `url`, `tel`, `type`, `order_num`, `score`, `published`) VALUES
-(14, 'images/topics/7783148_eating.jpg', 'images/topics/8140691_eating.jpg', 'Substance Abuse & Addiction', 'Addiction is a chronic disease characterised by drug seeking and use that is compulsive, or difficult to control, despite harmful consequences. ', 'Addiction is a chronic disease characterised by drug seeking and use that is compulsive, or difficult to control, despite harmful consequences. The initial decision to take drugs is voluntary for most people, but repeated drug use can lead to brain changes that challenge an addicted person’s self-control and interfere with their ability to resist intense urges to take drugs. ', '2017-02-01 10:19:35', 0, 0, 'http://www.sana.org.sg', '+65 67321122', 'curated', 3, 0, 1),
-(15, 'images/topics/8976659_comment_like.png', 'images/topics/2014246_comments.png', 'Why', 'wer', 'wer', '2017-02-02 10:43:08', 0, 0, 'wer', '', 'curated', 0, 0, 1);
+(1, 'images/topics/7477413_drug.jpg', 'images/topics/9913384_drugbg.jpg', 'Substance Abuse & Addiction', 'Addiction Discussions, Questions and Answers.', 'Addiction is a chronic disease characterised by drug seeking and use that is compulsive, or difficult to control, despite harmful consequences. The initial decision to take drugs is voluntary for most people, but repeated drug use can lead to brain changes that challenge an addicted person&rsquo;s self-control and interfere with their ability to resist intense urges to take drugs. ', '2017-02-10 06:18:20', 0, 0, 'http://www.sana.org.sg/', '+65  67321122', 'main', 3, 0, 1),
+(2, 'images/topics/3948110_split.jpg', 'images/topics/4992912_3974277_splitbg.jpg', 'Split Personality', 'Explore Dissociative Identity Disorder', 'Personality is how we as individuals usually think, feel, act and relate with one another. It deï¬nes who we are as a person. Our personalities are shaped by our upbringing, the culture we live in and the prevailing societal norms. When a personâ€™s usual ways of thinking, feeling, relating to others and to their own selves become extreme within the society they live in, these â€œout of the ordinaryâ€ personalities can be classiï¬ed as personality disorders. It leads to repeated problems with too much or too little emotions, impulses, patterns of thinking, abilities to study and work and most importantly, in relating with others. It leads to lifestyle problems such as drug and alcohol abuse, self-harm, promiscuity and violence and a relative inability to pursue meaningful lives. These disorders are developmental in origin and tend to become evident in adolescence. ', '2017-02-01 11:12:44', 0, 0, 'https://www.imh.com.sg/', '+65 63892200', 'curated', 0, 0, 1),
+(3, 'images/topics/6094808_9896764_love.jpg', 'images/topics/6266943_9629871_love.jpg', 'Love & Relationships', 'Love Life Advice', 'Love stories donâ€™t always have a happy ending. Itâ€™s safe to say that every relationship has its own set of problems. They can be caused by a lot of different issues. Letâ€™s have a closer look at what could cause trouble in your relationship.', '2017-02-01 11:12:58', 0, 0, '', '', 'curated', 0, 0, 1),
+(4, 'images/topics/1551963_118669_stress.jpg', 'images/topics/179357_1149696_stressbg.jpg', 'Academic Stress', 'Tips to deal with stress', 'Feelings of stress and anxiety are a part of life. Some levels of stress can actually be good for us, as the right kind of stress encourages us toward change and growth. However, when stress and anxiety exist for an extended period of time, they can become a burden or even a health risk. This topic will help you recognise and understand feelings of stress and anxiety and learn how to manage them so that they donâ€™t become overwhelming.', '2017-02-01 11:13:10', 0, 0, '', '', 'curated', 0, 0, 1),
+(5, 'images/topics/8117235_ptsd.jpg', 'images/topics/5994677_ptsdbg.jpg', 'PTSD', 'Post-Traumatic Stress Disorder', 'Post-traumatic stress disorder occurs when a person has been exposed to traumatic events that cause her to experience distressing psychological symptoms that can become disabling. Common symptoms include nightmares; feelings of anger, irritability or emotional numbness; detachment from others; and flashbacks, during which the person re-lives the traumatic event. Frequently, the person will try to avoid situations or activities that remind her of the event.', '2017-02-01 14:49:31', 0, 0, '', '', 'main', 3, 0, 1),
+(6, 'images/topics/2538629_ocd.jpg', 'images/topics/964962_ocdbg.jpg', 'Obsessive Compulsive Disorder', 'Shedding light on the  crippling mental side of OCD', 'Obsessive compulsive disorder is a condition in which a person experiences intrusive thoughts, images or impulses. These are often very disturbing to you and may make the person feel anxious (obsessions). In turn, the person may perform certain acts or rituals in order to feel better or less anxious (compulsions). Typically, obsessions include fears of contamination, doubting (such as worrying that the iron has not been turned off), thoughts of hurting others, disturbing thoughts that go against the personâ€™s religious beliefs, or thoughts of performing acts the person feels are highly inappropriate. Compulsions can involve repeated checking, counting, washing, touching, or organizing things over and over again until they are symmetrical or â€˜just right.â€™', '2017-02-01 10:17:40', 0, 0, '', '', 'curated', 0, 0, 1),
+(7, 'images/topics/701955_work.jpg', 'images/topics/728806_workbg.jpg', 'Stress in Workplaces', 'A Practical Guide', 'Workplace stress is a huge cause of employee absence and reduced productivity, and employers are only realising how important it is to address it. However people feel they need to hide stress and mental health for fear of being judged as weak, unreliable, or unpredictable. This is a place to share stories of employers that have got it right, and those that have got it wrong.', '2017-02-01 15:29:38', 0, 0, '', '', 'main', 1, 0, 1),
+(8, 'images/topics/5973135_depression.jpg', 'images/topics/1881410_depressionbg.jpg', 'Depression', 'The Invisible Illness', 'Most people feel depressed at some time in their lives. Feelings of discouragement, frustration and even despair are normal reactions to loss or disappointment and may last for days before gradually disappearing. For some, however, depression is at the root of continuing lows. Depression is a serious, debilitating illness that intensely affects how an individual feels, thinks, and behaves. It can last for years and without treatment, can cause permanent disability. Depression affects the whole body and can alter eating and sleeping patterns, increase restlessness and overall fatigue, and even cause mysterious physical symptoms.', '2017-02-01 11:12:31', 0, 0, 'https://sos.org.sg/', '1800-221 4444', 'curated', 0, 0, 1),
+(9, 'images/topics/8978651_bipolar.jpg', 'images/topics/1434405_bipolarbg.jpg', 'Bipolar Disorder', 'Triggers, rules and trusting yourself', 'Bipolar disorder can affect how a person feels, thinks and acts. It involves dramatic shifts in mood â€“ from the highs of mania to the lows of major depression. More than a fleeting good or bad mood, the cycle of bipolar disorder lasts for days, weeks or months and is disruptive to work/social relationships. Bipolar disorder can rarely be overcome without medical treatment. For some, the periods between episodes of illness can be normal and productive. However, research suggests that when left untreated, episodes of illness occur more often and are more severe. During a manic episode, a person might impulsively quit a job, charge up huge amounts of debt, or feel rested after sleeping two hours. During a depressive episode, the same person might be too tired to get out of bed and full of self- loathing and hopelessness over his or her unemployment status and credit card bills.', '2017-02-01 11:34:23', 0, 0, '', '', 'curated', 0, 0, 1),
+(10, 'images/topics/3076891_suicide.jpg', 'images/topics/9431423_suicidebg.jpg', 'Suicidal Thoughts', 'Stay informed. Stay Connected.', 'Suicide is the act of intentionally taking your own life.<br />\r\nSuicidal feelings can range from being preoccupied by abstract thoughts about ending your life, or feeling that people would be better off without you, to thinking about methods of suicide, or making clear plans to take your own life.<br />\r\n<br />\r\nIf you are feeling suicidal, you might be scared or confused by these feelings.<br />\r\nBut you are not alone. Many people think about suicide at some point in their lifetime. Come join us to share your feelings and thoughts with like minded people.', '2017-02-01 12:50:50', 0, 0, 'https://sos.org.sg/', '1800 221 4444', 'curated', 0, 0, 1),
+(11, 'images/topics/717248_anxiety.jpg', 'images/topics/7219805_anxietybg.jpg', 'Anxiety Disorder', 'Managing Mental Health and more', 'People with anxiety disorders respond to certain objects or situations with fear and dread, as well as with physical signs of anxiety or panic, such as a rapid heartbeat and sweating. Anxiety disorders include generalised anxiety disorder, panic disorder, social anxiety disorder, and specific phobias.', '2017-02-01 13:05:09', 0, 0, '', '', 'curated', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -363,11 +374,41 @@ INSERT INTO `topics` (`id`, `main_image`, `background`, `title`, `short_desc`, `
 -- Table structure for table `topic_follow`
 --
 
-CREATE TABLE `topic_follow` (
+CREATE TABLE IF NOT EXISTS `topic_follow` (
   `userid` int(11) NOT NULL,
   `topicid` int(11) NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `topic_follow`
+--
+
+INSERT INTO `topic_follow` (`userid`, `topicid`, `datetime`) VALUES
+(51, 10, '2017-02-01 16:52:23'),
+(51, 3, '2017-02-01 17:38:42'),
+(74, 4, '2017-02-03 13:56:04'),
+(74, 10, '2017-02-03 13:56:08'),
+(74, 8, '2017-02-03 13:56:12'),
+(64, 9, '2017-02-03 14:33:56'),
+(64, 11, '2017-02-03 14:34:00'),
+(64, 3, '2017-02-03 14:34:04'),
+(64, 6, '2017-02-03 14:34:08'),
+(64, 10, '2017-02-03 14:34:15'),
+(64, 2, '2017-02-03 14:34:19'),
+(64, 8, '2017-02-03 14:34:24'),
+(64, 4, '2017-02-03 14:34:30'),
+(64, 7, '2017-02-03 14:35:34'),
+(51, 9, '2017-02-03 15:47:01'),
+(74, 7, '2017-02-03 18:28:42'),
+(75, 7, '2017-02-05 05:28:49'),
+(77, 7, '2017-02-05 12:13:36'),
+(51, 6, '2017-02-05 14:48:58'),
+(51, 5, '2017-02-05 14:57:04'),
+(53, 1, '2017-02-13 12:59:45'),
+(53, 7, '2017-02-13 12:59:49'),
+(53, 5, '2017-02-13 12:59:52'),
+(51, 11, '2017-02-23 01:16:49');
 
 -- --------------------------------------------------------
 
@@ -375,8 +416,8 @@ CREATE TABLE `topic_follow` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` char(32) NOT NULL,
@@ -385,27 +426,34 @@ CREATE TABLE `users` (
   `image` varchar(255) NOT NULL DEFAULT 'images/default.svg',
   `description` varchar(255) NOT NULL,
   `datejoin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `active` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `active` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=80 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `affliate`, `image`, `description`, `datejoin`, `active`) VALUES
-(30, 'Jess Tan', 'jess_tjl@hotmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'admin', 'website', 'images/profile/589b4ac7046b8.jpg', 'I love writing', '2016-12-01 08:49:41', 1),
-(35, 'Claudia', 'test@mail.commmmm', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', 'lalalal', '0000-00-00 00:00:00', 1),
-(36, 'Tan Jia Lin', 'tjl@gmail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2016-12-01 08:49:41', 1),
-(37, 'testdate', 'testdate@mail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2016-12-02 11:24:44', 1),
-(38, 'normal user', 'normaluser@mail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2016-12-02 16:51:45', 1),
-(39, 'testprofile', 'prof@mail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2016-12-10 15:59:12', 1),
-(40, 'notification', 'notification@mail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/avatar.png', '', '2016-12-10 18:13:59', 1),
-(41, 'Kourtney', 'jesstjl@gmail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2017-01-20 14:56:33', 1),
-(42, 'khloe', 'jesstanjl@gmail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2017-01-20 14:57:23', 1),
-(49, 'Tan Jia Lin', 'jesswandering@gmail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2017-01-20 15:17:16', 1),
-(50, 'sdf', 'j@mail.com', '202cb962ac59075b964b07152d234b70', 'normal', 'website', 'images/default.svg', '', '2017-02-08 16:52:34', 1),
-(51, 'dsasdasd', '1235@mail.com', '25d55ad283aa400af464c76d713c07ad', 'normal', 'website', 'images/default.svg', '', '2017-02-08 16:54:46', 1),
-(52, 'admin', 'admin@mail.com', 'e10adc3949ba59abbe56e057f20f883e', 'normal', 'website', 'images/default.svg', '', '2017-02-08 17:00:57', 1);
+(51, 'Jess Tan', 'jess_tjl@hotmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 'website', 'http://graph.facebook.com/10155602830695760/picture?type=large', 'Computer Science Student @ NTU', '2017-01-30 08:51:04', 1),
+(52, 'Gaby', 'bayimilna93@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 'website', 'images/default.svg', '', '2017-01-30 08:53:56', 1),
+(53, 'Xiaofeng Shi', '1544150988948000', '922aacc28c1518c256594c0f0f664aa7', 'normal', 'facebook', 'images/default.svg', '', '2017-01-30 08:56:25', 1),
+(54, 'asd', 'artem.osipov@smartpelican.com', 'a8f5f167f44f4964e6c998dee827110c', 'normal', 'website', 'images/default.svg', '', '2017-01-30 10:40:07', 1),
+(64, 'Tiffany Lim', 'tiffany@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'normal', 'website', 'images/profile/8547239_large.jpg', 'Just a girl', '2017-02-01 15:27:30', 1),
+(65, 'Kent Koh', 'kentkoh@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'expert', 'website', 'images/profile/6738070_17ff019e6cb20715fed1ab36de42d431.jpg', 'Certified Psychiatrist. Avid Reader.', '2017-02-01 15:32:39', 1),
+(66, 'Kelly Goh', 'kgoh@mail.com', 'e80b5017098950fc58aad83c8c14978e', 'normal', 'website', 'images/profile/5358390_kelly.jpg', 'Poet, momma, urban adventurer', '2017-02-02 12:40:28', 1),
+(67, 'Justin Wong', 'justinw@email.com', 'e80b5017098950fc58aad83c8c14978e', 'normal', 'website', 'images/profile/6939461_justin.jpg', 'PhD Princeton (2016). Activist, author, teacher.', '2017-02-02 12:45:45', 1),
+(68, 'Edward', 'eddie.velvetmain@mail.com', 'e80b5017098950fc58aad83c8c14978e', 'normal', 'website', 'images/profile/8634746_Edward-Gao.jpg', 'I love writing.', '2017-02-02 12:56:14', 1),
+(69, 'Zhang Lee', 'leezhang@email.com', 'e80b5017098950fc58aad83c8c14978e', 'normal', 'website', 'images/profile/2127107_zhang.jpeg', 'Mad, bad, and dangerous to know.', '2017-02-02 14:15:45', 1),
+(70, 'Seamus Deng', 'dengsea@mail.com', 'e80b5017098950fc58aad83c8c14978e', 'normal', 'website', 'images/profile/7216392_seam.png', 'Semi-literate writer', '2017-02-02 14:17:58', 1),
+(71, 'Kylie Schimdt', 'kylies@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'normal', 'website', 'images/profile/8356371_kyli.jpg', '', '2017-02-02 16:06:52', 1),
+(72, 'Theo Ross', 'theoross@email.com', 'e80b5017098950fc58aad83c8c14978e', 'normal', 'website', 'images/profile/4458886_theo.jpg', 'Surviving', '2017-02-02 16:37:07', 1),
+(73, 'Lisa Luveen', 'lisaluv@mail.com', 'e80b5017098950fc58aad83c8c14978e', 'normal', 'website', 'images/profile/8748466_ccc5e3a6f8c6257d_img-lisa-bonet_15033660615.jpeg', 'Love life', '2017-02-02 17:11:16', 1),
+(74, 'Thomas Lee', 'thomas@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'normal', 'website', 'images/profile/5918965_masahikohonma.jpg', '', '2017-02-03 13:47:08', 1),
+(77, 'Jess Tan', '10155602830695760', '7d2d54f440fe7f851fcf752bcbbad14f', 'normal', 'facebook', 'http://graph.facebook.com/10155602830695760/picture?type=large', '', '2017-02-05 06:50:44', 1),
+(78, 'Jian An Tan', '10211325589762930', 'e0f21252a5b671814b7eaeb8a6b1fb6f', 'normal', 'facebook', 'http://graph.facebook.com/10211325589762930/picture?type=large', '', '2017-02-07 08:21:50', 1),
+(79, '', '', 'd41d8cd98f00b204e9800998ecf8427e', 'normal', 'website', 'images/default.svg', '', '2017-02-25 23:14:25', 1);
 
 -- --------------------------------------------------------
 
@@ -413,7 +461,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `affliate`, `ima
 -- Table structure for table `user_follow`
 --
 
-CREATE TABLE `user_follow` (
+CREATE TABLE IF NOT EXISTS `user_follow` (
   `userid` int(11) NOT NULL,
   `follower` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -423,77 +471,19 @@ CREATE TABLE `user_follow` (
 --
 
 INSERT INTO `user_follow` (`userid`, `follower`) VALUES
-(33, 30),
-(33, 30),
-(40, 30),
-(30, 52),
-(52, 30),
-(30, 40);
+(53, 51),
+(65, 51),
+(68, 71),
+(67, 51),
+(51, 74),
+(72, 74),
+(74, 51),
+(71, 51),
+(71, 74),
+(68, 74),
+(51, 53),
+(64, 51);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `posts`
---
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `reports`
---
-ALTER TABLE `reports`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `topics`
---
-ALTER TABLE `topics`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
---
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
---
--- AUTO_INCREMENT for table `reports`
---
-ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `topics`
---
-ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
