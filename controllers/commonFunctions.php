@@ -1362,28 +1362,28 @@ function rankPost($postID) {
 
 function calculateScore($maxDate, $date, $maxComments, $minComments, $comments, $maxLikes, $minLikes, $likes, $maxViews, $minViews, $views) {
   //normalize date
-  $dateScore = calculateDateScore($date);
-  $maxDateScore = calculateDateScore($maxDate);
-  $normalizeDate = normalize($maxDateScore, 0, $date);
+  $normalizeDate = calculateDateScore($date) * 0.7;
 
   //normalize comments
-  $normalizeComments = normalize($maxComments, $minComments, $comments);
+  $normalizeComments = normalize($maxComments, $minComments, $comments) * 0.1;
 
   //normalize likes
-  $normalizeLikes = normalize($maxLikes, $minLikes, $likes);
+  $normalizeLikes = normalize($maxLikes, $minLikes, $likes) * 0.1;
 
   //normalize views
-  $normalizeViews = normalize($maxViews, $minViews, $views);
+  $normalizeViews = normalize($maxViews, $minViews, $views) * 0.1;
 
   //calculate score
   $totalScore = $normalizeDate + $normalizeComments + $normalizeLikes + $normalizeViews;
-  return $totalScore / 4;
+  return $totalScore;
 }
 
 function calculateDateScore($postTime) {
-  $now  = strtotime(date("Y-m-d H:i:s"));
-  $postTime = strtotime('2017-01-30 01:43:48');
-  return $differenceInSeconds = $now - $postTime;
+  $now  = strtotime(date("Y-m-d"));
+	$postTime = strtotime($postTime);
+	$date = $now - $postTime;
+	$min = strtotime(getPostMinDate());
+	return normalize($now, $min, $postTime);
 }
 
 function normalize($max, $min, $value) {
