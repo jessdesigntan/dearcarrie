@@ -14,7 +14,7 @@
 ?>
 
 <html lang="en">
-  <?php head("Your Profile"); ?>
+  <?php head("Dear Carrie - ".$user["name"]); ?>
 
   <body>
     <?= navbar(); ?>
@@ -81,7 +81,9 @@
               <div class="post-empty-state" id="postDiv">
                   <div>
                       <h4>No posts yet</h4>
+                      <?php if ($_SESSION["userID"] == $userID) { ?>
                       <a class="primary-line-btn" href="addPost">Write something</a>
+                      <?php } ?>
                   </div>
               </div>
           <?php

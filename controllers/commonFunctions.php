@@ -1,6 +1,8 @@
 <?php
 /***************** SESSION FUNCTIONS *********************/
 
+
+
 // return true if user is logged in
 function checkLogin() {
 	if(isset($_SESSION["role"])) {
@@ -158,7 +160,7 @@ function getCommentByID($id) {
 function displayAllPost() {
 	$conn = connectToDataBase();
 
-	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC";
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY views ASC";
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -201,7 +203,7 @@ function displayAllPostIndex() {
 	//get current starting point of records
 	$start = (($page-1) * $limit);
 
-	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY views DESC LIMIT $start, $limit"; //added $start and $limit
+	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY score DESC LIMIT $start, $limit"; //added $start and $limit
 	$result = $conn->query($sql);
 	$resArr = array();
 
@@ -1257,6 +1259,139 @@ function increasePostView($id) {
 	$sql = "UPDATE posts SET views = views + 1 WHERE id = '$id'";
 	validateQuery($conn, $sql);
 }
+
+function getPostMinDate() {
+	$conn = connectToDataBase();
+	$sql = "SELECT MIN(timestamp) AS 'Date' FROM posts";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	$conn->close();
+	return $value["Date"];
+}
+
+function getPostMaxLikes() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS 'Likes'
+					FROM post_like
+					GROUP BY postid
+					ORDER BY COUNT(*) DESC
+					LIMIT 1";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	$conn->close();
+	return $value["Likes"];
+}
+
+function getPostMinLikes() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS 'Likes'
+					FROM post_like
+					GROUP BY postid
+					ORDER BY COUNT(*) ASC
+					LIMIT 1";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	$conn->close();
+	return $value["Likes"];
+}
+
+function getPostMaxComments() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS 'Comments'
+					FROM comments
+					GROUP BY postid
+					ORDER BY COUNT(*) DESC
+					LIMIT 1";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	$conn->close();
+	return $value["Comments"];
+}
+
+function getPostMinComments() {
+	$conn = connectToDataBase();
+	$sql = "SELECT COUNT(*) AS 'Comments'
+					FROM comments
+					GROUP BY postid
+					ORDER BY COUNT(*) ASC
+					LIMIT 1";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	$conn->close();
+	return $value["Comments"];
+}
+
+function getMaxViews() {
+	$conn = connectToDataBase();
+	$sql = "SELECT MAX(views) AS 'Views'
+					FROM posts";
+	$result = $conn->query($sql);
+	$value = $result->fetch_assoc();
+	$conn->close();
+	return $value["Views"];
+}
+
+function updatePostRank() {
+	$posts = displayAllPost();
+	foreach ($posts as $post) {
+		rankPost($post['id']);
+	}
+}
+
+
+function rankPost($postID) {
+  $conn = connectToDataBase();
+	$oldestDate = getPostMinDate();
+	$maxLikes = getPostMaxLikes();
+	$minLikes = getPostMinLikes();
+	$maxComments = getPostMaxComments();
+	$minComments = getPostMinComments();
+	$maxViews = getMaxViews();
+
+	$postComments = countCommentsByPostID($postID);
+	$postLikes = countPostLikes($postID);
+
+  $post = getPostByID($postID);
+
+	$score = calculateScore($oldestDate, $post['timestamp'], $maxComments, $minComments, $postComments, $maxLikes, $minLikes, $postLikes, $maxViews, 0, $post['views']);
+
+	//update score
+	$sql = "UPDATE posts SET score = $score WHERE id = '$postID'";
+	$result = $conn->query($sql);
+}
+
+function calculateScore($maxDate, $date, $maxComments, $minComments, $comments, $maxLikes, $minLikes, $likes, $maxViews, $minViews, $views) {
+  //normalize date
+  $normalizeDate = calculateDateScore($date) * 0.7;
+
+  //normalize comments
+  $normalizeComments = normalize($maxComments, $minComments, $comments) * 0.1;
+
+  //normalize likes
+  $normalizeLikes = normalize($maxLikes, $minLikes, $likes) * 0.1;
+
+  //normalize views
+  $normalizeViews = normalize($maxViews, $minViews, $views) * 0.1;
+
+  //calculate score
+  $totalScore = $normalizeDate + $normalizeComments + $normalizeLikes + $normalizeViews;
+  return $totalScore;
+}
+
+function calculateDateScore($postTime) {
+  $now  = strtotime(date("Y-m-d"));
+	$postTime = strtotime($postTime);
+	$date = $now - $postTime;
+	$min = strtotime(getPostMinDate());
+	return normalize($now, $min, $postTime);
+}
+
+function normalize($max, $min, $value) {
+  $numerator = $value - $min;
+  $denominator = $max - $min;
+  return $numerator / $denominator;
+}
+
 
 
 ?>

@@ -25,7 +25,7 @@
                       <hr/>
                   </div>
                   <div class="form-group">
-                      <textarea placeholder="Share your story ..." onkeyup="auto_grow200(this)" name="desc"></textarea>
+                      <textarea placeholder="Share your story ..." name="desc"></textarea>
                       <button class="primary-line-btn" type="submit">Submit</button>
                   </div>
               </form>

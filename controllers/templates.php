@@ -59,10 +59,10 @@ function head($title){
              alert("Please type something in the search bar!");
              return false;
            }
-          else 
+          else
           {
            return true;
-          }     
+          }
         })
       });
       //end check search textbox

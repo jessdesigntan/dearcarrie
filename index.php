@@ -4,6 +4,7 @@
   $mainTopics = displayMainTopics();
   $topics = displayAllTopicsOrderByTitleAsc();
   $recentPosts = displayRecentPosts();
+  updatePostRank();
 ?>
 <html lang="en">
   <?php head("Dear Carrie"); ?>
