@@ -4,6 +4,7 @@
   $mainTopics = displayMainTopics();
   $topics = displayAllTopicsOrderByTitleAsc();
   $recentPosts = displayRecentPosts();
+  updatePostRank();
 ?>
 <html lang="en">
   <?php head("Dear Carrie"); ?>
@@ -18,6 +19,7 @@
                   <img src="images/chat.svg">
               </div>
               <div>
+                  <h1><?php //echo $score; ?></h1>
                   <h3>Share your stories.</h3>
                   <p class="mBottom-20">Dear Carrie is a community of readers and writers offering unique perspectives on ideas large and small.</p>
                   <a href="signup" style="color:white;" class="primary-btn small">Sign up</a>
