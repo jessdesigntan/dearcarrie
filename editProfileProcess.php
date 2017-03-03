@@ -9,7 +9,7 @@ $email = $_POST["email"];
 //check extension
 $valid_exts = array('jpeg', 'jpg', 'png', 'gif');
 $max_file_size = 1000 * 1024; #1000kb
-$nw = $nh = 250; # image with # height
+$nw = $nh = 200; # image with # height
 
 if ( isset($_FILES['image']) && $_FILES['image']['error'] == 0 ) {
 	if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {

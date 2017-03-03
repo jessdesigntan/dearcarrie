@@ -38,7 +38,7 @@ $(document).ready(function() {
 
 		oFReader.onload = function (oFREvent) {
 	   		p.attr('src', oFREvent.target.result).fadeIn();
-	   		$('img#uploadPreview').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 210 });
+	   		$('img#uploadPreview').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 250 });
 		};
 
 		
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
 		oFReader.onload = function (oFREvent) {
 	   		q.attr('src', oFREvent.target.result).fadeIn();
-	   		$('img#uploadPreview2').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 210 });
+	   		$('img#uploadPreview2').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 250 });
 		};
 	});
 
