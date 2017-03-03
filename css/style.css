@@ -1152,8 +1152,9 @@ h4.hero-center::after {
   margin-bottom: 20px;
   font-size: 18px;
   outline: none;
-  overflow: hidden;
-  height: 202px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 300px;
 }
 
 .addPost input {
