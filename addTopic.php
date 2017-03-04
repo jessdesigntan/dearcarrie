@@ -36,7 +36,6 @@
                             <th>Type</th>
                             <td>
                                 <select name="type">
-                                    <option value="curated">Choose one</option>
                                     <option value="curated">Curated</option>
                                     <option value="main">Main</option>
                                 </select>
@@ -52,7 +51,7 @@
                             <th>Title</th>
                         </tr>
                         <tr>
-                            <td><input name="title" type="text" placeholder="Title"></td>
+                            <td><input name="title" type="text" placeholder="Title" required="required"></td>
                         </tr>
                         <tr>
                             <th>Main Image</th>
@@ -61,7 +60,7 @@
                             <td>
                                 <!-- image preview area-->
                                 <img id="uploadPreview" style="display:none;width:100%;"/>
-                                <input type="file" id="uploadImage" accept="image/*" name="main">
+                                <input type="file" id="uploadImage" accept="image/*" name="main" required="required">
                                 <!-- hidden inputs for crop -->
                                 <!-- <input type="hidden" id="x" name="x" />
                                 <input type="hidden" id="y" name="y" />
@@ -76,7 +75,7 @@
                             <td>
                                 <!-- image preview area-->
                                 <img id="uploadPreview2" style="display:none;width:100%;"/>
-                                <input type="file" id="uploadImage2" accept="image/*" name="background">
+                                <input type="file" id="uploadImage2" accept="image/*" name="background" required="required">
                                 <!-- hidden inputs for crop -->
                                 <!-- <input type="hidden" id="x2" name="x2" />
                                 <input type="hidden" id="y2" name="y2" />
@@ -89,7 +88,7 @@
                         </tr>
                         <tr>
                             <td>
-                              <input name="short_desc" type="text" placeholder="Describe the topic in one line">
+                              <input name="short_desc" type="text" placeholder="Describe the topic in one line" required="required">
                             </td>
                         </tr>
                         <tr>
