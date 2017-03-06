@@ -38,7 +38,7 @@ if ($action == "update") {
         imagecopyresampled($dstImg, $vImg, 0, 0, $x, $y, $nw, $nh, $w, $h);
         imagejpeg($dstImg, $path);
         imagedestroy($dstImg);
-        
+
         //save to database
         $conn = connectToDataBase();
         $sql = "UPDATE users SET name='$name', description='$desc', role='$role', image='$path' WHERE id = '$userid'";
@@ -49,7 +49,7 @@ if ($action == "update") {
         header("location: userDetails?userID=$userid");
       } else {
         echo 'unknown problem!';
-      } 
+      }
     } else {
       echo 'file is too small or large';
     }
@@ -66,11 +66,11 @@ if ($action == "update") {
 } else {
     // if delete
     $conn = connectToDataBase();
-    $sql = "UPDATE users SET active = 0 WHERE id = '$userid'";
+    $sql = "DELETE FROM users WHERE id = '$userid'";
     $result = $conn->query($sql);
     validateQuery($conn, $sql);
 
-    header("location: userDetails?userID=$userid");
+    header("location: userList");
 }
 
 ?>
