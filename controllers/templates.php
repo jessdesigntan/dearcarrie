@@ -242,7 +242,7 @@ function card($id) {
             </form>
 
       <?php
-          } else {
+    } else { //user does not like the post
       ?>
             <form class="like-inline">
               <input onclick="likePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikePostBtn<?=$id;?>" type="button">
