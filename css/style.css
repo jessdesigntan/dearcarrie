@@ -530,18 +530,17 @@ a:hover {
 }
 
 .card .footer input.star-icon {
-  background-color: white;
   border: none;
-
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   position: absolute;
-  left: -35px;
-  top: -43px;
-  background: url("../images/fave_animation.png") no-repeat;
-  background-position: 0 0;
+  left: -18px;
+  top: -16px;
+  background: url(../images/fave_animation.png) no-repeat;
+  background-position: left;
   cursor: pointer;
   transition: background .7s steps(28);
+  background-size: 2900%;
 }
 
 .card .footer input.star-icon.active:hover, .card .footer input.star-icon:hover {
@@ -549,10 +548,17 @@ a:hover {
 }
 
 .card .footer input.star-icon.active {
+  border: none;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: -18px;
+  top: -16px;
   background-image: url("../images/fave_animation.png");
   text-decoration: none;
-  background-position: -2800px 0;
+  background-position: right;
   transition: background 1s steps(28);
+  background-size: 2900%;
 }
 
 .card .footer .dots-icon img {
@@ -1360,7 +1366,7 @@ form.like-inline > * {
 }
 
 form.like-inline > p {
-  padding-left: 40px;
+  padding-left: 20px;
 }
 
 /*=============================
