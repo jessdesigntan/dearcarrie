@@ -544,6 +544,9 @@ a:hover {
   transition: background .7s steps(28);
 }
 
+.card .footer input.star-icon.active:hover, .card .footer input.star-icon:hover {
+  opacity: 0.8;
+}
 
 .card .footer input.star-icon.active {
   background-image: url("../images/fave_animation.png");
