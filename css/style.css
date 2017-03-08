@@ -1172,7 +1172,7 @@ h4.hero-center::after {
 
 .addPost input {
   padding: 20px 0;
-  font-size: 36px;
+  font-size: 2em;
   font-weight: bold;
   background: none;
   box-shadow: none;
