@@ -1859,8 +1859,14 @@ a.dropdown:hover > ul {
   display: table-cell;
   vertical-align: middle;
 }
-.signup-banner > div:first-child {
+.signup-banner > div > div:first-child {
   text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .signup-banner > div > div:last-child {
+    text-align: center;
+  }
 }
 
 .signup-banner p {
