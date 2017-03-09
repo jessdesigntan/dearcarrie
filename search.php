@@ -3,29 +3,36 @@
   include('controllers/templates.php');
   $keyword = $_GET["search_keyword_id"];
   $filters = @$_POST["value"];
-  //$posts = searchPost($keyword);
+  $posts = searchPost($keyword);
   $conn = connectToDataBase();
 
   if(!isset($_POST['value'])) {
-      $posts = searchPost($keyword);
+      //$posts = getCountPosts($keyword);
     }
     else
     {
+      $sql = queryBuilder($keyword);
       if($_POST['value'] == 'allTime') {
-          // query to get all posts
-          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND published = 1 order by timestamp desc";
+        // query to get all posts
+        //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND published = 1 order by timestamp desc";
+        $sql .= " ORDER BY timestamp DESC";
       }
       elseif($_POST['value'] == 'today') {
-          // query to get all today's posts
-          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND DATE(timestamp) = curdate() AND published = 1 order by timestamp desc";
+        // query to get all today's posts
+        //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND DATE(timestamp) = curdate() AND published = 1 order by timestamp desc";
+        $sql .= " AND DATE(timestamp) = curdate() ORDER BY timestamp desc";
       }
       elseif($_POST['value'] == 'thisMonth') {
-          // query to get all this month's posts
-          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
+        // query to get all this month's posts
+        //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
+
+        $sql .= " AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) ORDER BY timestamp desc";
       }
       elseif($_POST['value'] == 'thisYear') {
-          // query to get all this year's posts
-          $sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
+        // query to get all this year's posts
+        //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
+
+        $sql .= " AND YEAR(timestamp) = year(curdate()) ORDER BY timestamp desc";
       }
 
       $result = $conn->query($sql);

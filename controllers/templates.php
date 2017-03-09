@@ -112,7 +112,7 @@ function navbar() {
             <a href="topic">Editor's Picks</a>
           </li>
         </ul>
-        <form id="myForm" class="navbar-form navbar-left hide-mobile" action="searchposts" method="get">
+        <form id="myForm" class="navbar-form navbar-left hide-mobile" action="search" method="get">
             <input id="search_keyword_id" type="text" class="search_keyword nav-search" placeholder="Search anything . . ." name="search_keyword_id" autocomplete="off">
             <input type="hidden" name="tp" value="all">
             <button type="submit" class="hidden-submit"></button>
