@@ -20,6 +20,13 @@ function redirectNonUsers() {
 	}
 }
 
+function redirectUsers() {
+	if (!checkLogin()) {
+		echo "<script type='text/javascript'>history.go(-1);</script>";
+		exit;
+	}
+}
+
 function checkRole($userRole, $role) {
 	if($userRole != $role) {
 		return false;

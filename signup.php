@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include('controllers/templates.php'); ?>
+<?php
+  include('controllers/templates.php');
+  redirectUsers();
+?>
 
 <html lang="en">
   <?php head("Dear Carrie - Sign up"); ?>
