@@ -12,6 +12,19 @@
 		}
     $i++;
 	}
+  $sql .= " OR id IN(";
+
+	$j = 0;
+	$sqlInner = "SELECT postid FROM topics INNER JOIN curation WHERE topicid = id AND published = 1 AND title";
+	foreach ($keys as $key) {
+		$sqlInner .= " LIKE '%$key%'";
+		if ($j != count($keys)-1) {
+			$sqlInner .= " OR title";
+		}
+		$j++;
+	}
+	$sqlInner .= ")";
+	$sql .= $sqlInner;
   echo $sql;
 
 ?>
