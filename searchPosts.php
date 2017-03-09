@@ -3,31 +3,38 @@
   include('controllers/templates.php');
   $keyword = $_GET["search_keyword_id"];
   $filters = $_POST["value"];
-  //$posts = searchPost($keyword);
+  $posts = searchPost($keyword);
   $conn = connectToDataBase();
 
     if(!isset($_POST['value'])) {
-      $posts = getCountPosts($keyword);
+      //$posts = getCountPosts($keyword);
     }
     else
     {
+      $sql = queryBuilder($keyword);
       if($_POST['value'] == 'allTime') {
           // query to get all posts
-          $sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND published = 1 order by timestamp desc";
+          //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND published = 1 order by timestamp desc";
+          $sql .= " ORDER BY timestamp DESC";
       }
       elseif($_POST['value'] == 'today') {
           // query to get all today's posts
-          $sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND DATE(timestamp) = curdate() AND published = 1 order by timestamp desc";
+          //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND DATE(timestamp) = curdate() AND published = 1 order by timestamp desc";
+          $sql .= " AND DATE(timestamp) = curdate() ORDER BY timestamp desc";
       }
       elseif($_POST['value'] == 'thisMonth') {
           // query to get all this month's posts
-          $sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
-      } 
+          //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
+
+          $sql .= " AND MONTH(timestamp) = month(curdate()) AND YEAR(timestamp) = year(curdate()) ORDER BY timestamp desc";
+      }
       elseif($_POST['value'] == 'thisYear') {
           // query to get all this year's posts
-          $sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
+          //$sql = "SELECT * FROM posts WHERE title LIKE '%$keyword%' AND YEAR(timestamp) = year(curdate()) AND published = 1 order by timestamp desc";
+
+          $sql .= " AND YEAR(timestamp) = year(curdate()) ORDER BY timestamp desc";
       }
-      
+
       $result = $conn->query($sql);
       $posts = array();
 
@@ -41,7 +48,7 @@
       }
       $conn->close();
     }
- 
+
 ?>
 
 <html lang="en">
@@ -63,7 +70,7 @@
         <div class="col-sm-8">
           <div class="content-title">
             <h4>Search Results: <span class="primary-color"><?=$keyword;?></span></h4>
-              
+
               <form action="searchposts.php?search_keyword_id=<?=$keyword;?>&tp=post" method='post' name='form_filter' style="float:right;">
               Show posts: &nbsp;
                 <select name="value" onchange="this.form.submit()">
@@ -74,7 +81,7 @@
                 </select>
                   <!--<input type='submit' value = 'Filter'>-->
               </form>
-            
+
           </div>
           <!-- do an if-else for posts count -->
           <?php if(count($posts) == 0) { ?>

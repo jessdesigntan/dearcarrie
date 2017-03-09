@@ -361,9 +361,36 @@ function countPostByUserID($id) {
 	return $value["total"];
 }
 
+function queryBuilder($keyword) {
+	$keys = explode(" ", $keyword);
+
+	$sql = "SELECT * FROM posts WHERE published = 1 AND title";
+	$i = 0;
+	foreach ($keys as $key) {
+		$sql .= " LIKE '%$key%'";
+		if ($i != count($keys)-1) {
+			$sql .= " OR title";
+		}
+		$i++;
+	}
+	return $sql;
+}
+
 function searchPost($keyword) {
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND published = 1";
+	//$sql = "SELECT * FROM posts WHERE (title LIKE '%$keyword%' OR id IN (SELECT postid FROM topics INNER JOIN curation WHERE title lIKE '%$keyword%' AND published = 1 AND topicid = id)) AND published = 1";
+	$keys = explode(" ", $keyword);
+
+  $sql = "SELECT * FROM posts WHERE published = 1 AND title";
+  $i = 0;
+	foreach ($keys as $key) {
+		$sql .= " LIKE '%$key%'";
+		if ($i != count($keys)-1) {
+			$sql .= " OR title";
+		}
+    $i++;
+	}
+
 	$result = $conn->query($sql);
 	$resArr = array();
 
