@@ -102,7 +102,7 @@
                           </div>
                       </div>
                   </div>
-                  <script>staticBar('.main-sidebar','550')</script>
+                  
               </div>
           </div><!-- END right column col-sm-4 -->
 
