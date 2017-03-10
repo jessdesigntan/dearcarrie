@@ -2,7 +2,7 @@
 <?php include('controllers/templates.php'); ?>
 <?php
   $errorMsg = $_GET["msg"];
-
+  redirectUsers();
 ?>
 
 <html lang="en">
@@ -12,8 +12,8 @@
     <?= navbar(); ?>
 
     <?php if (isset($_SESSION['FBID'])):  header("Location: /fyp");?>      <!--  After user login  -->
-     
-    <?php else: ?>     <!-- Before login --> 
+
+    <?php else: ?>     <!-- Before login -->
     <div class="page-container">
         <div class="small-wrapper">
           <img src="images/logo-long.svg" class="logo">
