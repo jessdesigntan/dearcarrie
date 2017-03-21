@@ -24,7 +24,7 @@
             <div class="panel-heading"><h4>Edit Profile</h4></div>
             <div class="panel-body">
               <!-- image preview area-->
-              <img id="uploadPreview" style="display:none;width:100%;"/>
+              <img id="uploadPreview" style="display:none;"/>
               <form action="editProfileProcess" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <input name="userid" type="hidden" value="<?=$user["id"];?>">
