@@ -32,6 +32,7 @@
                 <label>Password</label>
                 <input type="password" class="form-control" name="password" required>
               </div>
+              <a href="forgetPassword" style="float:left;">Forget Password?</a><br /><br />
               <button type="submit" class="primary-line-btn">Login</button>
           </form>
           <hr/>
