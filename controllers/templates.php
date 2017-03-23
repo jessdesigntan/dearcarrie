@@ -718,7 +718,14 @@ function errorAlert($msg) {
 <?php
 }
 
-
+function infoAlert($msg) {
+?>
+<div class="alert alert-info alert-dismissable fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?= $msg; ?>
+</div>
+<?php
+}
 
 function commentCardProfile($id) {
   $comment = getCommentByID($id);
