@@ -227,9 +227,9 @@ function displayAllPostIndex() {
 	return $resArr;
 }
 
-function suggestedPost() {
+function suggestedPost($id) { //suggest 3 posts in the same topic
 	$conn = connectToDataBase();
-	$sql = "SELECT * FROM posts WHERE published = 1 ORDER BY id DESC LIMIT 3";
+	$sql = "SELECT * FROM posts WHERE id in (SELECT distinct postid from curation where topicid in (SELECT topicid from curation where postid = $id) and postid != $id) and published = 1 ORDER BY views DESC LIMIT 3";
 	$result = $conn->query($sql);
 	$resArr = array();
 

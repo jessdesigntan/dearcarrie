@@ -4,7 +4,7 @@
   $postID = $_GET["postID"];
   $post = getPostByID($postID);
   $comments = getAllCommentsByPostID($postID);
-  $suggestedPosts = suggestedPost();
+  $suggestedPosts = suggestedPost($postID);
   $commentCount = countCommentsByPostID($postID);
   increasePostView($postID);
 ?>
