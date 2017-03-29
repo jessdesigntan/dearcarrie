@@ -1,0 +1,20 @@
+.awesome-cropper {
+}
+.awesome-cropper-drop-area {
+}
+.awesome-cropper .preview {
+}
+.awesome-cropper .modal, .awesome-cropper .modal.fade.in {
+  top: 3%
+}
+.awesome-cropper .modal-dialog {
+  width: 90%;
+}
+
+.btn-danger{
+	color: #fff!important;
+}
+
+.btn-primary{
+	color: #fff!important;
+}

@@ -39,7 +39,19 @@ function head($title){
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- profile picture upload in edit profile -->
+    <script src="js/jquery.imgareaselect.js"></script> 
+    <script src="js/jquery.awesome-cropper.js"></script> 
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#uploadImage').awesomeCropper(
+            { width: 200, height: 200, debug: true }
+            );
+        });
+    </script>
+
     <script src="js/autocomplete.js"></script>
 
     <!-- wow.js for css animations & initialization -->

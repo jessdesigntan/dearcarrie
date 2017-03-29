@@ -10,10 +10,8 @@
 
 <html lang="en">
   <?php head("Edit Profile"); ?>
-  <link rel="stylesheet" type="text/css" href="css/imgareaselect-animated.css" />
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
+  <link href="css/imgareaselect-default.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="css/jquery.awesome-cropper.css">
 
   <body>
     <?= navbar(); ?>
@@ -23,22 +21,14 @@
           <div class="panel panel-default">
             <div class="panel-heading"><h4>Edit Profile</h4></div>
             <div class="panel-body">
-              <!-- image preview area-->
-              <img id="uploadPreview" style="display:none;"/>
-              <form action="editProfileProcess" method="post" enctype="multipart/form-data">
+              <form action="editProfileProcess" method="post" enctype="multipart/form-data" role="form">
                 <div class="form-group">
                   <input name="userid" type="hidden" value="<?=$user["id"];?>">
-                  <label for="name">Image</label>
-                  <input type="file" id="uploadImage" accept="image/*" name="image">
+                  <label for="name">Image</label><br />
+                  <input id="uploadImage" type="hidden" name="image">
 
                   <img src="<?=$user["image"];?>" width="80">
                   <!-- <input name="oldimage" type="hidden" value="<?=$user["image"];?>"> -->
-
-                  <!-- hidden inputs for crop -->
-                  <input type="hidden" id="x" name="x" />
-                  <input type="hidden" id="y" name="y" />
-                  <input type="hidden" id="w" name="w" />
-                  <input type="hidden" id="h" name="h" />
                 </div>
                 <div class="form-group">
                   <label for="name">Name</label>
