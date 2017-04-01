@@ -6,9 +6,9 @@
         	<td>
                 <table align="center" width="690px" border="0" cellspacing="0" cellpadding="0" style="width:690px!important;padding:20px;">
                 <tbody>
-									<tr align="center" style="margin:30px 0 40px 0;display:block;">
+									<!--<tr align="center" style="margin:30px 0 40px 0;display:block;">
 											<td><a href="http://www.jessdesigntan.com/fyp" target="_blank"><img src="http://jessdesigntan.com/fyp/images/logo.svg" alt="dear carrie" width="200"></a></td>
-									</tr>
+									</tr>-->
                 	<tr>
                     	<td>
                 			<table width="690" align="center" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #eee;border-top:5px solid #ff5a5f;">

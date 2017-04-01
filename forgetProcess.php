@@ -18,20 +18,23 @@ else {
 	//random new password
 	$myPass = randomPassword();
 	$hashPassword = md5($myPass);
-	
+
 	$sql = "update users set password = '$hashPassword' WHERE email = '$email'";
 	$result = $conn->query($sql);
 	validateQuery($conn, $sql);
   	//send email for step new password
-  	
+
 	$to      = $email;
 	$subject = "Dear Carrie - Forget Password";
 	$message = "Hello," . "\n\n";
 	$message .= "Here is your new password : " . $myPass . "\n";
 	$message .= "Please change your password after you login into Dear Carrie" . "\n\n";
 	$message .= "Thank You" . "\n";
-	$headers = "From: Dear Carrie<jess_tjl@hotmail.com>" . "\r\n" .
-	"X-Mailer: PHP/" . phpversion();
+  $headers = "MIME-Version: 1.0" . "\r\n";
+  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+  // Additional headers
+  $headers .= 'From: Dear Carrie<jess_tjl@hotmail.com>' . "\r\n";
 
 	mail($to, $subject, $message, $headers);
   	//header("Location: /fyp");
