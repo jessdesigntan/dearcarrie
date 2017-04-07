@@ -39,10 +39,10 @@ function head($title){
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    
+
     <!-- profile picture upload in edit profile -->
-    <script src="js/jquery.imgareaselect.js"></script> 
-    <script src="js/jquery.awesome-cropper.js"></script> 
+    <script src="js/jquery.imgareaselect.js"></script>
+    <script src="js/jquery.awesome-cropper.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -259,7 +259,7 @@ function card($id) {
       ?>
             <form class="like-inline">
               <input onclick="unlikePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likePostBtn<?=$id;?>" type="button">
-              <p><?=$postLikeCount;?> Likes</p>
+              <p id="likeCount<?=$id;?>"><?=$postLikeCount;?></p>
             </form>
 
       <?php
@@ -267,7 +267,7 @@ function card($id) {
       ?>
             <form class="like-inline">
               <input onclick="likePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikePostBtn<?=$id;?>" type="button">
-              <p><?=$postLikeCount;?> Likes</p>
+              <p id="likeCount<?=$id;?>"><?=$postLikeCount;?></p>
             </form>
       <?php
           }
@@ -338,7 +338,7 @@ function suggestedCard($id) {
       ?>
             <form class="like-inline">
               <input onclick="unlikePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likePostBtn<?=$id;?>" type="button">
-              <p><?=$postLikeCount;?> Likes</p>
+              <p id="likeCount<?=$id;?>"><?=$postLikeCount;?></p>
             </form>
 
       <?php
@@ -346,7 +346,7 @@ function suggestedCard($id) {
       ?>
             <form class="like-inline">
               <input onclick="likePost(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikePostBtn<?=$id;?>" type="button">
-              <p><?=$postLikeCount;?> Likes</p>
+              <p id="likeCount<?=$id;?>"><?=$postLikeCount;?></p>
             </form>
       <?php
           }
@@ -486,14 +486,14 @@ function cardExpand($postID) {
         ?>
               <form class="like-inline">
                 <input onclick="unlikePost(this.id,<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon active" id="likePostBtn" type="button">
-                <p><?=$postLikeCount;?> Likes</p>
+                <p id="likeCount<?=$postID;?>"><?=$postLikeCount;?></p>
               </form>
         <?php
             } else {
         ?>
               <form class="like-inline">
                 <input onclick="likePost(this.id,<?=$_SESSION['userid'];?>,<?=$post['id']?>);" class="star-icon" id="unlikePostBtn" type="button">
-                <p><?=$postLikeCount;?> Likes</p>
+                <p id="likeCount<?=$postID;?>"><?=$postLikeCount;?></p>
               </form>
         <?php
             }
@@ -558,7 +558,7 @@ function commentCard($id) {
         ?>
               <form class="like-inline">
                 <input onclick="unlikeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon active" id="likeCommentBtn<?=$id;?>" type="button">
-                <p><?=$commentLikes;?> Likes</p>
+                <p id="commentLikesCount<?=$id;?>"><?=$commentLikes;?></p>
               </form>
 
         <?php
@@ -566,7 +566,7 @@ function commentCard($id) {
         ?>
               <form class="like-inline">
                 <input onclick="likeComment(this.id, <?=$_SESSION['userid'];?>,<?=$id?>);" class="star-icon" id="unlikeCommentBtn<?=$id;?>" type="button">
-                <p><?=$commentLikes;?> Likes</p>
+                <p id="commentLikesCount<?=$id;?>"><?=$commentLikes;?></p>
               </form>
         <?php
             }

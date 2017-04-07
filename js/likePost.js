@@ -18,6 +18,10 @@ function likePost(ele, userid, postid) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $('#'+ele).removeClass("active");
+            $('#likeCount'+postid).removeClass("primary-color");
+            var likeCount = parseInt($('#likeCount'+postid).text());
+            likeCount -= 1;
+            $('#likeCount'+postid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&postid="+postid+"&action=unlikepost",true);
@@ -35,6 +39,10 @@ function likePost(ele, userid, postid) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $('#'+ele).addClass("active");
+            $('#likeCount'+postid).addClass("primary-color");
+            var likeCount = parseInt($('#likeCount'+postid).text());
+            likeCount += 1;
+            $('#likeCount'+postid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&postid="+postid+"&action=likepost",true);
@@ -55,6 +63,10 @@ function unlikePost(ele, userid, postid) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $('#'+ele).removeClass("active");
+            $('#likeCount'+postid).removeClass("primary-color");
+            var likeCount = parseInt($('#likeCount'+postid).text());
+            likeCount -= 1;
+            $('#likeCount'+postid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&postid="+postid+"&action=unlikepost",true);
@@ -71,6 +83,9 @@ function unlikePost(ele, userid, postid) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $('#'+ele).addClass("active");
+            var likeCount = parseInt($('#likeCount'+postid).text());
+            likeCount += 1;
+            $('#likeCount'+postid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&postid="+postid+"&action=likepost",true);
