@@ -7,7 +7,7 @@
                 <table align="center" width="690px" border="0" cellspacing="0" cellpadding="0" style="width:690px!important;padding:20px;">
                 <tbody>
                   <tr align="center" style="margin:30px 0 40px 0;display:block;">
-                      <td><a href="http://www.jessdesigntan.com/fyp" target="_blank"><img src="http://jessdesigntan.com/fyp/images/logo.svg" alt="dear carrie" width="200"></a></td>
+                      <td><a href="http://www.jessdesigntan.com/fyp" target="_blank"><img src="http://jessdesigntan.com/fyp/images/logo.png" alt="dear carrie" width="200"></a></td>
                   </tr>
                   <tr>
                       <td>
@@ -68,7 +68,7 @@
                                                 <div style="color:#a3a3a3;font-size:12px;line-height:12px;padding:0;margin:0">All rights reserved.</div>
                                               </td>
                                                 <td align="right" valign="top" style="padding:20px;">
-                                                  <span style="line-height:20px;font-size:10px"><a href="https://www.facebook.com" target="_blank"><img src="http://jessdesigntan.com/fyp/images/facebook.svg" alt="fb" width="30px"></a>&nbsp;</span>
+                                                  <span style="line-height:20px;font-size:10px"><a href="https://www.facebook.com" target="_blank"><img src="http://jessdesigntan.com/fyp/images/facebook.png" alt="fb" width="30px"></a>&nbsp;</span>
                                                 </td>
                                             </tr>
                                             <tr><td colspan="2" height="5"></td></tr>
