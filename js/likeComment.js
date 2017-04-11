@@ -19,6 +19,11 @@ function likeComment(ele, userid, commentid) {
             likeBtn = this.responseText.trim();
             unlikeBtn = this.responseText.trim();
             $('#'+ele).removeClass("active");
+
+            $('#commentLikesCount'+commentid).removeClass("primary-color");
+            var likeCount = parseInt($('#commentLikesCount'+commentid).text());
+            likeCount -= 1;
+            $('#commentLikesCount'+commentid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&commentid="+commentid+"&action=unlikecomment",true);
@@ -35,6 +40,11 @@ function likeComment(ele, userid, commentid) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $('#'+ele).addClass("active");
+
+            $('#commentLikesCount'+commentid).addClass("primary-color");
+            var likeCount = parseInt($('#commentLikesCount'+commentid).text());
+            likeCount += 1;
+            $('#commentLikesCount'+commentid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&commentid="+commentid+"&action=likecomment",true);
@@ -57,6 +67,11 @@ function unlikeComment(ele, userid, commentid) {
             likeBtn = this.responseText.trim();
             unlikeBtn = this.responseText.trim();
             $('#'+ele).removeClass("active");
+
+            $('#commentLikesCount'+commentid).removeClass("primary-color");
+            var likeCount = parseInt($('#commentLikesCount'+commentid).text());
+            likeCount -= 1;
+            $('#commentLikesCount'+commentid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&commentid="+commentid+"&action=unlikecomment",true);
@@ -73,6 +88,11 @@ function unlikeComment(ele, userid, commentid) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $('#'+ele).addClass("active");
+
+            $('#commentLikesCount'+commentid).addClass("primary-color");
+            var likeCount = parseInt($('#commentLikesCount'+commentid).text());
+            likeCount += 1;
+            $('#commentLikesCount'+commentid).text(likeCount);
         }
     };
     xmlhttp.open("GET","likeFunctions?userid="+userid+"&commentid="+commentid+"&action=likecomment",true);
