@@ -1,117 +1,152 @@
 <?php
+if(!session_id()) {
+    session_start();
+}
 include('controllers/commonFunctions.php');
 include("controllers/config.php");
 
-session_start();
 $conn = connectToDataBase();
-// added in v4.0.0
-require_once 'autoload.php';
-use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
-use Facebook\FacebookRequest;
-use Facebook\FacebookResponse;
-use Facebook\FacebookSDKException;
-use Facebook\FacebookRequestException;
-use Facebook\FacebookAuthorizationException;
-use Facebook\GraphObject;
-use Facebook\Entities\AccessToken;
-use Facebook\HttpClients\FacebookCurlHttpClient;
-use Facebook\HttpClients\FacebookHttpable;
-// init app with app id and secret
-FacebookSession::setDefaultApplication( '369194556763501','8587548e0a7148a79412da64f8a600f8' );
-// login helper with redirect_uri
-    $helper = new FacebookRedirectLoginHelper($facebookUrl);
-try {
-  $session = $helper->getSessionFromRedirect();
-} catch( FacebookRequestException $ex ) {
-  // When Facebook returns an error
-} catch( Exception $ex ) {
-  // When validation fails or other local issues
+
+// Include the autoloader provided in the SDK
+// require_once __DIR__ . '/facebook-php-sdk/autoload.php';
+require_once 'src/Facebook/autoload.php';
+
+// Include required libraries
+use Facebook\Facebook;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook as FacebookSDK;
+
+/*
+ * Configuration and setup Facebook SDK
+ */
+$appId      = '369194556763501'; //Facebook App ID
+$appSecret    = '8587548e0a7148a79412da64f8a600f8'; //Facebook App Secret
+$permissions  = array('email');  //Optional permissions
+
+foreach ($_COOKIE as $k=>$v) {
+    if(strpos($k, "FBRLH_")!==FALSE) {
+        $_SESSION[$k]=$v;
+    }
 }
-// see if we have a session
-if ( isset( $session ) ) {
-  // graph api request for user data
-  $request = new FacebookRequest( $session, 'GET', '/me?locale=en_US&fields=id,name,email' ); //grab name, id, and especially for email from fb account
-  $response = $request->execute();
-  // print_r($response);
-  // get response
-  $graphObject = $response->getGraphObject();
- 	$fbid = $graphObject->getProperty('id');          // To Get Facebook ID
-  $fbfullname = $graphObject->getProperty('name'); // To Get Facebook full name
-  $femail = $graphObject->getProperty('email');    // To Get Facebook email ID
 
-  //echo $fbid;exit();
-	/* ---- Session Variables -----*/
-	    $_SESSION['FBID'] = $fbid;
-      $_SESSION['FULLNAME'] = $fbfullname;
-	    $_SESSION['EMAIL'] =  $femail;
-    /* ---- header location after session ----*/
+$fb = new Facebook([
+  'app_id' => $appId,
+  'app_secret' => $appSecret,
+  'default_graph_version' => 'v2.8',
+  ]);
 
-    //begin to get photo from facebook account
-    /*
-    $url = 'http://graph.facebook.com/' . $fbid . '/picture?type=large';
-    $ch = curl_init();
-    curl_setopt ($ch, CURLOPT_URL, $url);
-    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-    $data = curl_exec($ch);
-    curl_close($ch);
-    $fileName = 'images/profile/'.$fbid.'.jpg';
-    $file = fopen($fileName, 'w+');
-    fputs($file, $data);
-    fclose($file);
-    //end to get photo from facebook account
-    */
+$helper = $fb->getRedirectLoginHelper();
 
-    //fb image using direct url
-    $fbImage = 'http://graph.facebook.com/'.$fbid.'/picture?type=large';
+try {
+  $accessToken = $helper->getAccessToken();
+} catch(Facebook\Exceptions\FacebookResponseException $e) {
+  // When Graph returns an error
+  echo 'Graph returned an error: ' . $e->getMessage();
+  //exit;
+} catch(Facebook\Exceptions\FacebookSDKException $e) {
+  // When validation fails or other local issues
+  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  //exit;
+}
 
-    //begin get exist user ?
-    $email = $femail;
-    $sql = "SELECT * FROM users WHERE email = '$email' or email = '$fbid'";
-    $result = $conn->query($sql);
-    $value = $result->fetch_assoc();
+if (isset($accessToken)) {
+  // Logged in!
+  $_SESSION['facebook_access_token'] = (string) $accessToken;
 
-    validateQuery($conn, $sql);
-    //end get exist user ?
+  try {
+    $response = $fb->get('/me?locale=en_US&fields=id,name,email',$accessToken);
+    $userNode = $response->getGraphUser();
+  } catch(Facebook\Exceptions\FacebookResponseException $e) {
+    // When Graph returns an error
+    echo 'Graph returned an error: ' . $e->getMessage();
+    //exit;
+  } catch(Facebook\Exceptions\FacebookSDKException $e) {
+    // When validation fails or other local issues
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    //exit;
+  }
 
-    if ($value["email"] == ""){
-      $myPass = randomPassword();
+  //echo 'Logged in as ' . $userNode->getName() . ' - ' . $userNode->getId() . ' - ' . $userNode->getEmail() . '<br />';
+  //print_r($_SESSION['facebook_access_token']);
 
-      $hashPassword = md5($myPass);
-      //save to table user for new user
-      if ($femail == ""){
-        $sqls = "INSERT INTO users (name, email, password, affliate, image)
-      VALUES ('$fbfullname', '$fbid', '$hashPassword', 'facebook', '$fbImage')";
-      }else{
-        $sqls = "INSERT INTO users (name, email, password, affliate, image)
-      VALUES ('$fbfullname', '$femail', '$hashPassword', 'facebook', '$fbImage')";
-      }
+  // Now you can redirect to another page and use the
+  // access token from $_SESSION['facebook_access_token']
+  $_SESSION['FBID'] = $userNode->getId();
+  $_SESSION['FULLNAME'] = $userNode->getName();
+  $_SESSION['EMAIL'] =  $userNode->getEmail();
 
-      validateQuery($conn, $sqls);
+  //begin to get photo from facebook account
+  // $url = 'http://graph.facebook.com/' . $userNode->getId() . '/picture?type=large';
+  // $ch = curl_init();
+  // curl_setopt ($ch, CURLOPT_URL, $url);
+  // curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+  // curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+  // $data = curl_exec($ch);
+  // curl_close($ch);
+  // $fileName = 'images/profile/'.$userNode->getId().'.jpg';
+  // $file = fopen($fileName, 'w+');
+  // fputs($file, $data);
+  // fclose($file);
+  // //end to get photo from facebook account
 
-      //begin to get new facebook user from table user
-      $myFbUser = "SELECT * FROM users WHERE email = '$femail' or email = '$fbid'";
-      $resultFb = $conn->query($myFbUser);
-      $myFb = $resultFb->fetch_assoc();
+  //fb image using direct url
+  $fbImage = 'http://graph.facebook.com/'.$userNode->getId().'/picture?type=large';
 
-      validateQuery($conn, $myFbUser);
-      //end to get new facebook user from table user
+  //begin get exist user ?
+  $femail = $userNode->getEmail();
+  $idfb = $userNode->getId();
+  $namefb = $userNode->getName();
+  $sql = "SELECT * FROM users WHERE email = '$femail' or email = '$idfb'";
+  $result = $conn->query($sql);
+  $value = $result->fetch_assoc();
 
-      $_SESSION["userid"] = $myFb["id"];
-      $_SESSION["email"] = $myFb["email"];
-      $_SESSION["role"] = $myFb["role"];
-      $_SESSION["name"] = strtok($myFb["name"], " "); //get first word of the name
+  validateQuery($conn, $sql);
+  //end get exist user ?
+
+  if ($value["email"] == ""){
+    $myPass = randomPassword();
+
+    $hashPassword = md5($myPass);
+    //save to table user for new user
+    if ($femail == ""){
+      $sqls = "INSERT INTO users (name, email, password, affliate, image)
+    VALUES ('$namefb', '$idfb', '$hashPassword', 'facebook', '$fbImage')";
     }else{
-      $_SESSION["userid"] = $value["id"];
-      $_SESSION["email"] = $value["email"];
-      $_SESSION["role"] = $value["role"];
-      $_SESSION["name"] = strtok($value["name"], " "); //get first word of the name
+      $sqls = "INSERT INTO users (name, email, password, affliate, image)
+    VALUES ('$namefb', '$femail', '$hashPassword', 'facebook', '$fbImage')";
     }
 
+    validateQuery($conn, $sqls);
+
+    //begin to get new facebook user from table user
+    $myFbUser = "SELECT * FROM users WHERE email = '$femail' or email = '$idfb'";
+    $resultFb = $conn->query($myFbUser);
+    $myFb = $resultFb->fetch_assoc();
+
+    validateQuery($conn, $myFbUser);
+    //end to get new facebook user from table user
+
+    $_SESSION["userid"] = $myFb["id"];
+    $_SESSION["email"] = $myFb["email"];
+    $_SESSION["role"] = $myFb["role"];
+    $_SESSION["name"] = strtok($myFb["name"], " "); //get first word of the name
+  }else{
+    $_SESSION["userid"] = $value["id"];
+    $_SESSION["email"] = $value["email"];
+    $_SESSION["role"] = $value["role"];
+    $_SESSION["name"] = strtok($value["name"], " "); //get first word of the name
+  }
+  
 
   header("Location: index.php");
-} else {
-  $loginUrl = $helper->getLoginUrl();
- header("Location: ".$loginUrl);
+
+}else{
+  $permissions = ['email']; // Optional permissions
+  $loginUrl = $helper->getLoginUrl('http://jessdesigntan.com/fyp/fbconfig.php', $permissions);
+  header("Location: ".$loginUrl);
 }
+
+session_write_close();
+
 ?>

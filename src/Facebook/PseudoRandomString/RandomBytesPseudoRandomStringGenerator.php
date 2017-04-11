@@ -21,60 +21,39 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-namespace Facebook\HttpClients;
+namespace Facebook\PseudoRandomString;
 
-/**
- * Class FacebookStream
- *
- * Abstraction for the procedural stream elements so that the functions can be
- * mocked and the implementation can be tested.
- *
- * @package Facebook
- */
-class FacebookStream
+use Facebook\Exceptions\FacebookSDKException;
+
+class RandomBytesPseudoRandomStringGenerator implements PseudoRandomStringGeneratorInterface
 {
-    /**
-     * @var resource Context stream resource instance
-     */
-    protected $stream;
+    use PseudoRandomStringGeneratorTrait;
 
     /**
-     * @var array Response headers from the stream wrapper
+     * @const string The error message when generating the string fails.
      */
-    protected $responseHeaders = [];
+    const ERROR_MESSAGE = 'Unable to generate a cryptographically secure pseudo-random string from random_bytes(). ';
 
     /**
-     * Make a new context stream reference instance
-     *
-     * @param array $options
+     * @throws FacebookSDKException
      */
-    public function streamContextCreate(array $options)
+    public function __construct()
     {
-        $this->stream = stream_context_create($options);
+        if (!function_exists('random_bytes')) {
+            throw new FacebookSDKException(
+                static::ERROR_MESSAGE .
+                'The function random_bytes() does not exist.'
+            );
+        }
     }
 
     /**
-     * The response headers from the stream wrapper
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function getResponseHeaders()
+    public function getPseudoRandomString($length)
     {
-        return $this->responseHeaders;
-    }
+        $this->validateLength($length);
 
-    /**
-     * Send a stream wrapped request
-     *
-     * @param string $url
-     *
-     * @return mixed
-     */
-    public function fileGetContents($url)
-    {
-        $rawResponse = file_get_contents($url, false, $this->stream);
-        $this->responseHeaders = $http_response_header ?: [];
-
-        return $rawResponse;
+        return $this->binToHex(random_bytes($length), $length);
     }
 }
